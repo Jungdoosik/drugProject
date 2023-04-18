@@ -45,7 +45,6 @@
             width: 100%;
             height: 100%;
         }
-
         .index_container {
             width: 100%;
             height: 100%;
@@ -150,14 +149,13 @@
         </section><!-- End Hero Section -->
         <main id="main">
 
-
-
-
         </main>
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
 
+	
     </div>
+    
     <div id="preloader"> </div>
     <!-- Vendor JS Files -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
