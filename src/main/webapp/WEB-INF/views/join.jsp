@@ -70,6 +70,12 @@
 	
 	function drugDetail(itemSeq){
 		console.log("asdasd")
+		console.log("asdasd")
+		console.log("asdasd")
+		console.log("asdasd")
+		console.log("asdasd")
+		console.log("asdasd")
+		console.log("asdasd")
 		/* return false */
 		document.frm.itemName.value = $('input[name="itemName' +itemSeq+ '"]').val()
 		document.frm.itemSeq.value = $('input[name="itemSeq' +itemSeq+ '"]').val()
