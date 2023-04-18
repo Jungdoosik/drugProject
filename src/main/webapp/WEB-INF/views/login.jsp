@@ -106,10 +106,12 @@
               <div class="row gy-4">
 
                 <div class="col-md-6">
+                
                   <input type="text" name="departure" class="form-control" placeholder="City of Departure" required>
                 </div>
 
                 <div class="col-md-6">
+                <h3>로그인</h3>
                   <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required>
                 </div>
 
