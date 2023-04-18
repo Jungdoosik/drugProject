@@ -87,71 +87,84 @@
                         <li> <a href="services"> 서비스 소개</a> </li>
 <!--                         <li> <a href="pricing.html"> Pricing</a> </li>
                         <li> <a href="contact.html"> Contact</a> </li> -->
-                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
+                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
                     </ul>
                 </nav><!-- .navbar -->
             </div>
-        </header><!-- End Header -->
+        </header>
         <!-- End Header -->
-        <!-- ======= Hero Section ======= -->
-        <section id="hero" class="hero d-flex align-items-center">
-            <div class="container">
-                <div class="row gy-4 d-flex justify-content-between" style="margin-top:auto; padding-top:">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h2 data-aos="fade-up"> 안전하게 복약하세요.</h2>
-                        <p data-aos="fade-up" data-aos-delay="100">
-                            드시고 계신 약의 정확한 성분을 알고 계시나요?
-                        </p>
-
-                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
-
-                            <div class="form-search d-flex align-items-stretch mb-3">
-                                <select id="inputState" class="form-control">
-                                    <option> 분류 ▼</option>
-                                    <option> 성분</option>
-                                    <option> 사용법</option>
-                                </select>
-                                <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
-                                <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
-                            </div>
-                        </form>
-
-                        <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
-
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 종류</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 이름</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 성분</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                        <img src="resources/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
-                    </div>
-
-                </div>
-            </div>
         </section><!-- End Hero Section -->
         <main id="main">
 
+    <!-- ======= Get a Quote Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
 
+        <div class="row g-0">
 
+          <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
-        </main>
+          <div class="col-lg-7">
+            <form action="forms/quote.php" method="post" class="php-email-form">
+              <h3>Get a quote</h3>
+              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="departure" class="form-control" placeholder="City of Departure" required>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required>
+                </div>
+
+                <div class="col-lg-12">
+                  <h4>Your Personal Details</h4>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" name="name" class="form-control" placeholder="Name" required>
+                </div>
+
+                <div class="col-md-12 ">
+                  <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your quote request has been sent successfully. Thank you!</div>
+
+                  <button type="submit">Get a quote</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get a Quote Section -->
+
+  </main><!-- End #main -->
+
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
 
