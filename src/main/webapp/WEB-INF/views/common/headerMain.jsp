@@ -70,7 +70,7 @@
                                 <a class="nav-link" href="index#join">서비스 소개</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="join">서비스 가입</a>
+                                <a class="nav-link" href="join"></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="services">서비스 이용</a>
@@ -85,32 +85,22 @@
                     </div>
                 </nav>
             </div>
-            <div class="container-fluid">
-                <div class="logo"><a href="index"><h1 class="blog_taital">A WORLD</h1></a></div>
-                <div class="menu_main">
+            <div class="ul-container" sytle="text-align:left;">
+				<div class="menu_main">
                     <ul>
                         <li class="active"><a href="index">Home</a></li>
-                        <li><a href="index#join">서비스 소개</a></li>
-                        <li><a onclick="itemDataSearch()" style="cursor:pointer;">서비스 가입</a></li>
-                        <li><a href="services">서비스 이용</a></li>
-                        <li><a href="contact">1:1 문의</a></li>
-                        <!--                  <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact us</a></li>-->
+                        <li><a href="index#join">1:1 문의</a></li>
+                        <li><a onclick="itemDataSearch()" style="cursor:pointer;"></a></li>
+                        <li><a href="services">회원가입</a></li>
+                        <li><a href="contact">로그인</a></li>
                     </ul>
-                </div>
+                </div>            
+            </div>
+            <div class="container-fluid">
+                <div class="logo"><a href="index"><h1 class="blog_taital">A WORLD</h1></a></div>
             </div>
         </div>
-        <!-- banner section start -->
-        <form id="frm" name="frm" method="post">
-        <div class="banner_section layout_padding">
-            <div>
-            	<input type="text" name="searchDrug" value="" >
-            	
-            </div>
-        </div>
-            <button type="button" onclick="itemDataSearch()">검색</button>
-        </form>
-        <!-- banner section end -->
+
     </div>
     <!-- header section end -->
 </body>

@@ -246,6 +246,7 @@ button {
     float: left;
     text-align: center;
     padding: 20px 0px 50px 0px;
+    margin-top: 15%;
 }
 
 .logo_mobile {
@@ -406,6 +407,7 @@ button {
 .services_section {
     width: 100%;
     float: left;
+    
     padding-bottom: 90px;
 }
 
