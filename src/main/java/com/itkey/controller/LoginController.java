@@ -42,11 +42,5 @@ public class LoginController {
     public String login() {
     	return "login";
     }
-    
-    
-    @RequestMapping("/mypage")
-    public String mypage() {
-    	return "mypage";
-    }
 }
 
