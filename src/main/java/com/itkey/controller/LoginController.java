@@ -42,5 +42,15 @@ public class LoginController {
     public String login() {
     	return "login";
     }
+    
+    @RequestMapping("/join")
+    public String join() {
+    	return "join";
+    }
+    
+    @RequestMapping("/mypage")
+    public String mypage() {
+       return "mypage";
+    }
 }
 

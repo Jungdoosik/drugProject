@@ -5,6 +5,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+.btn-1 {
+    background: var(--color-primary);
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
+.btn-2 {
+    background: #660099;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+</style>
 
 <head>
     <meta charset="utf-8">
@@ -58,6 +77,10 @@
             document.frm.submit()
 
         }
+        
+        function joinPage(){
+        	location.href='/join';
+        }
     </script>
 
 </head>
@@ -101,58 +124,23 @@
           <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form action="forms/quote.php" method="post" class="php-email-form">
-              <h3>로그인</h3>
-              <div class="row gy-4">
+            <form action="" method="post" class="php-email-form">
+                <div class="col-md-12">
+                <h3>아이디</h3>
+                  <input type="text" name="delivery" class="form-control" placeholder="아이디 입력" style="margin-bottom:10px;">
+                </div>
 
-                <div class="col-md-6">
+                <div class="col-md-12">
+                <h3>비밀번호</h3>
+                  <input type="text" name="weight" class="form-control" placeholder="Password 입력" style="margin-bottom:10px;">
+                </div>
                 
-                  <input type="text" name="departure" class="form-control" placeholder="City of Departure" required>
-                </div>
-
-                <div class="col-md-6">
-                <h3>로그인</h3>
-                  <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required>
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required>
-                </div>
-
-                <div class="col-lg-12">
-                  <h4>Your Personal Details</h4>
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name" required>
-                </div>
-
-                <div class="col-md-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required>
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your quote request has been sent successfully. Thank you!</div>
-
-                  <button type="submit">Get a quote</button>
-                </div>
-
-              </div>
+                <div style="text-align: -webkit-center">
+                  <button type="button" class="btn-1" onclick="loginPage()">로그인</button>
+                  <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
+            </div>
             </form>
+            
           </div><!-- End Quote Form -->
 
         </div>
