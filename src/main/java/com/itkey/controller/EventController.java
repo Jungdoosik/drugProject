@@ -38,10 +38,10 @@ public class EventController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-    @RequestMapping("/event")
+    /*@RequestMapping("/event")
     public String event() {
     	return "event";
-    }
+    }*/
    
     @RequestMapping("/intro")
     public String intro() {

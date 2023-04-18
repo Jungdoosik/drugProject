@@ -102,8 +102,7 @@
 
           <div class="col-lg-7">
             <form action="forms/quote.php" method="post" class="php-email-form">
-              <h3>Get a quote</h3>
-              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <h3>로그인</h3>
               <div class="row gy-4">
 
                 <div class="col-md-6">

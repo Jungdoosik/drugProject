@@ -85,7 +85,7 @@ padding: 40% 10% 40% 10%;
 		</div>
 		<div class="home-main">
 		<button class="event_btn" type="button"  
-		onclick="location.href='/main'">보상받지않고 가입하기</button>
+		onclick="location.href='index'">보상받지않고 가입하기</button>
 	</div>
 	</div>
 	

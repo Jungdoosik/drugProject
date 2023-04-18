@@ -54,6 +54,12 @@
     </style>
     <script>
         function itemDataSearch() {
+        	if(document.frm.searchName.value == '') {
+        		alert("분류를 선택해주세요.")
+        		return false
+        	}
+        	console.log(document.frm.searchName.value)
+        	console.log(document.frm.inputState.value)
             document.frm.action = '/searchDrug';
             document.frm.submit()
 
@@ -102,12 +108,12 @@
                         <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
 
                             <div class="form-search d-flex align-items-stretch mb-3">
-                                <select id="inputState" class="form-control">
-                                    <option> 분류 ▼</option>
-                                    <option> 성분</option>
-                                    <option> 사용법</option>
+                                <select id="inputState" name="inputState" class="form-control">
+                                    <option value=""> 분류 ▼</option>
+                                    <option value="1"> 성분</option>
+                                    <option value="2"> 사용법</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+                                <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요.">
                                 <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
                             </div>
                         </form>
