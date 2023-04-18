@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fortune">
+	<select id="selectFortuneCookie" resultType="FortuneDTO">
+		SELECT *
+		FROM
+		fortune_tb
+		WHERE ft_type = 'cookie'
+		ORDER BY RAND() LIMIT 1
+	</select>
+
+	<select id="selectFortuneToday" parameterType="Integer" resultType="FortuneDTO">
+		SELECT *
+		FROM fortune_tb
+		WHERE ft_type = 'today'
+        ORDER BY RAND(#{memIdx}+DATE_FORMAT(NOW(), '%Y%m%d')) LIMIT 1
+	</select>
+</mapper>

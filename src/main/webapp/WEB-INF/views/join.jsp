@@ -25,7 +25,9 @@
     border-radius: 4px;
 }
 </style>
+<script>
 
+</script>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -73,6 +75,54 @@
         }
     </style>
     <script>
+    var phone_number = "";
+    var certNum = "";
+        
+        $(document).ready(function(){
+            window.resizeTo(600, 440);
+            $("#input-phone").focus();
+        });
+        
+        function paternNumber(event) {
+            if (event.key >= 0 && event.key <= 9)
+                return true;
+            return false;
+        }  
+        
+    function formatPhone(phone_number) {
+            var regex = /01[016789][^0][0-9]{2,3}[0-9]{3,4}/;
+            return regex.test(phone_number);
+     }
+
+
+    function onInput(object) {
+
+        if ($(object).attr("id") == "input-phone") {
+            if ($(object).val().length >= 10)
+                $("#a-request").css("background-color", "#d93022");
+            else
+                $("#a-request").css("background-color", "#b5b9bc");
+        }
+        else {
+            if ($(object).val().length == 4)
+                $("#a-confirm").css("background-color", "#d93022");
+            else
+                $("#a-confirm").css("background-color", "#b5b9bc");
+        }
+    }
+
+    function request() {
+
+        if (!formatPhone($("#input-phone").val())) {
+          basicModal("전화번호를 확인해주세요.");
+          return;
+        }
+        phone_number = $("#input-phone").val();
+        if (phoneCertification(phone_number) == true) {
+            $("#input-certificate").focus();
+            $("#a-request").css("background-color", "#b5b9bc");
+        }
+    }
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()

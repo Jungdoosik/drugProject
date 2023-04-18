@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminCopied">
+
+	<select id="adminInfo" parameterType="AdminDTO" resultType="AdminDTO">
+	SELECT * from admin_copied_tb
+	where admin_id = #{adminId}
+	
+	</select>
+	
+   <!-- 관리자 로그인 -->
+    <select id="adminloginChk" resultType="int">
+      SELECT COUNT(*)
+      FROM admin_copied_tb
+      WHERE admin_id = #{adminId}
+      AND wthdr_yn = 'N'
+   </select>
+   
+	<select id="getSalt" parameterType="AdminDTO" resultType="AdminDTO">
+      SELECT salt, admin_pw
+      FROM admin_copied_tb
+      WHERE admin_id = #{adminId}
+   </select>
+   
+   <!-- 관리자 회원가입  -->
+   	<insert id="adminJoin" parameterType="AdminDTO">
+	INSERT INTO admin_copied_tb 
+		(admin_id, 
+		admin_name, 
+		admin_pw, 
+		salt)
+		VALUES 
+		(#{adminId},
+		#{adminName}, #{adminPw}, #{salt}
+		) 
+	</insert>
+   
+   <!-- 회원가입 / 아이디 중복확인 -->
+   <select id="idChk" resultType="int">
+      SELECT COUNT(*) 
+      FROM admin_copied_tb
+      WHERE admin_id = #{adminId}
+   </select>
+   
+   
+   <!-- 회원리스트 조회 -->
+   <select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+	select *, FORMAT((select sum(poi_point) from point_copied_tb where member_copied_tb.mem_idx = point_copied_tb.mem_idx),0) as totalPoint 
+	from member_copied_tb
+	where admin_yn = 'N'
+	order by mem_idx DESC
+	limit #{pageStart}, #{perPageNum}
+   </select>
+   
+   <!-- 페이징처리용 총 회원게시글 갯수  -->
+   <select id="countBoardList" resultType="Integer">
+    SELECT count(*)
+        FROM member_copied_tb
+	WHERE admin_yn = 'N'
+   </select>
+   
+   <!-- 회원리스트 조회 -->
+   <select id="selectWthdrBoardList" resultType="hashmap" parameterType="hashmap">
+	select *, FORMAT((select sum(poi_point) from point_copied_tb where member_copied_tb.mem_idx = point_copied_tb.mem_idx),0) as totalPoint 
+	from member_copied_tb
+	where admin_yn = 'N'
+	and wthdr_yn = 'Z'
+	order by mem_idx DESC
+	limit #{pageStart}, #{perPageNum}
+   </select>
+   
+   <!-- 페이징처리용 총 회원게시글 갯수  -->
+   <select id="countWthdrBoardList" resultType="Integer">
+    SELECT count(*)
+        FROM member_copied_tb
+	WHERE admin_yn = 'N'
+	and wthdr_yn = 'Z'
+   </select>
+   
+   <!-- 작년 결제매출 총 금액  / 수 -->
+   <select id = "lastYear"  resultType="PayMentDTO">
+   select IFNULL(sum(pmt_product_amt * pmt_product_qty), 0) as pmtTotalAmt, count(*) as pmtTotalQty from payment_copied_tb 
+	where year (pmt_date) = year (now()) -1
+   </select> 
+   
+    <!-- 이번연도 결제매출 총 금액 / 수 -->
+   <select id = "year"  resultType="PayMentDTO">
+	select IFNULL(sum(pmt_product_amt * pmt_product_qty), 0) as pmtTotalAmt, count(*) as pmtTotalQty from payment_copied_tb 
+	where year (pmt_date) = year (now())
+   </select> 
+    
+   <!-- 이번달 결제 매출 총 금액 / 수  -->
+   <select id = "month" resultType="PayMentDTO">
+ 	select IFNULL(sum(pmt_product_amt * pmt_product_qty), 0) as pmtTotalAmt, count(*) as pmtTotalQty from payment_copied_tb 
+	where year (pmt_date) = year (now())
+	and month  (pmt_date) = month (now())
+	and pmt_product = 'prm'
+   </select> 
+
+	<!-- 이번달 포인트 매출 금액 /수  -->
+	<select id="monthPoint" resultType="PayMentDTO">
+	select IFNULL(sum(pmt_product_amt * pmt_product_qty), 0) as pmtTotalAmt, count(*) as pmtTotalQty from payment_copied_tb
+	where year (pmt_date) = year (now())
+	and month  (pmt_date) = month (now())
+	and pmt_product = 'basic'
+	</select>
+
+
+   <!-- 월별 총 매출 -->
+   <select id = "selectTA" resultType="PayMentDTO">
+	select month(pmt_date) as pmtMonth, IFNULL(sum(pmt_product_amt * pmt_product_qty), 0) as pmtTotalAmt from payment_copied_tb 
+	where year (pmt_date) = year (now())
+	group by month (pmt_date)
+   </select>
+
+	<!-- 회원 수 (정기결제) -->
+	<select id="countPrm" resultType="String">
+		SELECT COUNT(*) 
+		FROM member_copied_tb
+		WHERE ADMIN_YN = 'N'
+		AND WTHDR_YN = 'N'
+		AND PAYMENT_R_YN = 'Y'
+	</select>
+	
+	<!-- 회원 수 (일반결제) -->
+	<select id="countBasic" resultType="String">
+		SELECT COUNT(*) 
+		FROM member_copied_tb
+		WHERE ADMIN_YN = 'N'
+		AND WTHDR_YN = 'N'
+		AND PAYMENT_R_YN = 'N'
+	</select>
+
+	<!-- 카카오아벤트유입회원수 -->
+	<select id="kakaoMem" resultType="String">
+		select count(channel_name) from member_copied_tb
+		where channel_name = 'kakao'
+	</select>
+
+	<!-- 회원 mbti count  -->
+	<select id="mbti" resultType="hashmap">
+		SELECT
+			mem_mbti, 
+			COUNT(*) AS num, 
+			(SELECT COUNT(*) FROM member_copied_tb WHERE admin_yn = 'N' and wthdr_yn = 'N') AS totalCount,
+			ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM member_copied_tb WHERE admin_yn = 'N' and wthdr_yn = 'N'), 2) AS pct
+		FROM member_copied_tb 
+		WHERE admin_yn = 'N'
+		and wthdr_yn = 'N' 
+		GROUP BY mem_mbti
+	</select>
+	
+	<!--관리자가 회원탈퇴   -->
+	<update id="deleteMem" parameterType="int">
+		UPDATE member_copied_tb
+		SET	wthdr_yn = 'Y'
+		WHERE mem_idx = #{memIdx}
+	</update>
+	
+	<!--관리자가 회원탈퇴   -->
+	<update id="restoreMem" parameterType="int">
+		UPDATE member_copied_tb
+		SET	wthdr_yn = 'N'
+		WHERE mem_idx = #{memIdx}
+	</update>
+	
+
+	<!-- 관리자 단걸 결제 : 이번달 단건 매출 금액 -->
+	<select id="thisMonthBasic" resultType="_int">
+		select 
+			IFNULL(SUM(pmt_product_qty*pmt_product_amt), 0) as pmt_product_amt 
+		from 
+			payment_copied_tb pt 
+		where 
+			month (pmt_date) = month (NOW())
+		and 
+			year (pmt_date) = year (now())
+		and 
+			pmt_product = 'basic'
+	</select>
+	<!-- 관리자 단걸 결제 :저번달 단건 매출 금액  -->
+	<select id="lastMonthBasic" resultType="_int">
+		select IFNULL(SUM(PMT_PRODUCT_AMT * pmt_product_qty), 0) as pmt_product_amt 
+		from payment_copied_tb pt 
+		where month (pmt_date) =  month(DATE_SUB(now(), INTERVAL 1 month))
+		and if(month(DATE_SUB(now(), INTERVAL 1 month)) = 12, year(pmt_date) = year(DATE_SUB(now(), INTERVAL 1 year)), year(pmt_date) = year(now()))
+		and (pmt_product = 'basic')
+
+	</select>
+	<!-- 관리자 단걸 결제 :올해 총 단건 매출 금액  -->
+	<select id="thisYearBasic" resultType="_int">
+	select 
+		IFNULL(SUM(PMT_PRODUCT_AMT * pmt_product_qty), 0) as pmt_product_amt 
+	from 
+		payment_copied_tb pt 
+	where 		
+		if(month(DATE_SUB(NOW(), INTERVAL 1 month)) = 12, year(pmt_date) = year(DATE_SUB(now(), INTERVAL 1 year)), year(pmt_date) = year(now()))
+	and 
+		pmt_product = 'basic'
+		
+	</select>
+	<!-- 관리자 단걸 결제 : 총 단건 수  -->
+	<select id="thisYearBasicQty" resultType="_int">
+	select 
+		COUNT(pmt_product_qty) as pmt_product_qty 
+	from 
+		payment_copied_tb pt 
+	where
+		pmt_product = 'basic'
+		</select>
+
+	<!-- 이번달 정기 결제 금액 -->
+	<select id="selectThisMonthRegularAmount" resultType="int">
+		SELECT IFNULL(SUM(pmt_product_qty*pmt_product_amt), 0) AS pmt_product_amt 
+		FROM payment_copied_tb pt
+		WHERE YEAR(pmt_date) = YEAR(NOW())
+		AND MONTH(pmt_date) = MONTH(NOW())
+		AND (pmt_product = 'first' OR pmt_product = 'prm');
+	</select>
+	
+	<!-- 지난 달 정기 결제 금액 -->
+	<select id="selectLastMonthRegularAmount" resultType="int">
+		SELECT IFNULL(SUM(PMT_PRODUCT_AMT), 0) AS pmt_product_amt 
+		FROM payment_copied_tb pt 
+		WHERE MONTH (pmt_date) =  MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND IF(MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) = 12, YEAR(pmt_date) = YEAR(DATE_SUB(now(), INTERVAL 1 YEAR)), YEAR(pmt_date) = YEAR(NOW()))
+		AND (pmt_product = 'prm' OR pmt_product = 'first')
+	</select>
+	
+	<!-- 올해 총 정기 결제 금액 -->
+	<select id="selectThisYearRegularAmount" resultType="int">
+		SELECT IFNULL(SUM(pmt_product_qty*pmt_product_amt), 0) as pmt_product_amt 
+		FROM payment_copied_tb pt
+		WHERE YEAR(pmt_date) = YEAR(NOW())
+		AND (pmt_product = 'first' OR pmt_product = 'prm')
+	</select>
+	
+	<!-- 올해 총 정기 결제 건수 -->
+	<select id="selectThisYearRegularCount" resultType="int">
+		select COUNT(*)  
+		from payment_copied_tb pt, member_copied_tb mt  where pt.mem_idx = mt.mem_idx  
+			and (pmt_product = 'prm' or pmt_product = 'first') 
+		order by pmt_idx desc
+	</select>
+	
+	<!-- ///////// 결제 로그 관련 ////////// -->
+	<!-- 단건 결제 조회  basic -->
+	<select id="selectBasicPaymentList" resultType="hashmap" parameterType="hashmap">
+		select pmt_idx, pt.mem_idx, mt.mem_id, mt.mem_name, pmt_product, pmt_product_qty, pmt_product_amt, date_format(pmt_date, '%Y-%m-%d %H:%i:%s') as pmt_date   
+		from payment_copied_tb pt, member_copied_tb mt  
+		where pt.mem_idx = mt.mem_idx  
+			and pmt_product = 'basic' order by pmt_idx desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+
+	<!-- 정기 결제 조회  prm, first -->
+	<select id="selectPrmPaymentList" resultType="hashmap" parameterType="hashmap">
+		select	pmt_idx, 
+				pt.mem_idx, 
+				mt.mem_id, 
+				mt.mem_name, 
+				pmt_product, 
+				pmt_product_amt, 
+				date_format(pmt_date, '%Y-%m-%d %H:%i:%s') as pmt_date, 
+				date_format(created_at, '%Y-%m-%d %H:%i:%s') as created_at, 
+				date_format(approved_at, '%Y-%m-%d %H:%i:%s') as approved_at  
+		from payment_copied_tb pt, member_copied_tb mt  where pt.mem_idx = mt.mem_idx  
+			and (pmt_product = 'prm' or pmt_product = 'first') 
+		order by pmt_idx desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+</mapper>

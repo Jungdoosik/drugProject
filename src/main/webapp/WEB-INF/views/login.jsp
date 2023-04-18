@@ -4,7 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .btn-1 {
     background: var(--color-primary);
@@ -81,6 +83,26 @@
         function joinPage(){
         	location.href='/join';
         }
+        function loginBtn(){
+        	if($('input[name="phone"]').val() == '' || $('input[name="phone"]').val().length < 11){
+        		alert("아이디를 입력해주세요")
+        		return false
+        	}else if($('input[name="password"]').val() == ''){
+        		alert("비밀번호를 입력해주세요")
+        		return false
+        	}
+        	
+        	$.ajax({
+        		url	: "/memberLogin", // 요청이 전송될 URL 주소
+	       		  type	: "post", // http 요청 방식 (default: ‘GET’)
+	       		  data : $('#frm').serialize(),  // 요청 시 동기화 여부. 기본은 비동기(asynchronous) 요청 (default: true)
+	       		  cache : true,  // 캐시 여부
+	       		success :function(data){
+	       			
+	       		}
+        	})
+        	
+        }
     </script>
 
 </head>
@@ -88,6 +110,7 @@
 <body>
 
     <div class="index_container">
+    	<section>
         <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -124,21 +147,21 @@
           <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form action="" method="post" class="php-email-form">
+            <form id="frm" name="frm" method="post" class="php-email-form">
                 <div class="col-md-12">
                 <h3>아이디</h3>
-                  <input type="text" name="delivery" class="form-control" placeholder="아이디 입력" style="margin-bottom:10px;">
+                  <input type="text" name="phone" class="form-control" value="" placeholder="아이디 입력" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="margin-bottom:10px;">
                 </div>
 
                 <div class="col-md-12">
                 <h3>비밀번호</h3>
-                  <input type="text" name="weight" class="form-control" placeholder="Password 입력" style="margin-bottom:10px;">
+                  <input type="text" name="password" class="form-control" value="" placeholder="Password 입력" style="margin-bottom:10px;">
                 </div>
                 
                 <div style="text-align: -webkit-center">
-                  <button type="button" class="btn-1" onclick="loginPage()">로그인</button>
+                  <button type="button" class="btn-1" onclick="loginBtn()" >로그인</button>
                   <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
-            </div>
+            	</div>
             </form>
             
           </div><!-- End Quote Form -->

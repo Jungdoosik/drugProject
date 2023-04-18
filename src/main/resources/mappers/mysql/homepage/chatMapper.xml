@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="chat">
+
+    <select id="countMessageView" resultType="String">
+        select * from chat_msg_tb
+    </select>
+    
+    <!-- 
+	<select id="selectChatRoomList" parameterType="String" resultType="ChatRoomDTO">
+		SELECT room_idx, room_user1, mt1.mem_name 'roomUser1MemName', room_user2, mt2.mem_name 'roomUser2MemName', room_create_date, room_last_date, room_del_yn  
+		FROM chat_room_tb crt  
+		INNER JOIN member_tb mt1 ON crt.room_user1 = mt1.mem_idx 
+		INNER JOIN member_tb mt2 ON crt.room_user2 = mt2.mem_idx 
+		WHERE (room_user1 = #{memIdx} OR room_user2 = #{memIdx}) AND room_del_yn ='N' 
+		ORDER BY room_last_date DESC;
+	</select>
+	회원 idx로 참여중인 채팅방 조회 -->
+	
+    <!-- 회원 idx로 참여중인 채팅방 조회 ( chat_msg idx 기준으로 마지막 메시지 내용, 시간 띄움.  ) -->
+	<select id="selectChatRoomList" parameterType="String" resultType="ChatRoomDTO">
+		SELECT a.room_idx, d.room_user1, c1.mem_name 'roomUser1MemName', e1.file_path 'roomUser1FilePath', d.room_user2, c2.mem_name 'roomUser2MemName', e2.file_path 'roomUser2FilePath', b.msg_sender, b.msg_content, 
+			CASE
+		        WHEN
+		        INSTR(DATE_FORMAT(b.msg_date, '%Y-%m-%d %p %h:%i'), 'PM') > 0
+		        THEN
+		        REPLACE(DATE_FORMAT(b.msg_date, '%Y-%m-%d %p %h:%i'), 'PM', '오후')
+		        ELSE
+		        REPLACE(DATE_FORMAT(b.msg_date, '%Y-%m-%d %p %h:%i'), 'AM', '오전')
+	        END AS msg_date
+		FROM 
+		         (SELECT room_idx, max(msg_idx) AS msg_idx, max(msg_date) AS msg_date
+		          FROM  chat_msg_tb
+		          GROUP BY room_idx) a
+		         , chat_msg_tb b, member_tb c1, member_tb c2, chat_room_tb d, file_tb e1, file_tb e2
+		WHERE  a.room_idx = b.room_idx 
+		AND    a.msg_idx = b.msg_idx 
+		AND    c1.mem_idx = d.room_user1
+		AND    c2.mem_idx = d.room_user2
+		AND    c1.file_idx = e1.file_idx
+		AND    c2.file_idx = e2.file_idx
+		AND    a.room_idx = d.room_idx
+		AND    (d.room_user1 = #{memIdx} OR d.room_user2 = #{memIdx})
+		AND    d.room_del_yn ='N'ORDER BY b.msg_idx DESC;
+	</select>
+	
+    <!-- 채팅방 idx로 채팅방 조회 -->
+	<select id="selectChatRoomByRoomIdx" parameterType="String" resultType="ChatRoomDTO">
+		SELECT room_idx, room_user1, mt1.mem_name 'roomUser1MemName', ft1.file_path 'roomUser1FilePath' ,room_user2, mt2.mem_name 'roomUser2MemName', ft2.file_path 'roomUser2FilePath', room_create_date, room_del_yn  
+		FROM chat_room_tb crt  
+		INNER JOIN member_tb mt1 ON crt.room_user1 = mt1.mem_idx 
+		INNER JOIN member_tb mt2 ON crt.room_user2 = mt2.mem_idx 
+		INNER JOIN file_tb   ft1 ON mt1.file_idx   = ft1.file_idx 
+		INNER JOIN file_tb	 ft2 ON mt2.file_idx   = ft2.file_idx  
+		WHERE room_idx = #{roomIdx};
+	</select>
+	
+	<!-- 새 채팅방 생성 -->
+	<insert id="insertNewChatRoom" useGeneratedKeys="true" keyProperty="seq" parameterType="ChatRoomDTO">
+		INSERT INTO CHAT_ROOM_TB (
+			<trim prefixOverrides=",">
+			<if test="roomIdx         !=null and roomIdx         !=''"> , ROOM_IDX        	</if>
+			<if test="roomUser1       !=null and roomUser1       !=''"> , ROOM_USER1     	</if>
+			<if test="roomUser2       !=null and roomUser2       !=''"> , ROOM_USER2      	</if>
+			<if test="roomCreateDate  !=null and roomCreateDate  !=''"> , ROOM_CREATE_DATE  </if>
+			<if test="roomDelYn       !=null and roomDelYn       !=''"> , ROOM_DEL_YN 		</if>
+			</trim>
+		) VALUES(
+			<trim prefixOverrides=",">
+			<if test="roomIdx         !=null and roomIdx         !=''"> , #{roomIdx}       	</if>
+			<if test="roomUser1       !=null and roomUser1       !=''"> , #{roomUser1}    	</if>
+			<if test="roomUser2       !=null and roomUser2       !=''"> , #{roomUser2}     	</if>
+			<if test="roomCreateDate  !=null and roomCreateDate  !=''"> , #{roomCreateDate} </if>
+			<if test="roomDelYn       !=null and roomDelYn       !=''"> , #{roomDelYn} 		</if>
+			</trim>
+		)
+	</insert>
+	
+	<!-- 채팅방 나가기 (삭제) -->
+	<update id="deleteChatRoom" parameterType="String">
+		UPDATE CHAT_ROOM_TB SET ROOM_DEL_YN = 'Y' WHERE ROOM_IDX = #{roomIdx}
+	</update>
+	
+    <!-- 채팅 msg 조회 -->
+	<select id="selectChatMsg" parameterType="ChatMsgDTO" resultType="ChatMsgDTO">
+		SELECT MSG_IDX, ROOM_IDX, MSG_SENDER, MSG_CONTENT, 
+			CASE
+		        WHEN
+		        INSTR(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'PM') > 0
+		        THEN
+		        REPLACE(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'PM', '오후')
+		        ELSE
+		        REPLACE(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'AM', '오전')
+	        END AS MSG_DATE
+		FROM CHAT_MSG_TB
+		<where>
+			<if test="msgIdx		!=null and msgIdx		!=''"><![CDATA[ AND MSG_IDX			= #{msgIdx}			]]></if>
+			<if test="roomIdx		!=null and roomIdx		!=''"><![CDATA[ AND ROOM_IDX		= #{roomIdx}		]]></if>
+			<if test="msgSender		!=null and msgSender	!=''"><![CDATA[ AND MSG_SENDER		= #{msgSender}		]]></if>
+			<if test="msgReadYn		!=null and msgReadYn	!=''"><![CDATA[ AND MSG_READ_YN		= #{msgReadYn}		]]></if>
+			<if test="msgContent	!=null and msgContent	!=''"><![CDATA[ AND MSG_CONTENT		= #{msgContent}		]]></if>
+			<if test="msgDate		!=null and msgDate		!=''"><![CDATA[ AND MSG_DATE		= #{msgDate}		]]></if>
+		</where>
+	</select>
+
+    <!--  채팅 조회 (조건에 따른 조회 - 채팅방idx, 회원id) -->
+	<select id="selectUserChat" parameterType="String" resultType="ChatMsgDTO">
+		SELECT msg_idx, room_idx, msg_sender, ft.file_path , mt.mem_name 'msgSenderName', msg_content, msg_read_yn, 
+			CASE WHEN INSTR(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'PM') > 0 
+			THEN REPLACE(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'PM', '오후') 
+			ELSE REPLACE(DATE_FORMAT(MSG_DATE, '%Y-%m-%d %p %h:%i'), 'AM', '오전') 
+			END AS MSG_DATE 
+		FROM chat_msg_tb cmt 
+		LEFT JOIN member_tb mt ON cmt.msg_sender = mt.mem_idx 
+		LEFT JOIN file_tb ft on mt.file_idx = ft.file_idx
+		WHERE room_idx = #{roomIdx} ORDER BY msg_idx; 
+	</select>
+    
+    <insert id="insertChatMsg" parameterType="ChatMsgDTO">
+		INSERT INTO chat_msg_tb (
+			<trim prefixOverrides=",">
+			<if test="msgIdx         !=null and msgIdx       !=''"> , MSG_IDX		</if>
+			<if test="roomIdx        !=null and roomIdx      !=''"> , ROOM_IDX		</if>
+			<if test="msgSender      !=null and msgSender    !=''"> , MSG_SENDER	</if>
+			<if test="msgReadYn    !=null and msgReadYn  !=''"> , MSG_READ_YN	</if>
+			<if test="msgContent     !=null and msgContent   !=''"> , MSG_CONTENT	</if>
+			<if test="msgDate        !=null and msgDate      !=''"> , MSG_DATE		</if>
+			</trim>
+		) VALUES(
+			<trim prefixOverrides=",">
+			<if test="msgIdx         !=null and msgIdx         !=''"> , #{msgIdx}		</if>
+			<if test="roomIdx        !=null and roomIdx        !=''"> , #{roomIdx}		</if>
+			<if test="msgSender      !=null and msgSender      !=''"> , #{msgSender}	</if>
+			<if test="msgReadYn    !=null and msgReadYn    !=''"> , #{msgReadYn} 	</if>
+			<if test="msgContent     !=null and msgContent     !=''"> , #{msgContent}	</if>
+			<if test="msgDate        !=null and msgDate        !=''"> , #{msgDate}		</if>
+			</trim>
+		)
+	</insert>
+    
+	<!-- 상대 메시지 모두 읽음으로 바꿈 -->
+	<!-- 채팅방 내의 내가 보내지 않은 msg -->
+	<update id="updateToReadMsg" parameterType="ChatMsgDTO">
+		UPDATE chat_msg_tb SET msg_read_yn = 'Y' WHERE room_idx = #{roomIdx} and msg_sender != #{msgSender}; 
+	</update>
+	
+    <!-- (채팅방 별)상대가 보낸 메시지 중 내가 안 읽은 메시지 -->
+    <select id="selectUnReadMsgCount" resultType="String">
+		select count(*) from chat_msg_tb where room_idx = #{roomIdx} and msg_read_yn = 'N' and msg_sender != #{msgSender};
+    </select>
+    
+    <!-- (모든채팅방 합산)상대가 보낸 메시지 중 내가 안 읽은 메시지 수 -->
+    <select id="selectTotalUnreadMsgCount" parameterType="String" resultType="Integer">
+		SELECT count(*)
+		FROM chat_msg_tb cmt, (SELECT room_idx  FROM chat_room_tb crt WHERE (room_user1 = #{currUserIdx} or room_user2 = #{currUserIdx}) and room_del_yn = 'N') a
+		INNER JOIN member_tb mt 
+		WHERE cmt.room_idx = a.room_idx 
+		AND mt.mem_idx = cmt.msg_sender 
+		AND cmt.msg_sender != #{currUserIdx}
+		AND cmt.msg_read_yn = 'n';
+    </select>
+    
+</mapper>
