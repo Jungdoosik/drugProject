@@ -46,9 +46,7 @@
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-           	서울 금천구<br>
-           	벚꽃로 278<br>
-            14층 <br><br>
+           	서울 금천구 벚꽃로 278 14층 <br><br>
             <strong>Phone:</strong> 02-1234-5678<br>
             <strong>Email:</strong> info@example.com<br>
           </p>
