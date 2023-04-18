@@ -8,20 +8,59 @@
 </head>
 <body>
 
-    <!-- footer section start -->
-    <div class="footer_section layout_padding">
-        <div class="container">
-            <div class="location_main">
-                <div class="call_text">(주)아이티키 | 서울시 금천구 벚꽃로 278, 1406호 (SJ테크노빌) | 000-00-00000</div>
-                <div class="call_text">통신판매업신고번호 : 제2023-서울-0001호</div>
-                <div class="call_text"><img src="resources/images/call-icon.png"></div>
-                <div class="call_text"><a href="#">02-0000-0000</a></div>
-                <div class="call_text"><img src="resources/images/mail-icon.png"></div>
-                <div class="call_text"><a href="#">itkey@itkey.co.kr</a></div>
-            </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>MedicineSearch</span>
+          </a>
+          <!-- <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p> -->
+
         </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4></h4>
+          <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4></h4>
+          <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+           	서울 금천구<br>
+           	벚꽃로 278<br>
+            14층 <br><br>
+            <strong>Phone:</strong> 02-1234-5678<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+
+        </div>
+
+      </div>
     </div>
-    <!-- footer section end -->
+
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
     
 </body>
 </html>
