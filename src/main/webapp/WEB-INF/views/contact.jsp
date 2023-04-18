@@ -1,101 +1,170 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-   <!-- basic -->
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- mobile metas -->
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-   <!-- site metas -->
-   <title>About</title>
-   <meta name="keywords" content="">
-   <meta name="description" content="">
-   <meta name="author" content="">
-   <!-- bootstrap css -->
-   <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
-   <!-- style css -->
-   <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-   <!-- Responsive-->
-   <link rel="stylesheet" href="resources/css/responsive.css">
-   <!-- fevicon -->
-   <link rel="icon" href="resources/images/fevicon.png" type="image/gif" />
-   <!-- Scrollbar Custom CSS -->
-   <link rel="stylesheet" href="resources/css/jquery.mCustomScrollbar.min.css">
-   <!-- Tweaks for older IEs-->
-   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-   <!-- fonts -->
-   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
-   <!-- owl stylesheets -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-      media="screen">
-      
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>MedicineSearch - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="resources/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="resources/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="resources/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="resources/css/main.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Logis
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .index_container {
+            width: 100%;
+            height: 100%;
+            background: #0e1d34;
+        }
+    </style>
+    <script>
+        function itemDataSearch() {
+            document.frm.action = '/searchDrug';
+            document.frm.submit()
+
+        }
+    </script>
+
 </head>
 
 <body>
-    <!-- header section start -->
-	<jsp:include page="common/header.jsp" />
-    <!-- header section end -->
-    
-    <!-- contact section start -->
-    <form>
-	    <div class="contact_section layout_padding">
-			<div class="container">
-				<h1 class="contact_taital">1:1 문의</h1>
-	            <div class="email_text">
-	                <div class="form-group">
-   						<select id="inputState" class="email-bt" style="font-size:21.4px;">
-							<option>문의 종류</option>
-							<option>회원</option>
-							<option>결제</option>
-						</select>
-	                </div>
-					<div class="form-group">
-	                    <input type="text" class="email-bt" placeholder="Name" name="">
-	                </div>
-	                <div class="form-group">
-	                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="">
-	                </div>
-	                <div class="form-group">
-	                    <input type="text" class="email-bt" placeholder="Email" name="">
-	                </div>
-	                <div class="form-group">
-	                    <textarea class="massage-bt" placeholder="문의 내용" rows="5" id="comment" name=""></textarea>
-	                </div>
-	                <div class="send_btn"><a href="#">글쓰기</a></div>
-	            </div>
-	        </div>
-	    </div>
-    
-    </form>
-    <!-- contact section end -->
-    <!-- footer section start -->
-    <jsp:include page="common/footer.jsp" />
-    <!-- footer section end -->
-    <!-- Javascript files-->
-    <script src="resources/js/jquery.min.js"></script>
-    <script src="resources/js/popper.min.js"></script>
-    <script src="resources/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/jquery-3.0.0.min.js"></script>
-    <script src="resources/js/plugin.js"></script>
-    <!-- sidebar -->
-    <script src="resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="resources/js/custom.js"></script>
-    <!-- javascript -->
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+
+    <div class="index_container">
+        <!-- ======= Header ======= -->
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="resources/img/logo.png" alt="" > -->
+                    <h1> MedicineSearch</h1>
+                </a>
+
+                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
+                        <li> <a href="services"> 서비스 소개</a> </li>
+<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
+                        <li> <a href="contact.html"> Contact</a> </li> -->
+                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
+                    </ul>
+                </nav><!-- .navbar -->
+            </div>
+        </header>
+        <!-- End Header -->
+        </section><!-- End Hero Section -->
+        <main id="main">
+
+    <!-- ======= Get a Quote Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-0">
+
+          <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/qna-bg.jpg);"></div>
+
+          <div class="col-lg-7">
+            <form action="forms/quote.php" method="post" class="php-email-form">
+<div class="row gy-4">
+
+                <div class="col-lg-12">
+                  <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.<br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.</h4>
+                </div>
+
+                <div class="col-md-12">
+                                <select id="inputState" name="category" class="form-control">
+                                    <option value="1">회원</option>
+                                    <option value="2">결제</option>
+                                    <option value="3">해지</option>
+                                </select>
+                </div>
+                
+                <div class="col-md-12">
+                  <input type="text" name="name" class="form-control" placeholder="Name" required>
+                </div>
+
+                <div class="col-md-12 ">
+                  <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="문의 내용을 입력해주세요." required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">정상적으로 게시되었습니다.</div>
+
+                  <button type="submit">문의하기</button>
+                </div>
+</div>
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get a Quote Section -->
+
+  </main><!-- End #main -->
+
+
+        <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
+    </div>
+    <div id="preloader"> </div>
+    <!-- Vendor JS Files -->
+    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="resources/vendor/aos/aos.js"></script>
+    <script src="resources/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="resources/js/main.js"></script>
+
 </body>
 
 </html>
