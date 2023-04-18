@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -31,27 +34,28 @@
    <!-- fonts -->
    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
    <!-- owl stylesheets -->
-   <link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-   <link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
       media="screen">
+      
+      	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-
-<style>
-.services_section {
-	background-color: #3f48cc;
-}
-
-
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	
+   <style>
+   html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+	.index_container {
+        width: 100%;
+        height: 100%;
+        background: #3f48cc;
+      }  
 
 
 /* search-box */
@@ -105,41 +109,37 @@
     }
     
     
-    
-    
-    
-    
-    
-    
-    
 </style>
+	<script>
+	function itemDataSearch(){
+		document.frm.action = '/searchDrug';
+		document.frm.submit()
+		
+	}
+	</script>
 </head>
 
 <body>
-
+<div class="index_container">
 	<jsp:include page="common/headerMain.jsp" />
-    
-	<div class="services_section layout_padding">
 	
-	
-
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="searchbar">
-				<input class="search_input" type="text" name="">
-				<a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-			</div>
-		</div>
-    </div>
-		
-		
+	<!-- search section start -->
+	<div class="services_section">
+        <form id="frm" name="frm" method="post">
+			<div class="container h-100">
+				<div class="d-flex justify-content-center h-100">
+					<div class="searchbar">
+						<input class="search_input" type="text" name="searchDrug">
+						<button type="button" onclick="itemDataSearch()" class="search_icon"><i class="fas fa-search"></i></button>
+					</div>
+				</div>
+		    </div>
+        </form>
 	</div>
-	
-	
-	
-	
-	<jsp:include page="common/footer.jsp" />
+	<!-- search section end -->
 
+	<%-- <jsp:include page="common/footer.jsp" /> --%>
+</div>
     <!-- Javascript files-->
     <script src="resources/js/jquery.min.js"></script>
     <script src="resources/js/popper.min.js"></script>
@@ -150,7 +150,6 @@
     <script src="resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="resources/js/custom.js"></script>
     <!-- javascript -->
-    <script src="resources/js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 

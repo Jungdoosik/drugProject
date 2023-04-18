@@ -31,37 +31,48 @@
    <!-- fonts -->
    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
    <!-- owl stylesheets -->
-   <link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-   <link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
       media="screen">
+      
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <!-- header section start -->
 	<jsp:include page="common/header.jsp" />
     <!-- header section end -->
+    
     <!-- contact section start -->
-    <div class="contact_section layout_padding">
-        <div class="container">
-            <h1 class="contact_taital">1:1 문의</h1>
-            <div class="email_text">
-                <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Name" name="Email">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Email" name="Email">
-                </div>
-                <div class="form-group">
-                    <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                </div>
-                <div class="send_btn"><a href="#">SEND</a></div>
-            </div>
-        </div>
-    </div>
+    <form>
+	    <div class="contact_section layout_padding">
+			<div class="container">
+				<h1 class="contact_taital">1:1 문의</h1>
+	            <div class="email_text">
+	                <div class="form-group">
+   						<select id="inputState" class="email-bt" style="font-size:21.4px;">
+							<option>문의 종류</option>
+							<option>회원</option>
+							<option>결제</option>
+						</select>
+	                </div>
+					<div class="form-group">
+	                    <input type="text" class="email-bt" placeholder="Name" name="">
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="">
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="email-bt" placeholder="Email" name="">
+	                </div>
+	                <div class="form-group">
+	                    <textarea class="massage-bt" placeholder="문의 내용" rows="5" id="comment" name=""></textarea>
+	                </div>
+	                <div class="send_btn"><a href="#">글쓰기</a></div>
+	            </div>
+	        </div>
+	    </div>
+    
+    </form>
     <!-- contact section end -->
     <!-- footer section start -->
     <jsp:include page="common/footer.jsp" />
@@ -76,8 +87,15 @@
     <script src="resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="resources/js/custom.js"></script>
     <!-- javascript -->
-    <script src="resources/js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
