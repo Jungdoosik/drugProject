@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="enquire">
+
+<resultMap type="com.itkey.service.common.Criteria" id="Criteria"></resultMap>
+
+	<!-- 문의 리스트 고객-->
+	<select id="listEnqire" resultType="EnquireVo">
+		SELECT 
+			seq, 
+			title, 
+			writer, 
+			answer, 
+			q_date as qdate, 
+			a_date as adate 
+		FROM 
+			enquire 
+		<!-- WHERE 
+			delyn = 'N' and writer = #{id} and service_code = #{code}
+		ORDER BY 
+			seq 
+		DESC limit #{pageStart}, #{number} -->
+	</select>
+	
+	<!-- 문의 리스트 -->
+	<select id="listCountEnqire" resultType="int">
+		SELECT 
+			count(1)
+		FROM 
+			enquire 
+		WHERE 
+			delyn = 'N' and writer = #{id} and service_code = #{code}
+		ORDER BY 
+			seq 
+		DESC
+	</select>
+	
+	<!-- 문의 리스트 관리자 -->
+	<select id="listAdminEnquire" resultType="EnquireVo" parameterType="Criteria">
+		SELECT 
+			seq, 
+			title, 
+			writer, 
+			answer, 
+			q_date as qdate, 
+			a_date as adate,
+			delyn
+		FROM 
+			enquire 
+		WHERE 
+			1=1
+			<if test="serviceCode != ''">
+				<include refid="serviceCode"></include>
+			</if> 
+		ORDER BY 
+			answer	 
+	</select>
+	
+	<!-- 해지요청 리스트(미처리만) 관리자 -->
+	<select id="listAdminECS" resultType="EnquireVo" parameterType="Criteria">
+		SELECT 
+			seq, 
+			title, 
+			writer, 
+			answer, 
+			q_date as qdate, 
+			a_date as adate,
+			delyn
+		FROM 
+			cancel_enquire 
+		WHERE 
+			answer IS NULL
+			<if test="serviceCode != ''">
+				<include refid="serviceCode"></include>
+			</if>  
+		ORDER BY 
+			seq 
+	</select>
+	
+	<!-- 대기중인 문의 내역 건수 -->
+	<select id="untreatedEnqCnt" resultType="int" parameterType="Criteria">
+		SELECT 
+			count(1)
+		FROM 
+			enquire 
+		WHERE 
+			answer IS NULL 
+			<if test="serviceCode != ''">
+				<include refid="serviceCode"></include>
+			</if>
+	</select>
+	
+	<!-- 대기중인 해지 요청 건수 -->
+	<select id="untreatedEnqCsCnt" resultType="int" parameterType="Criteria">
+		SELECT 
+			count(1)
+		FROM 
+			cancel_enquire 
+		WHERE 
+			answer IS NULL
+			<if test="serviceCode != ''">
+				<include refid="serviceCode"></include>
+			</if> 
+	</select>
+	
+	<!--1대1 문의 상세보기-->
+	<select id="detailEnquire" resultType="EnquireVo">
+		SELECT
+			seq,
+			title,
+			writer,
+			question,
+			answer,
+			q_date as qdate,
+			delyn
+		FROM
+			enquire 
+		WHERE seq = #{seq}
+	</select>
+	
+	<!-- 문의 등록 -->
+	
+	<insert id="registerEnqire" parameterType="EnquireVo">
+		INSERT INTO enquire (
+			title, 
+			writer,
+			question, 
+			q_date,
+			delyn,
+			service_code
+			) 
+		values 
+			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
+
+	</insert>
+	
+	<insert id="registerEnqireCS" parameterType="EnquireVo">
+		INSERT INTO cancel_enquire (
+			title, 
+			writer,
+			question, 
+			q_date,
+			delyn,
+			service_code
+			) 
+		values 
+			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
+
+	</insert>
+	
+	<select id="getCScount" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			cancel_enquire
+		WHERE
+			writer = #{id} AND a_date is null
+	</select>
+	
+	<!-- 답변등록 -->
+	<update id="enquireAnswer">
+		UPDATE 
+			enquire 
+		SET 
+			answer = #{answer}, 
+			a_date = now() 
+		WHERE seq = #{seq}
+	</update>
+	
+	<!-- 답변등록 -->
+	<update id="enquireAnswerCS">
+		UPDATE 
+			cancel_enquire 
+		SET 
+			answer = #{answer}, 
+			a_date = now() 
+		WHERE seq = #{seq}
+	</update>
+	
+	<!-- 문의글 삭제 -->
+	<update id="enquireDelete">
+		UPDATE
+			enquire
+		SET
+			delyn = 'Y'
+		WHERE seq = #{seq}
+	</update>
+	
+	<!-- 고객 결제내역 가져오기 -->
+	<!-- <select id="historyCredit" resultType="CreditDTO">
+		SELECT
+			seq,
+			id,
+			itemname,
+			amount,
+			credit_date
+		FROM
+			credit
+		WHERE id = #{id}
+	</select> -->
+	
+	<!-- 검색타입 -->
+	<sql id="serviceCode">			
+		<choose>
+			<when test="serviceCode == 'WM'.toString()">
+				AND service_code LIKE CONCAT('%',#{serviceCode},'%')
+			</when>
+			<when test="serviceCode == 'ALL'.toString()">
+				
+			</when>
+		</choose>		
+	</sql>
+	
+	
+</mapper>

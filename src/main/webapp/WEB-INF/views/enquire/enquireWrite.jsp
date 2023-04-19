@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch - Index</title>
+    <title>MedicineSearch - 문의하기</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -60,6 +60,81 @@
         }
     </script>
 
+<style type="text/css">
+.btn{
+    background: #0d42ff;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+    
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!--<script type="text/javascript" th:src="@{/js/enquire/enquireWrite.js}"></script>   화면에 정리 --> 
+<script type="text/javascript">
+
+/* 문의하기  bnt  DB 저장하러 가기  */
+function regist(message){
+
+	var title = $('input[name=title]').val();           // 제목
+	var writer = $('input[name=writer]').val();         //작성자
+	var question = $('textarea[name=question]').val();  //내용
+	var csrfHeaderName = $('#csrfHeaderName').val();    //
+	var csrfTokenValue = $('#csrfTokenValue').val();    //
+	var service_code = $('#serviceCode').val();         //서비스코드
+
+	if(title.trim() =='' || question.trim() == ''){
+		basicModal("문의 사항이나 내용을 적어주시기 바랍니다.");
+		return false;
+	}
+	var url = '';
+	var func;
+	if(message == 'CS'){ 
+		url = '/enquire/registerCS';
+		func = function(){self.close();}
+	}
+	else if(message == 'enquire'){
+		url = 'register';
+		func = function(){location.href = '/enquire/list';}
+	} 
+		$.ajax({
+			type : 'POST', 
+			url : url,
+			beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
+			header : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST" 
+			},
+			contentType : "application/json",
+			data : JSON.stringify({
+				title : title,
+				writer : writer,
+				question : question,
+				service_code : service_code
+				}),
+			dataType : 'text',
+			success : function(result){
+				if(result == 'SUCCESS'){
+					basicModal("문의가 등록되었습니다.", func);
+				}else{
+					basicModal("문의 등록 실패")
+				}
+			}
+		});		
+}
+/* 취소 bnt 문의리스트 돌아가기  */
+function golist(){
+	location.href = '/list';
+}
+
+</script>
+
 </head>
 
 <body>
@@ -90,8 +165,7 @@
         </header>
         <!-- End Header -->
         </section><!-- End Hero Section -->
-        <main id="main">
-
+ <main id="main">
     <!-- ======= Get a Quote Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
       <div class="container" data-aos="fade-up">
@@ -102,44 +176,48 @@
 
           <div class="col-lg-7">
             <form action="forms/quote.php" method="post" class="php-email-form">
-<div class="row gy-4">
-
-                <div class="col-lg-12">
-                  <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.<br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.</h4>
+           
+           <div class="row gy-4">
+           <div class="col-lg-12">
+                <h3>1:1 문의</h3>
+                <!-- jquery cdn -->
+             <%--로그인 후 진행 
+             <input type="hidden" id="csrfHeaderName" th:value="${_csrf.headerName}">
+		         <input type="hidden" id="csrfTokenValue" th:value="${_csrf.token}"> 
+		         --%>
+                 <input type="hidden" id="serviceCode" value="MS">
+               
+                  <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
+                  <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4>
                 </div>
-
-                <div class="col-md-12">
-                                <select id="inputState" name="category" class="form-control">
-                                    <option value="1">회원</option>
-                                    <option value="2">결제</option>
-                                    <option value="3">해지</option>
-                                </select>
+                
+                <div class="col-md-12 ">
+                <span class="input-group-text">작성자</span>
+                  <input type="text" class="form-control" name="writer" required>
+                 
+               <%--  로그인 후 작성되어야함    
+                  <input class="form-control w-5" type="text" name="writer" th:value="${#authentication.name}" readonly>
+                 --%>
                 </div>
                 
                 <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name" required>
+                   <span class="input-group-text">문의 사항</span>
+                  <!-- <input class="form-control" type="text" name="title"  placeholder="※ 무엇을 문의하시겠습니까?"> -->
+                  <input type="text" name="title" class="form-control"  placeholder="※ 무엇을 문의하시겠습니까?" required>
                 </div>
-
-                <div class="col-md-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required>
-                </div>
-
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
+                   <span class="input-group-text">문의내용</span>
+                  <textarea class="form-control" name="question" rows="6"  placeholder="※ 내용을 입력하세요.&#13;&#10;&#13;&#10;수정 / 삭제 불가하오니 신중히 문의하시기 바랍니다." required></textarea>
                 </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="문의 내용을 입력해주세요." required></textarea>
-                </div>
-
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">정상적으로 게시되었습니다.</div>
 
-                  <button type="submit">문의하기</button>
+                  <button type="button"  class="btn" onclick="regist('enquire')" >문의하기</button>
+                  <button type="button" class="btn"  onclick="golist()" >취소</button>
+                  
                 </div>
-</div>
               </div>
             </form>
           </div><!-- End Quote Form -->
