@@ -105,7 +105,7 @@ function openReg(){
  function iamport(){
 	
 	var itemPrice = 100;
-	var itemTitle = "날씨모아 이벤트인증";
+	var itemTitle = "MedicineSearch 이벤트인증";
 	
 	d = new Date();
 	var customer_uid = "cuid_" + d.getTime();

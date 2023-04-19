@@ -6,5 +6,5 @@ import java.util.Map;
 public interface LoginService {
 
 	MemberVo login(MemberVo member) throws Exception;
-
+	public int insertMem(MemberVo member) throws Exception;
 }

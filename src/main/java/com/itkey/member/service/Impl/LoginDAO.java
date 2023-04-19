@@ -19,6 +19,10 @@ public class LoginDAO {
 		return sqlSession.selectOne("member.memberLogin",member);
 	}
 	
+	public int insertMem(MemberVo member) throws Exception {
+		int result = sqlSession.insert("insertMem",member);
+		return result;
+	}
 	
 
 }

@@ -1,9 +1,11 @@
 package com.itkey.member.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,10 +16,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itkey.controller.HomeController;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
+import com.itkey.util.SHA256Util;
 
 
 /**
@@ -68,6 +72,30 @@ public class LoginController {
     @RequestMapping("/join")
     public String join() {
     	return "join";
+    }
+    
+    @RequestMapping("/joinDo")
+    public ModelAndView joinDo(MemberVo member, HttpServletResponse response) throws Exception {
+    	ModelAndView mv = new ModelAndView();
+    	
+
+    	member.setSalt(SHA256Util.generateSalt());
+    	member.setPwd(SHA256Util.getEncrypt(member.getPwd(), member.getSalt()));
+    	int joinOk = loginService.insertMem(member);
+    	
+    	
+    	if(joinOk == 1){
+    		response.setContentType("text/html; charset=UTF-8");
+			PrintWriter result = response.getWriter();
+			result.println(""
+					+ "<script>"
+					+ "if(alert('회원가입이 완료되었습니다. 로그인 후 이용해주세요.')){"
+					+ "}; </script>");
+			result.flush();
+			mv.setViewName("login");
+		}
+    	
+    	return mv;
     }
     
     @RequestMapping("/mypage")

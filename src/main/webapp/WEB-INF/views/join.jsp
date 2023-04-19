@@ -51,7 +51,8 @@
 
     <!-- Template Main CSS File -->
     <link href="resources/css/main.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="resources/js/member.js"></script>
     <!-- =======================================================
     * Template Name: Logis
     * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -75,54 +76,8 @@
         }
     </style>
     <script>
-    var phone_number = "";
-    var certNum = "";
-        
-        $(document).ready(function(){
-            window.resizeTo(600, 440);
-            $("#input-phone").focus();
-        });
-        
-        function paternNumber(event) {
-            if (event.key >= 0 && event.key <= 9)
-                return true;
-            return false;
-        }  
-        
-    function formatPhone(phone_number) {
-            var regex = /01[016789][^0][0-9]{2,3}[0-9]{3,4}/;
-            return regex.test(phone_number);
-     }
 
-
-    function onInput(object) {
-
-        if ($(object).attr("id") == "input-phone") {
-            if ($(object).val().length >= 10)
-                $("#a-request").css("background-color", "#d93022");
-            else
-                $("#a-request").css("background-color", "#b5b9bc");
-        }
-        else {
-            if ($(object).val().length == 4)
-                $("#a-confirm").css("background-color", "#d93022");
-            else
-                $("#a-confirm").css("background-color", "#b5b9bc");
-        }
-    }
-
-    function request() {
-
-        if (!formatPhone($("#input-phone").val())) {
-          basicModal("전화번호를 확인해주세요.");
-          return;
-        }
-        phone_number = $("#input-phone").val();
-        if (phoneCertification(phone_number) == true) {
-            $("#input-certificate").focus();
-            $("#a-request").css("background-color", "#b5b9bc");
-        }
-    }
+    
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()
@@ -162,7 +117,7 @@
         </section><!-- End Hero Section -->
         <main id="main">
 
-    <!-- ======= Get a Quote Section ======= -->
+    <!-- ======= join Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
       <div class="container" data-aos="fade-up">
 
@@ -170,34 +125,19 @@
 
           <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
+		  <!-- Start join Form -->
           <div class="col-lg-7">
-            <form action="" method="post" class="php-email-form">
+            <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
 				<div>
-
-                <div class="col-md-12">
-                <h3>아이디</h3>
-                  <input type="text" name="delivery" class="form-control" placeholder="아이디 입력" style="margin-bottom:10px;">
-                </div>
-
-                <div class="col-md-12">
-                <h3>비밀번호</h3>
-                  <input type="text" name="weight" class="form-control" placeholder="패스워드 입력" style="margin-bottom:10px;">
-                </div>
-
-                <div class="col-md-12">
-                <h3>비밀번호확인</h3>
-                  <input type="text" name="dimensions" class="form-control" placeholder="패스워드 확인" style="margin-bottom:10px;">
-                </div>
-
+                
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
-                  <input type="text" name="name" class="form-control" placeholder="휴대전화번호 입력" style="margin-bottom:10px;">
+                  <input type="text" id="phone" name="phone" class="form-control" placeholder="휴대전화번호 입력" style="margin-bottom:10px;">
                   <button type="button" style="margin-bottom:10px;">인증하기</button>
                   </div>
                 </div>
-
-
+                
                 <div class="col-md-12 " >
                 <h3>인증번호</h3>
                 <div style="display:flex;">
@@ -205,20 +145,35 @@
                   <button type="button" style="margin-bottom:10px;">인증확인</button>
                 </div>
                 </div>
+                
+                <div class="col-md-12">
+                <h3>비밀번호</h3>
+                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="패스워드 입력" style="margin-bottom:10px;">
+                </div>
 
+                <div class="col-md-12">
+                <h3>비밀번호확인</h3>
+                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="패스워드 확인" style="margin-bottom:10px;">
+                </div>
 
+				<div class="col-md-12">
+                <h3>이메일 주소</h3>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
+                </div>
+                
                 <div style="text-align: -webkit-center">
-                  <button type="button" class="btn-2">회원가입</button>
+                  <button type="button" class="btn-2" onclick="joinChk()">회원가입</button>
+                  <a href="login" class="btn-2">취소</a>
             </div>
 
               </div>
             </form>
-          </div><!-- End Quote Form -->
+          </div><!-- End join Form -->
 
         </div>
 
       </div>
-    </section><!-- End Get a Quote Section -->
+    </section><!-- End join Section -->
 
   </main><!-- End #main -->
 

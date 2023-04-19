@@ -22,4 +22,11 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.loginMember(member);
 	}
 
+	@Override
+	public int insertMem(MemberVo member) throws Exception {
+		int result = loginDAO.insertMem(member);
+		return result;
+	}
+
+
 }

@@ -129,7 +129,7 @@
                         <li> <a href="services"> 서비스 소개</a> </li>
 <!--                         <li> <a href="pricing.html"> Pricing</a> </li>
                         <li> <a href="contact.html"> Contact</a> </li> -->
-                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
+                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
                     </ul>
                 </nav><!-- .navbar -->
             </div>
