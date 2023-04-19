@@ -33,9 +33,9 @@
       <property name="dataSource" ref="dataSource" />
       <!-- classpath 이클립스 메이븐 가상경로는 src/main/resources/ => 실제 톰캣 WAS 서버에 의해서 
          변경된 실제 경로는 /WEB-INF/classes/, mybatis-config.xml파일의 특징은 데이터 저장빈 클래스의 객체 별칭을 관리. -->
-      <property name="configLocation"   value="classpath:/mybatis-config.xml" />
+      <property name="configLocation"   value="classpath:/mybatis/mybatis-config.xml" />
       <!-- mybatis 매퍼태그 경로 설정 -->
-      <property name="mapperLocations" value="classpath:/mappers/*.xml" />
+      <property name="mapperLocations" value="classpath:/mybatis/mapper/*.xml" />
    </bean>
    
    <!-- 트랜잭션 매니저 설정 -->
