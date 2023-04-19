@@ -7,7 +7,8 @@ function joinChk() {
 
 
 	var form = $("#joinFrm");
-
+	var authReq = $("#authReq").val();
+	var authChk = $("#authChk").val();
 	var phone = $("#phone").val();
 	var pwd = $("#pwd").val();
 	var pwdChk = $("#pwdChk").val();
@@ -19,7 +20,7 @@ function joinChk() {
 	var idStatus = "no";
 	var val = true;
 
-	$.ajax({
+/*	$.ajax({
 		url: "joinChk.do",
 		type: "POST",
 		async: false,
@@ -35,9 +36,12 @@ function joinChk() {
 				idStatus = "no";
 			}
 		}
-	});
+	});*/
 
-	if (phone == '' || pwd == '' || pwdChk == '' || email == '') {
+	if (authReq== '' || authChk== '' || authReq== '0' || authChk== '0') {
+		alert("휴대전화번호 인증 확인을 하셔야 가입이 진행됩니다.");
+		val = false;
+	} else if (phone == '' || pwd == '' || pwdChk == '' || email == '') {
 		alert("모든 항목을 빈칸없이 작성해 주시기 바랍니다.");
 		val = false;
 	} else if (!val_phone.test(phone)) {
@@ -49,13 +53,13 @@ function joinChk() {
 	} else if (pwd != pwdChk) {
 		alert("입력하신 비밀번호와 비밀번호 확인이 상이합니다. 다시 확인하여 주시기 바랍니다.");
 		val = false;
-	} else if (idStatus == "no") {
+	} /*else if (idStatus == "no") {
 		alert("중복된 아이디입니다.");
 		val = false;
 	} else if (idStatus == "del") {
 		alert("탈퇴한 아이디입니다.(사용불가)");
 		val = false;
-	}
+	}*/
 
 	if (val == false) {
 		return false;
@@ -73,49 +77,71 @@ function joinChk() {
  */
 function requestAuth(){
 	
-	var csrfHeaderName = $('#csrfHeaderName').val();
+/*	var csrfHeaderName = $('#csrfHeaderName').val();
 	var csrfTokenValue = $('#csrfTokenValue').val();
 	
-	var searchflag = $('#searchflag').val();
-	var phone = $('#input-phone').val();
+	var searchflag = $('#searchflag').val();*/
+	var phone = $("#phone").val();
 	
 	if(phone.trim() == '') {
 			 alert("핸드폰번호를 입력해주세요.");
 			 return false;
 		 } 
 	
-	$.getJSON("/member/nullCk/" + phone, function(data){
-		
-		console.log(data);
-		
-		if(data == 0){
-			alert("가입된 회원이 아닙니다. 회원가입 먼저 하시기바랍니다.");
-			return false;
-		} else{
-			$.ajax({
-				type : 'Get', 
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
-				header : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "GET" 
-				},
-				contentType : "application/json",
-				url : "/member/userFind",
-				data : {
-					searchflag : searchflag,
-					phone : phone,
-				},
-				success : function(result){
-					alert("인증번호가 문자로 발송되었습니다.");
-					num = result;
-				}
-			});
+	
+	var idStatus = "no";
+	var val = true;
+	// 휴대전화번호 중복(가입여부) 확인
+	$.ajax({
+		url: "joinChk.do",
+		type: "POST",
+		async: false,
+		data: {
+			phone: phone
+		},
+		success: function(data) {
+			if (data == 0) {
+				idStatus = "ok";
+			} else if (data == 2) {
+				idStatus = "del";
+			} else {
+				idStatus = "no";
+			}
 		}
-		
 	});
 	
+	if (idStatus == "no") {
+		alert("중복된 아이디입니다.");
+		val = false;
+	} else if (idStatus == "del") {
+		alert("탈퇴한 아이디입니다.(사용불가)");
+		val = false;
+	}
+	
+	if (val == false) {
+		return false;
+	} else {
+		
+		$.ajax({
+			type : 'POST', 
+			url : "/phoneCheck",
+			data : {
+				phone : phone,
+			},
+			success : function(result) {
+				alert("인증번호가 문자로 발송되었습니다.");
+				num = result;
+				$('#authReq').attr('value', "1");
+			},
+			error : function() {
+				alert("문자발송 error");
+				//$('#authReq').attr('value', "0");
+				$('#authReq').attr('value', "1");
+				num = '0000';
+			}
+		});
+		
+	}
 	
 }
 
@@ -124,48 +150,26 @@ function requestAuth(){
  */
 function confirmAuth(){
 	
-	var csrfHeaderName = $('#csrfHeaderName').val();
+/*	var csrfHeaderName = $('#csrfHeaderName').val();
 	var csrfTokenValue = $('#csrfTokenValue').val();
 	var certificate = $('#input-certificate').val();
 	
-	var searchflag = $('#searchflag').val();
-	var phone = $('#input-phone').val();
+	var searchflag = $('#searchflag').val();*/
+	var authReq = $("#authReq").val();
+	var phone = $("#phone").val();
+	var authNum = $("#authNum").val();
 	
-	var str;
+	if (authReq== '' || authReq== '0') {
+		alert("인증 요청 후 진행하시기 바랍니다.");
+		return false;
+	}else if (authNum.trim() == '') {
+		alert("인증번호를 입력하세요.");
+		return false;
+	} 
 	
-	if(certificate.trim() == '') {
-		 alert("인증번호를 입력하세요.");
-		 return false;
-	 } 
-	
-	if(searchflag == 'ID'){
-		str = "가입하신 이메일이 문자로 발송되었습니다.";
-	}else if (searchflag == 'PW'){
-		str = "새로운 임시 비밀번호가 문자로 발송되었습니다.";
-	}
-	
-	if(certificate == num){
-			$.ajax({
-				type : 'Get', 
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
-				header : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "GET" 
-				},
-				contentType : "application/json",
-				url : "/member/userEmail",
-				data : {
-					searchflag : searchflag,
-					phone : phone,
-				},
-				success : function(result){
-					alert(str);
-					window.close();
-				}
-			});
-		
+	if (authNum == num){
+		alert("인증번호가 정상적으로 확인되었습니다.");
+		$('#authChk').attr('value', "1");
 	}else {
 		alert("인증번호가 다릅니다.");
 		return false;

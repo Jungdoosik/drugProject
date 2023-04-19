@@ -3,6 +3,7 @@ package com.itkey.member.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itkey.controller.HomeController;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
+import com.itkey.phone.service.PhoneService;
 import com.itkey.util.SHA256Util;
+
 
 
 /**
@@ -34,6 +39,8 @@ public class LoginController {
 	
 	@Autowired
     private LoginService loginService;
+	@Autowired
+	private PhoneService phoneService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -160,6 +167,18 @@ public class LoginController {
 			return "0";
 		}
 	}
+	
+	// 인증요청
+	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+
+		phoneService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
+		
+		return Integer.toString(randomNumber);
+	}
+	
 	
     @RequestMapping("/joinDo")
     public ModelAndView joinDo(MemberVo member, HttpServletResponse response) throws Exception {

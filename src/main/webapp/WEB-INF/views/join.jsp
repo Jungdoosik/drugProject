@@ -99,31 +99,7 @@
 
     <div class="index_container">
     <jsp:include page="common/header.jsp" />
-<!--         ======= Header =======
-        <header id="header" class="header d-flex align-items-center fixed-top">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-                <a href="index.html" class="logo d-flex align-items-center">
-                    Uncomment the line below if you also wish to use an image logo
-                    <img src="resources/img/logo.png" alt="" >
-                    <h1> MedicineSearch</h1>
-                </a>
-
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li> <a href="index.html" class="active"> Home</a> </li>
-                        <li> <a href="services"> 서비스 소개</a> </li>
-                        <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li>
-                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
-                    </ul>
-                </nav>.navbar
-            </div>
-        </header>
-        End Header -->
-        <main id="main">
+    <main id="main">
 
     <!-- ======= join Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
@@ -136,21 +112,23 @@
 		  <!-- Start join Form -->
           <div class="col-lg-7">
             <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
+	            <input type="hidden" id="authReq" name="authReq">
+	            <input type="hidden" id="authChk" name="authChk">
 				<div>
                 
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
                   <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;">인증요청</button>
+                  <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button>
                   </div>
                 </div>
                 
                 <div class="col-md-12 " >
                 <h3>인증번호</h3>
                 <div style="display:flex;">
-                  <input type="text" class="form-control" name="email" placeholder="인증번호 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;">인증확인</button>
+                  <input type="text" class="form-control" id="authNum" name="authNum" placeholder="인증번호 입력" style="margin-bottom:10px;">
+                  <button type="button" style="margin-bottom:10px;" onclick="confirmAuth()">인증확인</button>
                 </div>
                 </div>
                 
