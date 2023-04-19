@@ -4,9 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <style>
 .btn-1 {
     background: var(--color-primary);
@@ -26,7 +25,9 @@
     border-radius: 4px;
 }
 </style>
+<script>
 
+</script>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -50,8 +51,8 @@
 
     <!-- Template Main CSS File -->
     <link href="resources/css/main.css" rel="stylesheet">
-    
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="resources/js/member.js"></script>
     <!-- =======================================================
     * Template Name: Logis
     * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -75,51 +76,37 @@
         }
     </style>
     <script>
+
+    
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()
 
-        }
-        
-        function joinPage(){
-        	location.href='/join';
-        }
-        function loginBtn(){
-        	if($('input[name="phone"]').val() == '' || $('input[name="phone"]').val().length < 11){
-        		alert("아이디를 입력해주세요")
-        		return false
-        	}else if($('input[name="pwd"]').val() == ''){
-        		alert("비밀번호를 입력해주세요")
-        		return false
-        	}
-        	
-        	$.ajax({
-        		url	: "/memberLogin", // 요청이 전송될 URL 주소
-	       		  type	: "post", // http 요청 방식 (default: ‘GET’)
-	       		  data : $('#frm').serialize(),  // 요청 시 동기화 여부. 기본은 비동기(asynchronous) 요청 (default: true)
-	       		  cache : true,  // 캐시 여부
-	       		success :function(data){
-	       			
-	       		}
-        	})
-        	
         }
     </script>
 
 </head>
 
 <body>
-
+<%
+	if(session.getAttribute("member") == null) {
+%>
+		
+	<script language="JavaScript">
+		alert("로그인 후 이용가능합니다.");
+	</script>
+<%
+		response.sendRedirect("login");
+	}
+%>
     <div class="index_container">
-    	<section>
-    	<jsp:include page="common/header.jsp" />
-<!--         ======= Header =======
+        <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
                 <a href="index.html" class="logo d-flex align-items-center">
-                    Uncomment the line below if you also wish to use an image logo
-                    <img src="resources/img/logo.png" alt="" >
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="resources/img/logo.png" alt="" > -->
                     <h1> MedicineSearch</h1>
                 </a>
 
@@ -127,20 +114,20 @@
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li> <a href="index.html" class="active"> Home</a> </li>
+                        <!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
                         <li> <a href="services"> 서비스 소개</a> </li>
-                        <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li>
-                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
+<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
+                        <li> <a href="contact.html"> Contact</a> </li> -->
+                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
                     </ul>
-                </nav>.navbar
+                </nav><!-- .navbar -->
             </div>
         </header>
-        End Header -->
+        <!-- End Header -->
         </section><!-- End Hero Section -->
         <main id="main">
 
-    <!-- ======= Get a Quote Section ======= -->
+    <!-- ======= join Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
       <div class="container" data-aos="fade-up">
 
@@ -148,32 +135,55 @@
 
           <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
+		  <!-- Start join Form -->
           <div class="col-lg-7">
-            <!-- <form id="frm" name="frm" method="post" class="php-email-form" action="memberLogin"> -->
-            <form id="loginFrm" name="loginFrm" action="loginDo" method="post" class="php-email-form">
+            <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
+				<div>
+                
                 <div class="col-md-12">
-                <h3>아이디</h3>
-                  <input type="text" id="phone" name="phone" class="form-control" value="" placeholder="아이디 입력" maxlength="11" style="margin-bottom:10px;">
+                <h3>휴대전화번호</h3>
+                <div style="display:flex;">
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
+                  <button type="button" style="margin-bottom:10px;">인증요청</button>
+                  </div>
+                </div>
+                
+                <div class="col-md-12 " >
+                <h3>인증번호</h3>
+                <div style="display:flex;">
+                  <input type="text" class="form-control" name="email" placeholder="인증번호 입력" style="margin-bottom:10px;">
+                  <button type="button" style="margin-bottom:10px;">인증확인</button>
+                </div>
+                </div>
+                
+                <div class="col-md-12">
+                <h3>비밀번호</h3>
+                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
                 </div>
 
                 <div class="col-md-12">
-                <h3>비밀번호</h3>
-                  <input type="password" id="pwd" name="pwd" class="form-control" value="" placeholder="Password 입력" style="margin-bottom:10px;">
+                <h3>비밀번호확인</h3>
+                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="비밀번호 확인" style="margin-bottom:10px;">
+                </div>
+
+				<div class="col-md-12">
+                <h3>이메일 주소</h3>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
                 </div>
                 
                 <div style="text-align: -webkit-center">
-                  <!-- <button type="button" class="btn-1" onclick="loginBtn()" >로그인</button> -->
-                  <button type="submit" class="btn-1">로그인 loginDo</button>
-                  <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
-            	</div>
+                  <button type="button" class="btn-2" onclick="modifyChk()">정보수정</button>
+                  <a href="mypage" class="btn-2">취소</a>
+            </div>
+
+              </div>
             </form>
-            
-          </div><!-- End Quote Form -->
+          </div><!-- End join Form -->
 
         </div>
 
       </div>
-    </section><!-- End Get a Quote Section -->
+    </section><!-- End join Section -->
 
   </main><!-- End #main -->
 
@@ -188,6 +198,7 @@
     <script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="resources/vendor/aos/aos.js"></script>
+    <script src="resources/vendor/php-email-form/validate.js"></script>
     <!-- Template Main JS File -->
     <script src="resources/js/main.js"></script>
 

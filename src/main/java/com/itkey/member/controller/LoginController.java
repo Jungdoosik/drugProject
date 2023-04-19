@@ -189,5 +189,18 @@ public class LoginController {
     public String mypage() {
        return "mypage";
     }
+    
+    @RequestMapping("/modify") // 개인정보수정
+    public String modify() {
+       return "modify";
+    }
+    
+    @RequestMapping(value = "/logout") // 로그아웃 클릭하면
+	public String logout(HttpSession session) {
+
+		session.invalidate(); //  세션 삭제
+
+		return "redirect:login";
+	}
 }
 

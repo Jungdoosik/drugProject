@@ -69,8 +69,15 @@
 
 <body>
 
+<%
+// 세션값 가져오기
+String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
+%>
+
     <div class="index_container">
-        <!-- ======= Header ======= -->
+    
+    <jsp:include page="common/header.jsp" />
+        <%-- <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -89,11 +96,14 @@
 <!--                         <li> <a href="pricing.html"> Pricing</a> </li>
                         <li> <a href="contact.html"> Contact</a> </li> -->
                         <li> <a class="get-a-quote" href="login">로그인</a> </li>
+                        <!-- 세션값 있는 경우 마이페이지/로그아웃 -->
+                        <li> <a href="mypage"> <%=id %> 님 안녕하세요. 나의 정보</a> </li>
+                        <li> <a class="get-a-quote" href="logout">로그아웃</a> </li>
                     </ul>
                 </nav><!-- .navbar -->
             </div>
         </header><!-- End Header -->
-        <!-- End Header -->
+        <!-- End Header --> --%>
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
