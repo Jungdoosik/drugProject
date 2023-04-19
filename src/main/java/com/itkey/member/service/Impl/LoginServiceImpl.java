@@ -22,6 +22,38 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.loginMember(member);
 	}
 
+	
+	
+	@Override
+	public MemberVo loginDo(String phone) throws Exception {
+		MemberVo mVO = loginDAO.loginDo(phone);
+		return mVO;
+	}
+	@Override
+	public int idChk(String phone) throws Exception {
+		int result = loginDAO.idChk(phone);
+		return result;
+	}
+	@Override
+	public int idChk_DEL(String phone) throws Exception {
+		int result = loginDAO.idChk_DEL(phone);
+		return result;
+	}
+	@Override
+	public String getSalt(String phone) throws Exception {
+		String result = loginDAO.getSalt(phone);
+		return result;
+	}
+	@Override
+	public int loginChk(MemberVo member) throws Exception {
+		int result = loginDAO.loginChk(member);
+		return result;
+	}
+	@Override
+	public int loginChk_del(MemberVo member) throws Exception { // 아이디+비밀번호+탈퇴여부
+		int result = loginDAO.loginChk_del(member);
+		return result;
+	}
 	@Override
 	public int insertMem(MemberVo member) throws Exception {
 		int result = loginDAO.insertMem(member);

@@ -133,8 +133,8 @@
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
-                  <input type="text" id="phone" name="phone" class="form-control" placeholder="휴대전화번호 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;">인증하기</button>
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
+                  <button type="button" style="margin-bottom:10px;">인증요청</button>
                   </div>
                 </div>
                 
@@ -148,12 +148,12 @@
                 
                 <div class="col-md-12">
                 <h3>비밀번호</h3>
-                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="패스워드 입력" style="margin-bottom:10px;">
+                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
                 </div>
 
                 <div class="col-md-12">
                 <h3>비밀번호확인</h3>
-                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="패스워드 확인" style="margin-bottom:10px;">
+                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="비밀번호 확인" style="margin-bottom:10px;">
                 </div>
 
 				<div class="col-md-12">

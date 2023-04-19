@@ -50,6 +50,7 @@
 
     <!-- Template Main CSS File -->
     <link href="resources/css/main.css" rel="stylesheet">
+    
 
     <!-- =======================================================
     * Template Name: Logis
@@ -87,7 +88,7 @@
         	if($('input[name="phone"]').val() == '' || $('input[name="phone"]').val().length < 11){
         		alert("아이디를 입력해주세요")
         		return false
-        	}else if($('input[name="password"]').val() == ''){
+        	}else if($('input[name="pwd"]').val() == ''){
         		alert("비밀번호를 입력해주세요")
         		return false
         	}
@@ -147,19 +148,21 @@
           <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form id="frm" name="frm" method="post" class="php-email-form">
+            <!-- <form id="frm" name="frm" method="post" class="php-email-form" action="memberLogin"> -->
+            <form id="loginFrm" name="loginFrm" action="loginDo" method="post" class="php-email-form">
                 <div class="col-md-12">
                 <h3>아이디</h3>
-                  <input type="text" name="phone" class="form-control" value="" placeholder="아이디 입력" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="margin-bottom:10px;">
+                  <input type="text" id="phone" name="phone" class="form-control" value="" placeholder="아이디 입력" maxlength="11" style="margin-bottom:10px;">
                 </div>
 
                 <div class="col-md-12">
                 <h3>비밀번호</h3>
-                  <input type="text" name="password" class="form-control" value="" placeholder="Password 입력" style="margin-bottom:10px;">
+                  <input type="password" id="pwd" name="pwd" class="form-control" value="" placeholder="Password 입력" style="margin-bottom:10px;">
                 </div>
                 
                 <div style="text-align: -webkit-center">
-                  <button type="button" class="btn-1" onclick="loginBtn()" >로그인</button>
+                  <!-- <button type="button" class="btn-1" onclick="loginBtn()" >로그인</button> -->
+                  <button type="submit" class="btn-1">로그인 loginDo</button>
                   <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
             	</div>
             </form>
@@ -184,7 +187,6 @@
     <script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="resources/vendor/aos/aos.js"></script>
-    <script src="resources/vendor/php-email-form/validate.js"></script>
     <!-- Template Main JS File -->
     <script src="resources/js/main.js"></script>
 

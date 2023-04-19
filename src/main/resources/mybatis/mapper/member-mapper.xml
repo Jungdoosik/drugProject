@@ -5,9 +5,63 @@
 	<resultMap id="memberVo" type="com.itkey.member.service.MemberVo"></resultMap>
 
 	<select id="memberLogin" parameterType="MemberVo" resultType="memberVo">
-		select phone, pwd from member
+		select phone, pwd, email from member
 	</select>
 
+
+	<!-- 아이디 일치(존재) 여부 -->
+	<select id="idChk" resultType="int">
+		SELECT count(1)
+		FROM
+		MEMBER
+		WHERE
+		phone = #{phone}
+	</select>
+
+	<!-- 아이디 일치(존재)/DEl='Y' 여부 -->
+	<select id="idChk_DEL" resultType="int">
+		SELECT count(1)
+		FROM
+		MEMBER
+		WHERE
+		phone = #{phone} and DEL_YN = 'Y'
+	</select>
+
+	<!--  getSalt -->
+	<select id="getSalt" resultType="String">
+		SELECT salt
+		FROM
+		MEMBER
+		WHERE
+		phone = #{phone}
+	</select>
+
+	<!-- 아이디/비밀번호 일치 여부 -->
+	<select id="loginChk" resultType="int" parameterType="MemberVo">
+		SELECT count(1)
+		FROM
+		MEMBER
+		WHERE
+		phone = #{phone} and pwd = #{pwd}
+	</select>
+
+	<!-- 아이디/비밀번호 일치 여부 => 탈퇴한 아이디 -->
+	<select id="loginChk_del" resultType="int" parameterType="MemberVo">
+		SELECT count(1)
+		FROM
+		MEMBER
+		WHERE
+		phone = #{phone} and pwd = #{pwd} and DEL_YN = 'Y'
+	</select>
+	
+	<!-- 아이디/비밀번호 일치 여부 확인 후 해당 아이디로 로그인하여 회원정보 가져오기 -->
+	<select id="loginDo" resultType="memberVo">
+		SELECT *
+		FROM MEMBER
+		WHERE
+		phone = #{phone}
+	</select>
+	
 	<insert id="insertMem" parameterType="MemberVo">
 		INSERT INTO member (
 		<trim prefixOverrides=",">
