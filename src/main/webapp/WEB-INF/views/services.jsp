@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch - Index</title>
+    <title>MedicineSearch - 서비스소개</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -65,42 +65,13 @@
 <body>
 
 	<div class="index_container">
-        <!-- ======= Header ======= -->
-        <header id="header" class="header d-flex align-items-center fixed-top">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+	<jsp:include page="common/header.jsp" />
+        
+    <main id="main">
 
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="resources/img/logo.png" alt="" > -->
-                    <h1> MedicineSearch</h1>
-                </a>
-
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
-                        <li> <a href="services"> 서비스 소개</a> </li>
-<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li> -->
-                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
-                    </ul>
-                </nav><!-- .navbar -->
-            </div>
-        </header>
-        <!-- End Header -->
-        </section><!-- End Hero Section -->
-         <main id="main">
-
-<!-- ======= Get a Quote Section ======= -->
+	<!-- ======= Get a Quote Section ======= -->
     <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34;">
       <div class="container" data-aos="fade-up" style="background-color: #ffffff; margin-top:50px;">
-
-
-
-<!--     ======= Features Section =======
-    <section id="features" class="features">
-      <div class="container"> -->
 
         <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
 
@@ -137,9 +108,7 @@
 
       </div>
     </section><!-- End Get a Quote Section -->
-
-
-  </main><!-- End #main -->
+  	</main><!-- End #main -->
 
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>

@@ -100,32 +100,9 @@
 	}
 %>
     <div class="index_container">
-        <!-- ======= Header ======= -->
-        <header id="header" class="header d-flex align-items-center fixed-top">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <jsp:include page="common/header.jsp" />
 
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="resources/img/logo.png" alt="" > -->
-                    <h1> MedicineSearch</h1>
-                </a>
-
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
-                        <li> <a href="services"> 서비스 소개</a> </li>
-<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li> -->
-                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
-                    </ul>
-                </nav><!-- .navbar -->
-            </div>
-        </header>
-        <!-- End Header -->
-        </section><!-- End Hero Section -->
-        <main id="main">
+    <main id="main">
 
     <!-- ======= join Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
@@ -139,44 +116,31 @@
           <div class="col-lg-7">
             <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
 				<div>
-                
-                <div class="col-md-12">
-                <h3>휴대전화번호</h3>
-                <div style="display:flex;">
-                  <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;">인증요청</button>
-                  </div>
-                </div>
-                
-                <div class="col-md-12 " >
-                <h3>인증번호</h3>
-                <div style="display:flex;">
-                  <input type="text" class="form-control" name="email" placeholder="인증번호 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;">인증확인</button>
-                </div>
-                </div>
-                
-                <div class="col-md-12">
-                <h3>비밀번호</h3>
-                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
-                </div>
-
-                <div class="col-md-12">
-                <h3>비밀번호확인</h3>
-                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="비밀번호 확인" style="margin-bottom:10px;">
-                </div>
-
-				<div class="col-md-12">
-                <h3>이메일 주소</h3>
-                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
-                </div>
-                
-                <div style="text-align: -webkit-center">
-                  <button type="button" class="btn-2" onclick="modifyChk()">정보수정</button>
-                  <a href="mypage" class="btn-2">취소</a>
-            </div>
-
-              </div>
+	                <div class="col-md-12">
+	                <h3>휴대전화번호</h3>
+	                  <input type="text" id="phone" name="phone" class="form-control" value="test" readonly style="margin-bottom:10px;">
+	                </div>
+	                
+	                <div class="col-md-12">
+	                <h3>비밀번호</h3>
+	                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
+	                </div>
+	
+	                <div class="col-md-12">
+	                <h3>비밀번호확인</h3>
+	                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="비밀번호 확인" style="margin-bottom:10px;">
+	                </div>
+	
+					<div class="col-md-12">
+	                <h3>이메일 주소</h3>
+	                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
+	                </div>
+	                
+	                <div style="text-align: -webkit-center">
+	                  <button type="button" class="btn-2" onclick="modifyChk()">정보수정</button>
+	                  <a href="mypage" class="btn-2">취소</a>
+	            	</div>
+              	</div>
             </form>
           </div><!-- End join Form -->
 
