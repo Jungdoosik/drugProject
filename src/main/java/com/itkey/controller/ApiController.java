@@ -31,7 +31,7 @@ public class ApiController {
 	@Autowired
 	private ApiService apiService;
 	
-	@RequestMapping("/searchDrug")
+	@RequestMapping("/searchDrugList")
 	public String searchDrug(@RequestParam Map<String,Object> params,ModelMap model) throws Exception {
 		String data = (String) params.get("inputState");
 		System.out.println(data);

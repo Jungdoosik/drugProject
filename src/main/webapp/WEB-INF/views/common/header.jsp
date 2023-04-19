@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 // 세션값 가져오기
 String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
@@ -21,11 +23,18 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                 <nav id="navbar" class="navbar">
                     <ul>
                     	<!-- 세션값 없는 경우 서비스소개/로그인 -->
-                        <li> <a href="services"> 서비스 소개</a> </li>
-                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
+                        <c:if test="${empty member }">
+	                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
+                        </c:if>
                         <!-- 세션값 있는 경우 마이페이지/로그아웃 -->
-                        <li> <a href="mypage"> <%=id %> 님 안녕하세요. 나의 정보</a> </li>
-                        <li> <a class="get-a-quote" href="logout">로그아웃</a> </li>
+                        <c:if test="${not empty member }">
+                        	<li style="display: flex;"> <a href="mypage"> ${member } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
+                        </c:if>
+                        <c:if test="${not empty member }">
+                        	<li> <a href="mypage"> 나의 정보</a> </li>
+                        </c:if>
+                        <li> <a href="services"> 서비스 소개</a> </li>
+                        <li>  </li>
                     </ul>
                 </nav><!-- .navbar -->
             </div>

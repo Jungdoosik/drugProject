@@ -59,7 +59,7 @@
         	}
         	console.log(document.frm.searchName.value)
         	console.log(document.frm.inputState.value)
-            document.frm.action = '/searchDrug';
+            document.frm.action = '/searchDrugList';
             document.frm.submit()
 
         }
