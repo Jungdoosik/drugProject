@@ -87,7 +87,7 @@
 
 
 <a class="get-a-quote" href="modify">정보수정</a>
-<a class="get-a-quote" href="">1:1 문의하기</a>
+<a class="get-a-quote" href="list">1:1 문의하기</a>
 <a class="get-a-quote" href="index">결제내역</a>
 
       </div>
