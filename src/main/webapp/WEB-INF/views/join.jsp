@@ -83,6 +83,14 @@
             document.frm.submit()
 
         }
+        
+        function joinCancelChk() {
+        	if (!confirm("작성한 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
+			    history.go( -1 );
+			 }else { // 예
+				 document.location ="index";
+			}
+        }
     </script>
 
 </head>
@@ -163,7 +171,7 @@
                 
                 <div style="text-align: -webkit-center">
                   <button type="button" class="btn-2" onclick="joinChk()">회원가입</button>
-                  <a href="login" class="btn-2">취소</a>
+                  <button type="button" class="btn-2" onclick="joinCancelChk()">취소</button>
             </div>
 
               </div>
