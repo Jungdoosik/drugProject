@@ -22,6 +22,22 @@
 		DESC limit #{pageStart}, #{number} -->
 	</select>
 	
+	<!-- 문의 등록 -->
+	
+	<insert id="insertAsk" parameterType="EnquireVo">
+		INSERT INTO enquire (
+			title, 
+			writer,
+			question, 
+			q_date,
+			delyn,
+			service_code
+			) 
+		values 
+			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
+
+	</insert>
+	
 	<!-- 문의 리스트 -->
 	<select id="listCountEnqire" resultType="int">
 		SELECT 
@@ -118,21 +134,7 @@
 		WHERE seq = #{seq}
 	</select>
 	
-	<!-- 문의 등록 -->
 	
-	<insert id="registerEnqire" parameterType="EnquireVo">
-		INSERT INTO enquire (
-			title, 
-			writer,
-			question, 
-			q_date,
-			delyn,
-			service_code
-			) 
-		values 
-			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
-
-	</insert>
 	
 	<insert id="registerEnqireCS" parameterType="EnquireVo">
 		INSERT INTO cancel_enquire (

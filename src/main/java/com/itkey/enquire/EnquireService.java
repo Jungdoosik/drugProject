@@ -14,7 +14,7 @@ public interface EnquireService {
 	int listCountEnquire(Criteria cri) throws Exception;
 	
 	// ■ 문의 등록
-	void registerEnquire(EnquireVo param) throws Exception;
+	public int insertAsk(EnquireVo eVO) throws Exception;
 	
 	// ■ 서비스 문의 등록
 	void registerEnquireCS(EnquireVo param) throws Exception;

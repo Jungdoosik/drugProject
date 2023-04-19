@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +14,9 @@ import com.itkey.service.common.Criteria;
 
 
 
-@Service
+@Service("EnquireService")
 public class EnquireServiceImpl implements EnquireService{
-	private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+	private Logger log = Logger.getLogger(EnquireServiceImpl.class);
 
 	@Autowired
 	private EnquireDAO eDAO;
@@ -30,15 +29,19 @@ public class EnquireServiceImpl implements EnquireService{
 	}
 	
 	@Override
+	public int insertAsk(EnquireVo eVO) throws Exception {
+		log.info("문의 등록 * [SERVICE] Input  ◀ (Controller) : " + eVO.toString());
+		int result = eDAO.insertAsk(eVO);
+		log.info("문의 등록 * [SERVICE] Output ◀ (DAO) : " + result);
+		return result;
+	}
+	
+	@Override
 	public int listCountEnquire(Criteria cri) throws Exception {
 		return eDAO.listCountEnqire(cri);
 	}
 
-	@Override
-	public void registerEnquire(EnquireVo param) throws Exception {
-		log.info("문의 등록");
-		eDAO.registerEnqire(param);
-	}
+
 	
 	@Override
 	public void registerEnquireCS(EnquireVo param) throws Exception {
