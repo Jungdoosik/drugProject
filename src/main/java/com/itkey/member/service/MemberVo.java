@@ -1,4 +1,4 @@
-package com.itkey.service;
+package com.itkey.member.service;
 
 public class MemberVo {
 

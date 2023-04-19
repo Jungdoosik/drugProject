@@ -1,4 +1,4 @@
-package com.itkey.service.impl;
+package com.itkey.member.service.Impl;
 
 import java.util.Map;
 
@@ -6,7 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.itkey.service.LoginService;
+import com.itkey.member.service.LoginService;
+import com.itkey.member.service.MemberVo;
 
 @Service("LoginService")
 public class LoginServiceImpl implements LoginService{
@@ -15,10 +16,10 @@ public class LoginServiceImpl implements LoginService{
 	LoginDAO loginDAO;
 
 	@Override
-	public Map<String, Object> login(Map<String, Object> params) throws Exception {
+	public MemberVo login(MemberVo member) throws Exception {
 
 		
-		return loginDAO.loginMember(params);
+		return loginDAO.loginMember(member);
 	}
 
 }

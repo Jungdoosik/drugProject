@@ -1,16 +1,23 @@
-package com.itkey.controller;
+package com.itkey.member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.itkey.service.LoginService;
+import com.itkey.controller.HomeController;
+import com.itkey.member.service.LoginService;
+import com.itkey.member.service.MemberVo;
 
 
 /**
@@ -35,11 +42,27 @@ public class LoginController {
     
     @ResponseBody
     @RequestMapping("/memberLogin")
-    public String memberLogin(@RequestParam Map<String,Object> params) throws Exception{
+    public String memberLogin(MemberVo member, HttpServletRequest request, ModelMap model) throws Exception{
     	
-    	Map<String, Object> member = loginService.login(params);
+    	MemberVo mb = loginService.login(member);
     	
-    	return "login";
+    	System.out.println(mb);
+    	
+    	if (mb != null)
+		{
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("member", mb);
+			session.setAttribute("bizMember", null);
+			return "/";
+
+		} else
+		{
+			model.addAttribute("msg1", "로그인 실패");
+			model.addAttribute("msg2", "아이디와 비밀번호를 확인해주세요.");
+			return "login";
+		}
+    	
     }
     
     @RequestMapping("/join")
