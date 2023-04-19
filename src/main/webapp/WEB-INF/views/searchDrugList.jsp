@@ -71,6 +71,18 @@ searchPag {
        document.frm.submit()
 
    }
+   
+   $(window).on('resize', function(){
+
+	    if (window.innerWidth <= 800) {
+	      $('#topTitle').css('display', 'none')
+	      $('#middleTitle').css('padding-top', '15%')
+	    }else if(window.innerWidth > 800){
+	    	$('#topTitle').css('display', 'block')
+	    	$('#middleTitle').css('padding-top', '0%')
+	    	
+	    }
+	});
 </script>
     
 </head>
@@ -163,8 +175,8 @@ searchPag {
         </header>
         <!-- End Header -->
            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" style="color:#ffffff">
-               <h2 data-aos="fade-up"> 안전하게 복약하세요.</h2>
-               <p data-aos="fade-up" data-aos-delay="100">
+               <h2 data-aos="fade-up" id="topTitle"> 안전하게 복약하세요.</h2>
+               <p data-aos="fade-up" data-aos-delay="100" id="middleTitle">
                       드시고 계신 약의 정확한 성분을 알고 계시나요?
                </p>
                <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
