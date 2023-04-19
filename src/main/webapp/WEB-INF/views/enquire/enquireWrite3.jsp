@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch - 문의하기  </title>
+    <title>MedicineSearch - 문의하기 리스트 </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -61,13 +61,22 @@
     transition: 0.4s;
     border-radius: 4px;
 }
- .askTop {
+ .askTop{
 	display: flex;
-	width: 120px;
+	width: 330px;
 	font-size: 22px;
 	margin: 20px auto;	
 	z-index: 999;
-}  
+	top: 20px; 
+	position: relative; 
+	font-family: SUIT-SemiBold; 
+	font-size: 25px; 
+	font-weight: 500;
+} 
+
+#gy-4{
+PADDING: 5%;
+} 
 </style>
 
 
@@ -107,83 +116,61 @@
  <section id="get-a-quote" class="get-a-quote">
       <div class="container" data-aos="fade-up">
         <div class="row g-0">
-          <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/enquireWrite.jpg);"></div>
+          <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/question.jpg);"></div>
           <div class="col-lg-7">
-            <form  method="post" class="php-email-form" id="frmAsk" >
-           <div class="row gy-4">
+           <div class="row gy-4" id="gy-4">
            <div class="col-lg-12">
-                <h2 class="askTop">1:1 문의</h2>
-                  <!--<input type="text" name="member" value="${member}"/>  -->
-                 <input type="hidden" id="serviceCode" value="MS">
-                  <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
-                  <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4>
-                </div>
-               <!--  <div class="col-md-12 ">
-                <span class="input-group-text">작성자</span>
-                  <input class="form-control" type="text" name="writer"  id="writer" required>
-                </div> -->
+           <p>
+				<p class="askTop" >
+				${session_nickname}님의 1:1 문의 내역</p>
+				<%-- <input type="hidden" name="phone" value="${phone}" /> --%>
+				<hr style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
+			</p>
+ 
+            </div>
                 <div class="col-md-12">
-                   <span class="input-group-text">제목</span>
-                  <input type="text" name="title" id="askTitle" class="form-control"  placeholder="※ 무엇을 문의하시겠습니까?" required>
+                  	<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>결과</th>
+							<th>문의제목</th>
+							<th>문의일</th>
+							<th>처리일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${List}" var="ask" varStatus="status">
+							<tr>
+								<input type="hidden" name="askNo" value="${ask.seq}">
+									<td>
+									${ask.seq}
+									<%-- <c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /> --%>
+									</td>
+									<td>
+									<c:if test="!(${ask.qdate}).isEmpty();">
+									<td><font color="blue">답변완료</font></td>
+									</c:if>
+									<c:if test="">
+									<td><font color="red">처리중</font></td>
+									</c:if>
+									</td>
+									<td>${ask.title}</td>
+									<td>${ask.qdate}</td>
+									<td>${ask.adate}</td>
+								</tr>
+						</c:forEach> 
                 </div>
-                <div class="col-md-12">
-                   <span class="input-group-text">내용</span>
-                  <textarea class="form-control" name="question" id="askContent" rows="6"  placeholder="※ 내용을 입력하세요.&#13;&#10;&#13;&#10;수정 / 삭제 불가하오니 신중히 문의하시기 바랍니다." required></textarea>
-                </div>
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">정상적으로 게시되었습니다.</div>
-
-                  <button type="button"  class="btn" onclick="doAskBnt()" >문의하기</button>
-                  <button type="button" class="btn"  onclick="golist()" >취소</button>
-                  
+                  <button type="button"  class="btn" onclick="eWVBnt();" >문의하기</button>
                 </div>
               </div>
-            </form>
+            
       </div><!-- End Quote Form -->
 <script type="text/javascript">
 
-/* 문의하기  bnt  DB 저장하러 가기  */
-function doAskBnt(){
-	var writer = $("#writer").val();            //작성자
-	var title = $("#askTitle").val();           // 제목
-	var question = $("#askContent").val();      //내용
-	var service_code = $('#serviceCode').val();         //서비스코드
-	var formData = $("#frmAsk").serialize();
-	
-	if(title == ""){
-		alert("제목을 입력해 주세요.");
-		return false;
-	}
-	if(question == "") {
-		alert("내용을 입력해 주세요.");
-		return false;
-	}
-	//문의글 쓰기: 컨트롤러 doAsk 전달되는 ajax
-	$.ajax({
-		type: 'post',
-		async: false ,
-		url : 'doAsk.do',
-		data: formData,
-		success : function(data) {
-			if (data == "success") {
-				alert("문의하기 글 등록이 완료되었습니다.");
-				location.href = "/question"; //문의 리스트 url 
-			}
-		},
-		 error: function (request, status, error) {
-			     alert("문의하기 글 등록이 실패하였습니다.");
-		        console.log("code: " + request.status)
-		        console.log("message: " + request.responseText)
-		        console.log("error: " + error);
-		    }
-	});
-		
-};
-/* 취소 bnt 문의리스트 돌아가기  */
-function golist(){
-	location.href = '/question';
+/* 문의하기  bnt  문의하기 화면   */
+function eWVBnt(){
+location.href = "/enquireWriteView"; //문의 리스트 url 		
 };
 
 </script>
