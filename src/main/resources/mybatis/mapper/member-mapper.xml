@@ -64,23 +64,19 @@
 	
 	<insert id="insertMem" parameterType="MemberVo">
 		INSERT INTO member (
-		<trim prefixOverrides=",">
-			<if test="phone    	  !=null and phone    	 !=''"> , phone     	     </if>
-			<if test="pwd       !=null and pwd       !=''"> , pwd	     </if>
-			<if test="email     !=null and email     !=''"> , email      </if>
+			phone
+			, pwd
+			, email
 			, join_date
 			, join_path
-			<if test="salt                !=null and salt            	 !=''"> , SALT         	     </if>
-		</trim>
+			, SALT
 		) VALUES(
-		<trim prefixOverrides=",">
-			<if test="phone  !=null and phone         !=''"> , #{phone}         </if>
-			<if test="pwd       !=null and pwd       !=''"> , #{pwd}       </if>
-			<if test="email     !=null and email     !=''"> , #{email}     </if>
+			#{phone}
+			, #{pwd}
+			, #{email}
 			, sysdate()
 			, 1
-			<if test="salt           	  !=null and salt           	 !=''"> , #{salt}             </if>
-		</trim>
+			, #{salt}
 		)
 	</insert>
 	
