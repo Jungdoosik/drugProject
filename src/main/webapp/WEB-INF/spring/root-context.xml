@@ -23,8 +23,8 @@
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
       <property name="url" value="jdbc:mysql://itkey.asuscomm.com:3306/team01?characterEncoding=utf8" />
-      <property name="username" value="team02" />
-      <property name="password" value="team02" />
+      <property name="username" value="team01" />
+      <property name="password" value="team01" />
    </bean>
 
    <!-- spring과 mybatis 연결 설정, mybatis 환경설정파일 mybatis-config.xml, 쿼리문을 다루는 매퍼 xml(mybatis) -->
