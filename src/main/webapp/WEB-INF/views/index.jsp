@@ -53,15 +53,33 @@
     </style>
     <script>
         function itemDataSearch() {
+        	if(document.frm.selectKnd.value == '') {
+        		alert("분류를 선택해주세요.")
+        		return false
+        	}
         	if(document.frm.searchName.value == '') {
         		alert("분류를 선택해주세요.")
         		return false
         	}
         	console.log(document.frm.searchName.value)
-        	console.log(document.frm.inputState.value)
+        	console.log(document.frm.selectKnd.value)
             document.frm.action = '/searchDrugList';
             document.frm.submit()
 
+        }
+        
+        function searchEvt(){
+        	if(document.frm.selectKnd.value == '') {
+        		alert("분류를 선택해주세요.")
+        		return false
+        	}
+        	if(document.frm.searchName.value == '') {
+        		alert("분류를 선택해주세요.")
+        		return false
+        	}
+        	
+        	document.frm.action = '/searchDrugList';
+            document.frm.submit()
         }
     </script>
 
@@ -117,12 +135,12 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                         <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
 
                             <div class="form-search d-flex align-items-stretch mb-3">
-                                <select id="inputState" name="inputState" class="form-control">
+                                <select id="selectKnd" name="selectKnd" class="form-control">
                                     <option value=""> 분류 ▼</option>
                                     <option value="1"> 성분</option>
                                     <option value="2"> 사용법</option>
                                 </select>
-                                <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요.">
+                                <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
                                 <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
                             </div>
                         </form>
@@ -137,7 +155,7 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                             </div><!-- End Stats Item -->
                             <div class="col-lg-3 col-6">
                                 <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"> </span>
+                                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" clas s="purecounter"> </span>
                                     <p> 이름</p>
                                 </div>
                             </div><!-- End Stats Item -->
