@@ -84,26 +84,6 @@
         function joinPage(){
         	location.href='/join';
         }
-        function loginBtn(){
-        	if($('input[name="phone"]').val() == '' || $('input[name="phone"]').val().length < 11){
-        		alert("아이디를 입력해주세요")
-        		return false
-        	}else if($('input[name="pwd"]').val() == ''){
-        		alert("비밀번호를 입력해주세요")
-        		return false
-        	}
-        	
-        	$.ajax({
-        		url	: "/memberLogin", // 요청이 전송될 URL 주소
-	       		  type	: "post", // http 요청 방식 (default: ‘GET’)
-	       		  data : $('#frm').serialize(),  // 요청 시 동기화 여부. 기본은 비동기(asynchronous) 요청 (default: true)
-	       		  cache : true,  // 캐시 여부
-	       		success :function(data){
-	       			
-	       		}
-        	})
-        	
-        }
     </script>
 
 </head>
@@ -162,8 +142,7 @@
                 </div>
                 
                 <div style="text-align: -webkit-center">
-                  <!-- <button type="button" class="btn-1" onclick="loginBtn()" >로그인</button> -->
-                  <button type="submit" class="btn-1">로그인 loginDo</button>
+                  <button type="submit" class="btn-1">로그인</button>
                   <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
             	</div>
             </form>
