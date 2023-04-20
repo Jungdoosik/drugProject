@@ -68,7 +68,16 @@ h4 {
 padding: 40% 10% 40% 10%;
 }
 </style>
+<script>
+	function joinMember(){
+		document.frm.action = '/join'
+		document.frm.submit()
+	}
+</script>
 <body>
+<form id="frm" name="frm" method="post">
+	<input type="hidden" name="joinPath" value="1">
+</form>
 	<!-- <div class="eventImg">
 		<img  src="resources/img/free-icon-mobile-phone-4875709.png" ><br><br>
 		<input id="join" type="button" value="참여하고 캐시받기" onClick="location.href='eventJoin'" style="background-color: yellow;font-weight: bold;font-size:20px;">	
@@ -85,7 +94,7 @@ padding: 40% 10% 40% 10%;
 		</div>
 		<div class="home-main">
 		<button class="event_btn" type="button"  
-		onclick="location.href='join'">보상받지않고 가입하기</button>
+		onclick="joinMember()">보상받지않고 가입하기</button>
 	</div>
 	</div>
 	

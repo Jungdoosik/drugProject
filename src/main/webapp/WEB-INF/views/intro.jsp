@@ -82,18 +82,8 @@ $(document).ready(function(){
 			return;
 		}
 		
-		/* alertData('보상 획득','회원가입을 하여 보상을 받으시겠습니까?','예','아니오').then(function(resolvedData){
-			if(resolvedData)    	
-				)*/
-				if(confirm("돈줘")){
-					iamport();
-				}else{
-					alert('메인페이지로 이동합니다.')
-					location.href = '/index'
-				}
-			/* else
-				return
-		}); */
+			iamport();
+				
 	})
 });
 
