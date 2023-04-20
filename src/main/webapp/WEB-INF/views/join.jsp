@@ -86,7 +86,7 @@
         
         function joinCancelChk() {
         	if (!confirm("작성한 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
-			    history.go( -1 );
+			    //history.go( -1 );
 			 }else { // 예
 				 document.location ="index";
 			}
