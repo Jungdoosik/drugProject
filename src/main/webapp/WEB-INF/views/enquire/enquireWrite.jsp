@@ -176,8 +176,12 @@
                                 location.href = '/question';
                             };
                         </script>
-
-            <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
+			<div>
+				<a href="#" class="scroll-top d-flex align-items-center justify-content-center"> 
+	            <i class="bi bi-arrow-up-short"> </i> 
+	            </a>
+			</div>
+         
 </div>
     <div id="preloader"> </div>
     <!-- Vendor JS Files -->

@@ -3,9 +3,10 @@
 <mapper namespace="enquire">
 
 <resultMap type="com.itkey.service.common.Criteria" id="Criteria"></resultMap>
+<resultMap type="com.itkey.pageutil.PageCriteria" id="PageCriteria"></resultMap>
 
 	<!-- 문의 리스트 고객-->
-	<select id="listEnquire" resultType="EnquireVo">
+	<select id="listEnquire" resultType="EnquireVo" parameterType="PageCriteria" >
 		SELECT 
 		*
 		FROM 
@@ -19,7 +20,7 @@
 	</select>
 	
 	<!-- 문의 리스트 -->
-	<select id="listCountEnquire" resultType="int">
+	<select id="listCountEnquire" resultType="int" >
 		SELECT 
 			count(1)
 		FROM 
