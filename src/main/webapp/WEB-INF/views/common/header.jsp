@@ -31,7 +31,13 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                         	<li style="display: flex;"> <a href="mypage"> ${member } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
                         </c:if>
                         <c:if test="${not empty member }">
-                        	<li> <a href="mypage"> 나의 정보</a> </li>
+                        	<li class="dropdown"><a href="#"><span> 나의 정보</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+					            <ul>
+					              <li><a href="modify">정보 수정</a></li>
+					              <li><a href="question">1:1 문의</a></li>
+					              <!-- <li><a href="index">결제 내역</a></li> -->
+					            </ul>
+					          </li>
                         </c:if>
                         <li> <a href="services"> 서비스 소개</a> </li>
                         <li>  </li>
