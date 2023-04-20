@@ -124,6 +124,31 @@ searchPag {
        document.frm.submit()
 
    }
+   
+   function clickPageNum(p, cntPerPage){
+	   console.log(p)
+	   console.log(cntPerPage)
+	   
+	   var params = {}
+	   params['cntPerPage'] = cntPerPage
+	   params['nowPage'] = p
+	   params['selectKnd'] = document.searchForm.selectKnd.value
+	   params['searchName'] = document.searchForm.searchName.value
+	   console.log(params)
+	   $.ajax({
+		   url: "/searchDrugListP",
+			type: "POST",
+			data: params,
+			success: function(data) { 
+				console.log(data.params)
+				console.log(data.list)
+				console.log(data.p)
+				console.log(data.cntPerPage)
+				console.log(data.paging)
+				
+			}
+	   });
+   }
 </script>
 
 <body>
@@ -152,14 +177,14 @@ searchPag {
                <p data-aos="fade-up" data-aos-delay="100" id="middleTitle">
                       드시고 계신 약의 정확한 성분을 알고 계시나요?
                </p>
-               <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
+               <form id="searchForm" name="searchForm" method="post" data-aos="fade-up" data-aos-delay="200">
                    <div class="form-search d-flex align-items-stretch mb-3">
-                       <select id="inputState" class="form-control">
-                           <option> 분류 ▼</option>
-                           <option> 성분</option>
-                           <option> 사용법</option>
+                       <select id="selectKnd" name="selectKnd" class="form-control">
+                           <option value=""> 분류 ▼</option>
+                           <option value="1" <c:if test="${params.selectKnd eq '1' }">selected</c:if>> 성분</option>
+                           <option value="2" <c:if test="${params.selectKnd eq '2' }">selected</c:if>> 사용법</option>
                        </select>
-                       <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+                       <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." value="${params.searchName }">
                        <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
                    </div>
                </form>
@@ -173,9 +198,7 @@ searchPag {
           </tr>
              <c:forEach var="list" items="${list.items }" varStatus="status">
                 <tr onclick="drugDetail(${list.itemSeq })">
-<!--                    <th>제품명</th> -->
                    <td>${list.itemName }</td>
-<!--                    <th>번호</th> -->
                    <td>${list.itemSeq }</td>
                 </tr>
                    <input type="hidden" name="itemName${list.itemSeq }" value="${list.itemName }">
@@ -192,30 +215,27 @@ searchPag {
                    <input type="hidden" name="itemImage${list.itemSeq }" value="${list.itemImage }">
              </c:forEach>
             </table>
-       </div>
-       <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
+       	</div>
       </div>
-      <!-- <div class="searchPag" style="margin-top: 8%;">
-         <nav aria-label="Page navigation example">
-           <ul class="pagination" style="justify-content: center;">
-             <li class="page-item">
-               <a class="page-link" href="#" aria-label="Previous">
-                 <span aria-hidden="true">&laquo;</span>
-               </a>
-             </li>
-             <li class="page-item"><a class="page-link" href="#">1</a></li>
-             <li class="page-item"><a class="page-link" href="#">2</a></li>
-             <li class="page-item"><a class="page-link" href="#">3</a></li>
-             <li class="page-item">
-               <a class="page-link" href="#" aria-label="Next">
-                 <span aria-hidden="true">&raquo;</span>
-               </a>
-             </li>
-           </ul>
-         </nav>
-      </div> -->
+      <div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/searchDrugList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a><!-- href="/searchDrugList?nowPage=${p }&cntPerPage=${paging.cntPerPage}" -->
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
       </div>
-   <div id="preloader"> </div>
     <!-- Vendor JS Files -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
