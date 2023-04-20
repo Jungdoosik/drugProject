@@ -118,7 +118,7 @@
 				<div>
 	                <div class="col-md-12">
 	                <h3>휴대전화번호</h3>
-	                  <input type="text" id="phone" name="phone" class="form-control" value="${member.phone }" readonly style="margin-bottom:10px;">
+	                  <input type="text" id="phone" name="phone" class="form-control" value="test" readonly style="margin-bottom:10px;">
 	                </div>
 	                
 	                <div class="col-md-12">
