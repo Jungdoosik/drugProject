@@ -5,10 +5,14 @@ var dupVal = false;
  */
 function dupCkh() {
 	var phone = $("#phone").val();
+	var val_phone = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
 	var idStatus = "no";
 
 	if (phone == '') {
 		alert("휴대전화번호를 입력해주세요.");
+		return false;
+	} else if (!val_phone.test(phone)) {
+		alert("전화번호 양식에 맞춰 작성해 주시기 바랍니다.");
 		return false;
 	} 
 	

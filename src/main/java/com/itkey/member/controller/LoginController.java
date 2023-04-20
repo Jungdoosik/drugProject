@@ -62,9 +62,10 @@ public class LoginController {
 		String boardWriterPw = request.getParameter("pwd");
 		
 		mVO.setPhone(boardWriter);
+		mVO.setPwd(boardWriterPw);
 
 		if(boardWriter.trim().length() == 0 || boardWriterPw.trim().length() == 0 ) {
-			System.out.println("boardWriterPw" + boardWriterPw.trim().length());
+			//System.out.println("boardWriterPw" + boardWriterPw.trim().length());
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter result = response.getWriter();
 			result.println("<script>alert('아이디 또는 비밀번호를 모두 입력해주세요.')");
@@ -77,13 +78,11 @@ public class LoginController {
 			int idCheck = loginService.idChk(boardWriter);
 			if (idCheck == 1) { // 아이디가 있는 경우
 				// DB SALT 값 조회
-				String checkSalt = loginService.getSalt(boardWriter);
+				//String checkSalt = loginService.getSalt(boardWriter);
 				// 입력한 비밀번호와 salt 값을 더하여 암호화한 후 비교
-				mVO.setPwd(SHA256Util.getEncrypt(boardWriterPw, checkSalt));
-
 				int selectMem = loginService.loginChk(mVO);
 				int selectDelMem = loginService.loginChk_del(mVO);
-
+				
 				if(selectMem == 1 && selectDelMem == 0) {
 					mVO = loginService.loginDo(boardWriter);
 					session.setAttribute("member", mVO.getPhone());
@@ -160,9 +159,8 @@ public class LoginController {
     public ModelAndView joinDo(MemberVo member, HttpServletResponse response) throws Exception {
     	ModelAndView mv = new ModelAndView();
     	
-
-    	member.setSalt(SHA256Util.generateSalt());
-    	member.setPwd(SHA256Util.getEncrypt(member.getPwd(), member.getSalt()));
+    	//member.setSalt(SHA256Util.generateSalt());
+    	//member.setPwd(SHA256Util.getEncrypt(member.getPwd(), member.getSalt()));
     	int joinOk = loginService.insertMem(member);
     	
     	
