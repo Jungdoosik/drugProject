@@ -65,9 +65,11 @@ searchPag {
    center
 }
 </style>
+</head>
+
 <script>
-$(function(){
-	if (window.innerWidth <= 800) {
+   $(function(){
+	   if (window.innerWidth <= 800) {
 	      $('#topTitle').css('display', 'none')
 	      $('#middleTitle').css('padding-top', '15%')
 	    }else if(window.innerWidth > 800){
@@ -75,20 +77,6 @@ $(function(){
 	    	$('#middleTitle').css('padding-top', '0%')
 	    	
 	    }
-})
-   function itemDataSearch() {
-       document.frm.action = '/searchDrug';
-       document.frm.submit()
-
-   }
-   
-</script>
-    
-</head>
-
-<script>
-   $(function(){
-      
       /* var xhrd = new XMLHttpRequest();
       var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
       var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
@@ -129,6 +117,12 @@ $(function(){
       document.detailData.action = "/detail"
       document.detailData.submit()
       
+   }
+   
+   function itemDataSearch() {
+       document.frm.action = '/searchDrug';
+       document.frm.submit()
+
    }
 </script>
 

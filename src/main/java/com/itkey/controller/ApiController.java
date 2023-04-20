@@ -33,7 +33,7 @@ public class ApiController {
 	
 	@RequestMapping("/searchDrugList")
 	public String searchDrug(@RequestParam Map<String,Object> params,ModelMap model) throws Exception {
-		String data = (String) params.get("selectKnd");
+		String data = (String) params.get("searchName");
 		System.out.println(data);
 		
 		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList"); /*URL*/
