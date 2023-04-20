@@ -178,11 +178,6 @@ public class LoginController {
     	return mv;
     }
     
-    @RequestMapping("/mypage")
-    public String mypage() {
-       return "mypage";
-    }
-    
     @RequestMapping("/modify") // 개인정보수정
     public String modify() {
        return "modify";
