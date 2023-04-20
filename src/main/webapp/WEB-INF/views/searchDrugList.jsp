@@ -66,15 +66,8 @@ searchPag {
 }
 </style>
 <script>
-   function itemDataSearch() {
-       document.frm.action = '/searchDrug';
-       document.frm.submit()
-
-   }
-   
-   $(window).on('resize', function(){
-
-	    if (window.innerWidth <= 800) {
+$(function(){
+	if (window.innerWidth <= 800) {
 	      $('#topTitle').css('display', 'none')
 	      $('#middleTitle').css('padding-top', '15%')
 	    }else if(window.innerWidth > 800){
@@ -82,7 +75,13 @@ searchPag {
 	    	$('#middleTitle').css('padding-top', '0%')
 	    	
 	    }
-	});
+})
+   function itemDataSearch() {
+       document.frm.action = '/searchDrug';
+       document.frm.submit()
+
+   }
+   
 </script>
     
 </head>
@@ -152,27 +151,7 @@ searchPag {
 	
    <div class="index_container">
       <!-- ======= Header ======= -->
-        <header id="header" class="header d-flex align-items-center fixed-top">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="resources/img/logo.png" alt="" > -->
-                    <h1> MedicineSearch</h1>
-                </a>
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
-                        <li> <a href="services"> 서비스 소개</a> </li>
-<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li> -->
-                        <li> <a class="get-a-quote" href="get-a-quote.html">로그인</a> </li>
-                    </ul>
-                </nav><!-- .navbar -->
-            </div>
-        </header>
+        <jsp:include page="common/header.jsp" />
         <!-- End Header -->
            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" style="color:#ffffff">
                <h2 data-aos="fade-up" id="topTitle"> 안전하게 복약하세요.</h2>
