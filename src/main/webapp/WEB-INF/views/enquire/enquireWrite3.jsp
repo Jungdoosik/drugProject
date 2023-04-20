@@ -82,12 +82,16 @@ html, body {
 	font-weight: 500;
 }
 
-
+#dd{
+    background: #f3f6fc;
+   
+}
 .from-get-a-quote{
     background: #f3f6fc;
     padding: 40px;
     height: 100%
 }
+
 /* 버튼 테두리 padding 처리  */
 .btnclss{
  padding: 5%;
@@ -111,13 +115,12 @@ html, body {
 	 <section  id="get-a-quote" class="get-a-quote">
 		<div class="container" data-aos="fade-up">
 			
-			<div class="row g-0">
+			<div class="row g-0" id="dd">
 				
 				<div class="col-lg-5 quote-bg"
 					style="background-image: url(resources/img/question.jpg);">
 				</div>
-	
-				<div class="col-lg-7"><!--1  -->
+				<div class="col-lg-7" ><!--1  -->
 				  <div class="from-get-a-quote">
 					<div class="col-lg-12">
 							<p class="askTop">1:1 문의 내역</p>
