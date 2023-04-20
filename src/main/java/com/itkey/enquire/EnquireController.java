@@ -62,14 +62,16 @@ public class EnquireController {
 		log.info("======1111===============");
 		criteria.setKeyword(member);// 회원id criteria 객체 set
 		
+		if (page != null) {
+			criteria.setPage(page);
+		}
+		if (numsPerPage != null) {
+			criteria.setNumsPerPage(numsPerPage);
+		}
+		
 		log.info(criteria);
 		log.info("==========2222===========");
 		
-		/*EnquireVo eVO= new EnquireVo();
-		eVO.setWriter(member);
-		*/
-		
-		// List<EnquireVo> eList = eService.listEnquire(cri);
 		List<EnquireVo> eList = eService.listEnquire(criteria);
 		
 		model.addAttribute("List", eList);
