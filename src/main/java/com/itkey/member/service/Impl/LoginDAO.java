@@ -14,11 +14,6 @@ public class LoginDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public MemberVo loginMember(MemberVo member) {
-		
-		return sqlSession.selectOne("member.memberLogin",member);
-	}
-	
 	public MemberVo loginDo(String phone) throws Exception {
 		MemberVo mVO = sqlSession.selectOne("loginDo",phone);
 		return mVO;

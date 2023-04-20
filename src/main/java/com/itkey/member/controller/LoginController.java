@@ -53,30 +53,6 @@ public class LoginController {
     	return "login";
     }
     
-    @ResponseBody
-    @RequestMapping("/memberLogin")
-    public String  memberLogin(MemberVo member, HttpServletResponse response, HttpServletRequest request, ModelMap model) throws Exception{
-
-    	MemberVo mb = loginService.login(member);
-    	
-    	System.out.println(mb);
-    	
-    	if (mb != null)
-		{
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("member", mb);
-			session.setAttribute("bizMember", null);
-			return "/";
-
-		} else
-		{
-			model.addAttribute("msg1", "로그인 실패");
-			model.addAttribute("msg2", "아이디와 비밀번호를 확인해주세요.");
-			return "login";
-		}
-    }
-    
     @RequestMapping(value = "/loginDo", method = RequestMethod.POST)
     public ModelAndView  loginDo(HttpSession session, HttpServletResponse response, HttpServletRequest request, ModelMap model) throws Exception{
     	ModelAndView mv = new ModelAndView();

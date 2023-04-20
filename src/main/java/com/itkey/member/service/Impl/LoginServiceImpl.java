@@ -14,15 +14,6 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Resource(name = "LoginDAO")
 	LoginDAO loginDAO;
-
-	@Override
-	public MemberVo login(MemberVo member) throws Exception {
-
-		
-		return loginDAO.loginMember(member);
-	}
-
-	
 	
 	@Override
 	public MemberVo loginDo(String phone) throws Exception {

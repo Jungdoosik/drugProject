@@ -5,9 +5,6 @@ import java.util.Map;
 
 public interface LoginService {
 
-	MemberVo login(MemberVo member) throws Exception;
-	
-	
 	public MemberVo loginDo(String phone) throws Exception;
 	public int idChk(String phone) throws Exception;
 	public int idChk_DEL(String phone) throws Exception;

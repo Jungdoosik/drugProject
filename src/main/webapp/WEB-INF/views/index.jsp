@@ -155,12 +155,6 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                             </div><!-- End Stats Item -->
                             <div class="col-lg-3 col-6">
                                 <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" clas s="purecounter"> </span>
-                                    <p> 이름</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
                                     <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"> </span>
                                     <p> 성분</p>
                                 </div>
