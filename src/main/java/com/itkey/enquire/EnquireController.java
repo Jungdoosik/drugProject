@@ -46,25 +46,26 @@ public class EnquireController {
 	public String enquireList(Criteria cri
 			, Model model
 			,HttpSession session
-	/* , Authentication authentication */
 	) throws Exception {
 		log.info("question 상담내역");
 		//세션값 불러오기
-		//MemberVo member = (MemberVo) session.getAttribute("member");
-		//log.info(member);
+		String member = (String) session.getAttribute("member");
+		log.info(member);
 		
-		// UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		// cri.setId(userDetails.getUsername());
-		// cri.setCode("MS");
-
+		String service_code ="MS";
+		
+		EnquireVo eVO= new EnquireVo();
+		eVO.setWriter(member);
+		eVO.setService_code(service_code);
+		
+		//eVO.setService_code("service_code");
 		// List<EnquireVo> eList = eService.listEnquire(cri);
-		List<EnquireVo> eList = eService.listEnquire();
-		// PageMaker pageMaker = new PageMaker();
-		// pageMaker.setCri(cri);
-		// int countPage = eService.listCountEnquire(cri);
-		// pageMaker.setTotalBoard(countPage);
-
-		// model.addAttribute("pageMaker", pageMaker);
+		
+		
+		List<EnquireVo> eList = eService.listEnquire(eVO);
+		
+	
+		model.addAttribute("member", member);
 		model.addAttribute("List", eList);
 
 		return "/enquire/enquireWrite3";
@@ -73,9 +74,8 @@ public class EnquireController {
 	// ■ 고객 문의하기 : 글쓰기 insert
 	@GetMapping(value = "/enquireWriteView")
 	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request) throws Exception {
-		//세션값 불러오기
-		//MemberVo member = (MemberVo) session.getAttribute("member");
-		
+
+	
 		log.info("문의등록  페이지");
 		return "/enquire/enquireWrite";
 
@@ -83,11 +83,13 @@ public class EnquireController {
 	// ■ 고객문의 등록
 	@ResponseBody
 	@PostMapping(value = "/doAsk.do")
-	public String insertAsk(EnquireVo eVO) throws Exception {
+	public String insertAsk(EnquireVo eVO, HttpSession session) throws Exception {
 		log.info("문의 등록  ajax data : " + eVO);
 
-		/*String a = "01064864033"; // 하드코딩
-		eVO.setWriter(a);*/
+		//세션값 불러오기
+		String member = (String) session.getAttribute("member");
+	     log.info(member);
+		eVO.setWriter(member);
 
 		log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
 		int result = eService.insertAsk(eVO);

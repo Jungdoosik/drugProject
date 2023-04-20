@@ -93,34 +93,19 @@ html, body {
 </head>
 
 <body>
-	<section>
-	<div class="index_container">
-		<!-- ======= Header ======= -->
-		<header id="header" class="header d-flex align-items-center fixed-top">
-		<div
-			class="container-fluid container-xl d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <!-- Uncomment the line below if you also wish to use an image logo -->
-				<!-- <img src="resources/img/logo.png" alt="" > -->
-				<h1>MedicineSearch</h1>
-			</a> <i class="mobile-nav-toggle mobile-nav-show bi bi-list"> </i> <i
-				class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"> </i>
-			<nav id="navbar" class="navbar">
-			<ul>
-				<!-- <li> <a href="index.html" class="active"> Home</a> </li> -->
-				<li><a href="services"> 서비스 소개</a></li>
-				<!--                         <li> <a href="pricing.html"> Pricing</a> </li>
-                        <li> <a href="contact.html"> Contact</a> </li> -->
-				<li><a class="get-a-quote" href="get-a-quote.html">로그인</a></li>
-			</ul>
-			</nav>
-			<!-- .navbar -->
-		</div>
-		</header>
-		<!-- =======End Header =======-->
-	</section>
+<section>
+ 
+  <!-- ======= Header ======= -->
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <jsp:include page="../common/header.jsp" />
+        </header>
+<!-- =======End Header =======-->
+
+    	
+      
 	<!-- End Hero Section -->
-	<main id="main"> <!-- ======= Get a Quote Section ======= --> <section
-		id="get-a-quote" class="get-a-quote">
+	<main id="main"> <!-- ======= Get a Quote Section ======= --> 
+	<section id="get-a-quote" class="get-a-quote">
 	<div class="container" data-aos="fade-up">
 		<div class="row g-0">
 			<div class="col-lg-5 quote-bg"
@@ -153,13 +138,13 @@ html, body {
 									<tr>
 										<input type="hidden" name="askNo" value="${ask.seq}">
 										<td>${ask.seq} <%-- <c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /> --%>
-										
+										</td>
 										<c:if test="${list.pdate ne null}">
 											<td><font color="blue">답변완료</font></td>
 										</c:if> 
 										<c:if test="${list.pdate eq null}">
 											<td><font color="red">처리중</font></td>
-									
+									    </c:if>
 										<td>${ask.title}</td>
 										<td>${ask.qdate}</td>
 										<td>${ask.adate}</td>

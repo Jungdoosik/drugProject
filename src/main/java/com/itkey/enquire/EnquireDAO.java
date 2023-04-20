@@ -34,9 +34,9 @@ public class EnquireDAO {
 	}
 
 	// ■ 상담 내역
-	List<EnquireVo> listEnqire() throws Exception {
-		log.info("* [DAO] Input  ◀ (Service) : ");
-		List<EnquireVo> result = sqlSession.selectList("enquire.listEnqire");
+	List<EnquireVo> listEnqire(EnquireVo eVO) throws Exception {
+		log.info("* [DAO] Input  ◀ (Service) : "+ eVO.toString());
+		List<EnquireVo> result = sqlSession.selectList("enquire.listEnqire",eVO);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}

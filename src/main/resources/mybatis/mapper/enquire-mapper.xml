@@ -7,18 +7,15 @@
 	<!-- 문의 리스트 고객-->
 	<select id="listEnqire" resultType="EnquireVo">
 		SELECT 
-			seq, 
-			title, 
-			writer, 
-			answer, 
-			q_date as qdate, 
-			a_date as adate 
+		*
 		FROM 
 			enquire 
-		<!-- WHERE 
-			delyn = 'N' and writer = #{id} and service_code = #{code}
+	 WHERE 
+			delyn = 'N' and writer = #{writer} 
+			<!--and service_code = #{code}  -->
 		ORDER BY 
 			seq 
+			<!--	
 		DESC limit #{pageStart}, #{number} -->
 	</select>
 	
