@@ -38,20 +38,21 @@ import com.itkey.service.common.PageMaker;
 public class EnquireController {
 	private Logger log = Logger.getLogger(EnquireController.class);
 	
-	
 	@Autowired
 	private EnquireService eService;
 
-
-
 	// ■ 상담 내역 (개인)
 	@GetMapping("/question")
-	public String enquireList(Criteria cri, Model model
+	public String enquireList(Criteria cri
+			, Model model
+			,HttpSession session
 	/* , Authentication authentication */
 	) throws Exception {
-
-		log.info("상담내역");
-
+		log.info("question 상담내역");
+		//세션값 불러오기
+		//MemberVo member = (MemberVo) session.getAttribute("member");
+		//log.info(member);
+		
 		// UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		// cri.setId(userDetails.getUsername());
 		// cri.setCode("MS");
@@ -71,7 +72,9 @@ public class EnquireController {
 
 	// ■ 고객 문의하기 : 글쓰기 insert
 	@GetMapping(value = "/enquireWriteView")
-	public String writeEnquire(Model model, HttpServletRequest request) throws Exception {
+	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request) throws Exception {
+		//세션값 불러오기
+		//MemberVo member = (MemberVo) session.getAttribute("member");
 		
 		log.info("문의등록  페이지");
 		return "/enquire/enquireWrite";
