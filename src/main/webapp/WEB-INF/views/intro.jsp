@@ -97,9 +97,13 @@ $(document).ready(function(){
 	})
 });
 
-function openReg(){
-		$('#memberEvtReg').modal("show");
-		$("#join_form")[0].reset();
+function openReg(cuid, muid, price, title){
+		document.frm.cuid.value = cuid
+		document.frm.muid.value = muid
+		document.frm.price.value = price
+		document.frm.title.value = title
+		document.frm.action = "/join"
+		document.frm.submit()
 }
 
  function iamport(){
@@ -121,9 +125,12 @@ function openReg(){
 		amount : itemPrice
 	}, function(rsp) {
 		if ( rsp.success ) {
-			$('#cuid').val(customer_uid);
-			$('#muid').val(merchant_uid);	
-			openReg();
+			console.log(rsp)
+			var cuid = customer_uid
+			var muid = merchant_uid
+			var price = itemPrice
+			var title = itemTitle
+			openReg(cuid, muid, price, title);
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
@@ -135,6 +142,13 @@ function openReg(){
 </script>
 </head>
 <body>
+	<form id="frm" name="frm" method="post">
+		<input type="hidden" name="cuid" value="">
+		<input type="hidden" name="muid" value="">
+		<input type="hidden" name="price" value="">
+		<input type="hidden" name="title" value="">
+		<input type="hidden" name="joinPath" value="2">
+	</form>
 	<div class="container my-fade-in">
 		<!-- 아임포트 모4듈 -->
 		<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
@@ -149,8 +163,8 @@ function openReg(){
 					</h1>
 
 					<div class="korea mb-4">
-						<img src="resources/img/free-icon-drug-4667352.png">
-					</div>
+                        <img src="resources/img/free-icon-drug-4667352.png">	
+       				</div>
 
 					<div class="terms">
 						<label for="agree_all" style="font-size: 20px;"> <input

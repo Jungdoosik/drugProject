@@ -82,13 +82,17 @@
         }
         
         function joinPage(){
-        	location.href='/join';
+        	document.joinForm.action = "/join"
+        	document.joinForm.submit();
         }
     </script>
 
 </head>
 
 <body>
+	<form id="joinForm" name="joinForm" method="post">
+		<input type="hidden" name="joinPath" value="1">
+	</form>
 
     <div class="index_container">
     	<section>

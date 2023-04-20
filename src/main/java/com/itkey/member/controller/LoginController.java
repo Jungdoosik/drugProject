@@ -121,7 +121,8 @@ public class LoginController {
     }
     
     @RequestMapping("/join")
-    public String join() {
+    public String join(@RequestParam Map<String,Object> params, ModelMap model) {
+    	model.addAttribute("params", params);
     	return "join";
     }
     
@@ -155,13 +156,16 @@ public class LoginController {
 	}
 	
 	
-    @RequestMapping("/joinDo")
-    public ModelAndView joinDo(MemberVo member, HttpServletResponse response) throws Exception {
+	@RequestMapping("/joinDo")
+    public ModelAndView joinDo(@RequestParam Map<String, Object> params, HttpServletResponse response) throws Exception {
     	ModelAndView mv = new ModelAndView();
-    	
+    	System.out.println(params);
     	//member.setSalt(SHA256Util.generateSalt());
     	//member.setPwd(SHA256Util.getEncrypt(member.getPwd(), member.getSalt()));
-    	int joinOk = loginService.insertMem(member);
+    	int joinOk = loginService.insertMem(params);
+    	if(params.get("joinPath").equals("2")){
+    		loginService.insertCredit(params);
+    	}
     	
     	
     	if(joinOk == 1){

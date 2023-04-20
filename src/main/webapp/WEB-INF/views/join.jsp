@@ -115,6 +115,12 @@
 	            <!-- 인증번호/인증확인 -->
 	            <!-- <input type="hidden" id="authReq" name="authReq">
 	            <input type="hidden" id="authChk" name="authChk"> -->
+	            ${params }
+	            <input type="hidden" id="cuid" name="cuid" value="${params.cuid }">
+	            <input type="hidden" id="muid" name="muid" value="${params.muid }">
+	            <input type="hidden" id="itemPrice" name="itemPrice" value="${params.price }">
+	            <input type="hidden" id="itemTitle" name="itemTitle" value="${params.title }">
+	            <input type="hidden" id="joinPath" name="joinPath" value="${params.joinPath }">
 				<div>
                 
                 <div class="col-md-12">

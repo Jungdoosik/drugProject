@@ -57,19 +57,79 @@
 		phone = #{phone}
 	</select>
 	
-	<insert id="insertMem" parameterType="MemberVo">
-		INSERT INTO member (
+	<insert id="insertMem" parameterType="HashMap">
+		<if test='joinPath == "1"'>
+		INSERT INTO MEMBER
+		(
 			phone
 			, pwd
 			, email
 			, join_date
 			, join_path
+			, del_yn
+			, auth
+			, service_code
 		) VALUES(
 			#{phone}
 			, #{pwd}
 			, #{email}
-			, sysdate()
-			, 1
+			, now()
+			, #{joinPath}
+			, 'N'
+			, 'USER'
+			, 'MS'
+		)
+	</if>
+	<if test='joinPath == "2"'>
+		INSERT INTO MEMBER
+		(phone
+			, cuid
+			, pwd
+			, email
+			, join_date
+			, join_path
+			, subscribe
+			, pay_yn
+			, sub_date
+			, end_sub_date
+			, del_yn
+			, auth
+			, service_code
+		) VALUES(
+			#{phone}
+			, #{cuid}
+			, #{pwd}
+			, #{email}
+			, now()
+			, #{joinPath}
+			, 'Y'
+			, 'Y'
+			, DATE_FORMAT(now(), '%Y년%m월%d일%H시')
+			, DATE_FORMAT(DATE_ADD(now(), interval 7 day), '%Y년%m월%d일%H시')
+			, 'N'
+			, 'USER'
+			, 'MS'
+		)
+		</if>
+	</insert>
+	
+	<insert id="insertCredit" parameterType="HashMap">
+		INSERT INTO CREDIT
+		(
+			id
+			,itemname
+			,merchant_uid
+			,amount
+			,credit_date
+			,service_code
+		)
+		VALUES(
+			#{phone}
+			,#{itemTitle}
+			,#{muid}
+			,#{itemPrice}
+			,now()
+			,'MS'
 		)
 	</insert>
 	

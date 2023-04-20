@@ -40,9 +40,12 @@ public class LoginDAO {
 		int result = sqlSession.selectOne("loginChk_del",member);
 		return result;
 	}
-	public int insertMem(MemberVo member) throws Exception {
-		int result = sqlSession.insert("insertMem",member);
+	public int insertMem(Map<String, Object> params) throws Exception {
+		int result = sqlSession.insert("insertMem",params);
 		return result;
+	}
+	public int insertCredit(Map<String, Object> params) throws Exception{
+		return sqlSession.insert("member.insertCredit",params);
 	}
 	
 

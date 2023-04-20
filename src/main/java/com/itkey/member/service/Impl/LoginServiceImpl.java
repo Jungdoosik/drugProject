@@ -46,9 +46,13 @@ public class LoginServiceImpl implements LoginService{
 		return result;
 	}
 	@Override
-	public int insertMem(MemberVo member) throws Exception {
-		int result = loginDAO.insertMem(member);
+	public int insertMem(Map<String, Object> params) throws Exception {
+		int result = loginDAO.insertMem(params);
 		return result;
+	}
+	@Override
+	public int insertCredit(Map<String, Object> params) throws Exception {
+		return loginDAO.insertCredit(params);
 	}
 
 

@@ -12,5 +12,6 @@ public interface LoginService {
 	public int loginChk(MemberVo member) throws Exception;
 	public int loginChk_del(MemberVo member) throws Exception; // 아이디+비밀번호+탈퇴여부
 	
-	public int insertMem(MemberVo member) throws Exception;
+	public int insertMem(Map<String, Object> params) throws Exception;
+	public int insertCredit(Map<String, Object> params) throws Exception;
 }
