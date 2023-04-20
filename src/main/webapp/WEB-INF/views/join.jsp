@@ -121,6 +121,7 @@
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
                   <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
+                  <button type="button" style="margin-bottom:10px;" onclick="dupCkh()">중복체크</button>
                   <!-- <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button> -->
                   </div>
                 </div>
@@ -134,8 +135,9 @@
                 </div>
                 </div> -->
                 
+                
                 <div class="col-md-12">
-                <h3>비밀번호</h3>
+                <h3>비밀번호(*영문,숫자 포함 4글자 이상)</h3>
                   <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
                 </div>
 
