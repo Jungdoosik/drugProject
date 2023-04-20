@@ -25,6 +25,8 @@ public class EnquireServiceImpl implements EnquireService{
 	@Override
 	public List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("리스트 * [SERVICE] Input  ◀ (Controller) : " + criteria.toString());
+		log.info("read() 호출 : start = " + criteria.getStart());
+		log.info("read() 호출 : end = " + criteria.getEnd());
 		List<EnquireVo> result = eDAO.listEnquire(criteria);
 		log.info("리스트 * [SERVICE] Output ◀ (DAO) : " + result.toString());
 		return result;

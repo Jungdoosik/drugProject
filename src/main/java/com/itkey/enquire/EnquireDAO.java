@@ -36,6 +36,8 @@ public class EnquireDAO {
 	// ■ 상담 내역
 	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("다오다오다오* [DAO] Input  ◀ (Service) : "+ criteria.toString());
+		log.info("select_list() 호출");
+		log.info("start = " + criteria.getStart() + ", end = " + criteria.getEnd());
 		List<EnquireVo> result = sqlSession.selectList("enquire.listEnquire",criteria);
 		log.info("다오다오다오* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
