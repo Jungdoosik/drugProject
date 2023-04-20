@@ -7,8 +7,8 @@ function joinChk() {
 
 
 	var form = $("#joinFrm");
-	var authReq = $("#authReq").val();
-	var authChk = $("#authChk").val();
+	//var authReq = $("#authReq").val();
+	//var authChk = $("#authChk").val();
 	var phone = $("#phone").val();
 	var pwd = $("#pwd").val();
 	var pwdChk = $("#pwdChk").val();
@@ -38,10 +38,11 @@ function joinChk() {
 		}
 	});*/
 
-	if (authReq== '' || authChk== '' || authReq== '0' || authChk== '0') {
-		alert("휴대전화번호 인증 확인을 하셔야 가입이 진행됩니다.");
-		val = false;
-	} else if (phone == '' || pwd == '' || pwdChk == '' || email == '') {
+/*if (authReq== '' || authChk== '' || authReq== '0' || authChk== '0') {
+	alert("휴대전화번호 인증 확인을 하셔야 가입이 진행됩니다.");
+	val = false;
+} else*/ 
+	if (phone == '' || pwd == '' || pwdChk == '' || email == '') {
 		alert("모든 항목을 빈칸없이 작성해 주시기 바랍니다.");
 		val = false;
 	} else if (!val_phone.test(phone)) {
