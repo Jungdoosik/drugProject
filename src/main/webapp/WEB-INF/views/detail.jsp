@@ -51,7 +51,7 @@ https://blog.naver.com/PostView.nhn?blogId=alpine_knotweed&logNo=221757331295&pa
 			<!-- <p>소제목?</p> -->
 			
 			<div class="clearfix">
-			  <img class="detail_img" src="resources/images/img-1.jpg" alt="약" width="170" height="170">
+			  <img class="detail_img" src="resources/img/img-1.jpg" alt="약" width="170" height="170">
 			  <h5>약 이름</h3>
 			</div>
 		

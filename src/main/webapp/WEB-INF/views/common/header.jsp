@@ -28,7 +28,7 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                         </c:if>
                         <!-- 세션값 있는 경우 마이페이지/로그아웃 -->
                         <c:if test="${not empty member }">
-                        	<li style="display: flex;"> <a href="mypage"> ${member } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
+                        	<li style="display: flex;"> <a href="index"> ${member } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
                         </c:if>
                         <c:if test="${not empty member }">
                         	<li class="dropdown"><a href="#"><span> 나의 정보</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>

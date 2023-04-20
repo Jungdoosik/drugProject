@@ -70,13 +70,13 @@ padding: 40% 10% 40% 10%;
 </style>
 <body>
 	<!-- <div class="eventImg">
-		<img  src="resources/images/free-icon-mobile-phone-4875709.png" ><br><br>
+		<img  src="resources/img/free-icon-mobile-phone-4875709.png" ><br><br>
 		<input id="join" type="button" value="참여하고 캐시받기" onClick="location.href='eventJoin'" style="background-color: yellow;font-weight: bold;font-size:20px;">	
 	</div> -->	
 <div class="all">
 	<div class="main">
 		<div class="event-content">
-		<img src="resources/images/free-icon-mobile-phone-4875709.png">
+		<img src="resources/img/free-icon-mobile-phone-4875709.png">
 		<div class="text-font">
 		회원가입 하면 <strong class="text-bold">+10000캐시</strong>지급!
 		</div>

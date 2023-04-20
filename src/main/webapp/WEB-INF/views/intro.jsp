@@ -149,7 +149,7 @@ function openReg(){
 					</h1>
 
 					<div class="korea mb-4">
-						<img src="resources/images/free-icon-drug-4667352.png">
+						<img src="resources/img/free-icon-drug-4667352.png">
 					</div>
 
 					<div class="terms">
