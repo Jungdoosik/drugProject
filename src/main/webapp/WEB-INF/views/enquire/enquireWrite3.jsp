@@ -84,6 +84,11 @@ html, body {
 #gy-4 {
 	PADDING: 5%;
 }
+.from-get-a-quote{
+    background: #f3f6fc;
+    padding: 40px;
+    height: 100%
+}
 </style>
 
 
@@ -93,25 +98,29 @@ html, body {
 </head>
 
 <body>
-	<section> <!-- ======= Header ======= --> <header id="header"
-		class="header d-flex align-items-center fixed-top"> <jsp:include
-		page="../common/header.jsp" /> </header> <!-- =======End Header =======--> <!-- End Hero Section -->
-	<main id="main"> <!-- ======= Get a Quote Section ======= --> <section
-		id="get-a-quote" class="get-a-quote">
-	<div class="container" data-aos="fade-up">
-		<div class="row g-0">
-			<div class="col-lg-5 quote-bg"
-				style="background-image: url(resources/img/question.jpg);"></div>
-
-			<div class="col-lg-7">
-				<div class="row gy-4" id="gy-4">
+<div class="index_container">
+	   <section>
+	    <jsp:include page="../common/header.jsp" />
+	   </section><!-- End Hero Section -->
+	<!-- =======End Header =======--> <!-- End Hero Section -->
+	<main id="main">
+	 <!-- ======= Get a Quote Section ======= --> 
+	 <section  id="get-a-quote" class="get-a-quote">
+		<div class="container" data-aos="fade-up">
+			
+			<div class="row g-0">
+				
+				<div class="col-lg-5 quote-bg"
+					style="background-image: url(resources/img/question.jpg);">
+				</div>
+	
+				<div class="col-lg-7"><!--1  -->
+				  <div class="from-get-a-quote">
 					<div class="col-lg-12">
-
-						<p class="askTop">1:1 문의 내역</p>
-
-
+							<p class="askTop">1:1 문의 내역</p>
 					</div>
-					<div class="col-md-12">
+					
+					<div class="col-md-12"><!-- 테이블 + bnt 시작  -->
 						<div>
 							<button type="button" class="btn" onclick="eWVBnt();">문의하기</button>
 						</div>
@@ -155,7 +164,8 @@ html, body {
 								location.href = "/enquireWriteView"; //문의 리스트 url 		
 							};
 						</script>
-						<div class="pasgbody">
+						
+						<div class="pasgbody"><!-- 페이징 시작 -->
 							<c:choose>
 
 								<c:when test="${pageMaker.criteria eq null}">
@@ -200,16 +210,16 @@ html, body {
 								</c:otherwise>
 
 							</c:choose>
-						</div>
+						</div> <!-- 페이징 end -->
 
-					</div>
+					</div><!-- 테이블 + bnt end -->
 				</div>
+				 </div>
 			</div>
 		</div>
-	</div>
-
-	</div>
-	</section> <!-- End Get a Quote Section --> </main><!-- End #main -->
+    
+   </section> <!-- End Get a Quote Section --> 
+</main><!-- End #main -->
 
 	<div>
 		<a href="#"
@@ -218,7 +228,8 @@ html, body {
 		</a>
 	</div>
 	<div id="preloader"></div>
-	<!-- Vendor JS Files --> <script
+	<!-- Vendor JS Files --> 
+	<script
 		src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
 	<script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
