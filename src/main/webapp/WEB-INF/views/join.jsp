@@ -112,25 +112,27 @@
 		  <!-- Start join Form -->
           <div class="col-lg-7">
             <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
-	            <input type="hidden" id="authReq" name="authReq">
-	            <input type="hidden" id="authChk" name="authChk">
+	            <!-- 인증번호/인증확인 -->
+	            <!-- <input type="hidden" id="authReq" name="authReq">
+	            <input type="hidden" id="authChk" name="authChk"> -->
 				<div>
                 
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
                   <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button>
+                  <!-- <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button> -->
                   </div>
                 </div>
                 
-                <div class="col-md-12 " >
+                
+                <!-- <div class="col-md-12 " >
                 <h3>인증번호</h3>
                 <div style="display:flex;">
                   <input type="text" class="form-control" id="authNum" name="authNum" placeholder="인증번호 입력" style="margin-bottom:10px;">
                   <button type="button" style="margin-bottom:10px;" onclick="confirmAuth()">인증확인</button>
                 </div>
-                </div>
+                </div> -->
                 
                 <div class="col-md-12">
                 <h3>비밀번호</h3>
