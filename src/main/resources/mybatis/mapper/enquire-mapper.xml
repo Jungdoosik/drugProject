@@ -5,20 +5,29 @@
 <resultMap type="com.itkey.service.common.Criteria" id="Criteria"></resultMap>
 
 	<!-- 문의 리스트 고객-->
-	<select id="listEnqire" resultType="EnquireVo">
+	<select id="listEnquire" resultType="EnquireVo">
 		SELECT 
 		*
 		FROM 
 			enquire 
 	 WHERE 
-			delyn = 'N' and writer = #{writer} 
+			delyn = 'N' and writer = #{keyword} 
 			<!--and service_code = #{code}  -->
 		ORDER BY 
-			seq 
-			<!--	
-		DESC limit #{pageStart}, #{number} -->
+			seq DESC 	
+		limit #{start}, #{end} 
 	</select>
 	
+	<!-- 문의 리스트 -->
+	<select id="listCountEnquire" resultType="int">
+		SELECT 
+			count(1)
+		FROM 
+			enquire 
+		WHERE 
+			delyn = 'N' and writer = #{keyword} 
+			
+	</select>
 	<!-- 문의 등록 -->
 	
 	<insert id="insertAsk" parameterType="EnquireVo">
@@ -35,18 +44,7 @@
 
 	</insert>
 	
-	<!-- 문의 리스트 -->
-	<select id="listCountEnqire" resultType="int">
-		SELECT 
-			count(1)
-		FROM 
-			enquire 
-		WHERE 
-			delyn = 'N' and writer = #{id} and service_code = #{code}
-		ORDER BY 
-			seq 
-		DESC
-	</select>
+	
 	
 	<!-- 문의 리스트 관리자 -->
 	<select id="listAdminEnquire" resultType="EnquireVo" parameterType="Criteria">

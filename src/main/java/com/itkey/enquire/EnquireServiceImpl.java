@@ -8,26 +8,36 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/*import com.itkey.subscribe.CreditDTO;*/
+
 import com.itkey.controller.HomeController;
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.service.common.Criteria;
 
 
 
 @Service("EnquireService")
 public class EnquireServiceImpl implements EnquireService{
-	private Logger log = Logger.getLogger(EnquireServiceImpl.class);
+	private Logger log = Logger.getLogger(EnquireController.class);
 
 	@Autowired
 	private EnquireDAO eDAO;
 	
 	@Override
-	public List<EnquireVo> listEnquire(EnquireVo eVO) throws Exception {
-		List<EnquireVo> result = eDAO.listEnqire(eVO);
-		log.info("* [SERVICE] Output ◀ (DAO) : " + result.toString());
+	public List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
+		log.info("리스트 * [SERVICE] Input  ◀ (Controller) : " + criteria.toString());
+		List<EnquireVo> result = eDAO.listEnquire(criteria);
+		log.info("리스트 * [SERVICE] Output ◀ (DAO) : " + result.toString());
 		return result;
 	}
 	
+	@Override
+	public int listCountEnquire(PageCriteria criteria) throws Exception {
+		log.info("Count * [SERVICE] Input  ◀ (Controller) : " + criteria.toString());
+		int result = eDAO.listCountEnquire(criteria);
+		log.info("Count * [SERVICE] Output ◀ (DAO) : " + result);
+		
+		return result;
+	}
 	@Override
 	public int insertAsk(EnquireVo eVO) throws Exception {
 		log.info("문의 등록 * [SERVICE] Input  ◀ (Controller) : " + eVO.toString());
@@ -36,10 +46,7 @@ public class EnquireServiceImpl implements EnquireService{
 		return result;
 	}
 	
-	@Override
-	public int listCountEnquire(Criteria cri) throws Exception {
-		return eDAO.listCountEnqire(cri);
-	}
+
 
 
 	

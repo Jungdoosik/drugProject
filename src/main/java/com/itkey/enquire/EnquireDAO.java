@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itkey.service.common.Criteria;
-
+import com.itkey.pageutil.PageCriteria;
 /*import com.itkey.member.MemberVo;
 import com.itkey.subscribe.CreditDTO;*/
 
@@ -34,18 +34,18 @@ public class EnquireDAO {
 	}
 
 	// ■ 상담 내역
-	List<EnquireVo> listEnqire(EnquireVo eVO) throws Exception {
-		log.info("* [DAO] Input  ◀ (Service) : "+ eVO.toString());
-		List<EnquireVo> result = sqlSession.selectList("enquire.listEnqire",eVO);
-		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
+	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
+		log.info("다오다오다오* [DAO] Input  ◀ (Service) : "+ criteria.toString());
+		List<EnquireVo> result = sqlSession.selectList("enquire.listEnquire",criteria);
+		log.info("다오다오다오* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}
 
 	// ■ 상담 내역 갯수
-	int listCountEnqire(Criteria cri) throws Exception {
-		log.info("* [DAO] Input  ◀ (Service) : ");
-		int result = sqlSession.selectOne("enquire.listCountEnqire", cri);
-		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
+	int listCountEnquire(PageCriteria criteria) throws Exception {
+		log.info("Count* [DAO] Input  ◀ (Service) : "+ criteria.toString());
+		int result = sqlSession.selectOne("enquire.listCountEnquire", criteria);
+		log.info("Count* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
 

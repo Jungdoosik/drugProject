@@ -31,8 +31,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itkey.controller.HomeController;
 import com.itkey.member.service.MemberVo;
+import com.itkey.pageutil.PageCriteria;
+import com.itkey.pageutil.PageMaker;
+import com.itkey.pageutil.Payment;
 import com.itkey.service.common.Criteria;
-import com.itkey.service.common.PageMaker;
+
+
+
 
 @Controller
 public class EnquireController {
@@ -43,31 +48,37 @@ public class EnquireController {
 
 	// ■ 상담 내역 (개인)
 	@GetMapping("/question")
-	public String enquireList(Criteria cri
-			, Model model
+	public String enquireList(
+			 Model model
 			,HttpSession session
+			, Integer page
+			, Integer numsPerPage
 	) throws Exception {
 		log.info("question 상담내역");
 		//세션값 불러오기
 		String member = (String) session.getAttribute("member");
 		log.info(member);
+		PageCriteria criteria = new PageCriteria();
+		log.info("======1111===============");
+		criteria.setKeyword(member);// 회원id criteria 객체 set
 		
-		String service_code ="MS";
+		log.info(criteria);
+		log.info("==========2222===========");
 		
-		EnquireVo eVO= new EnquireVo();
+		/*EnquireVo eVO= new EnquireVo();
 		eVO.setWriter(member);
-		eVO.setService_code(service_code);
+		*/
 		
-		//eVO.setService_code("service_code");
 		// List<EnquireVo> eList = eService.listEnquire(cri);
+		List<EnquireVo> eList = eService.listEnquire(criteria);
 		
-		
-		List<EnquireVo> eList = eService.listEnquire(eVO);
-		
-	
-		model.addAttribute("member", member);
 		model.addAttribute("List", eList);
-
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(eService.listCountEnquire(criteria));
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("member", member);
 		return "/enquire/enquireWrite3";
 	}
 

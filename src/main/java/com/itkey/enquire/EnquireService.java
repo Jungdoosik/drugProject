@@ -3,15 +3,17 @@ package com.itkey.enquire;
 import java.util.List;
 import java.util.Map;
 
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.service.common.Criteria;
 
 public interface EnquireService {
 	
 	// ■ 상담 내역
-	List<EnquireVo> listEnquire(EnquireVo eVO) throws Exception;
+	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception;
 	
 	// ■ 상담 내역 갯수
-	int listCountEnquire(Criteria cri) throws Exception;
+	int listCountEnquire(PageCriteria criteria) throws Exception;
+	
 	
 	// ■ 문의 등록
 	public int insertAsk(EnquireVo eVO) throws Exception;
