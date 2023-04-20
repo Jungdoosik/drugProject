@@ -93,36 +93,30 @@ html, body {
 </head>
 
 <body>
-<section>
- 
-  <!-- ======= Header ======= -->
-        <header id="header" class="header d-flex align-items-center fixed-top">
-            <jsp:include page="../common/header.jsp" />
-        </header>
-<!-- =======End Header =======-->
-
-    	
-      
-	<!-- End Hero Section -->
-	<main id="main"> <!-- ======= Get a Quote Section ======= --> 
-	<section id="get-a-quote" class="get-a-quote">
+	<section> <!-- ======= Header ======= --> <header id="header"
+		class="header d-flex align-items-center fixed-top"> <jsp:include
+		page="../common/header.jsp" /> </header> <!-- =======End Header =======--> <!-- End Hero Section -->
+	<main id="main"> <!-- ======= Get a Quote Section ======= --> <section
+		id="get-a-quote" class="get-a-quote">
 	<div class="container" data-aos="fade-up">
 		<div class="row g-0">
 			<div class="col-lg-5 quote-bg"
 				style="background-image: url(resources/img/question.jpg);"></div>
+
 			<div class="col-lg-7">
 				<div class="row gy-4" id="gy-4">
 					<div class="col-lg-12">
-						<p>
+
 						<p class="askTop">1:1 문의 내역</p>
-						<input type="hidden" name="phone" value="${member}" />
-						
-						<hr
-							style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
-						</p>
+
 
 					</div>
 					<div class="col-md-12">
+						<div>
+							<button type="button" class="btn" onclick="eWVBnt();">문의하기</button>
+						</div>
+						<input type="hidden" name="page" value="1">
+		                 <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -134,62 +128,104 @@ html, body {
 								</tr>
 							</thead>
 							<tbody>
+							
 								<c:forEach items="${List}" var="ask" varStatus="status">
+								  <input type="hidden" name="seq" value="${ask.seq}">
 									<tr>
-										<input type="hidden" name="askNo" value="${ask.seq}">
-										<td>${ask.seq} <%-- <c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /> --%>
+										<td>
+											<c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /> 
 										</td>
 										<c:if test="${list.pdate ne null}">
 											<td><font color="blue">답변완료</font></td>
-										</c:if> 
+										</c:if>
 										<c:if test="${list.pdate eq null}">
 											<td><font color="red">처리중</font></td>
-									    </c:if>
+										</c:if>
 										<td>${ask.title}</td>
 										<td>${ask.qdate}</td>
 										<td>${ask.adate}</td>
 									</tr>
 								</c:forEach>
-								</div>
-								<button type="button" class="btn" onclick="eWVBnt();">문의하기</button>
-								</div>
-								</div>
+							</tbody>
+						</table>
+						<!-- End Quote Form -->
+						<script type="text/javascript">
+							/* 문의하기  bnt  문의하기 화면   */
+							function eWVBnt() {
+								location.href = "/enquireWriteView"; //문의 리스트 url 		
+							};
+						</script>
+						<div class="pasgbody">
+							<c:choose>
 
-								</div>
-								<!-- End Quote Form -->
-								<script type="text/javascript">
-									/* 문의하기  bnt  문의하기 화면   */
-									function eWVBnt() {
-										location.href = "/enquireWriteView"; //문의 리스트 url 		
-									};
-								</script>
-								</div>
+								<c:when test="${pageMaker.criteria eq null}">
+									<ul class="pagination justify-content-center">
+										<c:if test="${pageMaker.hasPrev }">
+											<li class="page-item"><a class="page-link"
+												href="question?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
+										</c:if>
+										<c:forEach begin="${pageMaker.startPageNo }"
+											end="${pageMaker.endPageNo }" var="num">
+											<li id="page${num}" class="page-item"><a
+												class="page-link"
+												href="question?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num }</a></li>
+										</c:forEach>
+										<c:if test="${pageMaker.hasNext }">
+											<li class="page-item"><a class="page-link"
+												href="question?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
+										</c:if>
+									</ul>
+								</c:when>
 
-								</div>
-								</section>
-								<!-- End Get a Quote Section -->
+								<c:otherwise>
+									<ul class="pagination justify-content-center">
+										<c:if test="${pageMaker.hasPrev }">
+											<li class="page-item"><a class="page-link"
+												href="question?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}">&lt;</a>
+											</li>
+										</c:if>
+										<c:forEach begin="${pageMaker.startPageNo }"
+											end="${pageMaker.endPageNo }" var="num">
+											<li id="page${num}" class="page-item"><a
+												class="page-link" id="page2${num}"
+												href="question?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}">${num }</a>
+											</li>
+										</c:forEach>
+										<c:if test="${pageMaker.hasNext }">
+											<li class="page-item"><a class="page-link"
+												href="question?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}}">&gt;</a>
+											</li>
+										</c:if>
+									</ul>
+								</c:otherwise>
 
-								</main>
-								<!-- End #main -->
+							</c:choose>
+						</div>
 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-								<a href="#"
-									class="scroll-top d-flex align-items-center justify-content-center">
-									<i class="bi bi-arrow-up-short"> </i>
-								</a>
-								</div>
-								<div id="preloader"></div>
-								<!-- Vendor JS Files -->
-								<script
-									src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-								<script
-									src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
-								<script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
-								<script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
-								<script src="resources/vendor/aos/aos.js"></script>
-								<script src="resources/vendor/php-email-form/validate.js"></script>
-								<!-- Template Main JS File -->
-								<script src="resources/js/main.js"></script>
+	</div>
+	</section> <!-- End Get a Quote Section --> </main><!-- End #main -->
+
+	<div>
+		<a href="#"
+			class="scroll-top d-flex align-items-center justify-content-center">
+			<i class="bi bi-arrow-up-short"> </i>
+		</a>
+	</div>
+	<div id="preloader"></div>
+	<!-- Vendor JS Files --> <script
+		src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="resources/vendor/swiper/swiper-bundle.min.js"></script> <script
+		src="resources/vendor/aos/aos.js"></script> <script
+		src="resources/vendor/php-email-form/validate.js"></script> <!-- Template Main JS File -->
+	<script src="resources/js/main.js"></script> </section>
 </body>
 
 </html>
