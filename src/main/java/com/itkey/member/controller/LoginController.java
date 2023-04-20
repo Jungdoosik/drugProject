@@ -28,7 +28,7 @@ import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
 import com.itkey.util.SHA256Util;
-
+import org.springframework.ui.Model;
 
 
 /**
@@ -183,7 +183,12 @@ public class LoginController {
     }
     
     @RequestMapping("/modify") // 개인정보수정
-    public String modify() {
+    public String modify(Model model ,HttpSession session) throws Exception {
+    	String member = (String) session.getAttribute("member");
+    	MemberVo mVO = new MemberVo();
+    	mVO = loginService.loginDo(member);
+    	
+    	model.addAttribute("member",mVO);
        return "modify";
     }
     
