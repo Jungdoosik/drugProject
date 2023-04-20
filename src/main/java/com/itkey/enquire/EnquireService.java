@@ -8,7 +8,7 @@ import com.itkey.service.common.Criteria;
 public interface EnquireService {
 	
 	// ■ 상담 내역
-	List<EnquireVo> listEnquire() throws Exception;
+	List<EnquireVo> listEnquire(EnquireVo eVO) throws Exception;
 	
 	// ■ 상담 내역 갯수
 	int listCountEnquire(Criteria cri) throws Exception;

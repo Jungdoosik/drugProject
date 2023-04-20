@@ -22,8 +22,8 @@ public class EnquireServiceImpl implements EnquireService{
 	private EnquireDAO eDAO;
 	
 	@Override
-	public List<EnquireVo> listEnquire() throws Exception {
-		List<EnquireVo> result = eDAO.listEnqire();
+	public List<EnquireVo> listEnquire(EnquireVo eVO) throws Exception {
+		List<EnquireVo> result = eDAO.listEnqire(eVO);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result.toString());
 		return result;
 	}
