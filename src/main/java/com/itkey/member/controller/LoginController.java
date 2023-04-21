@@ -188,7 +188,8 @@ public class LoginController {
     	MemberVo mVO = new MemberVo();
     	mVO = loginService.loginDo(member);
     	
-    	model.addAttribute("member",mVO);
+    	model.addAttribute("member",mVO.getPhone());
+    	model.addAttribute("memberinfo",mVO);
        return "modify";
     }
     
