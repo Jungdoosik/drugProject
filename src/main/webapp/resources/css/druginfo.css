@@ -1,0 +1,554 @@
+::selection{background: #3390ff;color:#fff;}
+::-moz-selection{background: #3390ff;color:#fff;}
+.none_li{height:60px;}
+.container_wrap{    min-width:320px;    }
+
+/* 전체메뉴 */
+.drug_allmenu {display: none;;position: absolute;top: 0;left: 50%;width: 100%;margin-left: -50%;background-color: #fff;border: 6px solid #5c7aa0;box-sizing: border-box;z-index: 100000;}
+.drug_container{line-height: 18px;}
+.drug_container p.subj.nock{padding-top:10px;}
+.drug_container > p.subj.nock:first-child{padding-top:0px;}
+.drug_allmenu.on {display: block;}
+.drug_allmenu .title {height: 67px;padding-top: 10px;padding-left: 20px;border-bottom: 1px solid #5c7aa0;box-sizing: border-box;}
+.drug_allmenu .btn_hamx {display: inline-block;width: 46px;height: 46px;margin-right: 10px;background-color: #e3eaf0;background-image: url(../images/common/icon_hamx.png);background-position: 50% 50%;background-repeat: no-repeat;border-radius: 100%;text-indent: -9999px;}
+.drug_allmenu h1 {display: inline-block;padding-top: 8px;vertical-align: top;font-size: 22px;color: #2f496e;font-weight: 700;white-space: nowrap;}
+.drug_allmenu .menulist {padding: 30px 24px;}
+.drug_allmenu .menulist > ul {overflow: hidden;float: left;width: 50%;box-sizing: border-box;}
+.drug_allmenu .menulist > ul > li {float: left;width: 50%;padding-left: 10px;margin-right: 0px;box-sizing: border-box;margin-bottom: 40px;}
+.drug_allmenu .menulist > ul:first-child > li:first-child {padding-left: 0;}
+.drug_allmenu .menulist > ul > li > a {display: block;height: 40px;line-height: 40px;background-color: #5c7aa0;font-size: 15px;color: #fff;font-weight: 700;text-align: center;}
+.drug_allmenu .menulist .sub li a {position: relative;display: block;height: 40px;line-height: 40px;padding-left: 10px;border-bottom: 1px solid #d2d2d2;font-size: 13px;color: #666;}
+.drug_allmenu .menulist .sub li a::after {content: "";position: absolute;top: 14px;right: 10px;display: block;width: 7px;height: 13px;background-image: url(../images/common/icon_arrow_sub.png);background-position: 0 0;background-repeat: no-repeat;}
+.drug_allmenu .menulist .sub li.on a,
+.drug_allmenu .menulist .sub li:hover a {background-color: #eff4f8;color: #2cafcb;font-weight: 700;text-decoration: none;}
+.drug_allmenu .menulist .sub li.on a::after, .drug_allmenu .menulist .sub li:hover a::after {background-position: 0 -13px;}
+.user_control {overflow: hidden;float: right;}
+.user_control .btn_print, .user_control a {display: inline-block;width: 25px;height: 25px;text-indent: -999px;vertical-align: middle;}
+.user_control .btn_print-1{border: 1px solid #2bafc6; border-radius: 3px; height: 30px; line-height: 28px; box-sizing: border-box; color:#000; background: #fff; padding: 0 15px;}
+.user_control .bookmork {margin-right: 25px;}
+.user_control .bookmork button {margin-right: 2px;background: url(../images/layout/icon_book.png) no-repeat;}
+.user_control .bookmork button.on {background-position: 0 -90px;}
+.user_control .btn_facebook {background: url(../images/layout/btn_facebook.png) no-repeat;}
+.user_control .btn_twitter {background: url(../images/layout/btn_twitter.png) no-repeat;}
+.user_control .btn_blog {background: url(../images/layout/btn_blog.png) no-repeat;}
+.user_control .btn_kakao {background: url(../images/layout/btn_kakao.png) no-repeat;}
+.user_control .btn_print_new {background: url(../images/layout/btn_print.png) no-repeat; background-position:bottom;}
+.user_control button.btn_print {background: url(../images/layout/btn_print.png) no-repeat;}
+.user_control button:hover, .container_wrap #location .user_control a:hover,
+.user_control button:focus, .container_wrap #location .user_control a:focus,
+.user_control button:active, .container_wrap #location .user_control a:active {background-position: 0 -45px;}
+/*.drug_header {background: url(../img/s-location.png) repeat-x 0 75px #fff;box-sizing: border-box;position: fixed;top: 0px;left: 0px;height: 220px;width: 100%;z-index: 99999;display: block !important;border-bottom: 1px solid #d4d4d4;}
+ #SR202206080010-의약품등 정보 페이지 인쇄 시 짤림 현상
+*/
+.drug_header {background: url(../img/s-location.png) repeat-x 0 75px #fff;box-sizing: border-box;/*position: fixed;*/top: 0px;left: 0px;height: 220px;width: 100%;z-index: 99999;display: block !important;border-bottom: 1px solid #d4d4d4;}
+.drug_header.drug_header-up {height:158px;}
+.drug_header .inner {position: relative;max-width: 1100px;width: 100%;margin: 0 auto;padding-left: 58px;box-sizing: border-box;}
+.drug_header .title {height: 73px;padding-top: 18px;box-sizing: border-box;}
+.drug_header .btn_ham {position: absolute;top: 85px;left: 0;display: block;width: 46px;height: 46px;margin-right: 20px;background-color: #fff;background-image: url(../images/layout/icon_ham.png);background-position: 50% 50%;background-repeat: no-repeat;border-radius: 100%;text-indent: -9999px;}
+.drug_header .drug_allmenu h1 {width: auto !important;}
+/* (3차) e약은요 Start */
+.drug_header_2{ height:158px;}
+.drug_header_2 .main_title_wrap{   width:100%; position:absolute; left:10px; top:18px; overflow:hidden; }
+.drug_header_2 .main_title_wrap .s-hh{  position:relative; left:auto; top:auto; float:left; display:inline-block;     }
+.drug_header_2 .main_title_wrap .main_title_btns{   float:right; display:inline-block; margin-right:20px; }
+.drug_header_2 .title{   width:calc(100% - 100px); padding-top:0;   }
+.drug_header_2 .inner{  padding-left:0; padding-top:86px; }
+.drug_header_2 + .drug_container{   padding-top:160px;  }
+.nav-down .drug_header_2 .main_title_wrap{  display:none;   }
+.nav-down .drug_header_2 .inner{    padding-top:10px;   }
+.nav-down .drug_header_2 + .drug_container{   padding-top:260px;}
+
+.drug_header_Generic {background: url(../img/s-location.png) repeat-x 0 75px #fff;box-sizing: border-box;top: 0px;left: 0px;height: 150px;width: 100%;z-index: 99999;display: block !important;border-bottom: 1px solid #d4d4d4;}
+.drug_header_Generic.drug_header-up {height:158px;}
+.drug_header_Generic .inner {position: relative;max-width: 1100px;width: 100%;margin: 0 auto;padding-left: 58px;box-sizing: border-box;}
+.drug_header_Generic .title {height: 73px;padding-top: 83px;box-sizing: border-box;}
+.drug_header_Generic .btn_ham {position: absolute;top: 85px;left: 0;display: block;width: 46px;height: 46px;margin-right: 20px;background-color: #fff;background-image: url(../images/layout/icon_ham.png);background-position: 50% 50%;background-repeat: no-repeat;border-radius: 100%;text-indent: -9999px;}
+.drug_header_Generic .drug_allmenu h1 {width: auto !important;}
+
+.drug_header_easy {background: url(../img/s-location.png) repeat-x 0 75px #fff;box-sizing: border-box;top: 0px;left: 0px;height: 150px;width: 100%;z-index: 99999;display: block !important;border-bottom: 1px solid #d4d4d4;}
+.drug_header_easy.drug_header-up {height:158px;}
+.drug_header_easy .inner {position: relative;max-width: 1100px;width: 100%;margin: 0 auto;padding-left: 58px;box-sizing: border-box;}
+.drug_header_easy .title { box-sizing: border-box; padding-top:16px;    }
+.drug_header_easy .btn_ham {position: absolute;top: 85px;left: 0;display: block;width: 46px;height: 46px;margin-right: 20px;background-color: #fff;background-image: url(../images/layout/icon_ham.png);background-position: 50% 50%;background-repeat: no-repeat;border-radius: 100%;text-indent: -9999px;}
+.drug_header_easy .drug_allmenu h1 {width: auto !important;}
+/* (3차) e약은요 End */
+
+.s-hh{position: absolute; left:0px; top:18px;}
+.drug_header h1 {text-align: center;overflow: hidden;display: inline-block;width: 80%;padding-top:10px;vertical-align: top;font-size: 25px;color: #333;font-weight: 200;white-space: nowrap;text-overflow: ellipsis;}
+.drug_header .user_control {position: absolute;top: 93px;right: 0;display: inline-block !important;}
+
+.drug_header_easy h1 {text-align: center;overflow: hidden;display: inline-block;width: 80%;padding-top:10px;vertical-align: top;font-size: 25px;color: #333;font-weight: 200;white-space: nowrap;text-overflow: ellipsis;}
+.drug_header_easy .user_control {position: absolute;top: 93px;right: 0;display: inline-block !important;}
+
+/* (3차) e약은요 Start */
+.drug_header_Generic h1 {text-align: center;overflow: hidden;display: inline-block;width: 80%;padding-top:70px;vertical-align: top;font-size: 20px;color: #333;font-weight: 200;white-space: nowrap;text-overflow: ellipsis;}
+.drug_header_Generic .user_control {position: absolute;top: 93px;right: 0;display: inline-block !important;}
+
+.drug_header_easy h1 {text-align: center;overflow: hidden;display: inline-block;width: 80%;padding-top:70px;vertical-align: top;font-size: 20px;color: #333;font-weight: 200;white-space: nowrap;text-overflow: ellipsis;}
+.drug_header_easy .user_control {position: absolute;top: 93px;right: 0;display: inline-block !important;}
+/* (3차) e약은요 End */
+
+.drug_content {position: relative;max-width: 1100px;width: 100%;margin: 0 auto;box-sizing: border-box;padding: 0 0px;}
+.drug_info_top {overflow: hidden;margin-top: 267px;}
+/*.drug_info_top.not_button{margin-top: 200px;} #SR202206080010-의약품등 정보 페이지 인쇄 시 짤림 현상  */
+.drug_info_top.not_button{margin-top: 40px;}
+.drug_info_top .l_sec1 {float: right;width: 20%;box-sizing: border-box;padding-left: 15px;}
+.drug_info_top .l_sec1 .dr_img img {width: 100%;}
+.drug_info_top .r_sec {float: right;width: 80%;}
+.drug_info_top .btn_area {text-align: left;margin-top: -50px;}
+.drug_info_top .btn_md {width: 57px;height: 57px;background-color: #2caec6;color: #fff;border-radius: 3px;display: inline-block;text-align: center;box-sizing: border-box;padding-top: 13px;}
+
+h1.popupConTitle{ display:block; width:90%; padding:0; text-align:left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;  }
+/* (3차) e약은요 */
+h2.popupConTitle{ display:block; width:100%; padding:0; text-align:left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;  }
+
+.popupConTitleAnchor{   display:inline-block; padding-right:26px; background:url(../images/common/icon_blank_1.png) right center no-repeat; line-height:100%;   }
+
+.dr_warn_list {height:66px;margin-top: 5px;text-align: right; display: inline-block;}
+.dr_warn_list ul {overflow: hidden;display: inline-block;height: 100%;}
+.dr_warn_list ul:after{content:""; display: block; clear: both;}
+.dr_warn_list ul li {float: left;width: 57px;height: 57px;margin: 0 5px 5px 0;padding-top: 2px;background-color: #fff;border: 1px solid #d2d2d2;border-radius: 3px;text-align: center;box-sizing: border-box;}
+.dr_warn_list ul li:last-child {margin-right: 0px;}
+.dr_warn_list ul li.ico1 {background-position: -1px -1px;}
+.dr_warn_list ul li.ico2 {background-position: -58px -1px;}
+.dr_warn_list ul li.ico3 {background-position: -115px -1px;}
+.dr_warn_list ul li{width:auto; height:100%;}
+.dr_warn_list ul li img{width:auto; height: 100%; display:block;}
+.sec_top.fr-on + .info_box {display: block;}
+.sec_top + .info_box {display: none;}
+.sec_top.fr-on .btn_folding {transform: rotate(0deg);background-image: url(../images/layout/ssii.png);}
+.dr_title {clear: both;margin-top: 40px;padding: 17px 0 18px;border-top: 2px solid #99a5b6;border-bottom: 1px solid #99a5b6;font-size: 22px;color: #3e5572;font-weight: 700;}
+.drug_info_mid .info_sec .sec_top::after {content: "";display: block;clear: both;}
+.drug_info_mid .info_box {clear: both;overflow: hidden;padding: 5px 0px;margin-top: 20px;background-color: #fff;border: 1px solid #fff;}
+.drug_info_mid .info_box.cw {margin-top: -1px;background-color: #fff;}
+.drug_info_mid .info_box .subj {margin-bottom: 10px;padding-left: 15px;color: #4e4e4e;font-size:15px;font-weight: 700;background-image: url(../images/common/bul_checkblue.png);background-position: 0 5px;background-repeat: no-repeat;}
+.drug_info_mid .info_box .subj.nock {padding-left: 0px;background: 0 none;}
+.drug_info_mid .info_box.notice .subj.nock {margin-bottom:5px;}
+.drug_info_mid .info_box .subj.nock a{display: inline-block; overflow: hidden; border-radius: 180px; border: 1px solid #d1d1d1; padding: 0px; width: 17px; height: 17px; position: relative; top:5px; left:12px;}
+.info_sec > .info_box > p.title > a:after{content:""; display: block; width: 17px; height: 17px; padding: 0px !important; background: url("../images/layout/sssi.png") no-repeat center center #f0f0f0 !important;}
+.info_sec > .info_box > p.title.on > a:after{content:""; display: block; width: 17px; height: 17px; padding: 0px !important; background: url("../images/layout/sssi2.png") no-repeat center center #f0f0f0 !important;}
+.drug_info_mid .info_box .note {margin-bottom: 10px;font-size:15px;}
+.drug_info_mid .info_box.notice .note{margin-bottom:0px;line-height: 28px;}
+.drug_info_mid .info_box.notice .indent2.note{line-height: 28px;}
+.drug_info_mid .info_box .note:last-child{margin-bottom:0px;}
+div.info_sec .info_box {padding-bottom:0px;}
+div.info_box div {margin-bottom:8px;}
+div.info_box div:last-child {margin-bottom:0px;}
+._table_wrap_in p{font-size:15px;}
+.info_sec.notPkInfo .info_box.cw {border:1px solid #d4d4d4;padding:20px;margin:0px;margin-bottom: 1px;}
+/* (3차) e약은요 Start */
+.explan_img{    display:flex; padding:40px 0; position:relative;  box-sizing:border-box;  }
+.explan_img:before,
+.explan_img:after{  content:""; display:table;  }
+.explan_img:after{  clear:both ;    }
+.explan_img *{  box-sizing:border-box;  }
+.explan_img .explan_left{   float:left; display:inline-block; width:78%; border:1px solid #d4d4d4;padding:20px; margin-right:2%;    }
+.explan_img .explan_left p{ font-size:15px; }
+.explan_img .explan_right{  float:right; display:inline-block; width:20%;   }
+.explan_img .explan_right img{  width:100%; }
+.explan_img:before{    content: ""; display: block; width: 10000px; height: 1px; background: #dcdddd; position: absolute; bottom: 0px; left: -5000px;   }
+
+.explan_img2{    display:flex; padding:40px 0; position:relative; box-sizing:border-box;   }
+.explan_img2:before,
+.explan_img2:after{  content:""; display:table;  }
+.explan_img2:after{  clear:both ;    }
+.explan_img2 *{  box-sizing:border-box;  }
+.explan_img2 .explan_left{   float:left; display:inline-block; width:58%; border:1px solid #d4d4d4;padding:20px; margin-right:2%;    }
+.explan_img2 .explan_left p{ font-size:15px; }
+.explan_img2 .explan_right{  float:right; display:inline-block; width:40%;   }
+.explan_img2 .explan_right img{  width:100%; float:left; display:inline-block; width:48%; margin-left:4%; }
+.explan_img2 .explan_right img:first-child{ margin-left:0;  }
+.explan_img2:before{    content: ""; display: block; width: 10000px; height: 1px; background: #dcdddd; position: absolute; bottom: 0px; left: -5000px;   }
+/* (3차) e약은요 End */
+
+.btn_icon .icon_html {background: url(../images/common/icon_btn_html.png) no-repeat;}
+.btn_folding {width: 30px;height: 30px;background-color: #2bafc6;text-indent: -9999px;background-image: url(../images/layout/ssii2.png);background-position: center center;background-repeat: no-repeat;transform: rotate(180deg); margin-left: 15px;}
+.cont_title2 .btn_folding{border-radius: 3px;}
+div.fold_btn > button.btn_folding {width: 30px;height: 30px;background-color: #5c7aa0;border-radius: 3px;text-indent: -9999px;background-image: url(../images/common/medsearch_left_arr2.png) !important;background-position: 0px 0px !important;background-repeat: no-repeat;transform: rotate(180deg);}
+div.left-close div.fold_btn > button.btn_folding {width: 30px;height: 30px;background-color: #5c7aa0;border-radius: 3px;text-indent: -9999px;background-image: url(../images/common/medsearch_left_arr.png) !important;background-position: 0px 0px !important;background-repeat: no-repeat;transform: rotate(180deg);}
+div.top {position: fixed;right: 0px;bottom: 50px;width: 30px;height: 78px;background: url("../images/common/top.png") no-repeat left top;display: block;}
+div.top a {font-size: 0px;display: block;width: 100%;height: 30px;}
+@media print{
+    div.top{right:-30px;}
+}
+/* 테이블 타입 */
+.dr_table {width: 100%;border-collapse: collapse;}
+.dr_table caption span {overflow: hidden;position: absolute;top: -9999px;width: 0px;height: 0px;}
+.dr_table.dr_table_type1 {height: 329px;border: 1px solid #d2d2d2;border-top: 2px solid #019caa;}
+.dr_table.dr_table_type1 th {width: 100px;padding: 10px 15px;border-right: 1px solid #d2d2d2;text-align: left;}
+.dr_table.dr_table_type1 td {padding: 10px 15px;text-align: left;}
+.dr_table.dr_table_type2 {border-left: 1px solid #d2d2d2;border-top: 2px solid #333;}
+.dr_table.dr_table_type2 th {width: 100px;padding: 10px 0px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;background-color: #f0f0f0;}
+.dr_table.dr_table_type2 td {padding: 10px 15px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;text-align: center;}
+.dr_table.dr_table_type2 td.al_l {text-align: left;}
+.dr_table.dr_table_type2 .pot {background-color: #f2f5fa;color: #1597ae;font-weight: 700;}.dr_table.dr_table_type1 {height: 329px;border: 1px solid #d2d2d2;border-top: 2px solid #019caa;}
+.dr_table .btn_more {white-space: nowrap;}
+
+.dr_table2 {width: 100%;border-collapse: collapse;}
+.dr_table2 caption span {overflow: hidden;position: absolute;top: -9999px;width: 0px;height: 0px;}
+.dr_table2.dr_table_type1 th {width: 100px;padding: 10px 15px;border-right: 1px solid #d2d2d2;text-align: left;}
+.dr_table2.dr_table_type1 td {padding: 10px 15px;text-align: left;}
+.dr_table2.dr_table_type2 {border-left: 1px solid #d2d2d2;border-top: 2px solid #333;}
+.dr_table2.dr_table_type2 th {width: 100px;padding: 10px 0px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;background-color: #f0f0f0;}
+.dr_table2.dr_table_type2 td {padding: 10px 15px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;text-align: center;}
+.dr_table2.dr_table_type2 td.al_l {text-align: left;}
+.dr_table2.dr_table_type2 .pot {background-color: #f2f5fa;color: #1597ae;font-weight: 700;}
+.dr_table2 .btn_more {white-space: nowrap;}
+
+.mouseEffect tbody tr:hover,
+.mouseEffect tbody tr.current{ background-color:rgba(234,247,251,1);  }
+.mouseEffectSub tbody tr:hover,
+.mouseEffectSub tbody tr.current{ background-color:rgba(234,247,251,1);  }
+
+h3 > a.btn_question > span{display: none;}
+h3 > a.btn_question:after{content: "";display: inline-block;background:url("../images/layout/qq.png") center center no-repeat;margin-bottom: -6px;margin-left: 20px;width: 27px;height:27px;border-radius:100px;}
+/*상훈수정*/
+.s-dr_table,.info_box table {width: 100%;border-collapse: collapse;}
+.s-dr_table caption span {overflow: hidden;position: absolute;top: -9999px;width: 0px;height: 0px;}
+.s-dr_table.dr_table_type1 {min-height: 235px;border: 0px solid #d2d2d2;border-top: 0px solid #019caa;}
+.s-dr_table.dr_table_type1 th {min-width: 100px;font-size:15px; padding-left: 0px;border-right: 0px solid #d2d2d2;color:#303030;text-align: left;vertical-align: top;background: url("../images/layout/s-lin.png") no-repeat right 5px;line-height:25px;}
+.s-dr_table.dr_table_type1 th:first-child {padding-top:0px;}
+.s-dr_table.dr_table_type1 tr:last-child  th{padding: 0px 0px;}
+.s-dr_table.dr_table_type1 tr.cancel {color: #bf0f30;}
+.s-dr_table.dr_table_type1 td {padding: 0px 15px;text-align: left;font-size:15px;vertical-align: top;}
+.info_box table{margin-top:15px;}
+.info_box table tr:first-child td{font-weight: bold;}
+.s-dr_table.dr_table_type2, .info_box table{border-left: 1px solid #d2d2d2;border-top: 2px solid #333;}
+.s-dr_table.dr_table_type2 th, .info_box table th{width: 100px;padding: 10px 15px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;background-color: #f0f0f0;}
+.s-dr_table.ss_table th ,  .info_box table th{padding: 6px 20px;}
+.sec_top button.btn_small.btn_icon.fr.mt15{top:25px;}
+.s-dr_table.dr_table_type2 td,
+.info_box table td{padding: 10px 15px;border-right: 1px solid #d2d2d2;border-bottom: 1px solid #d2d2d2;text-align: center;}
+.s-dr_table.ss_table td, .info_box table tr:first-child td{padding: 8px 7px;}
+.info_box table td{padding: 11px 8px;}
+.scroll_07 .s-dr_table.ss_table td, .scroll_07 .info_box table td{padding: 0px 20px;}
+.s-dr_table.dr_table_type2 td.al_l, .info_box table td.al_l{text-align: left;}
+.s-dr_table.dr_table_type2 .pot {background-color: #f2f5fa;color: #1597ae;font-weight: 700;}
+.s-dr_table .btn_more {white-space: nowrap;}
+#_nb_doc div {display: block;}
+#_nb_doc div.on {display: none;}
+.bx-viewport {border: 1px solid #d2d2d2;}
+.none_border {border: 0px;}
+a.xi-plus-circle:after {content: "";padding-right: 20px;background: url("../../static/cmmn/images/common/off-i.png") no-repeat right center;color: #303030;font-size: 18px;font-weight: bold;padding-right: 30px;}
+a.xi-minus-circle:after {content: "";padding-right: 20px;background: url("../../static/cmmn/images/common/on-i.png") no-repeat right center;color: #303030;font-size: 18px;font-weight: bold;padding-right: 30px;}
+.info_sec > .info_box > p.title.on > a:after {content: "";padding-right: 25px;background: url("../images/common/toggle_plus.png") no-repeat 6px 1px;}
+.info_sec > .info_box > p.title > a:after {content: "";padding-right: 25px;background: url("../images/common/toggle_minus.png") no-repeat 6px 1px;}
+.info_sec > ._preview div p.indent0,._preview p.indent0 {padding-left: 0pt;font-size:15px;line-height: 28px;}
+.info_sec > ._preview div p.indent0,._preview p.indent0.note {padding-left: 13pt;}
+.info_sec > ._preview table.indent0 {margin-left: 1em;}
+.info_sec > ._preview div p.indent1,._preview p.indent1 {padding-left: 11pt;}
+.info_sec > ._preview table.indent1 {margin-left: 11pt;}
+.info_sec > ._preview div p.indent2,._preview p.indent2 {padding-left: 22pt;}
+.info_sec > ._preview table.indent2 {margin-left: 22pt;}
+.info_sec > ._preview div p.indent3,._preview p.indent3 {padding-left: 33pt;}
+.info_sec > ._preview table.indent3 {margin-left: 33pt;}
+.info_sec > ._preview div p.indent4,._preview p.indent4 {padding-left: 44pt;}
+.info_sec > ._preview table.indent4 {margin-left: 44pt;}
+.info_sec > ._preview div p.indent5,._preview p.indent5 {padding-left: 55pt;}
+.info_sec > ._preview table.indent5 {margin-left: 55pt;}
+.info_sec > ._preview div p.indent6,._preview p.indent6 {padding-left: 66pt;}
+.info_sec > ._preview table.indent6 {margin-left: 66pt;}
+.info_sec > ._preview div p.indent7,._preview p.indent7 {padding-left: 77pt;}
+.info_sec > ._preview table.indent7 {margin-left: 77pt;}
+.dr_img .bx-wrapper{display: none;}
+.dr_img .pc-img{width: 100%; min-height: 230px; margin-top:50px; position: relative;}
+.dr_img .pc-img img{width: 202px !important; height: 111px; display: block; position: absolute; right:0px; top:0px;border:1px solid #ddd;}
+.dr_img .pc-img img:hover,.dr_img .pc-img img:focus,.dr_img .pc-img img:active {transform: scale(1.5); z-index: 999;}
+.dr_img .pc-img img:nth-child(2){top:126px;}
+
+/* 3차 e약은요 Start */
+.dr_img .pc-imgEasy{width: 100%; min-height: 10px; margin-top:0px; position: relative;}
+.dr_img .pc-imgEasy img{width: 202px !important; height: 111px; display: block; position: absolute; float: left; left:20px; right:20px; top:0px;border:1px solid #ddd;}
+.dr_img .pc-imgEasy img:hover,.dr_img .pc-img img:focus,.dr_img .pc-imgEasy img:active {transform: scale(1.5); z-index: 999;}
+
+.dr_img .pc-imgEasyR{width: 100%; min-height: 10px; margin-top:0px; }
+.dr_img .pc-imgEasyR img{width: 202px !important; height: 111px; display: block; position: absolute; float:right; left:900px; right:0px; top:35px;border:1px solid #ddd;}
+.dr_img .pc-imgEasyR img:hover,.dr_img .pc-img img:focus,.dr_img .pc-imgEasyR img:active {transform: scale(1.5); z-index: 999;}
+/* 3차 e약은요 End */
+
+.drug_info_top,.info_sec{position: relative; overflow:visible; padding-bottom: 40px;}
+.drug_info_top:before,.info_sec:before{content:""; display: block; width: 10000px; height: 1px; background: #dcdddd; position: absolute; bottom: 0px; left:-5000px;}
+.drug_info_top:after,.info_sec:after{content:""; display: block; clear: both;}
+.drug_wrap{overflow-x: hidden;}
+.s-title{font-size: 25px; color:#303030; font-weight: bold; margin-bottom: 30px;}
+.sec_top .cont_title2,.info_sec .cont_title2,.popAnchor_title h2{margin-top: 40px; background-image: none; padding-left: 0px; font-size: 25px; color:#303030; font-weight: bold;border:0px;}
+.cont_title2_left{  float:left; display:inline-block;   }
+.cont_title2 .btn_area{  display:inline-block; margin:0 0 0 4px !important; float:none; vertical-align:middle;  }
+
+.sec_top .cont_title3,.info_sec .cont_title3{background-image: none; padding-left: 0px; margin-bottom: 7px !important;margin-top: 27px;}
+.sec_top .cont_title3, .info_sec .cont_title3:last-child{margin-bottom:0px !important;}
+.drug_container p.subj.nock:first-child{padding-top: 0px;}
+.info_box ._table_wrap_in table{border-top: 1px solid #d0d0d0; min-width: 708px;}
+.info_box  ._table_wrap_in table tbody tr:first-child td{background-color: #f6f6f6; color:#303030;}
+.info_box  ._table_wrap_in table tbody tr td{background-color: #fff; text-align: left;}
+.info_box ._table_wrap_in{overflow-x: auto; width: 100%;}
+.info_sec .btn_area{margin-top: 0px !important; margin-left: 15px;}
+#btnTct{position: absolute; left:-5px; top:74px;}
+.s-bb{width: 110px; height: 50px; line-height: 50px; font-weight: bold; margin-bottom: 40px; font-size: 15px; border: 1px solid #d0d0d0; background-color:#f0f0f0; color:#404040 !important;}
+.s-bb span{display: inline-block;}
+.s-bb span:before{content: ""; display: inline-block; background: url("../img/xx.png") no-repeat center center !important; width: 11px; height: 11px; margin-right: 7px;}
+.s-bb:hover,.s-bb:focus,.s-bb:active{background-color: #eee !important;}
+
+/* (3차) e약은요 팝업창 버튼 Start */
+.s-movie{width: 160px; height: 50px; line-height: 50px; font-weight: bold; margin-bottom: 40px; font-size: 15px; border: 1px solid #d0d0d0; }
+.s-movie span{display: inline-block;}
+.s-movie span:before{content: ""; display: inline-block; background: url("../images/common/icon_movie3.png") no-repeat center center !important; width: 19px; height: 14px; margin-right: 7px;}
+.s-movie:hover,.s-bb:focus,.s-bb:active{background-color: #eee !important;}
+
+.s-movieSub{width: 160px; height: 50px; line-height: 50px; font-weight: bold; margin-bottom: 40px; font-size: 15px;}
+.s-movieSub span{display: inline-block;}
+.s-movieSub span:before{content: ""; display: inline-block; background: url("") no-repeat center center !important; width: 0px; height: 14px; margin-right: 7px;}
+.s-movieSub:hover,.s-bb:focus,.s-bb:active{background-color: #eee !important;}
+/* (3차) e약은요 팝업창 버튼 End */
+
+.s-dr_table.dr_table_type2{border-top: 1px solid #d0d0d0;margin-top: 30px;}
+.s-dr_table.dr_table_type2 thead th{background: #fff; font-size: 15px; font-weight: bold; color:#303030;}
+.s-dr_table.dr_table_type2 tbody tr:nth-child(odd) td{background-color: #f6f6f6;}
+.s-view-table{border: 0px !important; position: relative; top:-10px;}
+.s-view-table td,.s-view-table th{border: 0px !important; background-color: #fff !important; text-align: left !important;font-size: 15px;}
+.s-view-table th{background: url("../images/layout/s-lin.png") no-repeat right center !important; width:73px !important; color:#303030 !important; padding-left: 0px !important;}
+.stt{font-size: 15px; color:#7b7b7b; font-weight: normal; display: inline-block; margin-left: 5px;}
+.nav-down .drug_header{background-position: top left !important;  height: 160px !important; z-index: 99999;}
+.nav-down .drug_header.drug_header-down{height: 83px !important;}
+.nav-down .drug_header .user_control{top:26px;}
+.nav-down .drug_header .title h1{margin-top: 0px !important;top:8px;position: absolute;}
+.drug_header .druginfo_btn{text-align: center;margin-top: 15px;}
+.nav-down .drug_header .druginfo_btn{margin-top: 15px;}
+.drug_header .druginfo_btn button{margin-top:10px;}
+.drug_header .withdrawal_img{display: none; float: left; position: absolute; left: 5px;}
+.drug_header .withdrawal_img.on{display: inline;}
+
+.nav-down .drug_header_easy{background-position: top left !important;  height: 160px !important; z-index: 99999;}
+.nav-down .drug_header_easy.drug_header-down{height: 83px !important;}
+.nav-down .drug_header_easy .user_control{top:26px;}
+.nav-down .drug_header_easy .title h1{margin-top: 0px !important;top:8px;position: absolute;}
+.drug_header_easy .druginfo_btn{text-align: center;margin-top: 15px;}
+.nav-down .drug_header_easy .druginfo_btn{margin-top: 15px;}
+.drug_header_easy .druginfo_btn button{margin-top:10px;}
+.drug_header_easy .withdrawal_img{display: none; float: left; position: absolute; left: 5px;}
+.drug_header_easy .withdrawal_img.on{display: inline;}
+
+.table_scroll{overflow-x: auto;width: 100%;}
+.table_scroll .dr_table {width: 2000px;}
+.table_scroll .dr_table2 {width: 3600px;}
+/* 3차 묶음의약품 추가 */
+.table_scroll_bundle{overflow-x: auto;width: 100%;}
+.table_scroll_bundle .dr_table {width: 2200px;}
+#ezdrug-url-code-wrap { display:inline-block; height:100%;}
+#ezdrug-url-code {height:100%;}
+#ezdrug-url-code img {height: 100%; width: auto; }
+.drug_header-pics{position: relative; height: 66px; text-align: right; width: 100%;}
+
+.btn-zoom {padding: 4px;position: fixed;bottom: 0; right: 0;z-index: 10;width: 100%;background: none;text-align: right;}
+.btn-zoom .zoom_in,.btn-zoom .zoom_out {height: 36px;border-radius: 4px;background: #ffffff;}
+
+/*font-size custom*/
+.fontsize-wrap{display:none; position:relative;width:100%;height:auto;/*float: left;*/}
+.fontsize-selector{display:none /*inline-block*/;position: absolute;bottom:55px;right:35px;min-height:68px;padding: 12px;border:1px solid #dddddd;border-radius: 14px;background-color: #ffffff;box-shadow: 0px 4px 4px rgba(0,0,0,0.25);z-index: 60;}
+.fontsize-selector li{display: inline-block;position:relative;width: 48px;z-index: 1;}
+.fontsize-selector li:after{content: '';display:inline-block;position: absolute;top:30%;left:20px;width: 100%;height: 6px;background-color: #f3f3f3;z-index:-1;}
+.fontsize-selector li:last-child:after{display: none;}
+.fontsize-selector li a {  display: block;margin:0 auto;width: 30px;height: 30px;padding: 5px;border:1px solid #dddddd;border-radius: 50%;text-align: center;background-color: #ffffff;line-height: 27px;font-size: 14px;color: #2d2d2d;}
+.font-selec-btn{  display: block;margin:0 0 0 88%;width: 30px;height: 30px;padding: 5px;border:1px solid #dddddd;border-radius: 50%;text-align: center;background-color: #ffffff;line-height: 27px;font-size: 14px;color: #2d2d2d;}
+.fontsize-selector li:nth-child(1) a{font-size: 10px;}
+.fontsize-selector li:nth-child(2) a{font-size: 12px;}
+.fontsize-selector li:nth-child(4) a{font-size: 16px;}
+.fontsize-selector li:nth-child(5) a{font-size: 18px;}
+.fontsize-selector li span{display: block;margin-top: 3px;font-size: 12px;text-align: center;color: #2d2d2d;}
+.font-select{background-color: #3174b8 !important;color: #ffffff !important;}
+
+@media screen and (max-width: 1024px) {
+	.dr_img .pc-img{display: none;}
+	.table_scroll .dr_table {width: 100%;}
+	.table_scroll .dr_table2 {width: 100%;}
+	.btn_print-1 {display: none;}
+	.dr_img .bx-wrapper{display: block; margin-bottom: 10px;}
+	.drug_info_top .l_sec1{border:1px solid #ddd;margin-bottom: 30px;}
+	.drug_info_top .l_sec1.empltyClass{border:0px solid #ddd;margin-bottom: 30px;}
+	.drug_info_top .r_sec, .drug_info_top .l_sec1 {float: none;width: 100%; padding-right: 3px;}
+	.dr_img{display: block;}
+	.btn_area {text-align: center !important; margin-bottom: 10px;}
+	.drug_info_top {margin-top: 200px;}
+	.drug_info_top.not_button{margin-top:147px;}
+	.drug_allmenu .menulist > ul {width: 100%;}
+	.drug_content {width: 100%; padding: 35px 20px;}
+	/*sh추가*/
+	.drug_header .inner {width: auto; margin: 0 20px;}
+}
+@media screen and (max-width: 768px) {
+	.btn_icon span {font-size: 0px;background-position: center 2px !important;position: absolute;top: 3px;left: 1px;}
+	.s-dr_table.dr_table_type2 tbody tr:nth-child(odd) td{background-color: #fff !important;}
+	.cont_title2{margin-top: 30px !important;}
+	.s-hh{left:20px;}
+	.dr_img .pc-img{display: none;}
+	.dr_img .bx-wrapper{display: block; margin-bottom: 30px;}
+	.btn_icon{padding: 0px; min-width: 30px; text-align: left; position: relative;}
+	.btn_icon2 {background-color:#fcfcfd; color:#626262; border:1px solid #d0d0d0; border-radius:3px;}
+	.btn_icon2 span{display:inline-block; padding-left:20px; line-height:20px;}
+	.btn_icon2 span {background-position: left 2px !important;position: absolute;top: 3px;left: 2px;}
+	.btn_icon2{padding: 0px; text-align: center; position: relative;}
+	.btn_icon2 .icon_xls{background:url(../images/common/icon_btn_xls.png) no-repeat;}
+	.drug_header .inner {width: 100%; padding-left: 78px; margin: 0; /*sh추가*/}
+	.drug_header .btn_ham {left: 20px;}
+	.nav-down .drug_header .user_control{top:-5px;}
+	.drug_header .user_control {position: absolute;top: 60px;right: 0px;padding: 10px 20px 10px 0;box-sizing: border-box;text-align: right;}
+	.user_control .btn_print-1{display: none;}
+	.drug_header .user_control a {font-size: 0px;display: block;}
+	.drug_header .user_control .btn_print {display: none;}
+	.drug_info_top {clear: both;}
+	.drug_info_top .l_sec {float: none;width: 100%;}
+	.drug_info_top .r_sec {float: none;width: 100%;margin-top: 20px;}
+	.drug_info_top .dr_img img {width: 100%;height: auto;}
+	.drug_info_top .btn_area {text-align: center;}
+	.drug_allmenu {width: 100%;margin-left: -50%;height: 100vh;overflow-y: auto;}
+	.drug_allmenu .menulist > ul > li {width: 100%;margin-right: 0%;padding-left: 0px !important;}
+	/*게시판*/
+	.dr_table{display: block; border: 0px !important;  border-top:1px solid #000 !important;}
+	.dr_table thead,.tb_list thead{display: none;}
+	.dr_table tbody,.tb_list tbody{display: block;}
+	.dr_table tbody tr{display: table; border: 1px solid #d0d0d0; margin-bottom: 10px; width: 100%; box-sizing: border-box;}
+	.dr_table tbody tr td{display: table-row; border: 0px !important; text-align: left; background: #fff;}
+	.dr_table tbody tr td > span,.dr_table tbody tr td > a{display: table-cell; padding:5px 10px; color: #626262; text-align: left;}
+	.dr_table tbody tr td:first-child > span,.dr_table tbody tr td:first-child > a,.dr_table tbody tr td:first-child.pc-tr + td > span{padding-top: 20px;}
+	.dr_table tbody tr td:last-child > span,.dr_table tbody tr td:last-child > a{padding-bottom: 20px;}
+	.dr_table tbody tr td > span.s-th{width: 120px; padding-left: 0px !important; color:#626262; font-weight: 700; text-align: left;}
+	.dr_table.th-shot tbody tr td > span.s-th{width: 80px;}
+	.dr_table tbody tr td > span.s-th:after{content:""; display: inline-block; height: 10px; width: 1px; background: #d0d8de; float: right; position: relative; top:3px;}	.dr_table{display: block; border: 0px !important;  border-top:1px solid #000 !important;}
+
+	.dr_table2 thead,.tb_list thead{display: none;}
+	.dr_table2 tbody,.tb_list tbody{display: block;}
+	.dr_table2 tbody tr{display: table; border: 1px solid #d0d0d0; margin-bottom: 10px; width: 100%; box-sizing: border-box;}
+	.dr_table2 tbody tr td{display: table-row; border: 0px !important; text-align: left; background: #fff;}
+	.dr_table2 tbody tr td > span,.dr_table2 tbody tr td > a{display: table-cell; padding:5px 10px; color: #626262; text-align: left;}
+	.dr_table2 tbody tr td:first-child > span,.dr_table2 tbody tr td:first-child > a,.dr_table2 tbody tr td:first-child.pc-tr + td > span{padding-top: 20px;}
+	.dr_table2 tbody tr td:last-child > span,.dr_table2 tbody tr td:last-child > a{padding-bottom: 20px;}
+	.dr_table2 tbody tr td > span.s-th{width: 120px; padding-left: 0px !important; color:#626262; font-weight: 700; text-align: left;}
+	.dr_table2.th-shot tbody tr td > span.s-th{width: 80px;}
+	.dr_table2 tbody tr td > span.s-th:after{content:""; display: inline-block; height: 10px; width: 1px; background: #d0d8de; float: right; position: relative; top:3px;}
+
+	.drug_info_mid .info_box .note{ font-size:12px; }
+
+	.drug_header_2 .inner { padding-left:20px; }
+	.explan_img{    display:block;  }
+	.explan_img .explan_left{   float:none; display:block; width:100%; margin:0;  }
+	.explan_img .explan_left p{   font-size:12px; }
+	.explan_img .explan_right{  float:none; display:block; width:100%; margin:0 0 20px 0; text-align:center; }
+	.explan_img .explan_right img{  width:240px; }
+
+	.explan_img2{    display:block;  }
+	.explan_img2 .explan_left{   float:none; display:block; width:100%; margin:0;  }
+	.explan_img2 .explan_left p{   font-size:12px; }
+	.explan_img2 .explan_right{  float:none; display:block; width:100%; margin:20px 0 0 0; }
+	.explan_img2 .explan_right img{  width:240px; margin-left:20px; }
+
+	.s-dr_table.dr_table_type1 td {word-break: break-all;}
+	.drug_header-pics{position:relative; margin: 0;  width: 97%;}
+}
+@media screen and (max-width: 600px) {
+	.fontsize-wrap{display: block;}
+	.withdrawal_img {bottom: -5px;}
+	.nav-down .drug_header .title h1{width:70%;}
+	h3.cont_title2{font-size: 18px !important;}
+	.info_sec > ._preview div p.indent0,._preview p.indent0,.drug_info_mid .info_box.notice .note{line-height: 20px;}
+	.cont_title3.mt27{margin-top:20px !important;}
+	.info_box .title{margin-top:10px;}
+	#btnTct{top:60px;}
+	/* .mt20,.drug_info_mid .info_box{margin-top:0px !important;} */
+	.s-title{margin-bottom: 20px;}
+	.drug_header .title h1{padding-top: 10px; font-size: 20px;}
+	.btn_mob button{padding: 0;}
+	.btn_mob button span{text-indent: -9999px; background-position: 50% 50% !important;}
+	.btn_mob100{width:100%; margin:0;}
+	.btn_mob100 button{width:100%; display:block;}
+
+	.explan_img .explan_left{   padding:10px;   }
+	.explan_img .explan_right img{  width:48%;  }
+
+	.explan_img2 .explan_left{   padding:10px;   }
+	.explan_img2 .explan_right img{  width:48%;  }
+	.explan_img2 .explan_right img{ margin-left:4%; }
+	.drug_header .user_control .btn_print_new {display: none;}
+    .drug_header .inner {padding-left: 20px;}
+	.drug_header .inner > .title { padding: 0;}
+	.drug_header .inner > .title h1 { width: 89%;}
+	.drug_header-pics{position:relative; margin: 0 0 15px 0;  width: 97%;}
+}
+@media screen and (max-width: 480px) {
+	.drug_content{padding: 65px 20px;}
+	.nav-down .drug_header .title h1{width:85%;}
+	.drug_header-pics{position: relative; height: 45px; margin: 10px 0 15px 0; width: 97%;}
+	.drug_header .user_control{top:45px;}
+	.drug_header.drug_list_up .user_control{top:50px;}
+	.druginfo_btn{position: relative; top: 100px;left:-75px;}
+	.drug_header .druginfo_btn{margin-top:20px;width:480px;}
+	.withdrawal_img > img {width:50%;}
+	.drug_header .withdrawal_img{left:-40px;top:10px;}
+	.nav-down .drug_header .druginfo_btn{position:absolute;left:0px; top: 75px;}
+	.withdrawal_img > img{display: none;}
+	.drug_header{height: 255px;}
+	.s-hh{position:relative; font-size:18px; color:#626262; position:absolute; left:20px;}
+	.dr_warn_list{box-sizing:border-box; padding-left:20px;margin:0;height: 100%;}
+	.dr_warn_list ul{width:100%; box-sizing:border-box;height: 100%;}
+	.dr_warn_list ul li{width:auto; height:100%;}
+	.dr_warn_list ul li img{width:auto; height: 100%; display:block;}
+	.drug_allmenu .menulist > ul > li {width:100%;margin-top:20px;margin-right:0;}
+	.drug_info_top{margin-top: 205px;}
+	.drug_info_top.not_button{margin-top:90px;}
+	.drug_header{background-position:0 60px !important;}
+	.drug_header.drug_header-up{height: 143px;}
+	.drug_header.drug_list_up{background-position:0 55px !important; height:138px;}
+	.drug_header.drug_list_up .title h1{margin-top:55px;}
+	.drug_allmenu h1 {width: 200px;padding-top: 0px;font-size: 20px;}
+	.drug_header .inner{padding-left:20px;}
+	.dr_img .bx-wrapper{ margin-bottom:0px;}
+	.drug_header_2{ height:142px;   }
+	.drug_header_2 .inner{  padding-top:76px;}
+	.drug_header_2 + .drug_container{   padding-top:80px;   }
+	h2.popupConTitle{   font-size:15px; }
+}
+@media screen and (max-width: 320px) {
+	.drug_header .druginfo_btn {width:320px;}
+	.drug_content{padding: 85px 20px;}
+	.drug_wrap {min-width: 320px;}
+	.drug_header .title h1 {padding-top: 10px;font-size: 18px;}
+	.drug_allmenu h1 {width: 180px;padding-top: 0px;font-size: 20px;}
+}
+
+/* 2020.09.01 3차 수정 */
+#mainingrSearch{    position:relative; display:flex;  }
+#mainingrSearch:before,
+#mainingrSearch:after{  content:""; display:table;  }
+#mainingrSearch:after{  clear:both; }
+
+#mainingrSearch #mainingrList{width:60%;position:relative;float:left;}
+
+#mainingrSearch #center{    width:5%; float:left; position:relative;   }
+#mainingrSearch #center > div{   width:100%;height:100%;text-align:center;vertical-align:middle; }
+#mainingrSearch #center .spot{  position:relative; top:50%; margin-top:-20px;}
+
+.spot_m{    border-radius:3px; background-color:#2072C4; display:inline-block; padding:4px 10px; color:#fff; font-size:12px;   }
+
+
+@media screen and (min-width:769px){
+	/* PC에서 숨기는거 */
+	.only-m{    display:none;   }
+}
+
+@media screen and (max-width:768px){
+	#mainingrSearch #center .spot{  display:none;   }
+	.dr_table .spot.spot_05{  padding:4px 10px; border-radius:3px; margin:10px 0; }
+	.dr_table{   font-size:12px; }
+	.dr_table2 .spot.spot_05{  padding:4px 10px; border-radius:3px; margin:10px 0; }
+	.dr_table2{   font-size:12px; }
+
+	.mouseEffect tbody tr.current td{ background-color:rgba(234,247,251,1);  }
+	.mouseEffectSub tbody tr.currentSub td{ background-color:rgba(234,247,251,1);  }
+
+	/*
+    #mainingrSearch{    display:block;  }
+    #mainingrSearch #mainingrList{  width:100%; }
+    */
+
+	/* MOBILE에서 숨기는거 */
+	.only-pc{    display:none;   }
+}
