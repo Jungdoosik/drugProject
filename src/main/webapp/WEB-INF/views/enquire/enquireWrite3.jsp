@@ -56,6 +56,32 @@ html, body {
 	height: 100%;
 	background: #0e1d34;
 }
+<<<<<<< HEAD
+=======
+table{
+   width: 100%;
+   color: #ffffff;
+   border-top: 1px solid #ffffff;
+   border-collapse: collapse;
+}
+th, td {
+  border-bottom: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+   
+}
+.title{
+   border-top: 3px solid #ffffff;
+   border-bottom: 3px solid #ffffff;
+   text-align: center;
+   
+} th:first-child, td:first-child {
+  border-left: none;
+ text-align: center;
+} 
+searchPag {
+   center
+}
+>>>>>>> HSA
 </style>
 
 
@@ -95,6 +121,7 @@ html, body {
 /* 버튼 테두리 padding 처리  */
 .btnclss{
  padding: 5%;
+ /*  테이블 공통 padding  강제  표 수정  222  */
 }
 </style>
 
@@ -121,7 +148,9 @@ html, body {
 					style="background-image: url(resources/img/question.jpg);">
 				</div>
 				<div class="col-lg-7" ><!--1  -->
-				  <div class="from-get-a-quote">
+
+				  <div class="get-a-quote">
+
 					<div class="col-lg-12">
 							<p class="askTop">1:1 문의 내역</p>
 					</div>
@@ -135,35 +164,41 @@ html, body {
 						<input type="hidden" id="keyword" name="keyword">
 						<table class="table table-hover">
 							<thead>
-								<tr>
-									<th>NO</th>
-									<th>결과</th>
-									<th>문의제목</th>
-									<th>문의일</th>
-									<th>처리일</th>
+					<tr style="padding:5px; text-align: center; ">
+									<th style="padding:5px; text-align: center;">NO</th>
+									<th style="padding:5px;">결과</th>
+									<th style="padding:5px;">문의제목</th>
+									<th style="padding:5px;">문의일</th>
+									<th style="padding:5px;">처리일</th>
 								</tr>
 							</thead>
 							<tbody>
 							
 								<c:forEach items="${List}" var="ask" varStatus="status">
 								  <input type="hidden" name="seq" value="${ask.seq}">
-									<tr>
-										<td>
+
+									<tr style="padding:5px; text-align: center;" >
+										<td style="padding:5px;">
 											<c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /> 
-										</td>
+										</td style="padding:0;">
 										<c:if test="${list.pdate ne null}">
-											<td><font color="blue">답변완료</font></td>
+											<td style="padding:5px;"><font color="blue">답변완료</font></td>
 										</c:if>
 										<c:if test="${list.pdate eq null}">
-											<td><font color="red">처리중</font></td>
+											<td style="padding:5px;"><font color="red">처리중</font></td>
 										</c:if>
-										<td>${ask.title}</td>
-										<td>${ask.qdate}</td>
-										<td>${ask.adate}</td>
+										<td style="padding:5px;">${ask.title}</td>
+										<td style="padding:5px;">${ask.qdate}</td>
+										<td style="padding:5px;">${ask.adate}</td>
+
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
+
+					</div>
+					</div>
+
 						<!-- End Quote Form -->
 						<script type="text/javascript">
 							/* 문의하기  bnt  문의하기 화면   */
@@ -238,9 +273,11 @@ html, body {
    		
    		
     </script>
-					</div><!-- 테이블 + bnt end -->
-				</div>
-				 </div>
+    </div>
+	</div>
+	
+</div><!-- 테이블 + bnt end -->
+				
 			</div>
 		</div>
     
