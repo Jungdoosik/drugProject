@@ -4,129 +4,248 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- bootstrap css -->
-<!-- <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css"> -->
-<!-- style css -->
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>상세보기</title>
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="resources/css/druginfo.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        /* 팝업닫기 */
+        function closeDrugInfoPopup() {
+            window.close();
+        }
+        function decomposeFontSize($container) {
+            var fontSize = $container.css('fontSize');
+            return /([0-9.]+)([a-zA-Z]+)/g.exec(fontSize);
+        }
+        var scaleLevel = 3;
+                    function toggleFontSelector() {
+            var $ele = $('.fontsize-selector');
+            if ($ele.is(':visible')) {
+                $ele.hide();
+            } else {
+                $ele.show();
+            }
+        }
+        function scaleFontSizeOf(ele, selector, level) {
+            var $ele = $(ele);
+            $('.fontsize-selector a').removeClass('font-select');
+            $ele.addClass('font-select');
+                            var scale = 1;
+            if (level === 3) {
+                var $container = $(selector);
+                $container.find('*').each(function() {
+                    $(this).css({
+                        fontSize: '',
+                        lineHeight: ''
+                    });
+                });
+                $('.fontsize-selector').hide();
+                return;
+            }
+            if (scaleLevel > level) {
+                scale = scaleLevel - level;
+                reduceFontSizeOf(selector, scale);
+            } else if (scaleLevel < level) {
+                scale = level - scaleLevel;
+                enlargeFontSizeOf(selector, scale);
+            }
+            scaleLevel = level;
+            $('.fontsize-selector').hide();
+                        }
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<style>
-.detail_section {
-    width: 100%;
-    float: left;
-    padding: 20px;
-}
-/* div {
-  border: 3px solid #4CAF50;
-  padding: 5px;
-} */
+        function enlargeFontSizeOf(selector, scale) {
+            var $container = $(selector);
+            $container.find('*').each(function() {
+                var fs = decomposeFontSize($(this));
+                if (fs[1] < 1) {
+                    return;
+                }
+                var sizeNum = Number(fs[1]) + scale * 2;
+                $(this).css({
+                    fontSize: sizeNum + fs[2],
+                    lineHeight: sizeNum * 1.4 + fs[2]
+                });
+            });
+        }
 
-.detail_img {
-  float: right;
-}
+        function reduceFontSizeOf(selector, scale) {
+            var $container = $(selector);
+            $container.find('*').each(function() {
+                var fs = decomposeFontSize($(this));
+                if (fs[1] < 1) {
+                    return;
+                }
+                var sizeNum = Number(fs[1]) - scale * 2;
+                $(this).css({
+                    fontSize: sizeNum + fs[2],
+                    lineHeight: sizeNum * 1.4 + fs[2]
+                });
+            });
+        }
+        $(document).ready(function() {
+        });
+    </script>
+    <style>
+        body, html {
+            min-width: 0px;
+        }
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+        .nav-down .main_title {
+            display: none;
+        }
 
-</style>
-<title>Insert title here</title>
+        .nav-down .dr_warn_list {
+            display: none;
+        }
+
+        #url-qrcode-wrap {
+            position: relative;
+            text-align: left;
+            padding: 0;
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 28px;
+            vertical-align: middle;
+        }
+
+        #url-qrcode {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-<!-- 모달창으로 보여주려면,
-https://ssoonidev.tistory.com/61
-https://blog.naver.com/PostView.nhn?blogId=alpine_knotweed&logNo=221757331295&parentCategoryNo=&categoryNo=28&viewDate=&isShowPopularPosts=true&from=search
- -->
-    
-	<div class="detail_section">
-		<div class="container">
-			<h2 style="clear:right">상세 정보</h2>
-			<!-- <p>소제목?</p> -->
-			
-			<div class="clearfix">
-			  <img class="detail_img" src="resources/img/img-1.jpg" alt="약" width="170" height="170">
-			  <h5>약 이름</h3>
-			</div>
-		
-			<!-- tab 시작 -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li class="nav-item">
-			    	<a class="nav-link active" data-toggle="tab" href="#home">성분</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#menu1">사용법</a>
-				</li>
-			</ul>
-			
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div id="home" class="container tab-pane active"><br>
-					<h3>성분</h3>
-					<p>성분이 어쩌구 저쩌구</p>
-				</div>
-				<div id="menu1" class="container tab-pane fade"><br>
-				
-				    <div class="contact_section layout_padding" id="abcde">
-					    <table>
-					    
-					    		<tr>
-						    		<th>제품명</th>
-						    		<td>${list.itemName }</td>
-						    	</tr>
-					    		<tr>
-						    		<th>품목기준코드</th>
-						    		<td>${list.itemSeq }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약의 효능은 무엇입니까?</th>
-						    		<td>${list.efcyQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약은 어떻게 사용합니까?</th>
-						    		<td>${list.useMethodQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?</th>
-						    		<td>${list.atpnWarnQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약의 사용상 주의사항은 무엇입니까?</th>
-						    		<td>${list.atpnQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?</th>
-						    		<td>${list.intrcQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약은 어떤 이상반응이 나타날 수 있습니까?</th>
-						    		<td>${list.seQesitm }</td>
-						    	</tr>
-						    	<tr>
-						    		<th>이 약은 어떻게 보관해야 합니까?</th>
-						    		<td>${list.depositMethodQesitm }</td>
-						    	</tr>
-			    			
-			   			</table>
-		    		</div>
-    			
-				</div>
-			</div>
-			<!-- tab 끝 -->
-		</div>
-	</div>
-	
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- drug_wrap -->
+    <div class="drug_wrap">
+        <!-- drugHeader -->
+        <div class="drug_header drug_header_2" id="gnb">
+            <div class="inner">
+                <div class="main_title_wrap">
+                    <h2>상세정보</h2>
+                </div>
+                <div class="title">
+                    <h4 class="popupConTitle">
+                            <strong>제품명 : ${list.itemName }</strong>
+                        <br>
+                            <strong>품목기준코드 : ${list.itemSeq }</strong>
+                        <br>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <!-- //drugHeader -->
+        <div class="drug_container" id="content">
+            <!-- content -->
+            <section class="drug_content">
+                <!-- ==========================================================  컨텐츠 시작  -->
+                <div class="drug_info_mid">
+                    <!--div class="info_sec notPkInfo scroll_00 pt35" id="scroll_98"-->
+                    <div class="explan_img" id="scroll_98">
+                        <!--이미지 있음 -->
+                        <div class="explan_left">
+                            <!--<p class="subj"></p>-->
+                            <p class="note">&quot;MedicineSearch&quot;는 일반소비자 눈높이에 맞춘 이해하기 쉬운 의약품 정보 제공을 위해 마련된 의약품개요정보입니다.
+                            의약품에 관한 모든 내용을 담고 있지 않으며 자세한 사항은 식약처 의약품안전나라의 &quot;의약품상세정보&quot;를 참고하시기 바랍니다.
+                            본 정보는 법적 효력을 가지는 것이 아닙니다.
+                        </p>
+                        </div>
+                        <div class="explan_right">
+                            <!-- <img th:src="@{/resources/images/contents/sample.jpg}" th:alt="|${item.itemName} 낱알이미지|" /> -->
+                            <img width="220" height="130" src=${list.itemImage } alt=${list.itemName }/>
+                        </div>
+                    </div>
+                    <script>
+                        $(function() {
+                            $(window).on('load', function() {
+                                explanImg();
+                            });
 
+                            $(window).on('resize', function() {
+                                explanImg();
+                            });
+                        });
+
+                        function explanImg() {
+                            if ($(document).width() <= 768) {
+                                var explanLeft = $('.explan_img .explan_left');
+                                explanLeft.each(function() {
+                                    $(this).parent('.explan_img').append(explanLeft);
+                                });
+                            } else {
+                                var explanRight = $('.explan_img .explan_right');
+                                explanRight.each(function() {
+                                    $(this).parent('.explan_img').append(explanRight);
+                                });
+                            }
+                        }
+                    </script>
+                    <!-- ==========================================================  이미지 샘플 End -->
+                    <!-- / 문항1 / -->
+                    <div class="info_sec _preview notPkInfo scroll_03" id="scroll_02">
+                        <div class="sec_top fr-on div_fr _preview_ee">
+                            <h3 class="cont_title2 fl">
+                                이 약의 효능은 무엇입니까?
+                            </h3>
+                            <!-- </div> -->
+                        </div>
+                        <div class="info_box" id="_ee_doc1">
+                            <p>${list.efcyQesitm }</p>
+                        </div>
+                    </div>
+                    <!-- / 문항2 / -->
+                    <div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
+                        <div class="sec_top fr-on div_fr _preview_ee">
+                            <h3 class="cont_title2 fl">
+                                이 약은 어떻게 사용합니까?
+                            </h3>
+                        </div>
+                        <div class="info_box" id="_ee_doc2">
+                            <p>${list.useMethodQesitm }</p>
+                        </div>
+                    </div>
+                    <!-- / 문항3 / -->
+                    <!-- / 문항4 / -->
+                    <div class="info_sec _preview notPkInfo scroll_03" id="scroll_05">
+                        <div class="sec_top fr-on div_fr _preview_ee">
+                            <h3 class="cont_title2 fl">
+                                이 약의 사용상 주의사항은 무엇입니까?
+                            </h3>
+                        </div>
+                        <div class="info_box" id="_ee_doc4">
+                            <p>${list.atpnQesitm }</p>
+                        </div>
+                    </div>
+                    <!-- / 문항5 / -->
+                    <!-- / 문항6 / -->
+                    <!-- / 문항7 / -->
+                    <div class="info_sec _preview notPkInfo scroll_03" id="scroll_08">
+                        <div class="sec_top fr-on div_fr _preview_ee">
+                            <h3 class="cont_title2 fl">
+                                이 약은 어떻게 보관해야 합니까?
+                            </h3>
+                        </div>
+                        <div class="info_box" id="_ee_doc7">
+                            <p>${list.depositMethodQesitm }</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- //content -->
+        </div>
+        <!-- //drug_container -->
+
+        <div class="btn_area" style="text-align:center; margin-top:10px;">
+            <button type="button" class="btn_normal btn_base btn_point3 s-bb" title="닫기" onclick="javascript:closeDrugInfoPopup()">
+                <span>닫기</span>
+            </button>
+        </div>
+    </div>
 </body>
 </html>
