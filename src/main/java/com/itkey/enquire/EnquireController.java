@@ -46,7 +46,7 @@ public class EnquireController {
 	@Autowired
 	private EnquireService eService;
 
-	// ■ 1대 1 상담 내역 (개인)
+	// ■ 상담 내역 (개인)
 	@GetMapping("/question")
 	public String enquireList(
 			 Model model

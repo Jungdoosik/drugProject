@@ -25,7 +25,7 @@ public class EnquireDAO {
 	private SqlSessionTemplate sqlSession;
 	private static final String ASK = "enquire";
 
-	// ■ 문의 등록 
+	// ■ 문의 등록
 	public int insertAsk(EnquireVo eVO) throws Exception {
 		log.info("* [DAO] Input  ◀ (Service) : " + eVO.toString());
 		int result = sqlSession.insert("enquire.insertAsk", eVO);
@@ -33,7 +33,7 @@ public class EnquireDAO {
 		return result;
 	}
 
-	// ■ 상담 내역 리스트  PageCriteria criteria 사용
+	// ■ 상담 내역
 	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("다오다오다오* [DAO] Input  ◀ (Service) : "+ criteria.toString());
 		log.info("select_list() 호출");

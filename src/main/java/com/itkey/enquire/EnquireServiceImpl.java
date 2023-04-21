@@ -22,9 +22,7 @@ public class EnquireServiceImpl implements EnquireService{
 	@Autowired
 	private EnquireDAO eDAO;
 	
-	
-	//리스트  PageCriteria criteria 사용
-	@Override 
+	@Override
 	public List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("리스트 * [SERVICE] Input  ◀ (Controller) : " + criteria.toString());
 		log.info("read() 호출 : start = " + criteria.getStart());

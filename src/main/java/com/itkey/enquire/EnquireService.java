@@ -8,7 +8,7 @@ import com.itkey.service.common.Criteria;
 
 public interface EnquireService {
 	
-	// ■ 상담 내역 리스트  PageCriteria criteria 사용
+	// ■ 상담 내역
 	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception;
 	
 	// ■ 상담 내역 갯수
