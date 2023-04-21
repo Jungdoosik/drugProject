@@ -189,15 +189,11 @@ th:first-child, td:first-child {
   				   
   					 $('#listArea').append(body)
 				}
-				console.log(paging)
 				pageBody =  '<ul class="pagination" style="justify-content: center; padding-top: 20px;">'
 				if(paging.startPage != 1){
 					pageBody += '<li class="page-item">'
 					pageBody += ' <a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + (paging.startPage-1) + '\', \'' + paging.cntPerPage + '\')" >&lt;</a>'<!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
 					pageBody += ' </li>'
-				}
-				if(paging.nowPage > 10 ){
-					paging startPage = 
 				}
 				for(var i = paging.startPage; i <= paging.endPage; i++){
 					if(i == paging.nowPage){
