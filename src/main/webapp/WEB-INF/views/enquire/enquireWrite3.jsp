@@ -118,6 +118,7 @@ searchPag {
 /* 버튼 테두리 padding 처리  */
 .btnclss{
  padding: 5%;
+ /*  테이블 공통 padding  강제  표 수정  */
 }
 </style>
 
