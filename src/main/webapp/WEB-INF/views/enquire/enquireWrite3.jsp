@@ -118,7 +118,7 @@ searchPag {
 /* 버튼 테두리 padding 처리  */
 .btnclss{
  padding: 5%;
- /*  테이블 공통 padding  강제  표 수정  */
+ /*  테이블 공통 padding  강제  표 수정  222  */
 }
 </style>
 
@@ -160,7 +160,7 @@ searchPag {
 					<div class="row gy-4 d-flex justify-content-between">
 						<table class="table table-hover">
 							<thead>
-								<tr style="padding:5px; text-align: center;">
+								<tr style="padding:5px; text-align: center; ">
 									<th style="padding:5px; text-align: center;">NO</th>
 									<th style="padding:5px;">결과</th>
 									<th style="padding:5px;">문의제목</th>
