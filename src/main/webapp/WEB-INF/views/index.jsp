@@ -56,11 +56,11 @@
         	if(document.frm.selectKnd.value == '') {
         		alert("분류를 선택해주세요.")
         		return false
-        	}
-        	if(document.frm.searchName.value == '') {
-        		alert("분류를 선택해주세요.")
+        	} 
+        	/* if(document.frm.searchName.value == '') {
+        		alert("검색어를 선택해주세요.")
         		return false
-        	}
+        	} */
         	console.log(document.frm.searchName.value)
         	console.log(document.frm.selectKnd.value)
             document.frm.action = '/searchDrugList';

@@ -108,6 +108,7 @@ public class ApiController {
 							@RequestParam(value="nowPage", required=false, defaultValue="1")String nowPage, 
 							@RequestParam(value="cntPerPage", required=false, defaultValue="10")String cntPerPage, 
 							ModelMap model) throws Exception {
+		System.out.println("====================================");
 		System.out.println(nowPage);
 		System.out.println(cntPerPage);
 		System.out.println(params);
@@ -143,7 +144,6 @@ public class ApiController {
 	        bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 	        String result = "";
 	        result = bf.readLine();
-	        
 	        
 	        JSONParser jsonParser = new JSONParser();
 	        JSONObject jsonObject = (JSONObject)jsonParser.parse(result);

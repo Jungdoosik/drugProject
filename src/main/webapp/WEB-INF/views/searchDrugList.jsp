@@ -61,9 +61,6 @@ th, td {
 th:first-child, td:first-child {
   border-left: none;
 }
-searchPag {
-   center
-}
 </style>
 </head>
 
@@ -77,6 +74,18 @@ searchPag {
 	    	$('#middleTitle').css('padding-top', '0%')
 	    	
 	    }
+	   
+	// 페이지(page) 버튼 클릭 이벤트 처리
+     const pageButtons = document.querySelectorAll('.page-item');
+     pageButtons.forEach(function(button) {
+       button.addEventListener('click', function(e) {
+         const activePage = document.querySelector('.page-item.active');
+         if (button !== activePage) {
+           activePage.classList.remove('active');
+           button.classList.add('active');
+         }
+       });
+     });
       /* var xhrd = new XMLHttpRequest();
       var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
       var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
@@ -98,7 +107,7 @@ searchPag {
       };
 
       xhrd.send(''); */
-      
+     
    })
    
    function drugDetail(itemSeq){
@@ -140,11 +149,74 @@ searchPag {
 			type: "POST",
 			data: params,
 			success: function(data) { 
-				console.log(data.params)
-				console.log(data.list)
+				/* console.log(data.params)
+				console.log(data.list) */
 				console.log(data.p)
-				console.log(data.cntPerPage)
+				/* console.log(data.cntPerPage) */
 				console.log(data.paging)
+				
+				var body = ''
+				var pageBody = ''
+				var listArea = $('#listArea').children()
+				var pageArea = $('#pageArea').children()
+				listArea.remove()
+				pageArea.remove()
+				var item = data.list.items
+				var paging = data.paging
+				
+				for(var i in item){
+				   var list = item[i]
+				  /*  console.log(list)
+				   console.log(list.itemSeq)
+				   console.log(list.itemName) */
+				   
+				   body = '<tr onclick="drugDetail(\'' + list.itemSeq  + '\')">'
+				   body += '<td>' + list.itemName + '</td>'
+				   body += '<td style="text-align:center;">' + list.itemSeq + '</td>'
+				   body += '</tr>'
+				   body += '<input type="hidden" name="itemName' +list.itemSeq+ '" value="'+list.itemName+'">'
+				   body += '<input type="hidden" name="itemSeq' +list.itemSeq+ '" value="' +list.itemSeq+ '">'
+				   body += '<input type="hidden" name="efcyQesitm' +list.itemSeq+ '" value="' +list.efcyQesitm+ '">'
+				   body += '<input type="hidden" name="useMethodQesitm' +list.itemSeq+ '" value="' +list.useMethodQesitm+ '">'
+				   body += '<input type="hidden" name="atpnWarnQesitm' +list.itemSeq+ '" value="' +list.atpnWarnQesitm+ '">'
+				   body += '<input type="hidden" name="atpnQesitm' +list.itemSeq+ '" value="' +list.atpnQesitm+ '">'
+				   body += '<input type="hidden" name="intrcQesitm' +list.itemSeq+ '" value="' +list.intrcQesitm+ '">'
+                   body += '<input type="hidden" name="seQesitm' +list.itemSeq+ '" value="' +list.seQesitm+ '">'
+               	   body += '<input type="hidden" name="depositMethodQesitm' +list.itemSeq+ '" value="' +list.depositMethodQesitm+ '">'
+           		   body += '<input type="hidden" name="openDe' +list.itemSeq+ '" value="' +list.openDe+ '">'
+       			   body += '<input type="hidden" name="updateDe' +list.itemSeq+ '" value="' +list.updateDe+ '">'
+  				   body += '<input type="hidden" name="itemImage' +list.itemSeq+ '" value="' +list.itemImage+ '">'
+  				   
+  					 $('#listArea').append(body)
+				}
+				console.log(paging)
+				pageBody =  '<ul class="pagination" style="justify-content: center; padding-top: 20px;">'
+				if(paging.startPage != 1){
+					pageBody += '<li class="page-item">'
+					pageBody += ' <a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + (paging.startPage-1) + '\', \'' + paging.cntPerPage + '\')" >&lt;</a>'<!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
+					pageBody += ' </li>'
+				}
+				if(paging.nowPage > 10 ){
+					paging startPage = 
+				}
+				for(var i = paging.startPage; i <= paging.endPage; i++){
+					if(i == paging.nowPage){
+						pageBody += '<li class="page-item  active"><a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a></li>'
+					}
+					if(i != paging.nowPage){
+						pageBody += '<li class="page-item" aria-current="page">'
+						pageBody += '<a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a>'
+						pageBody += '</li>'
+					}
+				}
+				if(paging.endPage != paging.lastPage){
+					pageBody += '<li class="page-item">'
+					pageBody += '<a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + (paging.endPage+1) + '\' , \'' + paging.cntPerPage + '\')" >&gt;</a>' <!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
+					pageBody += '</li>'
+				}
+				pageBody += '</ul>'
+				
+				$('#pageArea').append(pageBody)
 				
 			}
 	   });
@@ -192,15 +264,18 @@ searchPag {
        <div class="" id="abcde">
         <div class="row gy-4 d-flex justify-content-between">
           <table>
-          <tr onclick="drugDetail(${list.itemSeq })">
-            <th class="title">제품명</th>
-            <th class="title">번호</th>
-          </tr>
-             <c:forEach var="list" items="${list.items }" varStatus="status">
-                <tr onclick="drugDetail(${list.itemSeq })">
-                   <td>${list.itemName }</td>
-                   <td>${list.itemSeq }</td>
-                </tr>
+          	  <thead>
+		          <tr>
+		            <th class="title">제품명</th>
+		            <th class="title">번호</th>
+		          </tr>
+	          </thead>
+	          <tbody id="listArea">
+              <c:forEach var="list" items="${list.items }" varStatus="status">
+	                <tr onclick="drugDetail(${list.itemSeq })">
+	                   <td>${list.itemName }</td>
+	                   <td style="text-align:center;">${list.itemSeq }</td>
+	                </tr>
                    <input type="hidden" name="itemName${list.itemSeq }" value="${list.itemName }">
                    <input type="hidden" name="itemSeq${list.itemSeq }" value="${list.itemSeq }">
                    <input type="hidden" name="efcyQesitm${list.itemSeq }" value="${list.efcyQesitm }">
@@ -214,27 +289,37 @@ searchPag {
                    <input type="hidden" name="updateDe${list.itemSeq }" value="${list.updateDe }">
                    <input type="hidden" name="itemImage${list.itemSeq }" value="${list.itemImage }">
              </c:forEach>
+             </tbody>
             </table>
        	</div>
       </div>
-      <div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="/searchDrugList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a><!-- href="/searchDrugList?nowPage=${p }&cntPerPage=${paging.cntPerPage}" -->
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-		</c:if>
-	</div>
+      <div style="display: block; text-align: center;" id="pageArea">		
+		  <ul class="pagination" style="justify-content: center; padding-top: 20px;">
+		  <c:if test="${paging.startPage != 1 }">
+		    <li class="page-item disabled">
+		      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${paging.startPage-1 }', '${paging.cntPerPage }')" tabindex="-1" aria-disabled="true">&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
+		    </li>
+		    </c:if>
+		    <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == paging.nowPage }">
+				    	<li class="page-item  active"><a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a></li>
+				    </c:when>
+				    <c:when test="${p != paging.nowPage }">
+					    <li class="page-item" aria-current="page">
+					      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a>
+					    </li>
+				    </c:when>
+			    </c:choose>
+			</c:forEach>
+			<c:if test="${paging.endPage != paging.lastPage}">
+			    <li class="page-item">
+			      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${paging.endPage+1 }', '${paging.cntPerPage }')" >&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
+			    </li>
+		    </c:if>
+		  </ul>
+		</div>
+		
       </div>
     <!-- Vendor JS Files -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
