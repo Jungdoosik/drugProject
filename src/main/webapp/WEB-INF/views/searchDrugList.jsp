@@ -111,19 +111,22 @@ th:first-child, td:first-child {
    })
    
    function drugDetail(itemSeq){
-      document.detailData.itemName.value = $('input[name="itemName' +itemSeq+ '"]').val()
+	  document.detailData.itemName.value = $('input[name="itemName' +itemSeq+ '"]').val()
       document.detailData.itemSeq.value = $('input[name="itemSeq' +itemSeq+ '"]').val()
-       document.detailData.efcyQesitm.value = $('input[name="efcyQesitm' +itemSeq+ '"]').val()
-       document.detailData.useMethodQesitm.value = $('input[name="useMethodQesitm' +itemSeq+ '"]').val()
-       document.detailData.atpnWarnQesitm.value = $('input[name="atpnWarnQesitm' +itemSeq+ '"]').val()
-       document.detailData.atpnQesitm.value = $('input[name="atpnQesitm' +itemSeq+ '"]').val()
-       document.detailData.intrcQesitm.value = $('input[name="intrcQesitm' +itemSeq+ '"]').val()
-       document.detailData.seQesitm.value = $('input[name="seQesitm' +itemSeq+ '"]').val()
-       document.detailData.depositMethodQesitm.value = $('input[name="depositMethodQesitm' +itemSeq+ '"]').val()
-       document.detailData.openDe.value = $('input[name="openDe' +itemSeq+ '"]').val()
-       document.detailData.updateDe.value = $('input[name="updateDe' +itemSeq+ '"]').val()
-       document.detailData.itemImage.value = $('input[name="itemImage' +itemSeq+ '"]').val()
+      document.detailData.efcyQesitm.value = $('input[name="efcyQesitm' +itemSeq+ '"]').val()
+      document.detailData.useMethodQesitm.value = $('input[name="useMethodQesitm' +itemSeq+ '"]').val()
+      document.detailData.atpnWarnQesitm.value = $('input[name="atpnWarnQesitm' +itemSeq+ '"]').val()
+      document.detailData.atpnQesitm.value = $('input[name="atpnQesitm' +itemSeq+ '"]').val()
+      document.detailData.intrcQesitm.value = $('input[name="intrcQesitm' +itemSeq+ '"]').val()
+      document.detailData.seQesitm.value = $('input[name="seQesitm' +itemSeq+ '"]').val()
+      document.detailData.depositMethodQesitm.value = $('input[name="depositMethodQesitm' +itemSeq+ '"]').val()
+      document.detailData.openDe.value = $('input[name="openDe' +itemSeq+ '"]').val()
+      document.detailData.updateDe.value = $('input[name="updateDe' +itemSeq+ '"]').val()
+      document.detailData.itemImage.value = $('input[name="itemImage' +itemSeq+ '"]').val()
+       
+      window.open("about:blank", "winName", "menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=100, left=200, width=800, height=850")
       document.detailData.action = "/detail"
+	  document.detailData.target="winName";
       document.detailData.submit()
       
    }
