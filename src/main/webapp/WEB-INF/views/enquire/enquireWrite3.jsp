@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>MedicineSearch - 문의하기 리스트</title>
+<title>MedicineSearch - 문의하기 리스트 수정</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -131,7 +131,7 @@ html, body {
 							<button type="button" class="btn" onclick="eWVBnt();">문의하기</button>
 						</div>
 						<input type="hidden" name="page" value="1">
-		                 <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
+		                <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
 						<input type="hidden" id="keyword" name="keyword">
 						<table class="table table-hover">
 							<thead>
