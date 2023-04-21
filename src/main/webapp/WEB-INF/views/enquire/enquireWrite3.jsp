@@ -56,8 +56,7 @@ html, body {
 	height: 100%;
 	background: #0e1d34;
 }
-<<<<<<< HEAD
-=======
+
 table{
    width: 100%;
    color: #ffffff;
@@ -81,7 +80,7 @@ th, td {
 searchPag {
    center
 }
->>>>>>> HSA
+
 </style>
 
 
