@@ -46,10 +46,9 @@ public class EnquireController {
 	@Autowired
 	private EnquireService eService;
 
-	// ■ 상담 내역 (개인)
+	// ■ 상담 내역  리스트(개인)
 	@GetMapping("/question")
-	public String enquireList(
-			 Model model
+	public String enquireList( Model model
 			,HttpSession session
 			, Integer page
 			, Integer numsPerPage
@@ -58,37 +57,38 @@ public class EnquireController {
 		//세션값 불러오기
 		String member = (String) session.getAttribute("member");
 		log.info(member);
+		
+	
 		PageCriteria criteria = new PageCriteria();
-		log.info("======1111===============");
+		//log.info("======1111===============");
 		criteria.setKeyword(member);// 회원id criteria 객체 set
 		
 		if (page != null) {
+			//페이지
 			criteria.setPage(page);
 		}
 		if (numsPerPage != null) {
+			//페이지번호
 			criteria.setNumsPerPage(numsPerPage);
 		}
-		
-		log.info(criteria);
-		log.info("==========2222===========");
-		
-		List<EnquireVo> eList = eService.listEnquire(criteria);
-		
+		//log.info(criteria);
+	
+		List<EnquireVo> eList = eService.listEnquire(criteria); //유저1 문의리스트 
 		model.addAttribute("List", eList);
-		PageMaker pageMaker = new PageMaker();
+		
+		PageMaker pageMaker = new PageMaker(); // 페이지메이커 
 		pageMaker.setCriteria(criteria);
 		pageMaker.setTotalCount(eService.listCountEnquire(criteria));
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("member", member);
-		return "/enquire/enquireWrite3";
+		return "/enquire/enquireListView";
 	}
 
 	// ■ 고객 문의하기 : 글쓰기 insert
 	@GetMapping(value = "/enquireWriteView")
 	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request) throws Exception {
 
-	
 		log.info("문의등록  페이지");
 		return "/enquire/enquireWrite";
 

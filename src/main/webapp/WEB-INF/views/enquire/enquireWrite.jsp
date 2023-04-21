@@ -51,7 +51,6 @@
 }
  </style>
 
-
 <style type="text/css">
 .btn{
     background: #0d42ff;
@@ -73,11 +72,7 @@
  padding: 5%;
 }
 </style>
-
-
-<!--<script type="text/javascript" th:src="@{/js/enquire/enquireWrite.js}"></script>   화면에 정리 --> 
-
-                 
+<!--<script type="text/javascript" th:src="@{/js/enquire/enquireWrite.js}"></script>   화면에 정리 -->                
 </head>
 
 <body>
@@ -85,17 +80,14 @@
    <section>
     <jsp:include page="../common/header.jsp" />
    </section><!-- End Hero Section -->
-   
     <main id="main">
         <!-- ======= Get a Quote Section ======= -->
         <section id="get-a-quote" class="get-a-quote">
             <div class="container" data-aos="fade-up">
-            
                 <div class="row g-0">
-                
+                    
                     <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/enquireWrite.jpg);">
                     </div>
-
                         <div class="col-lg-7">
                                 <form  method="post" class="php-email-form" id="frmAsk" >
                                     <div class="col-lg-12">
