@@ -40,8 +40,11 @@ public interface EnquireService {
 	
 	// ■ 문의글 삭제(관리자)
 	void enquireDelete(int seq);
-	
+
 	/*// ■ 결제내역 가져오기 - 삭제 
 	List<CreditDTO> historyCredit(String id) throws Exception;*/
+	
+	//문의내역
+	EnquireVo enquireDetail(Map<String, Object> params) throws Exception;
 	
 }

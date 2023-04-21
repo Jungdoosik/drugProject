@@ -112,6 +112,12 @@ public class EnquireServiceImpl implements EnquireService{
 	public void enquireDelete(int seq) {
 		eDAO.enquireDelete(seq);
 	}
+
+	@Override
+	public EnquireVo enquireDetail(Map<String, Object> params) throws Exception {
+		
+		return eDAO.enquireDetail(params);
+	}
 	
 	/*@Override
 	public List<CreditDTO> historyCredit(String id) throws Exception {

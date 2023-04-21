@@ -128,6 +128,12 @@ public class EnquireDAO {
 
 	}
 
+	//문의내역
+	public EnquireVo enquireDetail(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("enquire.enquireDetail", params);
+	}
+
 	/*
 	 * // ■ 결제내역 가져오기 List<CreditDTO> historyCredit(String id) throws Exception;
 	 */

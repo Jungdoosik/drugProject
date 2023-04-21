@@ -124,7 +124,7 @@ th:first-child, td:first-child {
       document.detailData.updateDe.value = $('input[name="updateDe' +itemSeq+ '"]').val()
       document.detailData.itemImage.value = $('input[name="itemImage' +itemSeq+ '"]').val()
        
-      window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=100, left=200, width=800, height=850')
+      window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=, left=, width=800, height=850')
       document.detailData.action = '/detail'
 	  document.detailData.target='winName';
       document.detailData.submit()
@@ -132,8 +132,8 @@ th:first-child, td:first-child {
    }
    
    function itemDataSearch() {
-       document.frm.action = '/searchDrug';
-       document.frm.submit()
+       document.searchForm.action = '/searchDrugList';
+       document.searchForm.submit()
 
    }
    
@@ -152,11 +152,6 @@ th:first-child, td:first-child {
 			type: "POST",
 			data: params,
 			success: function(data) { 
-				/* console.log(data.params)
-				console.log(data.list) */
-				console.log(data.p)
-				/* console.log(data.cntPerPage) */
-				console.log(data.paging)
 				
 				var body = ''
 				var pageBody = ''
@@ -169,10 +164,6 @@ th:first-child, td:first-child {
 				
 				for(var i in item){
 				   var list = item[i]
-				  /*  console.log(list)
-				   console.log(list.itemSeq)
-				   console.log(list.itemName) */
-				   
 				   body = '<tr onclick="drugDetail(\'' + list.itemSeq  + '\')">'
 				   body += '<td>' + list.itemName + '</td>'
 				   body += '<td style="text-align:center;">' + list.itemSeq + '</td>'

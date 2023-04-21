@@ -209,5 +209,21 @@
 		</choose>		
 	</sql>
 	
+	<!-- 문의내역 확인 -->
+	<select id="enquireDetail" parameterType="HashMap" resultType="com.itkey.enquire.EnquireVo">
+		SELECT 
+			  seq
+			, title
+			, writer
+			, question
+			, answer
+			, q_date
+			, a_date
+			, delyn
+			, service_code
+		FROM ENQUIRE
+		WHERE SEQ = #{seq}
+	</select>
+	
 	
 </mapper>

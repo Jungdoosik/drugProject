@@ -144,12 +144,25 @@ function eWVBnt() {
    				location = 'question?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
    			}
 		}
+   		
+   		function enquireDetail(seq){
+   			document.enquireDetailForm.seq.value = seq
+   			document.enquireDetailForm.action = '/enquireDetail'
+   			document.enquireDetailForm.submit()
+   		}
+   		
+   		function delMemberE(){
+   			console.log('탈퇴문의한다')
+   		}
    </script>
 
 
 </head>
 
 <body>
+<form id="enquireDetailForm" name="enquireDetailForm" method="post">
+	<input type="hidden" name="seq" value="">
+</form>
 <div class="index_container">
 	   <section>
 	    <jsp:include page="../common/header.jsp" />
@@ -170,7 +183,8 @@ function eWVBnt() {
 					</div>
 					<div class="col-md-12"><!-- 테이블 + bnt 시작  -->
 						<div class="btnclss" >
-							<button type="button" class="btn" onclick="eWVBnt();">문의하기</button>
+							<button type="button" class="btn" onclick="eWVBnt();">일반문의</button>
+							<button type="button" class="btn" onclick="delMemberE();">탈퇴문의</button>
 						</div>
 						<input type="hidden" name="page" value="1">
 		                <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
@@ -186,23 +200,23 @@ function eWVBnt() {
 							  </tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${List}" var="ask" varStatus="status">
-								    <input type="hidden" name="seq" value="${ask.seq}">
-									<tr style="padding:5px; text-align: center;" >
-										<td style="padding:5px;">
-											<c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}"/> 
-										</td>
-										<c:if test="${ask.adate ne null}">
-											<td style="padding:5px;"><font color="blue">답변완료</font></td>
-										</c:if>
-										<c:if test="${ask.adate eq null}">
-											<td style="padding:5px;"><font color="red">처리중</font></td>
-										</c:if>
-										<td style="padding:5px;">${ask.title}</td>
-										<td style="padding:5px;">${ask.qdate}</td>
-										<td style="padding:5px;">${ask.adate}</td>
-									</tr>
-								</c:forEach>
+									
+										<c:forEach items="${List}" var="ask" varStatus="status">
+											<tr style="padding:5px; text-align: center;" >
+												<td style="padding:5px;">
+													<a onclick="enquireDetail('${ask.seq}')" style="cursor:pointer;"><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}"/> </a>
+												</td>
+												<c:if test="${ask.adate ne null}">
+													<td style="padding:5px;"><font color="blue">답변완료</font></td>
+												</c:if>
+												<c:if test="${ask.adate eq null}">
+													<td style="padding:5px;"><font color="red">처리중</font></td>
+												</c:if>
+												<td style="padding:5px;">${ask.title}</td>
+												<td style="padding:5px;">${ask.qdate}</td>
+												<td style="padding:5px;">${ask.adate}</td>
+											</tr>
+										</c:forEach>
 							</tbody>
 					
 						</table>

@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;*/
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,11 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.itkey.controller.HomeController;
-import com.itkey.member.service.MemberVo;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
-import com.itkey.pageutil.Payment;
 import com.itkey.service.common.Criteria;
 
 
@@ -300,6 +298,17 @@ public class EnquireController {
 	public String faq() throws Exception {
 		log.info("자주 묻는 질문 페이지로");
 		return "/enquire/faqList";
+	}
+	
+	@RequestMapping("/enquireDetail")
+	public String enquireDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception{
+		
+		System.out.println(params);
+		EnquireVo eVo = eService.enquireDetail(params);
+		
+		model.addAttribute("eVo", eVo);
+		
+		return "/enquire/enquireDetail";
 	}
 
 }
