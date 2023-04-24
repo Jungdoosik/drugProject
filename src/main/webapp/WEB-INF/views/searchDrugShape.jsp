@@ -5,7 +5,161 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<style>
+	.icoAll {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-검사-확인란-2-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+	    }
+	.ico1 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-hexagon-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+	    }
+	.ico2 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-채워진-원-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico3 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/free-icon-semicircle-649747.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico4 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-삼각형-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico5 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-둥근-사각-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico6 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-마름모-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico7 {
+	display: block;
+	    margin: 0 auto;
+	    /* background-image: url(/resources/img/shape/icons8-채워진-원-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center; */
+	    border: 1px solid grey;
+	    margin-top:10px;
+	    width: 35px;
+     	height: 20px;
+     	border-radius:10px;
+     	background-color:black;
+	    
+    }
+	.ico8 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-오각형-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico9 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-육각형-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+	.ico10 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-팔각형-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+    .ico11 {
+	display: block;
+	    height: 30px;
+	    margin: 0 auto;
+	    background-image: url(/resources/img/shape/icons8-expand-menu-section-navigate-option-setting-interface-32.png);
+	    background-repeat: no-repeat;
+	    background-position-x: center;
+    }
+    
+    .icoColor{
+    	display:block;
+   		margin: 0 auto;
+    	border: 1px solid grey;
+	    margin-top:10px;
+	    width: 35px;
+     	height: 20px;
+     	border-radius:10px;
+    }
+    
+    
+    
+    .liArea li {
+    width: 70px;
+    height: 50px;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    }
+    
+    
+    .textDiv1 {
+    	color: black;
+    	text-align: center;
+    	border: 1px solid grey;
+    }
+    
+    .textDiv2 {
+    	color: black;
+    	text-align: center;
+    	border: 1px solid grey;
+    }
+    .textDiv3 {
+    	color: black;
+    	text-align: center;
+    	border: 1px solid grey;
+    }
+    .textDiv4 {
+    	color: black;
+    	text-align: center;
+    	border: 1px solid grey;
+    }
+/*     .textDiv1:hover{
+    	background-color:#d3d3d3;
+    }
+    .textDiv2:hover{
+    	background-color:#d3d3d3;
+    } */
+</style>
 <head>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -54,6 +208,8 @@
     </style>
     <script>
     $(function(){
+    	
+    	console.log(document.searchForm.selectShape.value)
     	var xhrd = new XMLHttpRequest();
         var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
         var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
@@ -77,35 +233,19 @@
 
         xhrd.send('');
     })
-        /* function itemDataSearch() {
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	} 
-        	/* if(document.frm.searchName.value == '') {
-        		alert("검색어를 선택해주세요.")
-        		return false
-        	} */
-        	console.log(document.frm.searchName.value)
-        	console.log(document.frm.selectKnd.value)
-            document.frm.action = '/searchDrugList';
-            document.frm.submit()
-
-        } */
-        
-        function searchEvt(){
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	}
-        	if(document.frm.searchName.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	}
+        function itemDataSearch() {
+        	console.log(document.searchForm.selectShape.value)
+        	console.log(document.searchForm.selectColor.value)
+        	console.log(document.searchForm.selectDrugForm.value)
+        	console.log(document.searchForm.selectLine.value)
         	
-        	document.frm.action = '/searchDrugList';
-            document.frm.submit()
-        }
+        	return false
+            document.searchForm.action = '/searchDrugList';
+            document.searchForm.submit()
+
+        } 
+        
+        
         
         function searchName(){
         	location.href = "/searchDrugName"
@@ -113,6 +253,33 @@
         
         function searchShape(){
         	location.href = "/searchDrugShape"
+        }
+        
+        function searchShape(e){
+        	console.log($(e).children().eq(1).text())
+        	document.searchForm.selectShape.value = $(e).children().eq(1).text() 
+        	$('.textDiv1').css('background-color','white')
+        	$(e).css('background-color','#d3d3d3')
+        }
+        
+        function searchColor(e){
+        	console.log($(e).children().eq(1).text())
+        	document.searchForm.selectColor.value = $(e).children().eq(1).text()
+        	$('.textDiv2').css('background-color','white')
+        	$(e).css('background-color','#d3d3d3')
+        	
+        }
+        function searchDrugForm(e){
+        	console.log($(e).children().eq(0).text())
+        	document.searchForm.selectDrugForm.value = $(e).children().eq(0).text()
+        	$('.textDiv3').css('background-color','white')
+        	$(e).css('background-color','#d3d3d3')
+        }
+        function searchLine(e){
+        	console.log($(e).children().eq(0).text())
+        	document.searchForm.selectLine.value = $(e).children().eq(0).text()
+        	$('.textDiv4').css('background-color','white')
+        	$(e).css('background-color','#d3d3d3')
         }
     </script>
 
@@ -124,6 +291,13 @@
 // 세션값 가져오기
 String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
 %>
+
+<form id="searchForm" name="searchForm" method="post">
+	<input type="hidden" name="selectShape" value="">
+	<input type="hidden" name="selectColor" value="">
+	<input type="hidden" name="selectDrugForm" value="">
+	<input type="hidden" name="selectLine" value="">
+</form> 
 
     <div class="index_container">
     
@@ -158,44 +332,251 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
-                <div class="row gy-4 d-flex justify-content-between" style="margin-top:auto; padding-top:">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h2 data-aos="fade-up"> 안전하게 복약하세요.</h2>
-                        <p data-aos="fade-up" data-aos-delay="100">
-                            드시고 계신 약의 정확한 성분을 알고 계시나요?
-                        </p>
+			<form data-aos="fade-up" data-aos-delay="200">
 
-                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
+				<div class="" style="display: flex;">
+					<div style="color: black; width: 210px; text-align: center;">
+						<span>모양검색</span>
+					</div>
+					<div style="width: 500px;">
+					<ul class="liArea">
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="icoAll"></span> <span>전체</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico2"></span> <span>원형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico1"></span> <span>타원형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico3"></span> <span>반원형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico4"></span> <span>삼각형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico5"></span> <span>사각형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico6"></span> <span>마름모</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico7"></span> <span>장방형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico8"></span> <span>오각형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico9"></span> <span>육각형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico10"></span> <span>팔각형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv1" onclick="searchShape(this)">
+								<span class="ico11"></span> <span>기타</span>
+							</div>
+						</li>
+					</ul>
+					</div>
 
-                            <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
-                                <button type="button" class="btn btn-primary" onclick="searchName()" style="width: 40%;"> 검색</button>
-                                <button type="button" class="btn btn-primary" onclick="searchShape()" style="width: 40%;"> 모양</button>
-                            </div>
-                        </form>
 
-                        <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+					
+				</div>
+				<div class="" style="display: flex;">
+					<div style="color: black; width: 210px; text-align: center;">
+						<span>색상검색</span>
+					</div>
+					<div style="width: 500px;">
+					<ul class="liArea">
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor"  style=""></span> <span>전체</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)" >
+								<span class="icoColor" style="background-color:white;"></span> <span>하양</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#FFFF00 ;"></span> <span>노랑</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#ff7f00;"></span> <span>주황</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#ff3399;"></span> <span>분홍</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:red;"></span> <span>빨강</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#5c1a00;"></span> <span>갈색</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#6cff57;"></span> <span>연두</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:green;"></span> <span>초록</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#08728e;"></span> <span>청록</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:blue;"></span> <span>파랑</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#000080;"></span> <span>남색</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:#660099;"></span> <span>자주</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:violet;"></span> <span>보라</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:grey;"></span> <span>회색</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style="background-color:black;"></span> <span>검정</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv2" onclick="searchColor(this)">
+								<span class="icoColor" style=""></span> <span>투명</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 종류</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 성분</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                        </div>
-                    </div>
+				</div>
+				
+				<div class="" style="display: flex;">
+					<div style="color: black; width: 210px; text-align: center;">
+						<span>제형선택</span>
+					</div>
+					<div style="width: 500px;">
+					<ul class="liArea">
+						<li>
+							<div class="textDiv3" onclick="searchDrugForm(this)">
+								<span>전체</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv3" onclick="searchDrugForm(this)">
+								<span>정제</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv3" onclick="searchDrugForm(this)">
+								<span>경질</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv3" onclick="searchDrugForm(this)">
+								<span>연질</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv3" onclick="searchDrugForm(this)" >
+								<span>기타</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 
-                    <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                        <img src="resources/img/hero-img.png" class="img-fluid mb-3 mb-lg-0" alt="">
-                    </div>
+				</div>
+				
+				
+				<div class="" style="display: flex;">
+					<div style="color: black; width: 210px; text-align: center;">
+						<span>분할선</span>
+					</div>
+					<div style="width: 500px;">
+					<ul class="liArea">
+						<li>
+							<div class="textDiv4" onclick="searchLine(this)">
+								<span>전체</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv4" onclick="searchLine(this)">
+								<span>+형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv4" onclick="searchLine(this)">
+								<span>-형</span>
+							</div>
+						</li>
+						<li>
+							<div class="textDiv4" onclick="searchLine(this)" >
+								<span>기타</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 
-                </div>
-            </div>
+				</div>
+
+				<div  style="text-align:right;">
+				<button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
+				</div>
+			</form>
+
+
+		</div>
         </section><!-- End Hero Section -->
         <main id="main">
 

@@ -93,7 +93,7 @@
 
         }  */
         
-        function searchEvt(){
+        /* function searchEvt(){
         	if(document.frm.selectKnd.value == '') {
         		alert("분류를 선택해주세요.")
         		return false
@@ -105,7 +105,7 @@
         	
         	document.frm.action = '/searchDrugList';
             document.frm.submit()
-        }
+        } */
         
         function searchDrugName(){
         	location.href = "/searchDrugName"
@@ -165,10 +165,10 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                             드시고 계신 약의 정확한 성분을 알고 계시나요?
                         </p>
 
-                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
-
+                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200"> 
+ 
                             <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
-                                <button type="button" class="btn btn-primary" onclick="searchDrugName()" style="width: 40%;"> 검색</button>
+                                <button type="button" class="btn btn-primary" onclick="searchDrugName() " style="width: 40%;"> 검색</button>
                                 <button type="button" class="btn btn-primary" onclick="searchDrugShape()" style="width: 40%;"> 모양</button>
                             </div>
                         </form>
