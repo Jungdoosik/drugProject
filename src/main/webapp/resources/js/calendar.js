@@ -42,18 +42,4 @@ const makeCalendar = (date) => {
 	}
 	
 	
-	const data = [
-		  { date: '2023-04-15', content: '테스트1' },
-		  { date: '2023-04-16', content: '테스트2' },
-		  { date: '2023-04-17', content: '테스트3' },
-		  { date: '2023-04-18', content: '테스트4' },
-		  { date: '2023-04-19', content: '테스트5' },
-		];
-	
-	// 데이터 가공
-	const calendarList = data.reduce(
-	  (acc, v) => 
-	    ({ ...acc, [v.date]: [...(acc[v.date] || []), v.content] })
-	  , {}
-	);
 	

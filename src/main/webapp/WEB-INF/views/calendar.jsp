@@ -129,7 +129,7 @@ h2 {
   text-align: center;
   border-radius: 5px;
 }
-
+ 
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
