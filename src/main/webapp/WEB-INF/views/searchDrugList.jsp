@@ -124,9 +124,9 @@ th:first-child, td:first-child {
       document.detailData.updateDe.value = $('input[name="updateDe' +itemSeq+ '"]').val()
       document.detailData.itemImage.value = $('input[name="itemImage' +itemSeq+ '"]').val()
        
-      //window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=, left=, width=800, height=850')
+      window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=, left=, width=800, height=850')
       document.detailData.action = '/detail'
-	  //document.detailData.target='winName';
+	  document.detailData.target='winName';
       document.detailData.submit()
       
    }

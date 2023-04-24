@@ -18,9 +18,7 @@
     <script>
         /* 팝업닫기 */
         function closeDrugInfoPopup() {
-            //window.close();
-        	history.go( -1 );
-            
+            window.close();
         }
         function decomposeFontSize($container) {
             var fontSize = $container.css('fontSize');
