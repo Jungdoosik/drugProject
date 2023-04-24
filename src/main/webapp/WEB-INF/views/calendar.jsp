@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <style>
 .btn-1 {
     background: var(--color-primary);
@@ -24,11 +25,12 @@
     border-radius: 4px;
 }
 </style>
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch Calendar</title>
+    <title>MedicineSearch - Index</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -36,6 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
     <!-- Vendor CSS Files -->
     <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -43,6 +46,7 @@
     <link href="resources/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="resources/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="resources/vendor/aos/aos.css" rel="stylesheet">
+
     <!-- Template Main CSS File -->
     <link href="resources/css/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -55,9 +59,17 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 	
-	<!-- 	타임픽커 -->
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-	<script src="resources/js/plugin/datepicker/bootstrap-datepicker.js"></script>
+	<!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
+<!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet" href="resources/css/plugin/datepicker/bootstrap-datepicker.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="resources/js/plugin/datepicker/bootstrap-datepicker.js"></script>
+
+
+<!--한국어  달력 쓰려면 추가 로드-->
+<!-- <script src="resources/js/plugin/datepicker/bootstrap-datepicker.ko.min.js"></script> --> 
 
 </head>
 
@@ -85,24 +97,6 @@
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
     </div>
     <div id="preloader"> </div>
-    
-	<!--    	약 예약 메모 시작 -->
-   	<div id="modalWrap">
-	  <div id="modalContent">
-	    <div id="modalBody">
-	      <span id="closeBtn">&times;</span>
-	      <div>
-			<input type="text" id="time1" name="time1" class="form-control" style="width:200px;">
-	      </div>
-   	      <div>
-			<input type="text" class="form-control mediMemo" style="width:200px;">
-			<button type="button" class="btn btn-primary enroll" onclick="enroll()">등록</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!--    	약 예약 메모 끝  -->
-    
     <!-- Vendor JS Files -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -113,8 +107,7 @@
     <!-- Template Main JS File -->
     <script src="resources/js/main.js"></script>
 	<script src="resources/js/calendar.js"></script>
-	<!-- 	타임픽커 -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 </body>
 
 </html>
@@ -186,46 +179,5 @@ h2 {
   transform: rotate(45deg);
 }
 
-/* 약 메모 css */
-/* 모달팝업을 감싸고 있는 최상위 부모 */
-#modalWrap {
-  position: fixed; /* Stay in place */
-  display:none;
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* 모달 팝업창 */
-#modalBody {
-  width: 500px;
-  height: 300px;
-  padding: 30px 30px;
-  margin: 0 auto;
-  border: 1px solid #777;
-  background-color: #fff;
-}
-
-/* 닫기 버튼 */
-#closeBtn {
-  float:right;
-  font-weight: bold;
-  color: #777;
-  font-size:25px;
-  cursor: pointer;
-}
-.enroll{
-  width:40%;
-  height:50px;
-}
-
-.mediMemo{
-  margin-top:10px;
-  margin-bottom:10px;
-}
 </style>
