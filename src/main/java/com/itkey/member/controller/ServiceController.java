@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itkey.controller.HomeController;
+import com.itkey.enquire.EnquireService;
+import com.itkey.enquire.EnquireVo;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
@@ -41,6 +43,8 @@ public class ServiceController {
     private LoginService loginService;
 	@Autowired
 	private PhoneService phoneService;
+	@Autowired
+	private EnquireService enquireService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -108,10 +112,38 @@ public class ServiceController {
 		}
 		return mv;
 	}
-	
     @RequestMapping("/cancelAuth")
-    public String searchDrugName() throws Exception{
+    public String cancelAuth() throws Exception{
     	// 핸드폰 본인인증 후 해지문의 글쓰기로 이동
     	return "cancelAuth";
     }
+	
+    // 해지문의 글쓰기
+    @RequestMapping("/cancelWrite") 
+    public String cancelWrite() throws Exception{
+    	
+    	return "cancelWrite";
+    }
+    
+	// 해지문의 글 등록
+ 	@ResponseBody
+ 	@PostMapping(value = "/cancelWriteOk")
+ 	public String cancelWriteOk(EnquireVo eVO, HttpSession session) throws Exception {
+ 		logger.info("문의 등록  ajax data : " + eVO);
+
+ 		//세션값 불러오기
+ 		String member = (String) session.getAttribute("member");
+ 	    logger.info(member);
+ 		eVO.setWriter(member);
+
+ 		logger.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
+ 		int result = enquireService.insertCancel(eVO);
+ 		logger.info("* insertAsk [CONTROLLER] out �뼳 (Service) : " + result);
+
+ 		if (result == 1) {
+ 			return "success";
+ 		} else {
+ 			return "FAIL";
+ 		}
+ 	}
 }

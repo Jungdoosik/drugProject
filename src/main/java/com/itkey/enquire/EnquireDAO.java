@@ -134,6 +134,14 @@ public class EnquireDAO {
 		return sqlSession.selectOne("enquire.enquireDetail", params);
 	}
 
+	// 서비스 해지 문의 글쓰기
+	public int insertCancel(EnquireVo eVO) {
+		log.info("* [DAO] Input  ◀ (Service) : " + eVO.toString());
+		int result = sqlSession.insert("enquire.insertCancel", eVO);
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
+		return result;
+	}
+
 	/*
 	 * // ■ 결제내역 가져오기 List<CreditDTO> historyCredit(String id) throws Exception;
 	 */

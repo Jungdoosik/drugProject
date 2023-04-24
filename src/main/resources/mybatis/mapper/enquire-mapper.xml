@@ -225,5 +225,18 @@
 		WHERE SEQ = #{seq}
 	</select>
 	
-	
+	<!-- 서비스 해지 글쓰기 -->
+	<insert id="insertCancel" parameterType="EnquireVo">
+		INSERT INTO cancel_enquire (
+			title, 
+			writer,
+			question, 
+			q_date,
+			delyn,
+			service_code
+			) 
+		values 
+			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
+
+	</insert>
 </mapper>
