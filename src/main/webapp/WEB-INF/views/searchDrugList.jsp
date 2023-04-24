@@ -124,7 +124,11 @@ th:first-child, td:first-child {
       document.detailData.updateDe.value = $('input[name="updateDe' +itemSeq+ '"]').val()
       document.detailData.itemImage.value = $('input[name="itemImage' +itemSeq+ '"]').val()
        
+<<<<<<< HEAD
       window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=, left=, width=800, height=850')
+=======
+      window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=100, left=200, width=800, height=850')
+>>>>>>> parent of bf8b0ab (detail/팝업->제 화면)
       document.detailData.action = '/detail'
 	  document.detailData.target='winName';
       document.detailData.submit()
