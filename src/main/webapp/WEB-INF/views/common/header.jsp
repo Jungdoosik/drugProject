@@ -40,6 +40,7 @@ body {
 					            <ul>
 					              <li><a href="modify">정보 수정</a></li>
 					              <li><a href="question">1:1 문의</a></li>
+					              <li><a href="calendar">캘린더</a></li>
 					              <!-- <li><a href="index">결제 내역</a></li> -->
 					            </ul>
 					          </li>
