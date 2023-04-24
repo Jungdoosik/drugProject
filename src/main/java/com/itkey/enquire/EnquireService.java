@@ -47,4 +47,6 @@ public interface EnquireService {
 	//문의내역
 	EnquireVo enquireDetail(Map<String, Object> params) throws Exception;
 	
+	// ■ 서비스 해지 문의 등록
+	public int insertCancel(EnquireVo eVO) throws Exception;
 }

@@ -48,10 +48,6 @@ public class EnquireServiceImpl implements EnquireService{
 		return result;
 	}
 	
-
-
-
-	
 	@Override
 	public void registerEnquireCS(EnquireVo param) throws Exception {
 		log.info("서비스 해지문의 등록");
@@ -118,9 +114,21 @@ public class EnquireServiceImpl implements EnquireService{
 		
 		return eDAO.enquireDetail(params);
 	}
+
+	// 서비스 해지 문의 글쓰기
+	@Override
+	public int insertCancel(EnquireVo eVO) throws Exception {
+		log.info("해지 문의 등록 * [SERVICE] Input  ◀ (Controller) : " + eVO.toString());
+		int result = eDAO.insertCancel(eVO);
+		log.info("해지 등록 * [SERVICE] Output ◀ (DAO) : " + result);
+		return result;
+	}
 	
 	/*@Override
 	public List<CreditDTO> historyCredit(String id) throws Exception {
 		return eDAO.historyCredit(id);
 	}*/
+	
+	
+	
 }
