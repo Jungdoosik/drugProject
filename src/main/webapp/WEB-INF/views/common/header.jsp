@@ -12,7 +12,7 @@ body {
 	background: #0e1d34;
 }
 </style>
-
+ 
 <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -40,6 +40,7 @@ body {
 					            <ul>
 					              <li><a href="modify">정보 수정</a></li>
 					              <li><a href="question">1:1 문의</a></li>
+					              <li><a href="calendar">캘린더</a></li>
 					              <!-- <li><a href="index">결제 내역</a></li> -->
 					            </ul>
 					          </li>
