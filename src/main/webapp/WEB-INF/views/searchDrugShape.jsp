@@ -281,6 +281,18 @@
         	$('.textDiv4').css('background-color','white')
         	$(e).css('background-color','#d3d3d3')
         }
+        
+        function resetSearch(){
+        	$('.textDiv1').css('background-color','white')
+        	$('.textDiv2').css('background-color','white')
+        	$('.textDiv3').css('background-color','white')
+        	$('.textDiv4').css('background-color','white')
+        	document.searchForm.selectShape.value = ''
+        	document.searchForm.selectColor.value = ''
+        	document.searchForm.selectDrugForm.value = ''
+        	document.searchForm.selectLine.value = ''
+        	
+        }
     </script>
 
 </head>
@@ -571,7 +583,8 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
 				</div>
 
 				<div  style="text-align:right;">
-				<button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
+				<button type="button" class="btn btn-primary1" onclick="resetSearch()"> 검색초기화</button>
+				<button type="button" class="btn btn-primary" onclick="itemDataSearch()"> 검색</button>
 				</div>
 			</form>
 

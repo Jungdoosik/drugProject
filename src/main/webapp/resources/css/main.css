@@ -1760,6 +1760,11 @@ section {
   padding: 15px 30px;
 }
 
+.hero form .btn-primary1 {
+  background-color: #d3d3d3;
+  padding: 15px 30px;
+}
+
 .hero form .btn-primary:hover {
   background-color: #2756ff;
 }
