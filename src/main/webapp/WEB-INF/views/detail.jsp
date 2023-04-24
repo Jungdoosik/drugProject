@@ -18,7 +18,8 @@
     <script>
         /* 팝업닫기 */
         function closeDrugInfoPopup() {
-            window.close();
+            //window.close();
+        	history.go( -1 );
         }
         function decomposeFontSize($container) {
             var fontSize = $container.css('fontSize');
@@ -131,12 +132,12 @@
                     <h2>상세정보</h2>
                 </div>
                 <div class="title">
-                    <h4 class="popupConTitle">
+                    <h5 class="popupConTitle">
                             <strong>제품명 : ${list.itemName }</strong>
                         <br>
                             <strong>품목기준코드 : ${list.itemSeq }</strong>
                         <br>
-                    </h4>
+                    </h5>
                 </div>
             </div>
         </div>
