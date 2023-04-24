@@ -456,7 +456,7 @@ a.xi-minus-circle:after {content: "";padding-right: 20px;background: url("../../
 	/* .mt20,.drug_info_mid .info_box{margin-top:0px !important;} */
 	.s-title{margin-bottom: 20px;}
 	.drug_header .title h1{padding-top: 10px; font-size: 20px;}
-	.drug_header .title h5{font-size: 15px;}
+	.drug_header .title h4{font-size: 15px;}
 	.btn_mob button{padding: 0;}
 	.btn_mob button span{text-indent: -9999px; background-position: 50% 50% !important;}
 	.btn_mob100{width:100%; margin:0;}
@@ -472,7 +472,7 @@ a.xi-minus-circle:after {content: "";padding-right: 20px;background: url("../../
     .drug_header .inner {padding-left: 20px;}
 	.drug_header .inner > .title { padding: 0;}
 	.drug_header .inner > .title h1 { width: 89%;}
-	.drug_header .inner > .title h5 { width: 110%;}
+	.drug_header .inner > .title h4 { width: 110%;}
 	.drug_header-pics{position:relative; margin: 0 0 15px 0;  width: 97%;}
 }
 @media screen and (max-width: 480px) {
@@ -506,7 +506,7 @@ a.xi-minus-circle:after {content: "";padding-right: 20px;background: url("../../
 	.drug_header_2{ height:142px;   }
 	.drug_header_2 .inner{  padding-top:76px;}
 	.drug_header_2 + .drug_container{   padding-top:80px;   }
-	h5.popupConTitle{   font-size:15px; }
+	h4.popupConTitle{   font-size:15px; }
 }
 @media screen and (max-width: 320px) {
 	.drug_header .druginfo_btn {width:320px;}

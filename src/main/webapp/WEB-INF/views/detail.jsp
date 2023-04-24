@@ -132,12 +132,12 @@
                     <h2>상세정보</h2>
                 </div>
                 <div class="title">
-                    <h5 class="popupConTitle">
+                    <h4 class="popupConTitle">
                             <strong>제품명 : ${list.itemName }</strong>
                         <br>
                             <strong>품목기준코드 : ${list.itemSeq }</strong>
                         <br>
-                    </h5>
+                    </h4>
                 </div>
             </div>
         </div>
