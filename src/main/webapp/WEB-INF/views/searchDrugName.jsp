@@ -77,29 +77,22 @@
 
         xhrd.send('');
     })
-        /* function itemDataSearch() {
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
+         
+    
+    
+   	 function itemDataSearch() {
+            if(document.frm.searchName.value == '') {
+        		alert("검색어를 입력해주세요.")
         		return false
         	} 
-        	 if(document.frm.searchName.value == '') {
-        		alert("검색어를 선택해주세요.")
-        		return false
-        	} 
-        	console.log(document.frm.searchName.value)
-        	console.log(document.frm.selectKnd.value)
             document.frm.action = '/searchDrugList';
             document.frm.submit()
 
-        }  */
+        }
         
         function searchEvt(){
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	}
         	if(document.frm.searchName.value == '') {
-        		alert("분류를 선택해주세요.")
+        		alert("검색어를 입력해주세요.")
         		return false
         	}
         	
@@ -107,13 +100,7 @@
             document.frm.submit()
         }
         
-        function searchDrugName(){
-        	location.href = "/searchDrugName"
-        }
         
-        function searchDrugShape(){
-        	location.href = "/searchDrugShape"
-        }
     </script>
 
 </head>
@@ -158,43 +145,12 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
-                <div class="row gy-4 d-flex justify-content-between" style="margin-top:auto; padding-top:">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h2 data-aos="fade-up"> 안전하게 복약하세요.</h2>
-                        <p data-aos="fade-up" data-aos-delay="100">
-                            드시고 계신 약의 정확한 성분을 알고 계시나요?
-                        </p>
-
-                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
-
-                            <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
-                                <button type="button" class="btn btn-primary" onclick="searchDrugName()" style="width: 40%;"> 검색</button>
-                                <button type="button" class="btn btn-primary" onclick="searchDrugShape()" style="width: 40%;"> 모양</button>
+                <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
+                            <div class="form-search d-flex align-items-stretch">
+                                <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
+                                <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
                             </div>
                         </form>
-
-                        <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
-
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 종류</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                            <div class="col-lg-3 col-6">
-                                <div class="stats-item text-center w-100 h-100">
-                                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"> </span>
-                                    <p> 성분</p>
-                                </div>
-                            </div><!-- End Stats Item -->
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                        <img src="resources/img/hero-img.png" class="img-fluid mb-3 mb-lg-0" alt="">
-                    </div>
-
-                </div>
             </div>
         </section><!-- End Hero Section -->
         <main id="main">

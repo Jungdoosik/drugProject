@@ -82,16 +82,16 @@
         		alert("분류를 선택해주세요.")
         		return false
         	} 
-        	 if(document.frm.searchName.value == '') {
+        	/* if(document.frm.searchName.value == '') {
         		alert("검색어를 선택해주세요.")
         		return false
-        	} 
+        	} */
         	console.log(document.frm.searchName.value)
         	console.log(document.frm.selectKnd.value)
             document.frm.action = '/searchDrugList';
             document.frm.submit()
 
-        }  */
+        } */
         
         function searchEvt(){
         	if(document.frm.selectKnd.value == '') {
@@ -107,11 +107,11 @@
             document.frm.submit()
         }
         
-        function searchDrugName(){
+        function searchName(){
         	location.href = "/searchDrugName"
         }
         
-        function searchDrugShape(){
+        function searchShape(){
         	location.href = "/searchDrugShape"
         }
     </script>
@@ -168,8 +168,8 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                         <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
 
                             <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
-                                <button type="button" class="btn btn-primary" onclick="searchDrugName()" style="width: 40%;"> 검색</button>
-                                <button type="button" class="btn btn-primary" onclick="searchDrugShape()" style="width: 40%;"> 모양</button>
+                                <button type="button" class="btn btn-primary" onclick="searchName()" style="width: 40%;"> 검색</button>
+                                <button type="button" class="btn btn-primary" onclick="searchShape()" style="width: 40%;"> 모양</button>
                             </div>
                         </form>
 
