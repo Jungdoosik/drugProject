@@ -150,7 +150,9 @@ public class LoginController {
 	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
 		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
 
-		phoneService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
+		//phoneService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
+		
+		logger.info("인증번호 : " + Integer.toString(randomNumber));
 		
 		return Integer.toString(randomNumber);
 	}

@@ -104,7 +104,7 @@ function joinChk() {
 /*
  * 인증번호 발송
  */
-function requestAuth(){
+function requestAuth(act){
 	
 /*	var csrfHeaderName = $('#csrfHeaderName').val();
 	var csrfTokenValue = $('#csrfTokenValue').val();
@@ -117,42 +117,46 @@ function requestAuth(){
 			 return false;
 		 } 
 	
-	
-	var idStatus = "no";
-	var val = true;
-	// 휴대전화번호 중복(가입여부) 확인
-	$.ajax({
-		url: "joinChk.do",
-		type: "POST",
-		async: false,
-		data: {
-			phone: phone
-		},
-		success: function(data) {
-			if (data == 0) {
-				idStatus = "ok";
-			} else if (data == 2) {
-				idStatus = "del";
-			} else {
-				idStatus = "no";
+	if (act == 'join') {
+		var idStatus = "no";
+		var val = true;
+		// 휴대전화번호 중복(가입여부) 확인
+		$.ajax({
+			url: "joinChk.do",
+			type: "POST",
+			async: false,
+			data: {
+				phone: phone
+			},
+			success: function(data) {
+				if (data == 0) {
+					idStatus = "ok";
+				} else if (data == 2) {
+					idStatus = "del";
+				} else {
+					idStatus = "no";
+				}
 			}
+		});
+		
+		if (idStatus == "no") {
+			alert("중복된 아이디입니다.");
+			val = false;
+		} else if (idStatus == "del") {
+			alert("탈퇴한 아이디입니다.(사용불가)");
+			val = false;
 		}
-	});
-	
-	if (idStatus == "no") {
-		alert("중복된 아이디입니다.");
-		val = false;
-	} else if (idStatus == "del") {
-		alert("탈퇴한 아이디입니다.(사용불가)");
-		val = false;
+	} else if (act == 'cancel') {
+		val = true;
 	}
+	
 	
 	if (val == false) {
 		return false;
 	} else {
 		
 		$.ajax({
-			type : 'POST', 
+			type : 'GET', 
 			url : "/phoneCheck",
 			data : {
 				phone : phone,
@@ -164,9 +168,9 @@ function requestAuth(){
 			},
 			error : function() {
 				alert("문자발송 error");
-				//$('#authReq').attr('value', "0");
+				$('#authReq').attr('value', "0");
 				$('#authReq').attr('value', "1");
-				num = '0000';
+				//num = '0000';
 			}
 		});
 		
@@ -200,7 +204,35 @@ function confirmAuth(){
 		alert("인증번호가 정상적으로 확인되었습니다.");
 		$('#authChk').attr('value', "1");
 	}else {
-		alert("인증번호가 다릅니다.");
+		alert("인증번호가 다릅니다. 다시 확인해주시기 바랍니다.");
 		return false;
+	}
+}
+
+/*
+ * 본인인증 버튼 클릭
+ */
+function authOK() {
+	var authReq = $("#authReq").val();
+	var authChk = $("#authChk").val();
+	
+	if (authReq== '' || authChk== '' || authReq== '0' || authChk== '0') {
+		alert("본인인증을 완료하셔야 해지가 가능합니다.");
+		return false;
+	}
+	
+	alert("본인인증이 완료되었습니다.");
+	location.href='enquireWriteView';
+	
+}
+
+/*
+ * 본인인증-취소 버튼 클릭
+ */
+function authCancel() {
+	if (!confirm("작성하신 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
+	    //history.go( -1 );
+	 }else { // 예
+		 history.go( -1 );
 	}
 }
