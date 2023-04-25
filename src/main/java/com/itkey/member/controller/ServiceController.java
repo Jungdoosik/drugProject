@@ -151,8 +151,14 @@ public class ServiceController {
  	}
  	
     @RequestMapping("/servicesJoin") 
-    public String servicesJoin() throws Exception{
-    	
+    public String servicesJoin(HttpSession session) throws Exception{
+    	MemberVo mVO = new MemberVo();
+    	String member = (String) session.getAttribute("member");
+		mVO = loginService.loginDo(member);
+		
+		String subScribe = mVO.getSubscribe(); 
+		session.setAttribute("subScribe", subScribe);
+		
     	return "servicesJoin";
     }
 }
