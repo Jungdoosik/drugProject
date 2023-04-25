@@ -154,10 +154,13 @@ public class ServiceController {
     public String servicesJoin(HttpSession session) throws Exception{
     	MemberVo mVO = new MemberVo();
     	String member = (String) session.getAttribute("member");
-		mVO = loginService.loginDo(member);
+		if (member != null) {
+			mVO = loginService.loginDo(member);
+			
+			String subScribe = mVO.getSubscribe(); 
+			session.setAttribute("subScribe", subScribe);
+		}
 		
-		String subScribe = mVO.getSubscribe(); 
-		session.setAttribute("subScribe", subScribe);
 		
     	return "servicesJoin";
     }
