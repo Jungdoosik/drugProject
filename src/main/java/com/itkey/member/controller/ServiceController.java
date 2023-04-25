@@ -85,7 +85,10 @@ public class ServiceController {
 			result.println(""
 					+ "<script>"
 					+ "if(!confirm('서비스에 가입되어 있지 않습니다.서비스를 가입하시겠습니까?')){"
-					+ "history.back()}; </script>");
+					+ "history.back()}"
+					+ "else {"
+					+ "document.location = 'servicesJoin'"
+					+ "}; </script>");
 			result.flush();
 			mv.setViewName("index");
 		}else {

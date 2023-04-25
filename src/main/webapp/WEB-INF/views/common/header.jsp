@@ -45,11 +45,11 @@ body {
 					          </li>
                         </c:if>
                         <c:if test="${not empty member }">
-                        	<li class="dropdown"><a href="#"><span>문의하기</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        	<li class="dropdown"><a href="#"><span>1:1 문의</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
 					            <ul>
-					              <li><a href="question">1:1 문의</a></li>
+					              <li><a href="question">일반 문의</a></li>
 					              <li><a href="memberWithdrawal">회원탈퇴 문의</a></li>
-					              <li><a href="cancel">서비스 해지</a></li>
+					              <li><a href="cancel">서비스해지 문의</a></li>
 					            </ul>
 					          </li>
                         </c:if>
