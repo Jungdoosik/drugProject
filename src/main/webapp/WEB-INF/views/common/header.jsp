@@ -55,6 +55,7 @@ body {
                         </c:if>
                         
                         <li> <a href="services"> 서비스 소개</a> </li>
+                        <li> <a href="servicesJoin"> 서비스 가입</a> </li>
                         <li>  </li>
                     </ul>
                 </nav><!-- .navbar -->
