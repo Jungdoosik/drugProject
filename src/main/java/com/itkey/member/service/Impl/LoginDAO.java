@@ -48,5 +48,8 @@ public class LoginDAO {
 		return sqlSession.insert("member.insertCredit",params);
 	}
 	
-
+	public int updateSub(String phone) throws Exception {
+		int result = sqlSession.update("updateSub",phone);
+		return result;
+	}
 }

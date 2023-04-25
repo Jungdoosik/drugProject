@@ -161,4 +161,30 @@ public class ServiceController {
 		
     	return "servicesJoin";
     }
+    
+    @ResponseBody
+    @RequestMapping(value = "/paymentOk", method = RequestMethod.POST)
+    public String paymentOk(@RequestParam Map<String, Object> params, HttpServletResponse response, HttpSession session) throws Exception {
+    	ModelAndView mv = new ModelAndView();
+    	String member = (String) session.getAttribute("member");
+    	
+    	params.put("phone", member);
+    	int result = loginService.insertCredit(params);
+    	logger.debug("결제정보 DB 저장/insertCredit : " + result);
+    	if (result==1) {
+    		int result1 = loginService.updateSub(member);
+    		logger.debug("서비스 가입정보 DB 저장/updateSub : " + result1);
+    		if (result1==1) {
+    			result= result1;
+        	} else {
+        		result= result1;
+        	}
+    	}
+    	return String.valueOf(result);
+    }
+    
+    @RequestMapping(value = "/servicesJoinOk", method = RequestMethod.GET)
+    public String servicesJoinOk() throws Exception{
+    	return "servicesJoinOk";
+    }
 }

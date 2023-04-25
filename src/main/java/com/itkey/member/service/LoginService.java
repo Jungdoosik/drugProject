@@ -14,4 +14,6 @@ public interface LoginService {
 	
 	public int insertMem(Map<String, Object> params) throws Exception;
 	public int insertCredit(Map<String, Object> params) throws Exception;
+	
+	public int updateSub(String phone) throws Exception;
 }

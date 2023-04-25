@@ -56,19 +56,39 @@ function iamport(){
 	}, function(rsp) {
 		if ( rsp.success ) {
 			console.log(rsp)
-			var cuid = customer_uid
-			var muid = merchant_uid
-			var price = itemPrice
-			var title = itemTitle
-			openReg(cuid, muid, price, title);
+			pass(rsp);
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
-			basicModal(msg);
+			alert(msg);
 		}
 	});
 }
 
+/**
+ * 결제 데이터 DB 저장
+ */
+function pass(rsp) {
+	$.ajax({
+		type: "post",
+		url: "/paymentOk",
+		data: {
+			muid : rsp.merchant_uid,
+			itemPrice : rsp.paid_amount,
+			itemTitle : rsp.name
+		},
+		success: function (data) {
+			console.log(data);
+			if (data==1){
+				// 실질적인 결제 및 정액제 유료회원 처리
+				location.href='servicesJoinOk';
+			}else {
+				console.log("결제 정보 저장 실패");
+				location.href='servicesJoin';
+			}
+		}
+	});
+}
 
 // intro - iamport()
 function iamport1(){
