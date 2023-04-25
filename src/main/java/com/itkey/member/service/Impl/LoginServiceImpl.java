@@ -55,8 +55,8 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.insertCredit(params);
 	}
 	@Override
-	public int updateSub(String phone) throws Exception {
-		int result = loginDAO.updateSub(phone);
+	public int updateSub(Map<String, Object> params) throws Exception {
+		int result = loginDAO.updateSub(params);
 		return result;
 	}
 

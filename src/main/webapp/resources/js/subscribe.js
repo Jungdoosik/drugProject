@@ -73,6 +73,7 @@ function pass(rsp) {
 		type: "post",
 		url: "/paymentOk",
 		data: {
+			cuid : rsp.customer_uid,
 			muid : rsp.merchant_uid,
 			itemPrice : rsp.paid_amount,
 			itemTitle : rsp.name

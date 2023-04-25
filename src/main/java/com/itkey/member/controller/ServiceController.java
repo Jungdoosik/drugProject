@@ -175,7 +175,7 @@ public class ServiceController {
     	int result = loginService.insertCredit(params);
     	logger.debug("결제정보 DB 저장/insertCredit : " + result);
     	if (result==1) {
-    		int result1 = loginService.updateSub(member);
+    		int result1 = loginService.updateSub(params);
     		logger.debug("서비스 가입정보 DB 저장/updateSub : " + result1);
     		if (result1==1) {
     			result= result1;
