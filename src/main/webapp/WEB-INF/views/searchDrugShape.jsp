@@ -18,7 +18,7 @@
 	display: block;
 	    height: 30px;
 	    margin: 0 auto;
-	    background-image: url(/resources/img/shape/icons8-hexagon-32.png);
+	    background-image: url(/resources/img/shape/icons8-타원-32.png);
 	    background-repeat: no-repeat;
 	    background-position-x: center;
 	    }
@@ -211,14 +211,14 @@
     	
     	console.log(document.searchForm.selectShape.value)
     	var xhrd = new XMLHttpRequest();
-        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
+        var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
         var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
-        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('타이레놀');
+        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('');
         queryParamsd += '&' + encodeURIComponent('prduct') + '=' + encodeURIComponent(''); 
         queryParamsd += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
         queryParamsd += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
         queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
-        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('20'); 
+        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3000'); 
         queryParamsd += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent('');
         queryParamsd += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json');  
         xhrd.open('GET', urld + queryParamsd);
@@ -239,8 +239,7 @@
         	console.log(document.searchForm.selectDrugForm.value)
         	console.log(document.searchForm.selectLine.value)
         	
-        	return false
-            document.searchForm.action = '/searchDrugList';
+            document.searchForm.action = '/searchShapeList';
             document.searchForm.submit()
 
         } 
