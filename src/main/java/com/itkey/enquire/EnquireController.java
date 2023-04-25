@@ -84,53 +84,33 @@ public class EnquireController {
 	}
 
 	// ■ 고객 회원탈퇴 리스트(개인)
-		@GetMapping("/memberWithdrawal")
+	/*	@GetMapping("/memberWithdrawal")
 		public String memberWithdrawal( Model model
 				,HttpSession session
 				, Integer page
 				, Integer numsPerPage
 		) throws Exception {
 			log.info("문의 탈퇴  리스트");
-			// 작업 중 
+			
+			// 작업 보류
 			
 			return "/memberWithdrawalListView";
-		}
+		}*/
 	
 	
 	// ■ 고객 회원탈퇴 문의하기 페이지 
-		@GetMapping(value = "/memberWithdrawalView")
+		/*@GetMapping(value = "/memberWithdrawalView")
 		public String memberQuestionDeleteView(Model model
 				,HttpSession session
 				, HttpServletRequest request) throws Exception {
 
 			log.info("회원탈퇴 문의 페이지 ");
-			 // 작업중 
+			 // 작업 보류
 			return "/memberWithdrawalView";
 			
-		}
+		}*/
 		
-		// ■ 고객 회원탈퇴 문의 등록
-		@ResponseBody
-		@PostMapping(value = "/memberWithdrawal.do")
-		public String insertMemberWithdrawal(EnquireVo eVO, HttpSession session) throws Exception {
-			log.info("문의 등록  ajax data : " + eVO);
-
-			//세션값 불러오기
-			String member = (String) session.getAttribute("member");
-		     log.info(member);
-			eVO.setWriter(member);
-
-			log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
-			//int result = eService.insertMemberWithdrawal(eVO);
-			//log.info("* insertAsk [CONTROLLER] out �뼳 (Service) : " + result);
-		    int result=1;// 작업 예정
-		  
-			if (result == 1) {
-				return "success";
-			} else {
-				return "FAIL";
-			}
-		}
+	
 		
 		
 	
