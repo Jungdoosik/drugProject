@@ -16,6 +16,7 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -93,8 +94,17 @@
 			});
 		});
 	}
-	$(document).ready(function() {
-	});
+	
+	function drugUse(itemSeq){
+		$.ajax({
+			url: "/drugUse",
+			type: "POST",
+			data: $('#drugUseForm').serialize(),
+			success: function(data) { 
+				
+			}
+		})
+	}
 </script>
 <style>
 body, html {
@@ -127,9 +137,14 @@ body, html {
 	display:block;
 	margin-bottom:10px;
 }
+
 </style>
 </head>
 <body>
+	<form id="drugUseForm" name="drugUseForm" method="post">
+		<input type="hidden" name="itemSeq" value="${list.itemSeq }">
+		<input type="hidden" name="itemName" value="${list.itemName }">
+	</form> 
 	<!-- drug_wrap -->
 	<div class="drug_wrap">
 		<!-- drugHeader -->
@@ -155,7 +170,7 @@ body, html {
 					<div class="sec_top fr-on div_fr _preview_ee">
 						<h2 class="cont_title2 fl">기본정보</h2>
 					</div>
-					<div class="info_box" id="_ee_doc1">
+					<div class="info_box" id="_ee_doc1" style="line-height: 30px;">
 						<span class="content-text"><strong>제품명</strong> : ${list.itemName }</span> 
 						<span class="content-text"><strong>성상</strong> : ${body1.items[0].CHART }</span>
 						<span class="content-text"><strong>업체명</strong> : ${body1.items[0].ENTP_NAME }</span>
@@ -178,6 +193,15 @@ body, html {
 					<div class="explan_right">
 						<!-- <img th:src="@{/resources/images/contents/sample.jpg}" th:alt="|${item.itemName} 낱알이미지|" /> -->
 						<%-- <img width="220" height="130" src=${list.itemImage } alt=${list.itemName }/> --%>
+					</div>
+				</div>
+				<!-- / 문항2 / -->
+				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
+					<div class="sec_top fr-on div_fr _preview_ee">
+						<h3 class="cont_title2 fl">약 사용법</h3>
+					</div>
+					<div class="info_box" id="_ee_doc2">
+						<button type="button" onclick="drugUse(${list.itemSeq})" >e약은요</button>
 					</div>
 				</div>
 				<!-- <script>
@@ -215,7 +239,8 @@ body, html {
 					<div class="sec_top fr-on div_fr _preview_ee" style="padding-top: 15px;">
 						<c:set var="materialTitle" value="${fn:split(body1.items[0].MATERIAL_NAME ,';')}" />
 						<c:set var="material" value="${fn:split(materialTitle[0] ,'|')}" />
-						<strong>${material[0] }</strong>
+						<c:set var="amount" value="${fn:split(material[0] ,' ')}" />
+						<strong>${amount[2] }</strong>
 					</div>
 					
 					
@@ -265,24 +290,42 @@ body, html {
                             </tbody>
                         </table>
 					</div>
+					<div style="margin-top:10px;">
+						<strong>첨가제 : ${body1.items[0].INGR_NAME }</strong>
+					</div>
 				</div>
 				<!-- / 문항2 / -->
 				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
 					<div class="sec_top fr-on div_fr _preview_ee">
-						<h3 class="cont_title2 fl">이 약은 어떻게 사용합니까?</h3>
+						<h3 class="cont_title2 fl">효능효과</h3>
 					</div>
 					<div class="info_box" id="_ee_doc2">
-						<p>${list.useMethodQesitm }</p>
+					<c:set var="data1" value='${body1.items[0].EE_DOC_DATA.replaceAll("[^가-힣]"," ")}' />
+					<c:set var="eeDocData" value='${data1.replaceAll("효능효과"," ")}' />
+						<p>${eeDocData }</p>
+					</div>
+				</div>
+				<!-- / 문항2 / -->
+				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
+					<div class="sec_top fr-on div_fr _preview_ee">
+						<h3 class="cont_title2 fl">용법용량</h3>
+					</div>
+					<div class="info_box" id="_ee_doc2">
+					<c:set var="data2" value='${body1.items[0].UD_DOC_DATA.replaceAll("[^가-힣]"," ")}' />
+					<c:set var="udDocData" value='${data2.replaceAll("용법용량"," ")}' />
+						<p>${udDocData }</p>
 					</div>
 				</div>
 				<!-- / 문항3 / -->
 				<!-- / 문항4 / -->
 				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_05">
 					<div class="sec_top fr-on div_fr _preview_ee">
-						<h3 class="cont_title2 fl">이 약의 사용상 주의사항은 무엇입니까?</h3>
+						<h3 class="cont_title2 fl">사용상의주의사항</h3>
 					</div>
 					<div class="info_box" id="_ee_doc4">
-						<p>${list.atpnQesitm }</p>
+					<c:set var="data3" value='${body1.items[0].NB_DOC_DATA.replaceAll("[^가-힣]"," ")}' />
+					<c:set var="nbDocData" value='${data3.replaceAll("사용상의주의사항"," ")}' />
+						<p>${nbDocData }</p>
 					</div>
 				</div>
 				<!-- / 문항5 / -->
@@ -290,10 +333,16 @@ body, html {
 				<!-- / 문항7 / -->
 				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_08">
 					<div class="sec_top fr-on div_fr _preview_ee">
-						<h3 class="cont_title2 fl">이 약은 어떻게 보관해야 합니까?</h3>
+						<h3 class="cont_title2 fl">재심사, RMP, 보험, 기타정보</h3>
 					</div>
-					<div class="info_box" id="_ee_doc7">
-						<p>${list.depositMethodQesitm }</p>
+					<div class="info_box" id="_ee_doc1" style="line-height: 30px;">
+						<span class="content-text"><strong>저장방법</strong> : ${body1.items[0].STORAGE_METHOD }</span> 
+						<span class="content-text"><strong>사용기간</strong> : ${body1.items[0].VALID_TERM }</span>
+						<span class="content-text"><strong>재심사대상</strong> : ${body1.items[0].REEXAM_TARGET }</span>
+						<span class="content-text"><strong>RMP대상</strong> :</span>
+						<span class="content-text"><strong>포장정보</strong> : ${body1.items[0].PACK_UNIT }</span>
+						<span class="content-text"><strong>보험약가</strong> : </span>
+						<span class="content-text"><strong>ATC코드</strong> : ${body1.items[0].ATC_CODE }</span>
 					</div>
 				</div>
 			</div>
