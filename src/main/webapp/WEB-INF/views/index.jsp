@@ -53,59 +53,6 @@
         }
     </style>
     <script>
-    $(function(){
-    	var xhrd = new XMLHttpRequest();
-        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
-        var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
-        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('타이레놀');
-        queryParamsd += '&' + encodeURIComponent('prduct') + '=' + encodeURIComponent(''); 
-        queryParamsd += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
-        queryParamsd += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
-        queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
-        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('20'); 
-        queryParamsd += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent('');
-        queryParamsd += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json');  
-        xhrd.open('GET', urld + queryParamsd);
-        xhrd.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-                var tt1 = JSON.parse(this.responseText)
-                console.log(tt1.body.items)
-                
-            }
-        };
-
-        xhrd.send('');
-    })
-        /* function itemDataSearch() {
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	} 
-        	 if(document.frm.searchName.value == '') {
-        		alert("검색어를 선택해주세요.")
-        		return false
-        	} 
-        	console.log(document.frm.searchName.value)
-        	console.log(document.frm.selectKnd.value)
-            document.frm.action = '/searchDrugList';
-            document.frm.submit()
-
-        }  */
-        
-        /* function searchEvt(){
-        	if(document.frm.selectKnd.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	}
-        	if(document.frm.searchName.value == '') {
-        		alert("분류를 선택해주세요.")
-        		return false
-        	}
-        	
-        	document.frm.action = '/searchDrugList';
-            document.frm.submit()
-        } */
         
         function searchDrugName(){
         	location.href = "/searchDrugName"

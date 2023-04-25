@@ -96,6 +96,38 @@
 	}
 	
 	function drugUse(itemSeq){
+		
+		var xhr = new XMLHttpRequest();
+		var url = 'http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList'; /*URL*/
+		var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; /*Service Key*/
+		queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+		queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); /**/
+		queryParams += '&' + encodeURIComponent('entpName') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('itemName') + '=' + encodeURIComponent(/* document.drugUseForm.itemName.value */); /**/
+		queryParams += '&' + encodeURIComponent('itemSeq') + '=' + encodeURIComponent(document.drugUseForm.itemSeq.value); /**/
+		queryParams += '&' + encodeURIComponent('efcyQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('useMethodQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('atpnWarnQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('atpnQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('intrcQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('seQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('depositMethodQesitm') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('openDe') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('updateDe') + '=' + encodeURIComponent(''); /**/
+		queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); /**/
+		xhr.open('GET', url + queryParams);
+		xhr.onreadystatechange = function () {
+		    if (this.readyState == 4) {
+		        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+		        
+		        var tt1 = JSON.parse(this.responseText)
+                console.log("04")
+                console.log(tt1.body.items)
+		    }
+		};
+
+		xhr.send('');
+		return false
 		$.ajax({
 			url: "/drugUse",
 			type: "POST",
