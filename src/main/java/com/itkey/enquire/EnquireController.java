@@ -83,6 +83,57 @@ public class EnquireController {
 		return "/enquire/enquireListView";
 	}
 
+	// ■ 고객 회원탈퇴 리스트(개인)
+		@GetMapping("/memberWithdrawal")
+		public String memberWithdrawal( Model model
+				,HttpSession session
+				, Integer page
+				, Integer numsPerPage
+		) throws Exception {
+			log.info("문의 탈퇴  리스트");
+			// 작업 중 
+			
+			return "/memberWithdrawalListView";
+		}
+	
+	
+	// ■ 고객 회원탈퇴 문의하기 페이지 
+		@GetMapping(value = "/memberWithdrawalView")
+		public String memberQuestionDeleteView(Model model
+				,HttpSession session
+				, HttpServletRequest request) throws Exception {
+
+			log.info("회원탈퇴 문의 페이지 ");
+			 // 작업중 
+			return "/memberWithdrawalView";
+			
+		}
+		
+		// ■ 고객 회원탈퇴 문의 등록
+		@ResponseBody
+		@PostMapping(value = "/memberWithdrawal.do")
+		public String insertMemberWithdrawal(EnquireVo eVO, HttpSession session) throws Exception {
+			log.info("문의 등록  ajax data : " + eVO);
+
+			//세션값 불러오기
+			String member = (String) session.getAttribute("member");
+		     log.info(member);
+			eVO.setWriter(member);
+
+			log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
+			//int result = eService.insertMemberWithdrawal(eVO);
+			//log.info("* insertAsk [CONTROLLER] out �뼳 (Service) : " + result);
+		    int result=1;// 작업 예정
+		  
+			if (result == 1) {
+				return "success";
+			} else {
+				return "FAIL";
+			}
+		}
+		
+		
+	
 	// ■ 고객 문의하기 : 글쓰기 insert
 	@GetMapping(value = "/enquireWriteView")
 	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request) throws Exception {
@@ -91,6 +142,7 @@ public class EnquireController {
 		return "/enquire/enquireWrite";
 
 	}
+	
 	// ■ 고객문의 등록
 	@ResponseBody
 	@PostMapping(value = "/doAsk.do")
@@ -113,6 +165,7 @@ public class EnquireController {
 		}
 	}
 
+	
 	// ■ 서비스 해지 문의 화면 (개인)
 	@GetMapping(value = "/eCS")
 	public String enquireCS(Model model) throws Exception {
@@ -300,6 +353,7 @@ public class EnquireController {
 		return "/enquire/faqList";
 	}
 	
+	//
 	@RequestMapping("/enquireDetail")
 	public String enquireDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception{
 		

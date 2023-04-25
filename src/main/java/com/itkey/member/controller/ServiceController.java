@@ -146,4 +146,10 @@ public class ServiceController {
  			return "FAIL";
  		}
  	}
+ 	
+    @RequestMapping("/servicesJoin") 
+    public String servicesJoin() throws Exception{
+    	
+    	return "servicesJoin";
+    }
 }
