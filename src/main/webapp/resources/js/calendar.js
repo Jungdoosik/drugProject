@@ -1,7 +1,37 @@
 	const makeCalendar = (date) => {
 	  const currentYear = new Date(date).getFullYear();
 	  const currentMonth = new Date(date).getMonth() + 1;
-	
+	  let resultObj = [];
+	  let obj = {};
+	  let checkDay = [0];
+	  let checkMemo = [0];
+	  let checkTime = [0];
+	  //조회
+	  $.ajax({
+		  url : "/getCalendar",
+		  type : "get",
+		  async: false,
+		  data : {calYear: currentYear, calMonth:currentMonth}, //파라미터는 year, month를 객체로 던져주면 나옴.
+		  success : function(json){
+			  console.log("json >>> " , json);
+			  for(let i = 0; i < json.length; i++){
+				  obj = {
+					  calDay: json[i].calDay,
+					  calMemo: json[i].calMemo
+				  }
+				  checkMemo.push(json[i].calMemo);
+				  checkTime.push(json[i].calTime.substr(0,5));
+				  checkDay.push(parseInt(json[i].calDay));
+				  
+			  }
+			  console.log("resultObj >>> ", resultObj);
+			  console.log("checkDay >>> ", checkDay);
+			  console.log("resultObj[0].calDay == 5 >>> ", resultObj[0].calDay == 5);
+			  
+		  }
+	  });
+	  
+	  console.log("resultObj >>> " + resultObj );
 	  const firstDay = new Date(date.setDate(1)).getDay();
 	  const lastDay = new Date(currentYear, currentMonth, 0).getDate();
 	
@@ -15,7 +45,16 @@
 	  }
 	
 	  for (let i = 1; i <= lastDay; i++) {    
-	    htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}</div>`;
+	    htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}`;
+	    	
+	    
+	    if(checkDay.indexOf(i) != -1){
+	    	console.log("?", checkDay.indexOf(i).calMemo);
+	    	let idx = checkDay.indexOf(i)
+	    	htmlDummy += `</br>${checkTime[idx]} - ${checkMemo[idx]}`;
+	    }
+	    
+	    htmlDummy += `</div>`;
 	  }
 	
 	  for (let i = limitDay; i < nextDay; i++) {
@@ -31,8 +70,9 @@
 	
 	makeCalendar(date);
 	
-	window.onload = function() {    
-		// 이 함수는 HTML 문서가 로드될 때 실행됨.
+	// 이 함수는 HTML 문서가 로드될 때 실행됨.
+	window.onload = function() {
+		
 		// 이전달 이동
 		document.querySelector(`.prevDay`).onclick = () => {
 			makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
@@ -42,13 +82,21 @@
 			makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
 		}
 		clockFunction();
+		
 	}
 	
 	//	모달창 닫기
 	const closeBtn = document.getElementById('closeBtn');
 	const modal = document.getElementById('modalWrap');
-	
-	let fullDate = ''; //전역으로 날짜 넣기 (ex: 20230627)
+
+	//전역으로 날짜 넣기 
+	let fullDate = {
+			calYear: '',
+			calMonth: '',
+			calDay: '',
+			calTime: '',
+			calMemo: ''
+	}; 
 	
 	closeBtn.onclick = function() {
 		  modal.style.display = 'none';
@@ -79,6 +127,10 @@
 		let month = dateTitle.slice(6,7);
 		let day = i;
 		
+		fullDate.calYear = year;
+		fullDate.calMonth = month;
+		fullDate.calDay = day;
+		
 		if(month < 10){
 			month = "0" + month;
 		}
@@ -86,8 +138,6 @@
 		if(day< 10){
 			day = "0" + day;
 		}
-		
-		fullDate = year + month + day;
 		
 		console.log('pickYear :: ', result);
 		
@@ -97,33 +147,28 @@
 	function enroll(){
 		let cal_time = document.querySelector("#time1").value;
 		let prefixTime = cal_time.slice(0,1)
-		
+
 		if(prefixTime != 1){
 			cal_time = "0" + cal_time;
 		}
 		
-		//년, 월, 일
-		console.log("fullDate >>> ", fullDate);
-		console.log("cal_time >>> ", cal_time);
-		
-		fullDate += ',' + cal_time;
 		
 		let mediMemo = document.querySelector(".mediMemo").value;
 		console.log(".mediMemo >>> ", mediMemo);
 		
-		//통신 시작
-		let send_data = {
-				cal_data: fullDate,
-				memo: mediMemo
-		};
+		fullDate.calMemo = mediMemo;
+		fullDate.calTime = cal_time;
 		
+		console.log("fullDate >>> ", fullDate);
+		//통신 시작
 		let flag=confirm('등록하시겠습니까?');
 		if(flag){
 			$.ajax({
 				url : "/enrollCalendar",
 				type : "post",
-				data : send_data,
+				data : fullDate,
 				success : function(json){
+					location.reload();
 				}
 			});
 		}

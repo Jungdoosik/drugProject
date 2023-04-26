@@ -1,23 +1,27 @@
 package com.itkey.controller;
 
-import java.util.HashMap;
+import java.util.List;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.itkey.member.service.CalendarService;
+import com.itkey.vo.CalendarVO;
 
 @Controller
 public class ScheduleController {
 		
 		private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	   
+		
+		@Autowired
+		CalendarService cSvc;
+		
 	    @RequestMapping("/calendar")
 	    public String calendar() {
 	    	return "calendar";
@@ -25,15 +29,19 @@ public class ScheduleController {
 	    
 
 	    @PostMapping(value = "/enrollCalendar")
-	    public @ResponseBody String enrollCal(@RequestParam("cal_data") String cal_data, @RequestParam("memo") String memo ) throws ParseException {
+	    public @ResponseBody String enrollCal(CalendarVO cVo) {
 	    	logger.debug("enrollCalendar is Running...");
-	    	logger.debug("cal_data >>> "+ cal_data);
-	    	logger.debug("memo >>> "+ memo);
+	    	logger.debug(cVo.toString());
 	    	
-	    	//db로 insert 로직 추가해야함
-	    	//service
-	    	return "enrollCalendar";
+	    	int result = cSvc.enroll(cVo);
+	    	return "hello";
 	    }
 	    
+	    @GetMapping(value = "/getCalendar")
+	    public @ResponseBody List<CalendarVO> getCalendar(CalendarVO cVo){
+	    	List<CalendarVO> list = cSvc.getCalendar(cVo);
+	    	System.out.println("list : " + list);
+	    	return list;
+	    }
 	    
 }
