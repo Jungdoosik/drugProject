@@ -3,7 +3,6 @@ package com.itkey.member.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,22 +12,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itkey.controller.DrugShapeVo;
 import com.itkey.controller.HomeController;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
-import com.itkey.util.SHA256Util;
-import org.springframework.ui.Model;
 
 
 /**
@@ -226,5 +223,53 @@ public class LoginController {
     public String searchDrugShape() throws Exception{
     	return "searchDrugShape";
     }
+    
+    @RequestMapping("/dataGogo")
+	public Map<String,Object> dataGogo(@RequestParam Map<String,Object> params, DrugShapeVo dVo) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(params);
+		int result = 0;
+		for(int i = 0; i <= 300; i++){
+			dVo.setItemSeq((String) params.get("itemSeq"+ i));
+			dVo.setItemName((String) params.get("itemName"+ i));
+			dVo.setEntpSeq((String) params.get("entpSeq"+ i));
+			dVo.setEntpName((String) params.get("entpName"+ i));
+			dVo.setChart((String) params.get("chart"+ i));
+			dVo.setItemImage((String) params.get("itemImage"+ i));
+			dVo.setPrintFront((String) params.get("printFront"+ i));
+			dVo.setPrintBack((String) params.get("printBack"+ i));
+			dVo.setDrugShape((String) params.get("drugShape"+ i));
+			dVo.setColorClass1((String) params.get("colorClass"+ i));
+			dVo.setColorClass2((String) params.get("colorClasss"+ i));
+			dVo.setLineFront((String) params.get("lineFront"+ i));
+			dVo.setLineBack((String) params.get("lineBack"+ i));
+			dVo.setLengLong((String) params.get("lengLong"+ i));
+			dVo.setLengShort((String) params.get("lengShort"+ i));
+			dVo.setThick((String) params.get("thick"+ i));
+			dVo.setImgRegistTs((String) params.get("imgRegistTs"+ i));
+			dVo.setClassNo((String) params.get("classNo"+ i));
+			dVo.setClassName((String) params.get("className"+ i));
+			dVo.setEtcOtcName((String) params.get("etcOtcName"+ i));
+			dVo.setItemPermitDate((String) params.get("itemPermitDate"+ i));
+			dVo.setFormCodeName((String) params.get("formCodeName"+ i));
+			dVo.setMarkCodeFrontAnal((String) params.get("markCodeFrontAnal"+ i));
+			dVo.setMarkCodeBackAnal((String) params.get("markCodeBackAnal"+ i));
+			dVo.setMarkCodeFrontImg((String) params.get("markCodeFrontImg"+ i));
+			dVo.setMarkCodeBackImg((String) params.get("markCodeBackImg"+ i));
+			dVo.setChangeDate((String) params.get("changeDate"+ i));
+			dVo.setMarkCodeFront((String) params.get("markCodeFront"+ i));
+			dVo.setMarkCodeBack((String) params.get("markCodeBack"+ i));
+			dVo.setItemEngName((String) params.get("itemEngName"+ i));
+			dVo.setEdlCode((String) params.get("edlCode"+ i));
+			result = loginService.dataGogo(dVo);
+		}
+		
+		if(result > 0){
+			System.out.println("ok");
+		}else{
+			System.out.println("no");
+		}
+		return map;
+	}
 }
 

@@ -410,6 +410,8 @@ public class ApiController {
 		
 		return "eDrugDetail";
 	}
+	
+	
 
 	
 		

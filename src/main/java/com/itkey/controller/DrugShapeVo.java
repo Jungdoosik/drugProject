@@ -9,12 +9,12 @@ public class DrugShapeVo {
 	private String chart;				//성상
 	private String itemImage;			//큰제품이미지
 	private String printFront;			//표시(앞)
-	private String printback;			//표시(뒤)
+	private String printBack;			//표시(뒤)
 	private String drugShape;			//의약품모양
 	private String colorClass1;			//색깔(앞)
 	private String colorClass2;			//색깔(뒤)
 	private String lineFront;			//분할선(앞)
-	private String lineback;			//분할선(뒤)
+	private String lineBack;			//분할선(뒤)
 	private String lengLong;			//크기(장축)
 	private String lengShort;			//크기(단축)
 	private String thick;				//크기(두께)
@@ -75,11 +75,11 @@ public class DrugShapeVo {
 	public void setPrintFront(String printFront) {
 		this.printFront = printFront;
 	}
-	public String getPrintback() {
-		return printback;
+	public String getPrintBack() {
+		return printBack;
 	}
-	public void setPrintback(String printback) {
-		this.printback = printback;
+	public void setPrintBack(String printBack) {
+		this.printBack = printBack;
 	}
 	public String getDrugShape() {
 		return drugShape;
@@ -105,11 +105,11 @@ public class DrugShapeVo {
 	public void setLineFront(String lineFront) {
 		this.lineFront = lineFront;
 	}
-	public String getLineback() {
-		return lineback;
+	public String getLineBack() {
+		return lineBack;
 	}
-	public void setLineback(String lineback) {
-		this.lineback = lineback;
+	public void setLineBack(String lineBack) {
+		this.lineBack = lineBack;
 	}
 	public String getLengLong() {
 		return lengLong;
@@ -223,8 +223,8 @@ public class DrugShapeVo {
 	public String toString() {
 		return "DrugShapeVo [itemSeq=" + itemSeq + ", itemName=" + itemName + ", entpSeq=" + entpSeq + ", entpName="
 				+ entpName + ", chart=" + chart + ", itemImage=" + itemImage + ", printFront=" + printFront
-				+ ", printback=" + printback + ", drugShape=" + drugShape + ", colorClass1=" + colorClass1
-				+ ", colorClass2=" + colorClass2 + ", lineFront=" + lineFront + ", lineback=" + lineback + ", lengLong="
+				+ ", printBack=" + printBack + ", drugShape=" + drugShape + ", colorClass1=" + colorClass1
+				+ ", colorClass2=" + colorClass2 + ", lineFront=" + lineFront + ", lineBack=" + lineBack + ", lengLong="
 				+ lengLong + ", lengShort=" + lengShort + ", thick=" + thick + ", imgRegistTs=" + imgRegistTs
 				+ ", classNo=" + classNo + ", className=" + className + ", etcOtcName=" + etcOtcName
 				+ ", itemPermitDate=" + itemPermitDate + ", formCodeName=" + formCodeName + ", markCodeFrontAnal="

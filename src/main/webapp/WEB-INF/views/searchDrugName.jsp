@@ -55,7 +55,7 @@
     <script>
     $(function(){
     	
-    	var xhr1 = new XMLHttpRequest();
+    	/* var xhr1 = new XMLHttpRequest();
         var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04'; 
         var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
         queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
@@ -74,7 +74,6 @@
         xhr1.open('GET', urld + queryParamsd);
         xhr1.onreadystatechange = function () {
             if (this.readyState == 4) {
-                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                 var tt1 = JSON.parse(this.responseText)
                 console.log("04")
                 console.log(tt1.body.items)
@@ -104,7 +103,6 @@
         xhr2.open('GET', urld + queryParamsd);
         xhr2.onreadystatechange = function () {
             if (this.readyState == 4) {
-                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                 var tt1 = JSON.parse(this.responseText)
                 console.log("pr03")
                 console.log(tt1.body.items)
@@ -127,7 +125,6 @@
         xhr3.open('GET', urld + queryParamsd);
         xhr3.onreadystatechange = function () {
             if (this.readyState == 4) {
-                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                 var tt1 = JSON.parse(this.responseText)
                 console.log("mc03")
                 console.log(tt1.body.items)
@@ -140,18 +137,17 @@
         var xhr4 = new XMLHttpRequest();
         var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
         var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
-        queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('티얼즈내츄럴'); 
+        queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent(''); 
         queryParams += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
         queryParams += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
         queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
-        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
-        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); 
+        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('85'); 
+        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('300'); 
         queryParams += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent(''); 
         queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); 
         xhr4.open('GET', urld + queryParams);
         xhr4.onreadystatechange = function () {
             if (this.readyState == 4) {
-                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                 var tt1 = JSON.parse(this.responseText)
                 console.log("List01")
                 console.log(tt1.body.items)
@@ -159,7 +155,7 @@
             }
         };
 
-        xhr4.send('');
+        xhr4.send(''); */
     })
          
     
@@ -184,12 +180,117 @@
             document.frm.submit()
         }
         
+        function data(){
+        	var xhr4 = new XMLHttpRequest();
+            var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
+            queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent(''); 
+            queryParams += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
+            queryParams += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
+            queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('33'); 
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('300'); 
+            queryParams += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent(''); 
+            queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); 
+            xhr4.open('GET', urld + queryParams);
+            xhr4.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
+                    var tt1 = JSON.parse(this.responseText)
+                    console.log("List01  33")
+                    console.log(tt1.body.items[0])
+                    console.log(tt1.body.items.length)
+                    
+                    var params = {}
+                    
+                    for(var i = 0; i < tt1.body.items.length; i++){
+                    	params['itemSeq'+i] = tt1.body.items[i].ITEM_SEQ
+                    	params['itemName'+i] = tt1.body.items[i].ITEM_NAME
+                    	params['entpSeq'+i] = tt1.body.items[i].ENTP_SEQ
+                    	params['entpName'+i] = tt1.body.items[i].ENTP_NAME
+                    	params['chart'+i] = tt1.body.items[i].CHART
+                    	params['itemImage'+i] = tt1.body.items[i].ITEM_IMAGE
+                    	params['printFront'+i] = tt1.body.items[i].PRINT_FRONT
+                    	params['printBack'+i] = tt1.body.items[i].PRINT_BACK
+                    	params['drugShape'+i] = tt1.body.items[i].DRUG_SHAPE
+                    	params['colorClass'+i] = tt1.body.items[i].COLOR_CLASS1
+                    	params['colorClasss'+i] = tt1.body.items[i].COLOR_CLASS2
+                    	params['lineFront'+i] = tt1.body.items[i].LINE_FRONT
+                    	params['lineBack'+i] = tt1.body.items[i].LINE_BACK
+                    	params['lengLong'+i] = tt1.body.items[i].LENG_LONG
+                    	params['lengShort'+i] = tt1.body.items[i].LENG_SHORT
+                    	params['thick'+i] = tt1.body.items[i].THICK
+                    	params['imgRegistTs'+i] = tt1.body.items[i].IMG_REGIST_TS
+                    	params['classNo'+i] = tt1.body.items[i].CLASS_NO
+                    	params['className'+i] = tt1.body.items[i].CLASS_NAME
+                    	params['etcOtcName'+i] = tt1.body.items[i].ETC_OTC_NAME
+                    	params['itemPermitDate'+i] = tt1.body.items[i].ITEM_PERMIT_DATE
+                    	params['formCodeName'+i] = tt1.body.items[i].FORM_CODE_NAME
+                    	params['markCodeFrontAnal'+i] = tt1.body.items[i].MARK_CODE_FRONT_ANAL
+                    	params['markCodeBackAnal'+i] = tt1.body.items[i].MARK_CODE_BACK_ANAL
+                    	params['markCodeFrontImg'+i] = tt1.body.items[i].MARK_CODE_FRONT_IMG
+                    	params['markCodeBackImg'+i] = tt1.body.items[i].MARK_CODE_BACK_IMG
+                    	params['changeDate'+i] = tt1.body.items[i].CHANGE_DATE
+                    	params['markCodeFront'+i] = tt1.body.items[i].MARK_CODE_FRONT
+                    	params['markCodeBack'+i] = tt1.body.items[i].MARK_CODE_BACK
+                    	params['itemEngName'+i] = tt1.body.items[i].ITEM_ENG_NAME
+                    	params['edlCode'+i] = tt1.body.items[i].EDI_CODE
+                    }
+                    
+                    console.log(params)
+                    $.ajax({
+                    	type: 'post',
+                        url : '/dataGogo',
+                        data: params,
+                        success : function(data){
+                        }
+                    })
+                }
+            };
+
+            xhr4.send('');
+        }
+        
         
     </script>
 
 </head>
 
 <body>
+
+<form id="aa" name="aa" method="post">
+	<input type="hidden" name="itemSeq" value="">
+	<input type="hidden" name="itemName" value="">
+	<input type="hidden" name="entpSeq" value="">
+	<input type="hidden" name="entpName" value="">
+	<input type="hidden" name="chart" value="">
+	<input type="hidden" name="itemImage" value="">
+	<input type="hidden" name="printFront" value="">
+	<input type="hidden" name="printBack" value="">
+	<input type="hidden" name="drugShape" value="">
+	<input type="hidden" name="colorClass1" value="">
+	<input type="hidden" name="colorClass2" value="">
+	<input type="hidden" name="lineFront" value="">
+	<input type="hidden" name="lineBack" value="">
+	<input type="hidden" name="lengLong" value="">
+	<input type="hidden" name="lengShort" value="">
+	<input type="hidden" name="thick" value="">
+	<input type="hidden" name="imgRegistTs" value="">
+	<input type="hidden" name="classNo" value="">
+	<input type="hidden" name="className" value="">
+	<input type="hidden" name="etcOtcName" value="">
+	<input type="hidden" name="itemPermitDate" value="">
+	<input type="hidden" name="formCodeName" value="">
+	<input type="hidden" name="markCodeFrontAnal" value="">
+	<input type="hidden" name="markCodeBackAnal" value="">
+	<input type="hidden" name="markCodeFrontImg" value="">
+	<input type="hidden" name="markCodeBackImg" value="">
+	<input type="hidden" name="changeDate" value="">
+	<input type="hidden" name="markCodeFront" value="">
+	<input type="hidden" name="markCodeBack" value="">
+	<input type="hidden" name="itemEngName" value="">
+	<input type="hidden" name="edlCode" value="">
+</form>
 
 <%
 // 세션값 가져오기
@@ -229,6 +330,7 @@ String id = (String) session.getAttribute("phone"); // Object 타입이므로 �
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
+            <button type="button" onclick="data()">데이타 넣기</button>
                 <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
                     <div class="form-search d-flex align-items-stretch">
                         <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
