@@ -49,7 +49,7 @@ public class ApiController {
 	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("entpName","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("itemName","UTF-8") + "=" + URLEncoder.encode(itemName, "UTF-8"));
-	        urlBuilder.append("&" + URLEncoder.encode("itemSeq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
+	        urlBuilder.append("&" + URLEncoder.encode("itemSeq","UTF-8") + "=" + URLEncoder.encode(itemSeq, "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("efcyQesitm","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("useMethodQesitm","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("atpnWarnQesitm","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
@@ -76,13 +76,13 @@ public class ApiController {
 	        
 	        JSONObject body = (JSONObject)jsonObject.get("body");
 	        System.out.println(body);
+	        Map<String, Object> map = new HashMap<String, Object>();
 	        if(body.get("items") == null){
-	        	System.out.println("no");
+	        	map.put("result", "N");
 	        }else{
-	        	System.out.println("ok");
+	        	map.put("result", "Y");
 	        }
 	    	//model.addAttribute("viewAll", boardService.selectBoard(vo));
-	        Map<String, Object> map = new HashMap<String, Object>();
 	        map.put("list", body);
 	        map.put("params", params);
 		
@@ -400,6 +400,15 @@ public class ApiController {
 	        model.addAttribute("params", params);
 		
 	        return "searchShapeList";
+	}
+	
+	@RequestMapping("/eDrugDetail")
+	public String eDrugDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception{
+		
+		System.out.println(params);
+		model.addAttribute("list", params);
+		
+		return "eDrugDetail";
 	}
 
 	

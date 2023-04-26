@@ -137,8 +137,8 @@ th:first-child, td:first-child {
       
    }
    
-   function itemDataSearch() {
-       document.searchForm.action = '/searchDrugList';
+   function searchDrugName() {
+       document.searchForm.action = '/searchDrugNameList';
        document.searchForm.submit()
 
    }
@@ -263,7 +263,7 @@ th:first-child, td:first-child {
                <form id="searchForm" name="searchForm" method="post" data-aos="fade-up" data-aos-delay="200">
                    <div class="form-search d-flex align-items-stretch mb-3">
                        <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." value="${params.searchName }">
-                       <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
+                       <button type="button" class="btn btn-primary" onclick="searchDrugName()"> Search</button>
                    </div>
                </form>
           </div><br>
