@@ -124,9 +124,9 @@ function itemDataSearch() {
     <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34; padding-top:70px;">
 		<div class="container" data-aos="fade-up" style="background-color: #ffffff;">
 
-		<c:if test="${not empty member && subScribe eq 'Y'}"><!-- 서비스 기가입시 -->
+		<c:if test="${not empty phone && subScribe eq 'Y'}"><!-- 서비스 기가입시 -->
 			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
-			<h1>${member } 님 서비스 가입하여 이용중입니다.</h1>
+			<h1>${phone } 님 서비스 가입하여 이용중입니다.</h1>
 		</c:if>
 
 		<c:if test="${empty subScribe || subScribe eq 'N'}"><!-- 서비스 미가입시 -->

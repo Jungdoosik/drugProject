@@ -85,7 +85,20 @@ public class LoginController {
 				
 				if(selectMem == 1 && selectDelMem == 0) {
 					mVO = loginService.loginDo(boardWriter);
-					session.setAttribute("member", mVO.getPhone());
+					session.setAttribute("phone", mVO.getPhone());
+					session.setAttribute("cuid", mVO.getCuid());
+					session.setAttribute("email", mVO.getEmail());
+					session.setAttribute("joinDate", mVO.getJoinDate());
+					session.setAttribute("joinPath", mVO.getJoinPath());
+					session.setAttribute("subScribe", mVO.getSubscribe());
+					session.setAttribute("payYn", mVO.getPayYn());
+					session.setAttribute("subDate", mVO.getSubDate());
+					session.setAttribute("endSubDate", mVO.getEndSubDate());
+					session.setAttribute("delYn", mVO.getDelYn());    
+					session.setAttribute("auth", mVO.getAuth());    
+					session.setAttribute("serviceCode", mVO.getServiceCode());
+					
+					mv.addObject("memberinfo",mVO);
 					mv.setViewName("redirect:index");
 				}else if(selectMem != 1 && selectDelMem == 0){
 					response.setContentType("text/html; charset=UTF-8");
@@ -186,11 +199,10 @@ public class LoginController {
     
     @RequestMapping("/modify") // 개인정보수정
     public String modify(Model model ,HttpSession session) throws Exception {
-    	String member = (String) session.getAttribute("member");
+    	String phone = (String) session.getAttribute("phone");
     	MemberVo mVO = new MemberVo();
-    	mVO = loginService.loginDo(member);
+    	mVO = loginService.loginDo(phone);
     	
-    	model.addAttribute("member",mVO.getPhone());
     	model.addAttribute("memberinfo",mVO);
        return "modify";
     }
@@ -200,7 +212,7 @@ public class LoginController {
 
 		session.invalidate(); //  세션 삭제
 
-		return "redirect:login";
+		return "redirect:index";
 	}
     
   //검색페이지

@@ -53,13 +53,13 @@ public class EnquireController {
 	) throws Exception {
 		log.info("question 상담내역");
 		//세션값 불러오기
-		String member = (String) session.getAttribute("member");
-		log.info(member);
+		String phone = (String) session.getAttribute("phone");
+		log.info(phone);
 		
 	
 		PageCriteria criteria = new PageCriteria();
 		//log.info("======1111===============");
-		criteria.setKeyword(member);// 회원id criteria 객체 set
+		criteria.setKeyword(phone);// 회원id criteria 객체 set
 		
 		if (page != null) {
 			//페이지
@@ -79,7 +79,7 @@ public class EnquireController {
 		pageMaker.setTotalCount(eService.listCountEnquire(criteria));
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("member", member);
+		model.addAttribute("phone", phone);
 		return "/enquire/enquireListView";
 	}
 
@@ -130,9 +130,9 @@ public class EnquireController {
 		log.info("문의 등록  ajax data : " + eVO);
 
 		//세션값 불러오기
-		String member = (String) session.getAttribute("member");
-	     log.info(member);
-		eVO.setWriter(member);
+		String phone = (String) session.getAttribute("phone");
+	     log.info(phone);
+		eVO.setWriter(phone);
 
 		log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
 		int result = eService.insertAsk(eVO);
