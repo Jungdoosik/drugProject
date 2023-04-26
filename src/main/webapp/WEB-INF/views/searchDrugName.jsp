@@ -164,7 +164,7 @@
          
     
     
-   	    function itemDataSearch() {
+   	    function searchDrugName() {
             if(document.frm.searchName.value == '') {
         		alert("검색어를 입력해주세요.")
         		return false
@@ -232,7 +232,7 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                 <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
                     <div class="form-search d-flex align-items-stretch">
                         <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
-                        <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> 검색</button>
+                        <button type="button" class="btn btn-primary" onclick="searchDrugName()"> 검색</button>
                     </div>
                 </form>
             </div>
