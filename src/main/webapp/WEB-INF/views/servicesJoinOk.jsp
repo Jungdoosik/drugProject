@@ -65,7 +65,6 @@ body {
 	.table-default {
 		background-color: #eee;
 	}
-
 }
 
 .table-default {
@@ -116,6 +115,10 @@ function itemDataSearch() {
 </script>
 </head>
 <body>
+	<%
+	// 세션값 가져오기
+	String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
+	%>
 	<div class="index_container">
 	<jsp:include page="common/header.jsp" />
         
@@ -125,81 +128,8 @@ function itemDataSearch() {
     <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34;">
 		<div class="container" data-aos="fade-up" style="background-color: #ffffff; padding-top:50px;">
 
-		<c:if test="${not empty member && subScribe eq 'Y'}"><!-- 서비스 기가입시 -->
 			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
-			<h1>${member } 님 서비스 가입하여 이용중입니다.</h1>
-		</c:if>
-
-		<c:if test="${empty subScribe || subScribe eq 'N'}"><!-- 서비스 미가입시 -->
-			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
-			<div class="container-fluid" align="center" style="margin-bottom:15px;">
-			
-				<h1>가입하고 싶으신 서비스를 선택 후 결제하여<br>MedicineSearch를 이용해 보세요</h1>
-			</div>
-	        <div id="pay" class="table-responsive table-default" style="border-radius:1rem;">
-	            <table class="table">
-
-	                <tbody>
-	                <tr>
-	                    <td>7일 100원 결제 체험 후 월정액</td>
-	                    <td>7일 100원 결제 체험 서비스를 통해  MedicineSearch 이용</td>
-	                    <td>
-	                        <div class="form-check checkbox-plan">
-	                        	<input class="form-check-input checkbox-plan" type="checkbox" name="check-link" dataid="100" value="100" onclick="checkLink(this);" id="check-0">
-	                        	<label class="form-check-label" for="check-0"><del>9,900/월</del></label>
-	                        </div>
-	                    </td>
-	                </tr>
-	<!--                 <tr>
-	                    <td style="text-decoration:line-through; color: gray;">7일 100원 결제 체험 후 월정액<td style="text-decoration:line-through; color: gray;">7일 100원 결제 체험 서비스를 통해 MedicineSearch 서비스 이용<td>
-	                        <div class="form-check checkbox-plan">
-	                        	<input class="form-check-input checkbox-plan" type="checkbox" name="check-link" disabled>
-	                        	<label class="form-check-label" for="check-0"><del>9,900/월</del></label>
-	                        </div>
-	                    </td>
-	                </tr> -->
-	                <tr>
-	                    <td>월정액 서비스</td>
-	                    <td>매월 MedicineSearch 컨텐츠 이용</td>
-	                    <td>
-	                        <div class="form-check checkbox-plan">
-	                        	<input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="9900" onclick="checkLink(this);" id="check-1">
-	                        	<label class="form-check-label" for="check-1">9,900/월</label>
-	                        </div>
-	                    </td>
-	                </tr>
-	                </tbody>
-	            </table>
-	        </div>
-	        <div class="table-responsive table-default">
-	            <table class="table">
-	            	<colgroup>
-						<col width="80%">
-						<col width="*">
-					</colgroup>
-	                <tbody>
-	                <tr style="border-bottom: solid 0px rgba(0,0,0,0);">
-	                    <td style="padding:0;">
-	                            <span>
-	                                [홈페이지에서 가입하는 경우]<br>
-	                                1. 100원 결제 7일 무료체험(168시간) 이용요금은 무료체험 종료 후 9,900원이 자동 결제됩니다.<br>
-	                                <br>
-	                                [홈페이지가 아닌 타 채널을 통해 보상을 받으시고 7일 무료체험을 가입하신 경우]<br>
-	                                1. 가입 이후 72시간 이용하는 조건으로 보상을 지급하고 있습니다. (72시간 이후 서비스 해지 가능)<br>
-	                                2. 서비스 해지 없이 무료체험 기간(168시간) 경과 후 결제가 이뤄지면 최초 한달간 이용 조건으로 보상을 지급합니다. (한달 의무 사용 약정)<br><br>
-	                                * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span>
-                        </td>
-	                    <td style="padding:0;">
-	                        <a id="a-pay" class="a-pay" href="#pay" onclick="iamport();" style="margin-top:100px;padding:auto;">카드결제</a>
-	                    </td>
-	                </tr>
-	                </tbody>
-	            </table>
-	        </div>
-		
-		</c:if>
-
-        
+			<h1> <%= id %> 님 서비스 가입을 진심으로 환영합니다.</h1>
         
 	</div>
     </section><!-- End Get a Quote Section -->

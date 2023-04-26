@@ -119,7 +119,7 @@ searchPag {
 <script type="text/javascript">
 /* 문의하기  bnt  문의하기 화면   */
 function eWVBnt() {
-	location.href = "/enquireWriteView"; //문의 리스트 url 		
+	location.href = "/enquireWriteView"; //문의 하기 화면 		
 };
 </script>
 <script type="text/javascript">
@@ -184,7 +184,7 @@ function eWVBnt() {
 					<div class="col-md-12"><!-- 테이블 + bnt 시작  -->
 						<div class="btnclss" >
 							<button type="button" class="btn" onclick="eWVBnt();">일반문의</button>
-							<button type="button" class="btn" onclick="delMemberE();">탈퇴문의</button>
+							<!-- <button type="button" class="btn" onclick="delMemberE();">탈퇴문의</button> -->
 						</div>
 						<input type="hidden" name="page" value="1">
 		                <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">

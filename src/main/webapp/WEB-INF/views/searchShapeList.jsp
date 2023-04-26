@@ -254,6 +254,10 @@ th:first-child, td:first-child {
        <div class="" id="abcde">
         <div class="row gy-4 d-flex justify-content-between">
           <table>
+	          <colgroup>
+			    <col width="30%" style="background: red" />
+			    <col width="" style="background: blue" />
+			  </colgroup>
           	  <thead>
 		          <tr>
 		            <th class="title">제품명</th>
@@ -262,12 +266,12 @@ th:first-child, td:first-child {
 	          </thead>
 	          <tbody id="listArea">
               <c:forEach var="list" items="${list.items }" varStatus="status">
-	                <tr onclick="drugDetail(${list.itemSeq })">
-	                   <td>${list.itemName }</td>
-	                   <td style="text-align:center;">${list.itemSeq }</td>
+	                <tr onclick="drugDetail(${list.ITEM_SEQ })">
+	                   <td>${list.ITEM_NAME }</td>
+	                   <td style="text-align:center;">${list.ITEM_SEQ }</td>
 	                </tr>
                    <input type="hidden" name="itemName${list.itemSeq }" value="${list.itemName }">
-                   <input type="hidden" name="itemSeq${list.itemSeq }" value="${list.itemSeq }">
+                   <input type="hidden" name="itemSeq${list.ITEM_SEQ }" value="${list.ITEM_SEQ }">
                    <input type="hidden" name="efcyQesitm${list.itemSeq }" value="${list.efcyQesitm }">
                    <input type="hidden" name="useMethodQesitm${list.itemSeq }" value="${list.useMethodQesitm }">
                    <input type="hidden" name="atpnWarnQesitm${list.itemSeq }" value="${list.atpnWarnQesitm }">
