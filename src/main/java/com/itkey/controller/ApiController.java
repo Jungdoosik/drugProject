@@ -401,6 +401,15 @@ public class ApiController {
 		
 	        return "searchShapeList";
 	}
+	
+	@RequestMapping("/eDrugDetail")
+	public String eDrugDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception{
+		
+		System.out.println(params);
+		model.addAttribute("list", params);
+		
+		return "eDrugDetail";
+	}
 
 	
 		
