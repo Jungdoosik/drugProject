@@ -97,24 +97,24 @@
 	
 	function drugUse(itemSeq){
 		
-		var xhr = new XMLHttpRequest();
-		var url = 'http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList'; /*URL*/
-		var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; /*Service Key*/
-		queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-		queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); /**/
-		queryParams += '&' + encodeURIComponent('entpName') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('itemName') + '=' + encodeURIComponent(/* document.drugUseForm.itemName.value */); /**/
-		queryParams += '&' + encodeURIComponent('itemSeq') + '=' + encodeURIComponent(document.drugUseForm.itemSeq.value); /**/
-		queryParams += '&' + encodeURIComponent('efcyQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('useMethodQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('atpnWarnQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('atpnQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('intrcQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('seQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('depositMethodQesitm') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('openDe') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('updateDe') + '=' + encodeURIComponent(''); /**/
-		queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); /**/
+		/* var xhr = new XMLHttpRequest();
+		var url = 'http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList';
+		var queryParams = '?' + encodeURIComponent('serviceKey') + '=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D';
+		queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
+		queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); 
+		queryParams += '&' + encodeURIComponent('entpName') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('itemName') + '=' + encodeURIComponent("${list.itemName}"); 
+		queryParams += '&' + encodeURIComponent('itemSeq') + '=' + encodeURIComponent("${list.itemSeq}"); 
+		queryParams += '&' + encodeURIComponent('efcyQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('useMethodQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('atpnWarnQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('atpnQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('intrcQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('seQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('depositMethodQesitm') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('openDe') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('updateDe') + '=' + encodeURIComponent(''); 
+		queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); 
 		xhr.open('GET', url + queryParams);
 		xhr.onreadystatechange = function () {
 		    if (this.readyState == 4) {
@@ -126,14 +126,32 @@
 		    }
 		};
 
-		xhr.send('');
-		return false
+		xhr.send(''); */
 		$.ajax({
 			url: "/drugUse",
 			type: "POST",
 			data: $('#drugUseForm').serialize(),
 			success: function(data) { 
-				
+				console.log(data)
+				var eDrugItem = data.list.items[0]
+				if(data.result == 'Y'){
+					document.eDrugForm.entpName.value = eDrugItem.entpName
+					document.eDrugForm.itemName.value = eDrugItem.itemName
+					document.eDrugForm.itemSeq.value = eDrugItem.itemSeq
+					document.eDrugForm.efcyQesitm.value = eDrugItem.efcyQesitm
+					document.eDrugForm.useMethodQesitm.value = eDrugItem.useMethodQesitm
+					document.eDrugForm.atpnWarnQesitm.value = eDrugItem.atpnWarnQesitm
+					document.eDrugForm.atpnQesitm.value = eDrugItem.atpnQesitm
+					document.eDrugForm.intrcQesitm.value = eDrugItem.intrcQesitm
+					document.eDrugForm.seQesitm.value = eDrugItem.seQesitm
+					document.eDrugForm.depositMethodQesitm.value = eDrugItem.depositMethodQesitm
+					document.eDrugForm.openDe.value = eDrugItem.openDe
+					document.eDrugForm.updateDe.value = eDrugItem.updateDe
+					document.eDrugForm.itemImage.value = eDrugItem.itemImage
+					document.eDrugForm.action = '/eDrugDetail'
+				}else{
+					alert('데이터가 없습니다.')
+				}
 			}
 		})
 	}
@@ -173,6 +191,22 @@ body, html {
 </style>
 </head>
 <body>
+	<form id="eDrugForm" name="eDrugForm" method="post">
+		<input type="hidden" name="entpName" value="">
+		<input type="hidden" name="itemName" value="">
+		<input type="hidden" name="itemSeq" value="">
+		<input type="hidden" name="efcyQesitm" value="">
+		<input type="hidden" name="useMethodQesitm" value="">
+		<input type="hidden" name="atpnWarnQesitm" value="">
+		<input type="hidden" name="atpnQesitm" value="">
+		<input type="hidden" name="intrcQesitm" value="">
+		<input type="hidden" name="seQesitm" value="">
+		<input type="hidden" name="depositMethodQesitm" value="">
+		<input type="hidden" name="openDe" value="">
+		<input type="hidden" name="updateDe" value="">
+		<input type="hidden" name="itemImage" value="">
+	</form>
+	
 	<form id="drugUseForm" name="drugUseForm" method="post">
 		<input type="hidden" name="itemSeq" value="${list.itemSeq }">
 		<input type="hidden" name="itemName" value="${list.itemName }">
