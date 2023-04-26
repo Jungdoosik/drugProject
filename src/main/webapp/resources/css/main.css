@@ -60,7 +60,7 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-  padding: 80px 0;
+  padding: 40px 0;
   overflow: hidden;
 }
 
@@ -1757,6 +1757,11 @@ section {
 
 .hero form .btn-primary {
   background-color: var(--color-primary);
+  padding: 15px 30px;
+}
+
+.hero form .btn-primary1 {
+  background-color: #d3d3d3;
   padding: 15px 30px;
 }
 

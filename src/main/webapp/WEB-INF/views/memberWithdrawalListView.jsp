@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>MedicineSearch - 문의하기 리스트</title>
+<title>MedicineSearch - 회원탈퇴 문의하기 리스트</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -118,8 +118,8 @@ searchPag {
 
 <script type="text/javascript">
 /* 문의하기  bnt  문의하기 화면   */
-function eWVBnt() {
-	location.href = "/enquireWriteView"; //문의 하기 화면 		
+function eMDBnt() {
+	location.href = "/memberWithdrawalView"; //문의 리스트 url 		
 };
 </script>
 <script type="text/javascript">
@@ -165,7 +165,7 @@ function eWVBnt() {
 </form>
 <div class="index_container">
 	   <section>
-	    <jsp:include page="../common/header.jsp" />
+	    <jsp:include page="common/header.jsp" />
 	   </section><!-- End Hero Section -->
 	<!-- =======End Header =======--> <!-- End Hero Section -->
 	<main id="main">
@@ -179,12 +179,11 @@ function eWVBnt() {
 				<!--1 enquireListView 시작 -->
 				<div  id ="enquireListView" class="get-a-quote">
 					<div class="col-lg-12">
-						<p class="askTop">1:1 문의 내역</p>
+						<p class="askTop">회원탈퇴 문의내역</p>
 					</div>
 					<div class="col-md-12"><!-- 테이블 + bnt 시작  -->
 						<div class="btnclss" >
-							<button type="button" class="btn" onclick="eWVBnt();">일반문의</button>
-							<!-- <button type="button" class="btn" onclick="delMemberE();">탈퇴문의</button> -->
+							<button type="button" class="btn" onclick="eMDBnt();">탈퇴문의</button>
 						</div>
 						<input type="hidden" name="page" value="1">
 		                <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">

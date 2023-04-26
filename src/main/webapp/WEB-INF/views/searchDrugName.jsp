@@ -54,38 +54,122 @@
     </style>
     <script>
     $(function(){
-    	var xhrd = new XMLHttpRequest();
-        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
-        var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D'; 
-        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('타이레놀');
-        queryParamsd += '&' + encodeURIComponent('prduct') + '=' + encodeURIComponent(''); 
-        queryParamsd += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
-        queryParamsd += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
+    	
+    	var xhr1 = new XMLHttpRequest();
+        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04'; 
+        var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
         queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
-        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('20'); 
-        queryParamsd += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); 
         queryParamsd += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json');  
-        xhrd.open('GET', urld + queryParamsd);
-        xhrd.onreadystatechange = function () {
+        queryParamsd += '&' + encodeURIComponent('induty') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('spclty_pblc') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('prdlst_Stdr_code') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('prduct_prmisn_no') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('안중환'); 
+        queryParamsd += '&' + encodeURIComponent('entp_seq') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('entp_no') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('item_ingr_name') + '=' + encodeURIComponent(''); 
+        xhr1.open('GET', urld + queryParamsd);
+        xhr1.onreadystatechange = function () {
             if (this.readyState == 4) {
-                console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                 var tt1 = JSON.parse(this.responseText)
+                console.log("04")
+                console.log(tt1.body.items)
+                
+            }
+        }; 
+
+        xhr1.send('');
+        
+        
+    	var xhr2 = new XMLHttpRequest();
+        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnDtlInq03'; 
+        var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
+        queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
+        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); 
+        queryParamsd += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json');  
+        queryParamsd += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('안중환');
+        queryParamsd += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('item_permit_date') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('entp_no') + '=' + encodeURIComponent(''); 
+        queryParamsd += '&' + encodeURIComponent('bar_code') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('start_change_date') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('end_change_date') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('atc_code') + '=' + encodeURIComponent('');
+        xhr2.open('GET', urld + queryParamsd);
+        xhr2.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
+                var tt1 = JSON.parse(this.responseText)
+                console.log("pr03")
                 console.log(tt1.body.items)
                 
             }
         };
 
-        xhrd.send('');
+        xhr2.send('');
+         
+        
+        var xhr3 = new XMLHttpRequest();
+        var urld = 'http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtMcpnDtlInq03'; 
+        var queryParamsd = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
+        queryParamsd += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
+        queryParamsd += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); 
+        queryParamsd += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json');  
+        queryParamsd += '&' + encodeURIComponent('Entrps_prmisn_no') + '=' + encodeURIComponent('');
+        queryParamsd += '&' + encodeURIComponent('Prduct') + '=' + encodeURIComponent('안중환');
+        queryParamsd += '&' + encodeURIComponent('Entrps') + '=' + encodeURIComponent(''); 
+        xhr3.open('GET', urld + queryParamsd);
+        xhr3.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
+                var tt1 = JSON.parse(this.responseText)
+                console.log("mc03")
+                console.log(tt1.body.items)
+                
+            }
+        };
+
+        xhr3.send('');
+        
+        var xhr4 = new XMLHttpRequest();
+        var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
+        var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
+        queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('티얼즈내츄럴'); 
+        queryParams += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
+        queryParams += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
+        queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
+        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
+        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); 
+        queryParams += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent(''); 
+        queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); 
+        xhr4.open('GET', urld + queryParams);
+        xhr4.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
+                var tt1 = JSON.parse(this.responseText)
+                console.log("List01")
+                console.log(tt1.body.items)
+                
+            }
+        };
+
+        xhr4.send('');
     })
          
     
     
-   	 function itemDataSearch() {
+   	    function itemDataSearch() {
             if(document.frm.searchName.value == '') {
         		alert("검색어를 입력해주세요.")
         		return false
         	} 
-            document.frm.action = '/searchDrugList';
+            document.frm.action = '/searchDrugNameList';
             document.frm.submit()
 
         }
@@ -96,7 +180,7 @@
         		return false
         	}
         	
-        	document.frm.action = '/searchDrugList';
+        	document.frm.action = '/searchDrugNameList';
             document.frm.submit()
         }
         
@@ -146,11 +230,11 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
                 <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
-                            <div class="form-search d-flex align-items-stretch">
-                                <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
-                                <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> Search</button>
-                            </div>
-                        </form>
+                    <div class="form-search d-flex align-items-stretch">
+                        <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">
+                        <button type="button" class="btn btn-primary" onclick="itemDataSearch()"> 검색</button>
+                    </div>
+                </form>
             </div>
         </section><!-- End Hero Section -->
         <main id="main">

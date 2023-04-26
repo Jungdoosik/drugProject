@@ -48,5 +48,8 @@ public class LoginDAO {
 		return sqlSession.insert("member.insertCredit",params);
 	}
 	
-
+	public int updateSub(Map<String, Object> params) throws Exception {
+		int result = sqlSession.update("updateSub",params);
+		return result;
+	}
 }
