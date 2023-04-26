@@ -138,6 +138,7 @@
 		UPDATE 
 			member 
 		SET 
+			cuid = #{cuid},
 			subscribe = 'Y',
 			sub_date = date_format(NOW(), '%Y년%m월%d일%h시'),  
 			end_sub_date = date_format(DATE_ADD(NOW(), INTERVAL 1 MONTH),'%Y년%m월%d일%h시')

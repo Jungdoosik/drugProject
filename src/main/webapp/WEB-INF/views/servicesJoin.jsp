@@ -65,7 +65,6 @@ body {
 	.table-default {
 		background-color: #eee;
 	}
-
 }
 
 .table-default {
@@ -122,8 +121,8 @@ function itemDataSearch() {
     <main id="main">
 
 	<!-- ======= Get a Quote Section ======= -->
-    <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34;">
-		<div class="container" data-aos="fade-up" style="background-color: #ffffff; padding-top:50px;">
+    <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34; padding-top:70px;">
+		<div class="container" data-aos="fade-up" style="background-color: #ffffff;">
 
 		<c:if test="${not empty member && subScribe eq 'Y'}"><!-- 서비스 기가입시 -->
 			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
