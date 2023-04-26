@@ -94,15 +94,19 @@
 		<input type="hidden" name="joinPath" value="1">
 	</form>
 
-    <div class="index_container">
+<%--     <div class="index_container">
     	<section>
     	<jsp:include page="common/header.jsp" />
         </section><!-- End Hero Section -->
-        <main id="main">
+        <main id="main"> --%>
 
+    <div class="index_container">
+    <jsp:include page="common/header.jsp" />
+    <main id="main">
+    
     <!-- ======= Get a Quote Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up" style="padding-top: 40px;">
 
         <div class="row g-0">
 

@@ -70,11 +70,10 @@
     <main id="main">
 
 	<!-- ======= Get a Quote Section ======= -->
-    <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34;">
-      <div class="container" data-aos="fade-up" style="background-color: #ffffff; margin-top:50px;">
+    <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34;  margin-top:70px;">
+      <div class="container" data-aos="fade-up" style="background-color: #ffffff;">
 
         <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-
           <div class="col-md-5">
             <img src="resources/img/features-2.jpg" class="img-fluid" alt="">
           </div>
@@ -105,7 +104,7 @@
             </p>
           </div>
         </div><!-- Features Item -->
-
+        
       </div>
     </section><!-- End Get a Quote Section -->
   	</main><!-- End #main -->
