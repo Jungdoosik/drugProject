@@ -35,7 +35,7 @@ public class ApiController {
 	@Autowired
 	private ApiService apiService;
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("/drugUse")
 	public Map<String, Object> drugUse(@RequestParam Map<String,Object> params) throws Exception {
 		System.out.println(params.get("itemSeq"));
@@ -95,27 +95,27 @@ public class ApiController {
 							@RequestParam(value="nowPage", required=false, defaultValue="1")String nowPage, 
 							@RequestParam(value="cntPerPage", required=false, defaultValue="10")String cntPerPage, 
 							ModelMap model) throws Exception {
-		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04"); /*URL*/
-	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
-	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*업체명*/
+		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04"); URL
+	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); Service Key
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); 페이지번호
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); 한 페이지 결과 수
+	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 업체명
 	        if(params.get("searchName").equals("")){
-	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*제품명*/
+	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 제품명
 	        }else if(!(params.get("searchName").equals(""))){
 	        	String data = (String) params.get("searchName");
 	    		System.out.println(data);
-	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode(data, "UTF-8")); /*제품명*/
+	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode(data, "UTF-8")); 제품명
 	        }
-	        urlBuilder.append("&" + URLEncoder.encode("induty","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*품목기준코드*/
-	        urlBuilder.append("&" + URLEncoder.encode("spclty_pblc","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약의 효능은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("prdlst_Stdr_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떻게 사용합니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("prduct_prmisn_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약의 사용상 주의사항은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떤 이상반응이 나타날 수 있습니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떻게 보관해야 합니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("item_ingr_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*공개일자*/
+	        urlBuilder.append("&" + URLEncoder.encode("induty","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 품목기준코드
+	        urlBuilder.append("&" + URLEncoder.encode("spclty_pblc","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약의 효능은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("prdlst_Stdr_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떻게 사용합니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("prduct_prmisn_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약의 사용상 주의사항은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떤 이상반응이 나타날 수 있습니까?
+	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떻게 보관해야 합니까?
+	        urlBuilder.append("&" + URLEncoder.encode("item_ingr_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 공개일자
 	        URL url = new URL(urlBuilder.toString());
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");
@@ -165,27 +165,27 @@ public class ApiController {
 		System.out.println(nowPage);
 		System.out.println(cntPerPage);
 		System.out.println(params);
-		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04"); /*URL*/
-		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(nowPage, "UTF-8")); /*페이지번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode(cntPerPage, "UTF-8")); /*한 페이지 결과 수*/
-	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*업체명*/
+		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04"); URL
+		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); Service Key
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(nowPage, "UTF-8")); 페이지번호
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode(cntPerPage, "UTF-8")); 한 페이지 결과 수
+	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 업체명
 	        if(params.get("searchName").equals("")){
-	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*제품명*/
+	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 제품명
 	        }else if(!(params.get("searchName").equals(""))){
 	        	String data = (String) params.get("searchName");
 	    		System.out.println(data);
-	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode(data, "UTF-8")); /*제품명*/
+	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode(data, "UTF-8")); 제품명
 	        }
-	        urlBuilder.append("&" + URLEncoder.encode("induty","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*품목기준코드*/
-	        urlBuilder.append("&" + URLEncoder.encode("spclty_pblc","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약의 효능은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("prdlst_Stdr_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떻게 사용합니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("prduct_prmisn_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약의 사용상 주의사항은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떤 이상반응이 나타날 수 있습니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*이 약은 어떻게 보관해야 합니까?*/
-	        urlBuilder.append("&" + URLEncoder.encode("item_ingr_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*공개일자*/
+	        urlBuilder.append("&" + URLEncoder.encode("induty","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 품목기준코드
+	        urlBuilder.append("&" + URLEncoder.encode("spclty_pblc","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약의 효능은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("prdlst_Stdr_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떻게 사용합니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("prduct_prmisn_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약의 사용상 주의사항은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?
+	        urlBuilder.append("&" + URLEncoder.encode("entp_no","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떤 이상반응이 나타날 수 있습니까?
+	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 이 약은 어떻게 보관해야 합니까?
+	        urlBuilder.append("&" + URLEncoder.encode("item_ingr_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 공개일자
 	        URL url = new URL(urlBuilder.toString());
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");
@@ -264,8 +264,8 @@ public class ApiController {
         bf1.close();
         conn1.disconnect();
         
-        StringBuilder urlBuilder2 = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtMcpnDtlInq03"); /*URL*/
-		urlBuilder2.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
+        StringBuilder urlBuilder2 = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtMcpnDtlInq03"); URL
+		urlBuilder2.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); Service Key
         urlBuilder2.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); 
         urlBuilder2.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); 
         urlBuilder2.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 
@@ -302,18 +302,18 @@ public class ApiController {
 	public String searchDrug(@RequestParam Map<String,Object> params,ModelMap model) throws Exception {
 		String data = (String) params.get("searchDrug");
 		
-		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01"); /*URL*/
-	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
-	        urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*품목명*/
-	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*업체명*/
-	        urlBuilder.append("&" + URLEncoder.encode("item_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*품목일련번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("img_regist_ts","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*약학정보원 이미지 생성일*/
+		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01"); URL
+	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); Service Key
+	        urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 품목명
+	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 업체명
+	        urlBuilder.append("&" + URLEncoder.encode("item_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 품목일련번호
+	        urlBuilder.append("&" + URLEncoder.encode("img_regist_ts","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 약학정보원 이미지 생성일
 	        
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /* 페이지 결과 수*/
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); 페이지번호
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));  페이지 결과 수
 	        
-	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*보험코드*/
-	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*응답데이터 형식(xml/json) default : xml*/
+	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 보험코드
+	        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 응답데이터 형식(xml/json) default : xml
 	        URL url = new URL(urlBuilder.toString());
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	        conn.setRequestMethod("GET");
@@ -348,19 +348,19 @@ public class ApiController {
 		System.out.println(nowPage);
 		System.out.println(cntPerPage);
 		System.out.println(params);
-		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01"); /*URL*/
-	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + "wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
+		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01"); URL
+	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + "wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); Service Key
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(nowPage, "UTF-8")); 
 	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode(cntPerPage, "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
-	        /*if(params.get("searchName").equals("")){
+	        if(params.get("searchName").equals("")){
 	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        }else if(!(params.get("searchName").equals(""))){
 	        	String data = (String) params.get("searchName");
 	    		System.out.println(data);
 	        	urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" + URLEncoder.encode(data, "UTF-8"));
-	        }*/
+	        }
 	        urlBuilder.append("&" + URLEncoder.encode("item_seq","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("img_regist_ts","UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); 
@@ -409,7 +409,7 @@ public class ApiController {
 		model.addAttribute("list", params);
 		
 		return "eDrugDetail";
-	}
+	}*/
 	
 	
 
