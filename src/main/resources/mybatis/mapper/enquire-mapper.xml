@@ -7,114 +7,114 @@
 
 	<!-- 문의 리스트 고객-->
 	<select id="listEnquire" resultType="EnquireVo" parameterType="PageCriteria" >
-		SELECT 
+		SELECT
 		*
-		FROM 
-			enquire 
-	 WHERE 
-			delyn = 'N' and writer = #{keyword} 
+		FROM
+			enquire
+	 WHERE
+			delyn = 'N' and writer = #{keyword}
 			<!--and service_code = #{code}  -->
-		ORDER BY 
-			seq DESC 	
-		limit #{start}, #{end} 
+		ORDER BY
+			seq DESC
+		limit #{start}, #{end}
 	</select>
-	
+
 	<!-- 문의 리스트 -->
 	<select id="listCountEnquire" resultType="int" >
-		SELECT 
+		SELECT
 			count(1)
-		FROM 
-			enquire 
-		WHERE 
-			delyn = 'N' and writer = #{keyword} 
-			
+		FROM
+			enquire
+		WHERE
+			delyn = 'N' and writer = #{keyword}
+
 	</select>
 	<!-- 문의 등록 -->
-	
+
 	<insert id="insertAsk" parameterType="EnquireVo">
 		INSERT INTO enquire (
-			title, 
+			title,
 			writer,
-			question, 
+			question,
 			q_date,
 			delyn,
 			service_code
-			) 
-		values 
+			)
+		values
 			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
 
 	</insert>
-	
-	
-	
+
+
+
 	<!-- 문의 리스트 관리자 -->
 	<select id="listAdminEnquire" resultType="EnquireVo" parameterType="Criteria">
-		SELECT 
-			seq, 
-			title, 
-			writer, 
-			answer, 
-			q_date as qdate, 
+		SELECT
+			seq,
+			title,
+			writer,
+			answer,
+			q_date as qdate,
 			a_date as adate,
 			delyn
-		FROM 
-			enquire 
-		WHERE 
+		FROM
+			enquire
+		WHERE
 			1=1
 			<if test="serviceCode != ''">
 				<include refid="serviceCode"></include>
-			</if> 
-		ORDER BY 
-			answer	 
+			</if>
+		ORDER BY
+			seq DESC, answer
 	</select>
-	
+
 	<!-- 해지요청 리스트(미처리만) 관리자 -->
 	<select id="listAdminECS" resultType="EnquireVo" parameterType="Criteria">
-		SELECT 
-			seq, 
-			title, 
-			writer, 
-			answer, 
-			q_date as qdate, 
+		SELECT
+			seq,
+			title,
+			writer,
+			answer,
+			q_date as qdate,
 			a_date as adate,
 			delyn
-		FROM 
-			cancel_enquire 
-		WHERE 
+		FROM
+			cancel_enquire
+		WHERE
 			answer IS NULL
 			<if test="serviceCode != ''">
 				<include refid="serviceCode"></include>
-			</if>  
-		ORDER BY 
-			seq 
+			</if>
+		ORDER BY
+			seq
 	</select>
-	
+
 	<!-- 대기중인 문의 내역 건수 -->
 	<select id="untreatedEnqCnt" resultType="int" parameterType="Criteria">
-		SELECT 
+		SELECT
 			count(1)
-		FROM 
-			enquire 
-		WHERE 
-			answer IS NULL 
+		FROM
+			enquire
+		WHERE
+			answer IS NULL
 			<if test="serviceCode != ''">
 				<include refid="serviceCode"></include>
 			</if>
 	</select>
-	
+
 	<!-- 대기중인 해지 요청 건수 -->
 	<select id="untreatedEnqCsCnt" resultType="int" parameterType="Criteria">
-		SELECT 
+		SELECT
 			count(1)
-		FROM 
-			cancel_enquire 
-		WHERE 
+		FROM
+			cancel_enquire
+		WHERE
 			answer IS NULL
 			<if test="serviceCode != ''">
 				<include refid="serviceCode"></include>
-			</if> 
+			</if>
 	</select>
-	
+
 	<!--1대1 문의 상세보기-->
 	<select id="detailEnquire" resultType="EnquireVo">
 		SELECT
@@ -126,55 +126,55 @@
 			q_date as qdate,
 			delyn
 		FROM
-			enquire 
+			enquire
 		WHERE seq = #{seq}
 	</select>
-	
-	
-	
+
+
+
 	<insert id="registerEnqireCS" parameterType="EnquireVo">
 		INSERT INTO cancel_enquire (
-			title, 
+			title,
 			writer,
-			question, 
+			question,
 			q_date,
 			delyn,
 			service_code
-			) 
-		values 
+			)
+		values
 			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
 
 	</insert>
-	
+
 	<select id="getCScount" parameterType="String" resultType="int">
-		SELECT 
+		SELECT
 			COUNT(*)
 		FROM
 			cancel_enquire
 		WHERE
 			writer = #{id} AND a_date is null
 	</select>
-	
+
 	<!-- 답변등록 -->
 	<update id="enquireAnswer">
-		UPDATE 
-			enquire 
-		SET 
-			answer = #{answer}, 
-			a_date = now() 
+		UPDATE
+			enquire
+		SET
+			answer = #{answer},
+			a_date = now()
 		WHERE seq = #{seq}
 	</update>
-	
+
 	<!-- 답변등록 -->
 	<update id="enquireAnswerCS">
-		UPDATE 
-			cancel_enquire 
-		SET 
-			answer = #{answer}, 
-			a_date = now() 
+		UPDATE
+			cancel_enquire
+		SET
+			answer = #{answer},
+			a_date = now()
 		WHERE seq = #{seq}
 	</update>
-	
+
 	<!-- 문의글 삭제 -->
 	<update id="enquireDelete">
 		UPDATE
@@ -183,7 +183,7 @@
 			delyn = 'Y'
 		WHERE seq = #{seq}
 	</update>
-	
+
 	<!-- 고객 결제내역 가져오기 -->
 	<!-- <select id="historyCredit" resultType="CreditDTO">
 		SELECT
@@ -196,22 +196,22 @@
 			credit
 		WHERE id = #{id}
 	</select> -->
-	
+
 	<!-- 검색타입 -->
-	<sql id="serviceCode">			
+	<sql id="serviceCode">
 		<choose>
 			<when test="serviceCode == 'MS'.toString()">
 				AND service_code LIKE CONCAT('%',#{serviceCode},'%')
 			</when>
 			<when test="serviceCode == 'ALL'.toString()">
-				
+
 			</when>
-		</choose>		
+		</choose>
 	</sql>
-	
+
 	<!-- 문의내역 확인 -->
 	<select id="enquireDetail" parameterType="HashMap" resultType="com.itkey.enquire.EnquireVo">
-		SELECT 
+		SELECT
 			  seq
 			, title
 			, writer
@@ -224,18 +224,18 @@
 		FROM ENQUIRE
 		WHERE SEQ = #{seq}
 	</select>
-	
+
 	<!-- 서비스 해지 글쓰기 -->
 	<insert id="insertCancel" parameterType="EnquireVo">
 		INSERT INTO cancel_enquire (
-			title, 
+			title,
 			writer,
-			question, 
+			question,
 			q_date,
 			delyn,
 			service_code
-			) 
-		values 
+			)
+		values
 			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
 
 	</insert>
