@@ -62,7 +62,7 @@
         	if (<%=id%> == null) {
         		alert("로그인 후 이용가능합니다.");
         		return false;
-        	} else if ('<%=subscribe%>' == 'N' || '<%=subscribe%>' == null) {
+        	} else if ('<%=subscribe%>' == 'N' || <%=subscribe%> == null) {
         		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {
@@ -74,7 +74,7 @@
         	if (<%=id%> == null) {
         		alert("로그인 후 이용가능합니다.");
         		return false;
-        	} else if ('<%=subscribe%>' == 'N' || '<%=subscribe%>' == null) {
+        	} else if ('<%=subscribe%>' == 'N' || <%=subscribe%> == null) {
         		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {

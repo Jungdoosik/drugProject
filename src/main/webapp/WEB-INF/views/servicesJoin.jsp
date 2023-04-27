@@ -116,12 +116,13 @@ function itemDataSearch() {
 </head>
 <body>
 	<div class="index_container">
-	<jsp:include page="common/header.jsp" />
-        
+	<section>
+		<jsp:include page="common/header.jsp" />
+	</section>
     <main id="main">
 
 	<!-- ======= Get a Quote Section ======= -->
-    <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34; padding-top:70px;">
+    <!-- <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34; padding-top:70px;"> -->
 		<div class="container" data-aos="fade-up" style="background-color: #ffffff;">
 
 		<c:if test="${not empty phone && subScribe eq 'Y'}"><!-- 서비스 기가입시 -->
@@ -132,7 +133,7 @@ function itemDataSearch() {
 		<c:if test="${empty subScribe || subScribe eq 'N'}"><!-- 서비스 미가입시 -->
 			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
 			<div class="container-fluid" align="center" style="margin-bottom:15px;">
-			
+
 				<h1>가입하고 싶으신 서비스를 선택 후 결제하여<br>MedicineSearch를 이용해 보세요</h1>
 			</div>
 	        <div id="pay" class="table-responsive table-default" style="border-radius:1rem;">
@@ -195,19 +196,19 @@ function itemDataSearch() {
 	                </tbody>
 	            </table>
 	        </div>
-		
+
 		</c:if>
 
-        
-        
+
+
 	</div>
-    </section><!-- End Get a Quote Section -->
+    <!-- </section> --><!-- End Get a Quote Section -->
   	</main><!-- End #main -->
 
 
 		<a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
-        
-        
+
+
 		<jsp:include page="common/footer.jsp" />
 	</div>
     <div id="preloader"> </div>
@@ -225,7 +226,7 @@ function itemDataSearch() {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	<!-- 빌링키 사용을 위한 셋팅 -->	
+	<!-- 빌링키 사용을 위한 셋팅 -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </body>
 

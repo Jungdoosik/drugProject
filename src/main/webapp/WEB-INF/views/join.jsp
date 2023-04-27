@@ -77,13 +77,13 @@
     </style>
     <script>
 
-    
+
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()
 
         }
-        
+
         function joinCancelChk() {
         	if (!confirm("작성한 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
 			    //history.go( -1 );
@@ -98,7 +98,9 @@
 <body>
 
     <div class="index_container">
+    <section>
     <jsp:include page="common/header.jsp" />
+    </section>
     <main id="main">
 
     <!-- ======= join Section ======= -->
@@ -121,7 +123,7 @@
 	            <input type="hidden" id="itemTitle" name="itemTitle" value="${params.title }">
 	            <input type="hidden" id="joinPath" name="joinPath" value="${params.joinPath }">
 				<div>
-                
+
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
@@ -130,8 +132,8 @@
                   <!-- <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button> -->
                   </div>
                 </div>
-                
-                
+
+
                 <!-- <div class="col-md-12 " >
                 <h3>인증번호</h3>
                 <div style="display:flex;">
@@ -139,8 +141,8 @@
                   <button type="button" style="margin-bottom:10px;" onclick="confirmAuth()">인증확인</button>
                 </div>
                 </div> -->
-                
-                
+
+
                 <div class="col-md-12">
                 <h3>비밀번호(*영문,숫자 포함 4글자 이상)</h3>
                   <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
@@ -155,7 +157,7 @@
                 <h3>이메일 주소</h3>
                   <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
                 </div>
-                
+
                 <div style="text-align: -webkit-center">
                   <button type="button" class="btn-2" onclick="joinChk()">회원가입</button>
                   <button type="button" class="btn-2" onclick="joinCancelChk()">취소</button>
