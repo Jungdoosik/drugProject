@@ -60,7 +60,8 @@
 									<th>처리 여부</th>
  									<th>제목</th>
 									<th>작성자</th>
-									<th>날짜</th>
+									<th>문의날짜</th>
+									<th>답변날짜</th>
 									<th>답변/삭제</th>
 								</tr>
 							</thead>
@@ -70,7 +71,8 @@
 								    <th>처리 여부</th>
 								    <th>제목</th>
 								    <th>작성자</th>
-								    <th>날짜</th>
+									<th>문의날짜</th>
+									<th>답변날짜</th>
 								    <th>답변/삭제</th>
 								</tr>
 							</tfoot>
@@ -88,6 +90,7 @@
 										</td>
 										<td>${list.title}</td>
 										<td>${list.writer}</td>
+										<td>${list.qdate}</td>
 										<td>${list.adate}</td>
 										<td>
 											<c:if test="${list.answer eq null}">
