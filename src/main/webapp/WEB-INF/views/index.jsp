@@ -53,16 +53,16 @@
         }
     </style>
     <script>
-    	<%
-    		String id = (String) session.getAttribute("phone");
-    		String subscribe = (String) session.getAttribute("subScribe");
-    	%>
 
         function searchDrugName(){
-        	if (<%=id%> == null) {
+
+    		var idChk = $("#idChk").val();
+    		var subscribeChk = $("#subscribeChk").val();
+
+        	if (idChk == null) {
         		alert("로그인 후 이용가능합니다.");
         		return false;
-        	} else if ('<%=subscribe%>' == 'N' || <%=subscribe%> == null) {
+        	} else if (subscribeChk == null || subscribeChk != 'Y') {
         		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {
@@ -71,10 +71,14 @@
         }
 
         function searchDrugShape(){
-        	if (<%=id%> == null) {
+
+        	var idChk = $("#idChk").val();
+        	var subscribeChk = $("#subscribeChk").val();
+
+        	if (idChk == null) {
         		alert("로그인 후 이용가능합니다.");
         		return false;
-        	} else if ('<%=subscribe%>' == 'N' || <%=subscribe%> == null) {
+        	} else if (subscribeChk == null || subscribeChk != 'Y') {
         		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {
@@ -86,7 +90,6 @@
 </head>
 
 <body>
-
     <div class="index_container">
 
     <jsp:include page="common/header.jsp" />
@@ -128,6 +131,8 @@
                         </p>
 
                         <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
+						<input type="hidden" value="${phone }" id="idChk">
+						<input type="hidden" value="${subScribe }" id="subscribeChk">
 
                             <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
                                 <button type="button" class="btn btn-primary" onclick="searchDrugName() " style="width: 40%;"> 검색</button>
