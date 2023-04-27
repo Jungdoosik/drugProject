@@ -53,11 +53,17 @@
         }
     </style>
     <script>
-    	<%String id = (String) session.getAttribute("phone");%>
+    	<%
+    		String id = (String) session.getAttribute("phone");
+    		String subscribe = (String) session.getAttribute("subScribe");
+    	%>
 
         function searchDrugName(){
         	if (<%=id%> == null) {
         		alert("로그인 후 이용가능합니다.");
+        		return false;
+        	} else if ('<%=subscribe%>' == 'N' || '<%=subscribe%>' == null) {
+        		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {
 	        	location.href = "/searchDrugName"
@@ -67,6 +73,9 @@
         function searchDrugShape(){
         	if (<%=id%> == null) {
         		alert("로그인 후 이용가능합니다.");
+        		return false;
+        	} else if ('<%=subscribe%>' == 'N' || '<%=subscribe%>' == null) {
+        		alert("서비스 가입 후 이용가능합니다.");
         		return false;
         	} else {
         		location.href = "/searchDrugShape"
