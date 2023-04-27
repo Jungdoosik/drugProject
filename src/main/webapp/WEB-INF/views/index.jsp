@@ -53,13 +53,24 @@
         }
     </style>
     <script>
-        
+    	<%String id = (String) session.getAttribute("phone");%>
+
         function searchDrugName(){
-        	location.href = "/searchDrugName"
+        	if (<%=id%> == null) {
+        		alert("로그인 후 이용가능합니다.");
+        		return false;
+        	} else {
+	        	location.href = "/searchDrugName"
+        	}
         }
-        
+
         function searchDrugShape(){
-        	location.href = "/searchDrugShape"
+        	if (<%=id%> == null) {
+        		alert("로그인 후 이용가능합니다.");
+        		return false;
+        	} else {
+        		location.href = "/searchDrugShape"
+        	}
         }
     </script>
 
@@ -67,13 +78,8 @@
 
 <body>
 
-<%
-// 세션값 가져오기
-String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
-%>
-
     <div class="index_container">
-    
+
     <jsp:include page="common/header.jsp" />
         <%-- <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
@@ -112,8 +118,8 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
                             드시고 계신 약의 정확한 성분을 알고 계시나요?
                         </p>
 
-                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200"> 
- 
+                        <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
+
                             <div class="form-search d-flex align-items-stretch" style="justify-content: space-around;">
                                 <button type="button" class="btn btn-primary" onclick="searchDrugName() " style="width: 40%;"> 검색</button>
                                 <button type="button" class="btn btn-primary" onclick="searchDrugShape()" style="width: 40%;"> 모양</button>
@@ -150,9 +156,9 @@ String id = (String) session.getAttribute("member"); // Object 타입이므로 �
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
 
-	
+
     </div>
-    
+
     <div id="preloader"> </div>
     <!-- Vendor JS Files -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

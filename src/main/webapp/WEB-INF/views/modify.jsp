@@ -89,7 +89,7 @@
 
 <body>
 <%
-	if(session.getAttribute("member") == null) {
+	if(session.getAttribute("phone") == null) {
 %>
 		
 	<script language="JavaScript">

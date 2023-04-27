@@ -61,7 +61,11 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 
-
+<%
+// 세션값 가져오기
+String id = (String) session.getAttribute("phone");
+String subScribe = (String) session.getAttribute("subScribe");
+%>
     <style>
         html,
         body {
@@ -121,7 +125,7 @@
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
-                  <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;" required>
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="11" style="margin-bottom:10px;" readonly value=<%=id%>>
                   <button type="button" style="margin-bottom:10px;" onclick="requestAuth('cancel')">인증요청</button>
                   </div>
                 </div>

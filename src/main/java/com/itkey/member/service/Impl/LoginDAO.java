@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itkey.controller.DrugShapeVo;
 import com.itkey.member.service.MemberVo;
 
 @Repository("LoginDAO")
@@ -51,5 +52,8 @@ public class LoginDAO {
 	public int updateSub(Map<String, Object> params) throws Exception {
 		int result = sqlSession.update("updateSub",params);
 		return result;
+	}
+	public int dataGogo(DrugShapeVo dVo) {
+		return sqlSession.insert("member.dataGogo",dVo);
 	}
 }

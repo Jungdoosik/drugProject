@@ -3,6 +3,7 @@
 <mapper namespace="member">
 	
 	<resultMap id="memberVo" type="com.itkey.member.service.MemberVo"></resultMap>
+	<resultMap id="drugShapeVo" type="com.itkey.controller.DrugShapeVo"></resultMap>
 
 	<!-- 아이디 일치(존재) 여부 -->
 	<select id="idChk" resultType="int">
@@ -144,4 +145,74 @@
 			end_sub_date = date_format(DATE_ADD(NOW(), INTERVAL 1 MONTH),'%Y년%m월%d일%h시')
 		WHERE phone = #{phone}
 	</update>
+	
+	<insert id="dataGogo" parameterType="DrugShapeVo">
+		insert into test
+			(ITEM_SEQ,
+			  ITEM_NAME,
+			  ENTP_SEQ ,
+			  ENTP_NAME,
+			  CHART,
+			  ITEM_IMAGE,
+			  PRINT_FRONT,
+			  PRINT_BACK,
+			  DRUG_SHAPE,
+			  COLOR_CLASS1,
+			  COLOR_CLASS2,
+			  LINE_FRONT,
+			  LINE_BACK,
+			  LENG_LONG,
+			  LENG_SHORT,
+			  THICK,
+			  IMG_REGIST_TS,
+			  CLASS_NO,
+			  CLASS_NAME,
+			  ETC_OTC_NAME,
+			  ITEM_PERMIT_DATE,
+			  FORM_CODE_NAME,
+			  MARK_CODE_FRONT_ANAL,
+			  MARK_CODE_BACK_ANAL,
+			  MARK_CODE_FRONT_IMG,
+			  MARK_CODE_BACK_IMG,
+			  CHANGE_DATE,
+			  MARK_CODE_FRONT,
+			  MARK_CODE_BACK,
+			  ITEM_ENG_NAME,
+			  EDI_CODE)
+			  VALUES
+			  (
+			  	#{itemSeq}
+			  	,#{itemName}
+			  	,#{entpSeq}
+			  	,#{entpName}
+			  	,#{chart}
+			  	,#{itemImage}
+			  	,#{printFront}
+			  	,#{printBack}
+			  	,#{drugShape}
+			  	,#{colorClass1}
+			  	,#{colorClass2}
+			  	,#{lineFront}
+			  	,#{lineBack}
+			  	,#{lengLong}
+			  	,#{lengShort}
+			  	,#{thick}
+			  	,#{imgRegistTs}
+			  	,#{classNo}
+			  	,#{className}
+			  	,#{etcOtcName}
+			  	,#{itemPermitDate}
+			  	,#{formCodeName}
+			  	,#{markCodeFrontAnal}
+			  	,#{markCodeBackAnal}
+			  	,#{markCodeFrontImg}
+			  	,#{markCodeBackImg}
+			  	,#{changeDate}
+			  	,#{markCodeFront}
+			  	,#{markCodeBack}
+			  	,#{itemEngName}
+			  	,#{edlCode}
+			  )
+			  
+	</insert>
 </mapper>

@@ -200,7 +200,7 @@
 	<!-- 검색타입 -->
 	<sql id="serviceCode">			
 		<choose>
-			<when test="serviceCode == 'WM'.toString()">
+			<when test="serviceCode == 'MS'.toString()">
 				AND service_code LIKE CONCAT('%',#{serviceCode},'%')
 			</when>
 			<when test="serviceCode == 'ALL'.toString()">

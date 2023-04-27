@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.itkey.controller.DrugShapeVo;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 
@@ -58,6 +59,10 @@ public class LoginServiceImpl implements LoginService{
 	public int updateSub(Map<String, Object> params) throws Exception {
 		int result = loginDAO.updateSub(params);
 		return result;
+	}
+	@Override
+	public int dataGogo(DrugShapeVo dVo) throws Exception {
+		return loginDAO.dataGogo(dVo);
 	}
 
 

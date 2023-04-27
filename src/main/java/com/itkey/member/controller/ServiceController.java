@@ -46,7 +46,7 @@ public class ServiceController {
 	@Autowired
 	private EnquireService enquireService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
 	
 	// 서비스 해지
 	@RequestMapping("/cancel")
@@ -55,8 +55,8 @@ public class ServiceController {
 		
 		ModelAndView mv = new ModelAndView();
     	MemberVo mVO = new MemberVo();
-    	String member = (String) session.getAttribute("member");
-		mVO = loginService.loginDo(member);
+    	String phone = (String) session.getAttribute("phone");
+		mVO = loginService.loginDo(phone);
 		
 		// 서비스 가입 여부
 		String subScribe = mVO.getSubscribe(); 
@@ -135,9 +135,9 @@ public class ServiceController {
  		logger.info("문의 등록  ajax data : " + eVO);
 
  		//세션값 불러오기
- 		String member = (String) session.getAttribute("member");
- 	    logger.info(member);
- 		eVO.setWriter(member);
+ 		String phone = (String) session.getAttribute("phone");
+ 	    logger.info(phone);
+ 		eVO.setWriter(phone);
 
  		logger.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
  		int result = enquireService.insertCancel(eVO);
@@ -153,9 +153,9 @@ public class ServiceController {
     @RequestMapping("/servicesJoin") 
     public String servicesJoin(HttpSession session) throws Exception{
     	MemberVo mVO = new MemberVo();
-    	String member = (String) session.getAttribute("member");
-		if (member != null) {
-			mVO = loginService.loginDo(member);
+    	String phone = (String) session.getAttribute("phone");
+		if (phone != null) {
+			mVO = loginService.loginDo(phone);
 			
 			String subScribe = mVO.getSubscribe(); 
 			session.setAttribute("subScribe", subScribe);
@@ -169,9 +169,9 @@ public class ServiceController {
     @RequestMapping(value = "/paymentOk", method = RequestMethod.POST)
     public String paymentOk(@RequestParam Map<String, Object> params, HttpServletResponse response, HttpSession session) throws Exception {
     	ModelAndView mv = new ModelAndView();
-    	String member = (String) session.getAttribute("member");
+    	String phone = (String) session.getAttribute("phone");
     	
-    	params.put("phone", member);
+    	params.put("phone", phone);
     	int result = loginService.insertCredit(params);
     	logger.debug("결제정보 DB 저장/insertCredit : " + result);
     	if (result==1) {

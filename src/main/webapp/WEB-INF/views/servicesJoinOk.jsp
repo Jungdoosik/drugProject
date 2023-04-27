@@ -117,7 +117,7 @@ function itemDataSearch() {
 <body>
 	<%
 	// 세션값 가져오기
-	String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
+	String id = (String) session.getAttribute("phone"); // Object 타입이므로 다운캐스팅
 	%>
 	<div class="index_container">
 	<jsp:include page="common/header.jsp" />

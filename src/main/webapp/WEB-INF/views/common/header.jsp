@@ -5,7 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 // 세션값 가져오기
-String id = (String) session.getAttribute("member"); // Object 타입이므로 다운캐스팅
+String id = (String) session.getAttribute("phone");
+String subScribe = (String) session.getAttribute("subScribe");
 %>
 <style>
 body {
@@ -28,23 +29,22 @@ body {
                 <nav id="navbar" class="navbar">
                     <ul>
                     	<!-- 세션값 없는 경우 서비스소개/로그인 -->
-                        <c:if test="${empty member }">
+                        <c:if test="${empty phone }">
 	                        <li> <a class="get-a-quote" href="login">로그인</a> </li>
                         </c:if>
                         <!-- 세션값 있는 경우 마이페이지/로그아웃 -->
-                        <c:if test="${not empty member }">
-                        	<li style="display: flex;"> <a href="index"> ${member } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
+                        <c:if test="${not empty phone }">
+                        	<li style="display: flex;"> <a href="index"> ${phone } 님 안녕하세요.</a> <a class="get-a-quote" href="logout" style="width: fit-content;">로그아웃</a></li>
                         </c:if>
-                        <c:if test="${not empty member }">
+                        <c:if test="${not empty phone }">
                         	<li class="dropdown"><a href="#"><span> 나의 정보</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
 					            <ul>
 					              <li><a href="modify">정보 수정</a></li>
 					              <li><a href="calendar">캘린더</a></li>
-					              <!-- <li><a href="index">결제 내역</a></li> -->
 					            </ul>
 					          </li>
                         </c:if>
-                        <c:if test="${not empty member }">
+                        <c:if test="${not empty phone }">
                         	<li class="dropdown"><a href="#"><span>문의하기</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
 					            <ul>
 					              <li><a href="question">1:1 문의</a></li>
@@ -55,7 +55,9 @@ body {
                         </c:if>
                         
                         <li> <a href="services"> 서비스 소개</a> </li>
+                        <c:if test="${subScribe eq 'N' || empty subScribe}">
                         <li> <a href="servicesJoin"> 서비스 가입</a> </li>
+                        </c:if>
                         <li>  </li>
                     </ul>
                 </nav><!-- .navbar -->
