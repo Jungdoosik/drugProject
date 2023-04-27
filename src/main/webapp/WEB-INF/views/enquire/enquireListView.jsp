@@ -200,23 +200,23 @@ function eWVBnt() {
 							  </tr>
 							</thead>
 							<tbody>
-									
-										<c:forEach items="${List}" var="ask" varStatus="status">
-											<tr style="padding:5px; text-align: center;" >
-												<td style="padding:5px;">
-													<a onclick="enquireDetail('${ask.seq}')" style="cursor:pointer;"><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}"/> </a>
-												</td>
-												<c:if test="${ask.adate ne null}">
+								<c:forEach items="${List}" var="ask" varStatus="status">
+									<tr style="padding:5px; text-align: center;" >
+											<td style="padding:5px;">
+													<a style="cursor:pointer;"><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}"/> </a>
+											</td>
+											<c:if test="${ask.adate ne null}">
 													<td style="padding:5px;"><font color="blue">답변완료</font></td>
-												</c:if>
-												<c:if test="${ask.adate eq null}">
+											</c:if>
+											<c:if test="${ask.adate eq null}">
 													<td style="padding:5px;"><font color="red">처리중</font></td>
-												</c:if>
-												<td style="padding:5px;"> ${ask.title}</td>
-												<td style="padding:5px;">${ask.qdate}</td>
-												<td style="padding:5px;">${ask.adate}</td>
-											</tr>
-										</c:forEach>
+											</c:if>
+											<td style="padding:5px;">
+											<a onclick="enquireDetail('${ask.seq}')" style="cursor:pointer;"> ${ask.title}</a></td>
+											<td style="padding:5px;">${ask.qdate}</td>
+											<td style="padding:5px;">${ask.adate}</td>
+									</tr>
+								 </c:forEach>
 							</tbody>
 					
 						</table>
