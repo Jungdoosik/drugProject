@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script><!-- query.modal 사용시  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /><!-- query.modal 사용시  -->
 
-<link href="resources/css/enquire/enquireAdminView.css" rel="stylesheet"> 
+<link href="resources/css/enquire/enquireAdminView.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/common/modal.js"></script>
 <script type="text/javascript" src="resources/js/enquire/enquireAdminView.js"></script>
 
@@ -45,7 +45,7 @@
 						</div>
 					</div>
 				</div>
-						
+
 				<!-- list  관리자 목록-->
 				<div class="card mb-4" id="list">
 					<div class="card-header">
@@ -56,33 +56,41 @@
 						<table id="datatablesSimple">
 							<thead>
 								<tr>
+									<th>순번</th>
 									<th>처리 여부</th>
  									<th>제목</th>
 									<th>작성자</th>
-									<th>날짜</th>
+									<th>문의날짜</th>
+									<th>답변날짜</th>
 									<th>답변/삭제</th>
 								</tr>
 							</thead>
 							<tfoot>
 								<tr>
+									<th>순번</th>
 								    <th>처리 여부</th>
 								    <th>제목</th>
 								    <th>작성자</th>
-								    <th>날짜</th>
+									<th>문의날짜</th>
+									<th>답변날짜</th>
 								    <th>답변/삭제</th>
 								</tr>
 							</tfoot>
 							<tbody>
 							<c:forEach items="${List}" var="list">
 								    <tr >
+								    	<td>${list.seq}</td>
+								    	<td>
 										<c:if test="${list.adate ne null}">
-											<td><font color="blue">답변완료</font></td>
+											<font color="blue">답변완료</font>
 										</c:if>
-										<c:if test="${ask.adate eq null}">
-											<td ><font color="red">처리중</font></td>
+										<c:if test="${list.adate eq null}">
+											<font color="red">처리중</font>
 										</c:if>
+										</td>
 										<td>${list.title}</td>
 										<td>${list.writer}</td>
+										<td>${list.qdate}</td>
 										<td>${list.adate}</td>
 										<td>
 											<c:if test="${list.answer eq null}">
@@ -105,7 +113,7 @@
 						</table>
 					</div>
 				</div>
-				
+
 				<!-- detail  상세 페이지 -->
 				<div id="detail" style="display: none;">
 					<br>
@@ -127,7 +135,7 @@
 					</div>
 					<button class="btn btn-outline-secondary" onclick="golist()">목록</button>
 				</div><!-- detail -->
-					
+
 				<!-- regform  답변 페이지 -->
 				<div id="regform" style="display: none;">
 				  <form>
@@ -154,7 +162,7 @@
 					<input type="hidden" id="seq" value="">
 				  </form>
 				</div><!-- regform -->
-			</div>                    
+			</div>
 		</main>
 	</div>
 	<!--   공통모달 .jsp  설정  -->
