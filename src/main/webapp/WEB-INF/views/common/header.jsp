@@ -13,7 +13,7 @@ body {
 	background: #0e1d34;
 }
 </style>
- 
+
 <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center fixed-top">
             <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -53,12 +53,10 @@ body {
 					            </ul>
 					          </li>
                         </c:if>
-                        
+
                         <li> <a href="services"> 서비스 소개</a> </li>
-                        <c:if test="${subScribe eq 'N' || empty subScribe}">
                         <li> <a href="servicesJoin"> 서비스 가입</a> </li>
-                        </c:if>
-                        <li>  </li>
+                        <li> <a href="enquireAdmin"> 관리자-문의(TEST)</a> </li>
                     </ul>
                 </nav><!-- .navbar -->
             </div>

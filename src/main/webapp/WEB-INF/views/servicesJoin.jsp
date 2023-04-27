@@ -140,7 +140,9 @@ function itemDataSearch() {
 	            <table class="table">
 
 	                <tbody>
-	                <tr>
+
+
+<!-- 	                <tr>
 	                    <td>7일 100원 결제 체험 후 월정액</td>
 	                    <td>7일 100원 결제 체험 서비스를 통해  MedicineSearch 이용</td>
 	                    <td>
@@ -149,7 +151,7 @@ function itemDataSearch() {
 	                        	<label class="form-check-label" for="check-0"><del>9,900/월</del></label>
 	                        </div>
 	                    </td>
-	                </tr>
+	                </tr> -->
 	<!--                 <tr>
 	                    <td style="text-decoration:line-through; color: gray;">7일 100원 결제 체험 후 월정액<td style="text-decoration:line-through; color: gray;">7일 100원 결제 체험 서비스를 통해 MedicineSearch 서비스 이용<td>
 	                        <div class="form-check checkbox-plan">
