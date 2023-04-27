@@ -3,15 +3,19 @@ package com.itkey.member.service.Impl;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itkey.controller.DrugShapeVo;
+import com.itkey.enquire.EnquireDAO;
 import com.itkey.member.service.MemberVo;
 
 @Repository("LoginDAO")
 public class LoginDAO {
 	
+	private static final Logger log = LoggerFactory.getLogger(LoginDAO.class);
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -55,5 +59,12 @@ public class LoginDAO {
 	}
 	public int dataGogo(DrugShapeVo dVo) {
 		return sqlSession.insert("member.dataGogo",dVo);
+	}
+	// 회원 수정 
+	public int updateModifyDo(MemberVo mVO) throws Exception{
+		log.info("*회원 수정 [DAO] Input  ◀ (Service) : " + mVO.toString());
+		int result = sqlSession.update("mupdateModifyDo",mVO);
+		log.info("*회원 수정 [DAO] Output ◀ (Mybatis) : " + result);
+		return result;
 	}
 }

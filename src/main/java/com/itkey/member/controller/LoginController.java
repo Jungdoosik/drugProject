@@ -1,5 +1,6 @@
 package com.itkey.member.controller;
 
+
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itkey.controller.DrugShapeVo;
 import com.itkey.controller.HomeController;
+
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
@@ -40,7 +42,7 @@ public class LoginController {
 	private PhoneService phoneService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -193,8 +195,9 @@ public class LoginController {
     	
     	return mv;
     }
-    
-    @RequestMapping("/modify") // 개인정보수정
+	
+	// 개인정보수정 페이지 
+    @RequestMapping("/modify") 
     public String modify(Model model ,HttpSession session) throws Exception {
     	String phone = (String) session.getAttribute("phone");
     	MemberVo mVO = new MemberVo();
@@ -203,6 +206,33 @@ public class LoginController {
     	model.addAttribute("memberinfo",mVO);
        return "modify";
     }
+    
+    //개인정보 수정 등록
+    @ResponseBody
+    @RequestMapping("/modifyDo.do")
+    public String updateModifyDo (Model model
+    		,MemberVo mVO
+    		,HttpSession session
+    		)throws Exception {
+    	logger.info(" modifyDo  ajax data : " + mVO);
+    	//세션값 불러오기
+		String phone = (String) session.getAttribute("phone");
+		logger.info(phone);
+
+		mVO.setPhone(phone);
+    	
+    	logger.info("* updateModifyDo [CONTROLLER] input �뼳 (Service) : ");
+		int result = loginService.updateModifyDo(mVO);
+		logger.info("* updateModifyDo [CONTROLLER] out �뼳 (Service) : " + result);
+		
+
+		if (result == 1) {
+			return "success";
+		} else {
+			return "FAIL";
+		}
+    }
+    
     
     @RequestMapping(value = "/logout") // 로그아웃 클릭하면
 	public String logout(HttpSession session) {

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="search">
+	
+	<resultMap id="drugShapeVo" type="com.itkey.madi.search.service.DrugShapeVo"></resultMap>
+	
+	<insert id="dataGogo" parameterType="DrugShapeVo">
+		insert into test
+			(ITEM_SEQ,
+			  ITEM_NAME,
+			  ENTP_SEQ ,
+			  ENTP_NAME,
+			  CHART,
+			  ITEM_IMAGE,
+			  PRINT_FRONT,
+			  PRINT_BACK,
+			  DRUG_SHAPE,
+			  COLOR_CLASS1,
+			  COLOR_CLASS2,
+			  LINE_FRONT,
+			  LINE_BACK,
+			  LENG_LONG,
+			  LENG_SHORT,
+			  THICK,
+			  IMG_REGIST_TS,
+			  CLASS_NO,
+			  CLASS_NAME,
+			  ETC_OTC_NAME,
+			  ITEM_PERMIT_DATE,
+			  FORM_CODE_NAME,
+			  MARK_CODE_FRONT_ANAL,
+			  MARK_CODE_BACK_ANAL,
+			  MARK_CODE_FRONT_IMG,
+			  MARK_CODE_BACK_IMG,
+			  CHANGE_DATE,
+			  MARK_CODE_FRONT,
+			  MARK_CODE_BACK,
+			  ITEM_ENG_NAME,
+			  EDI_CODE)
+			  VALUES
+			  (
+			  	#{itemSeq}
+			  	,#{itemName}
+			  	,#{entpSeq}
+			  	,#{entpName}
+			  	,#{chart}
+			  	,#{itemImage}
+			  	,#{printFront}
+			  	,#{printBack}
+			  	,#{drugShape}
+			  	,#{colorClass1}
+			  	,#{colorClass2}
+			  	,#{lineFront}
+			  	,#{lineBack}
+			  	,#{lengLong}
+			  	,#{lengShort}
+			  	,#{thick}
+			  	,#{imgRegistTs}
+			  	,#{classNo}
+			  	,#{className}
+			  	,#{etcOtcName}
+			  	,#{itemPermitDate}
+			  	,#{formCodeName}
+			  	,#{markCodeFrontAnal}
+			  	,#{markCodeBackAnal}
+			  	,#{markCodeFrontImg}
+			  	,#{markCodeBackImg}
+			  	,#{changeDate}
+			  	,#{markCodeFront}
+			  	,#{markCodeBack}
+			  	,#{itemEngName}
+			  	,#{edlCode}
+			  )
+			  
+	</insert>
+	
+	<select id="searchShapeList" parameterType="HashMap" resultType="drugShapeVo">
+		select * 
+		from test 
+		where 1=1 
+		<if test="selectShape != null and !selectShape.equals('')">
+			AND DRUG_SHAPE = #{selectShape}
+		</if>
+		<if test="selectColor != null and !selectColor.equals('')">
+			AND COLOR_CLASS1 = #{selectColor} 
+		</if>
+		<if test="selectDrugForm != '' and selectDrugForm != null">
+			<choose>
+				<when test="selectDrugForm == '전체'">
+					
+				</when>
+				<when test="selectDrugForm == '정제'">
+					AND FORM_CODE_NAME regexp '스팬슐|질정|정제|압축정제|당의정|다층정|유핵정|다중압축정|필름코팅정|젤라틴코팅정|장용정|속붕해정|즉방성정제|서방정|즉방성|박칼정|설하정|구중정|발포정|용해정|습제정제|주형정|트로키|구강붕해정|추어블정|분산정|나정'
+				</when>
+				<when test="selectDrugForm == '경질'">
+					AND FORM_CODE_NAME regexp '경질캡슐|장용성필름코팅캡슐제|장용성캡슐제|서방성캡슐제'
+				</when>
+				<when test="selectDrugForm == '연질'">
+					AND FORM_CODE_NAME regexp '연질캡슐'
+				</when>
+				<otherwise>
+					AND FORM_CODE_NAME not regexp  '스팬슐|질정|정제|압축정제|당의정|다층정|유핵정|다중압축정|필름코팅정|젤라틴코팅정|장용정|속붕해정|즉방성정제|서방정|즉방성|박칼정|설하정|구중정|발포정|용해정|습제정제|주형정|트로키|구강붕해정|추어블정|분산정|나정|경질캡슐|장용성필름코팅캡슐제|장용성캡슐제|서방성캡슐제|연질캡슐'
+				</otherwise>
+			</choose>
+		</if>
+		<if test="selectLine != '' and selectLine != null">
+			<choose>
+				<when test="selectLine == '전체'">
+					
+				</when>
+				<when test="selectLine == '-형'">
+					AND (LINE_FRONT = '-' or LINE_BACK = '-')
+				</when>
+				<when test="selectLine == '+형'">
+					AND (LINE_FRONT = '+' or LINE_BACK = '+')
+				</when>
+				<otherwise>
+					AND (LINE_FRONT = '기타' or LINE_BACK = '기타')
+				</otherwise>
+			</choose>
+		</if>
+		order by ITEM_SEQ ASC
+		LIMIT #{cntPerPage} offset #{start}
+	</select>
+	
+	<select id="searchShapeListCnt" parameterType="HashMap" resultType="int">
+		select count(*) as cnt 
+		from test 
+		where 1=1 
+		<if test="selectShape != null and !selectShape.equals('')">
+			AND DRUG_SHAPE = #{selectShape}
+		</if>
+		<if test="selectColor != null and !selectColor.equals('')">
+			AND COLOR_CLASS1 = #{selectColor} 
+		</if>
+		<if test="selectDrugForm != '' and selectDrugForm != null">
+			<choose>
+				<when test="selectDrugForm == '전체'">
+					
+				</when>
+				<when test="selectDrugForm == '정제'">
+					AND FORM_CODE_NAME regexp '스팬슐|질정|정제|압축정제|당의정|다층정|유핵정|다중압축정|필름코팅정|젤라틴코팅정|장용정|속붕해정|즉방성정제|서방정|즉방성|박칼정|설하정|구중정|발포정|용해정|습제정제|주형정|트로키|구강붕해정|추어블정|분산정|나정'
+				</when>
+				<when test="selectDrugForm == '경질'">
+					AND FORM_CODE_NAME regexp '경질캡슐|장용성필름코팅캡슐제|장용성캡슐제|서방성캡슐제'
+				</when>
+				<when test="selectDrugForm == '연질'">
+					AND FORM_CODE_NAME regexp '연질캡슐'
+				</when>
+				<otherwise>
+					AND FORM_CODE_NAME not regexp  '스팬슐|질정|정제|압축정제|당의정|다층정|유핵정|다중압축정|필름코팅정|젤라틴코팅정|장용정|속붕해정|즉방성정제|서방정|즉방성|박칼정|설하정|구중정|발포정|용해정|습제정제|주형정|트로키|구강붕해정|추어블정|분산정|나정|경질캡슐|장용성필름코팅캡슐제|장용성캡슐제|서방성캡슐제|연질캡슐'
+				</otherwise>
+			</choose>
+		</if>
+		<if test="selectLine != '' and selectLine != null">
+			<choose>
+				<when test="selectLine == '전체'">
+					
+				</when>
+				<when test="selectLine == '-형'">
+					AND (LINE_FRONT = '-' or LINE_BACK = '-')
+				</when>
+				<when test="selectLine == '+형'">
+					AND (LINE_FRONT = '+' or LINE_BACK = '+')
+				</when>
+				<otherwise>
+					AND (LINE_FRONT = '기타' or LINE_BACK = '기타')
+				</otherwise>
+			</choose>
+		</if>
+		order by ITEM_SEQ ASC
+	</select>
+</mapper>
