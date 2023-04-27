@@ -2,7 +2,6 @@ package com.itkey.member.controller;
 
 
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itkey.controller.DrugShapeVo;
 import com.itkey.controller.HomeController;
-
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;

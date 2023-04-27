@@ -132,7 +132,7 @@
             }
         };
 
-        xhr3.send('');
+        xhr3.send('');*/
         
         var xhr4 = new XMLHttpRequest();
         var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
@@ -155,7 +155,7 @@
             }
         };
 
-        xhr4.send(''); */
+        xhr4.send('');
     })
          
     
@@ -180,7 +180,8 @@
             document.frm.submit()
         }
         
-        function data(){
+        //데이터 집어넣는 버튼 onclick
+        /* function data(){
         	var xhr4 = new XMLHttpRequest();
             var urld = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; 
             var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; 
@@ -188,16 +189,15 @@
             queryParams += '&' + encodeURIComponent('entp_name') + '=' + encodeURIComponent(''); 
             queryParams += '&' + encodeURIComponent('item_seq') + '=' + encodeURIComponent(''); 
             queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); 
-            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('33'); 
-            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('300'); 
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('85'); 
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('23'); 
             queryParams += '&' + encodeURIComponent('edi_code') + '=' + encodeURIComponent(''); 
             queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); 
             xhr4.open('GET', urld + queryParams);
             xhr4.onreadystatechange = function () {
                 if (this.readyState == 4) {
-                    /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText); */
                     var tt1 = JSON.parse(this.responseText)
-                    console.log("List01  33")
+                    console.log("List01  85")
                     console.log(tt1.body.items[0])
                     console.log(tt1.body.items.length)
                     
@@ -250,7 +250,7 @@
 
             xhr4.send('');
         }
-        
+         */
         
     </script>
 
@@ -330,7 +330,6 @@ String id = (String) session.getAttribute("phone"); // Object 타입이므로 �
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="hero d-flex align-items-center">
             <div class="container">
-            <button type="button" onclick="data()">데이타 넣기</button>
                 <form id="frm" name="frm" method="post" data-aos="fade-up" data-aos-delay="200">
                     <div class="form-search d-flex align-items-stretch">
                         <input type="text" name="searchName" class="form-control" placeholder="검색어를 입력하세요." onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}">

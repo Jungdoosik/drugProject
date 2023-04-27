@@ -2,8 +2,6 @@ package com.itkey.member.service;
 
 import java.util.Map;
 
-import com.itkey.controller.DrugShapeVo;
-
 
 public interface LoginService {
 
