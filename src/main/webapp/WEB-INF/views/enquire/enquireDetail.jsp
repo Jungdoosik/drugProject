@@ -86,7 +86,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="row g-0">
                     
-                    <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/enquireWrite.jpg);">
+                    <div class="col-lg-5 quote-bg" style="background-image: url(resources/img/enquireDetail.jpg);">
                     </div>
                         <div class="col-lg-7">
                                 <form  method="post" class="php-email-form" id="frmAsk" >
@@ -94,8 +94,8 @@
                                         <h2 class="askTop">문의내역</h2>
                                         <input type="hidden" name="phone" value="${phone}" /> 
                                         <input type="hidden" id="serviceCode" value="MS">
-                                        <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
-                                        <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4>
+                   <!--                      <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
+                                        <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4> -->
                                     </div>
                                                     <%-- <div class="col-md-12 ">
                                                     <span class="input-group-text">작성자</span>
@@ -103,16 +103,16 @@
                                                     </div> --%> 
                                         <div class="col-md-12">
                                                 <span class="input-group-text">제목</span>
-                                                <input type="text" name="title" id="askTitle" class="form-control" disabled value="${eVo.title }"placeholder="※ 무엇을 문의하시겠습니까?" required>
+                                                <input  type="text" name="title" id="askTitle" style="background-color: #fff;" class="form-control" disabled value="${eVo.title}"placeholder="※ 무엇을 문의하시겠습니까?" required>
                                         </div>
                                         <div class="col-md-12">
                                             <span class="input-group-text">내용</span>
-                                            <textarea class="form-control" name="question" id="askContent" rows="6"  disabled placeholder="※ 내용을 입력하세요.&#13;&#10;&#13;&#10;수정 / 삭제 불가하오니 신중히 문의하시기 바랍니다." required>${eVo.question }</textarea>
+                                            <textarea class="form-control" style="background-color: #fff;" name="question" id="askContent" rows="6"  disabled placeholder="※ 내용을 입력하세요.&#13;&#10;&#13;&#10;수정 / 삭제 불가하오니 신중히 문의하시기 바랍니다." required>${eVo.question }</textarea>
                                         </div>
                                         <c:if test="${not empty eVo.answer }">
 	                                        <div class="col-md-12">
 	                                            <span class="input-group-text">답변</span>
-	                                            <textarea class="form-control" name="question" id="askContent" rows="6"  disabled required>${eVo.answer}</textarea>
+	                                            <textarea class="form-control"  style="background-color: #fff;"name="question" id="askContent" rows="6"  disabled required>${eVo.answer}</textarea>
 	                                        </div>
                                         </c:if>
                                                 <div class="col-md-12 text-center">

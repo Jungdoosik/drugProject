@@ -212,7 +212,7 @@ function eWVBnt() {
 												<c:if test="${ask.adate eq null}">
 													<td style="padding:5px;"><font color="red">처리중</font></td>
 												</c:if>
-												<td style="padding:5px;">${ask.title}</td>
+												<td style="padding:5px;"> ${ask.title}</td>
 												<td style="padding:5px;">${ask.qdate}</td>
 												<td style="padding:5px;">${ask.adate}</td>
 											</tr>

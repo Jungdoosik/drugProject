@@ -98,7 +98,9 @@ public class EnquireController {
 		//세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
 	     log.info(phone);
+	     String serviceCode="MS";
 		eVO.setWriter(phone);
+		eVO.setService_code(serviceCode);
 
 		log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
 		int result = eService.insertAsk(eVO);
