@@ -84,7 +84,7 @@
 										<c:if test="${list.adate ne null}">
 											<font color="blue">답변완료</font>
 										</c:if>
-										<c:if test="${ask.adate eq null}">
+										<c:if test="${list.adate eq null}">
 											<font color="red">처리중</font>
 										</c:if>
 										</td>
