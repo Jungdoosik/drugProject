@@ -77,11 +77,19 @@
     </style>
     <script>
 
-    
+
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()
 
+        }
+
+        function cancelChk() {
+        	if (!confirm("작성한 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
+			    //history.go( -1 );
+			 }else { // 예
+				 history.go( -1 );
+			}
         }
     </script>
 
@@ -91,7 +99,7 @@
 <%
 	if(session.getAttribute("phone") == null) {
 %>
-		
+
 	<script language="JavaScript">
 		alert("로그인 후 이용가능합니다.");
 	</script>
@@ -100,8 +108,9 @@
 	}
 %>
     <div class="index_container">
-    <jsp:include page="common/header.jsp" />
-
+    <section>
+    	<jsp:include page="common/header.jsp" />
+	</section>
     <main id="main">
 
     <!-- ======= join Section ======= -->
@@ -120,25 +129,25 @@
 	                <h3>휴대전화번호</h3>
 	                  <input type="text" id="phone" name="phone" class="form-control" value="${memberinfo.phone }" readonly style="margin-bottom:10px;">
 	                </div>
-	                
+
 	                <div class="col-md-12">
 	                <h3>비밀번호</h3>
 	                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
 	                </div>
-	
+
 	                <div class="col-md-12">
 	                <h3>비밀번호확인</h3>
 	                  <input type="password" id="pwdChk" name="pwdChk" class="form-control" placeholder="비밀번호 확인" style="margin-bottom:10px;">
 	                </div>
-	
+
 					<div class="col-md-12">
 	                <h3>이메일 주소</h3>
 	                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
 	                </div>
-	                
+
 	                <div style="text-align: -webkit-center">
 	                  <button type="button" class="btn-2" onclick="modifyChk()">정보수정</button>
-	                  <a href="mypage" class="btn-2">취소</a>
+	                  <button type="button" class="btn-2" onclick="cancelChk()">취소</button>
 	            	</div>
               	</div>
             </form>

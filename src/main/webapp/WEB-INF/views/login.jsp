@@ -50,7 +50,7 @@
 
     <!-- Template Main CSS File -->
     <link href="resources/css/main.css" rel="stylesheet">
-    
+
 
     <!-- =======================================================
     * Template Name: Logis
@@ -80,7 +80,7 @@
             document.frm.submit()
 
         }
-        
+
         function joinPage(){
         	document.joinForm.action = "/join"
         	document.joinForm.submit();
@@ -94,16 +94,12 @@
 		<input type="hidden" name="joinPath" value="1">
 	</form>
 
-<%--     <div class="index_container">
-    	<section>
-    	<jsp:include page="common/header.jsp" />
-        </section><!-- End Hero Section -->
-        <main id="main"> --%>
-
     <div class="index_container">
-    <jsp:include page="common/header.jsp" />
+    <section>
+    	<jsp:include page="common/header.jsp" />
+    </section>
     <main id="main">
-    
+
     <!-- ======= Get a Quote Section ======= -->
     <section id="get-a-quote" class="get-a-quote">
       <div class="container" data-aos="fade-up" style="padding-top: 40px;">
@@ -124,13 +120,13 @@
                 <h3>비밀번호</h3>
                   <input type="password" id="pwd" name="pwd" class="form-control" value="" placeholder="Password 입력" style="margin-bottom:10px;">
                 </div>
-                
+
                 <div style="text-align: -webkit-center">
                   <button type="submit" class="btn-1">로그인</button>
                   <button type="button" class="btn-2" onclick="joinPage()">회원가입</button>
             	</div>
             </form>
-            
+
           </div><!-- End Quote Form -->
 
         </div>
