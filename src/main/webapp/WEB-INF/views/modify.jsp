@@ -74,6 +74,14 @@
             height: 100%;
             background: #0e1d34;
         }
+        .btn-3 {
+		    background: #495057;
+		    border: 0;
+		    padding: 10px 30px;
+		    color: #fff;
+		    transition: 0.4s;
+		    border-radius: 4px;
+		}
     </style>
     <script>
 
@@ -147,7 +155,7 @@
 
 	                <div style="text-align: -webkit-center">
 	                  <button type="button" class="btn-2" onclick="modifyChk()">정보수정</button>
-	                  <button type="button" class="btn-2" onclick="cancelChk()">취소</button>
+	                  <button type="button" class="btn-3" onclick="cancelChk()">취소</button>
 	            	</div>
               	</div>
             </form>
