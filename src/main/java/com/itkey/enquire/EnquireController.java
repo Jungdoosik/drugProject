@@ -44,25 +44,21 @@ public class EnquireController {
 	@Autowired
 	private EnquireService eService;
 
-	// ■ 상담 내역  리스트(개인)
+	// ■ 상담 내역  리스트(개인) - sunea
 	@GetMapping("/question")
-	public String enquireList( Model model
-			,HttpSession session
-			, Integer page
-			, Integer numsPerPage
-	) throws Exception {
+	public String enquireList( Model model,HttpSession session, Integer page, Integer numsPerPage
+	    ) throws Exception {
 		log.info("question 상담내역");
 		//세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
 		log.info(phone);
-		
 	
 		PageCriteria criteria = new PageCriteria();
 		//log.info("======1111===============");
 		criteria.setKeyword(phone);// 회원id criteria 객체 set
 		
 		if (page != null) {
-			//페이지
+			//페이지 
 			criteria.setPage(page);
 		}
 		if (numsPerPage != null) {
@@ -76,59 +72,29 @@ public class EnquireController {
 		
 		PageMaker pageMaker = new PageMaker(); // 페이지메이커 
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(eService.listCountEnquire(criteria));
+		pageMaker.setTotalCount(eService.listCountEnquire(criteria)); //총갯수 
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("phone", phone);
 		return "/enquire/enquireListView";
 	}
 
-	// ■ 고객 회원탈퇴 리스트(개인)
-	/*	@GetMapping("/memberWithdrawal")
-		public String memberWithdrawal( Model model
-				,HttpSession session
-				, Integer page
-				, Integer numsPerPage
-		) throws Exception {
-			log.info("문의 탈퇴  리스트");
-			
-			// 작업 보류
-			
-			return "/memberWithdrawalListView";
-		}*/
-	
-	
-	// ■ 고객 회원탈퇴 문의하기 페이지 
-		/*@GetMapping(value = "/memberWithdrawalView")
-		public String memberQuestionDeleteView(Model model
-				,HttpSession session
-				, HttpServletRequest request) throws Exception {
-
-			log.info("회원탈퇴 문의 페이지 ");
-			 // 작업 보류
-			return "/memberWithdrawalView";
-			
-		}*/
 		
 	
-		
-		
-	
-	// ■ 고객 문의하기 : 글쓰기 insert
+	// ■ 고객 문의하기 : 글쓰기 insert -sunea
 	@GetMapping(value = "/enquireWriteView")
-	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request) throws Exception {
-
+	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request
+			) throws Exception {
 		log.info("문의등록  페이지");
 		return "/enquire/enquireWrite";
-
-	}
+	  }
 	
-	// ■ 고객문의 등록
+	// ■ 고객문의 등록 - sunea
 	@ResponseBody
 	@PostMapping(value = "/doAsk.do")
-	public String insertAsk(EnquireVo eVO, HttpSession session) throws Exception {
+	public String insertAsk(EnquireVo eVO, HttpSession session
+			) throws Exception {
 		log.info("문의 등록  ajax data : " + eVO);
-
 		//세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
 	     log.info(phone);
@@ -164,20 +130,19 @@ public class EnquireController {
 		return "/enquire/enquireCS";
 	}
 
-	// ■ 상담 내역 (관리자)
+	// ■ 상담 내역 (관리자) -sunea
 	/* @PreAuthorize("hasRole('ADMIN')") */
-	@GetMapping("/admin")
-	public String adminList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
+	@GetMapping("/enquireAdmin")
+	public String adminList(Model model
+			, @ModelAttribute("cri") Criteria cri
+			) throws Exception {
 
 		log.info("관리자 상담내역");
-
 		Map<String, Object> map = eService.listAdminEnquire(cri);
-
+		
 		model.addAttribute("List", map.get("List"));
 		model.addAttribute("untreatedCnt", map.get("cnt"));
-
 		model.addAttribute("ServiceCode", cri.getServiceCode());
-
 		return "/enquire/enquireAdminView";
 	}
 
@@ -223,30 +188,23 @@ public class EnquireController {
 		return entity;
 	}
 
-	// ■ 상담 상세
+	// ■ 상담 상세 -sunea
 	@ResponseBody
 	@GetMapping(value = "/detail/{seq}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<EnquireVo> detailEnqire(@PathVariable("seq") int seq) {
-
 		log.info("문의 상세내역");
-
 		ResponseEntity<EnquireVo> entity = null;
-
 		try {
-
 			entity = new ResponseEntity<>(eService.detailEnquire(seq), HttpStatus.OK);
-
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
 		}
 		return entity;
 	}
 
-	// ■ 문의답변 등록
+	// ■ 문의답변 등록 -sunea
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/answer/{seq}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
@@ -292,7 +250,7 @@ public class EnquireController {
 		return entity;
 	}
 
-	// ■ 문의답변 삭제
+	// ■ 문의답변 삭제 
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/delete/{seq}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
