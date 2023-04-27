@@ -20,6 +20,5 @@ public interface LoginService {
 	public int insertCredit(Map<String, Object> params) throws Exception;
 	
 	public int updateSub(Map<String, Object> paramse) throws Exception;
-	public int dataGogo(DrugShapeVo dVo)throws Exception;
 	
 }

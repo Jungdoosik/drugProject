@@ -7,15 +7,14 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.itkey.controller.DrugShapeVo;
-import com.itkey.enquire.EnquireController;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 
 @Service("LoginService")
 public class LoginServiceImpl implements LoginService{
 	
-	private Logger log = Logger.getLogger(LoginServiceImpl.class);
+    private Logger log = Logger.getLogger(LoginServiceImpl.class);
+    
 	
 	@Resource(name = "LoginDAO")
 	LoginDAO loginDAO;
@@ -64,19 +63,14 @@ public class LoginServiceImpl implements LoginService{
 		int result = loginDAO.updateSub(params);
 		return result;
 	}
-	//회원수정
-	@Override
-	public int updateModifyDo(MemberVo mVO) throws Exception {
-		log.info("회원수정 * [SERVICE] Input  ◀ (Controller) : " + mVO.toString());
-		int result = loginDAO.updateModifyDo(mVO);
-		log.info("회원수정 * [SERVICE] Output ◀ (DAO) : " + result);
-		return result;
-	}
-	
-	@Override
-	public int dataGogo(DrugShapeVo dVo) throws Exception {
-		return loginDAO.dataGogo(dVo);
-	}
-
+    //회원수정
+    @Override
+    public int updateModifyDo(MemberVo mVO) throws Exception {
+        log.info("회원수정 * [SERVICE] Input  ◀ (Controller) : " + mVO.toString());
+        int result = loginDAO.updateModifyDo(mVO);
+        log.info("회원수정 * [SERVICE] Output ◀ (DAO) : " + result);
+        return result;
+    }
+    
 
 }
