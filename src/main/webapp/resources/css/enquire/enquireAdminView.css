@@ -1,0 +1,60 @@
+.page-link {
+  color: #000; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #555;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #ccc;
+
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000;
+  background-color: #fafafa; 
+  border-color: #ccc;
+}
+
+
+.form-search {
+	float: right;
+}
+
+.form-search label{
+	font-weight: bold;
+}
+
+textarea {
+	height: 296px;
+}
+
+#eqdate {
+	font-weight:bold;
+	text-align: center;
+}
+
+#detail .form-control, #regform .form-control{
+	background: white;
+}
+
+#regform button {
+	display :inline-block;
+}
+
+#regform [name="writer"]{
+	text-align: center; 
+	font-weight: bold;
+	background-color: white;
+}
+
+#regform, #detail {
+	display: none;
+}
+
+#list button, #detail button {
+	float: right;
+}
