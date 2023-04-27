@@ -13,10 +13,13 @@ public interface LoginService {
 	public String getSalt(String phone) throws Exception; // salt값 가져오기
 	public int loginChk(MemberVo member) throws Exception;
 	public int loginChk_del(MemberVo member) throws Exception; // 아이디+비밀번호+탈퇴여부
+	public int updateModifyDo(MemberVo mVO) throws Exception; // 회원 수정
+	
 	
 	public int insertMem(Map<String, Object> params) throws Exception;
 	public int insertCredit(Map<String, Object> params) throws Exception;
 	
 	public int updateSub(Map<String, Object> paramse) throws Exception;
 	public int dataGogo(DrugShapeVo dVo)throws Exception;
+	
 }

@@ -99,6 +99,8 @@
 				 history.go( -1 );
 			}
         }
+        
+        
     </script>
 
 </head>
@@ -131,11 +133,11 @@
 
 		  <!-- Start join Form -->
           <div class="col-lg-7">
-            <form id="joinFrm" name="joinFrm" action="joinDo" method="post" class="php-email-form">
+            <form id="modifyFrm" name="modifyFrm" method="post" class="php-email-form">
 				<div>
 	                <div class="col-md-12">
 	                <h3>휴대전화번호</h3>
-	                  <input type="text" id="phone" name="phone" class="form-control" value="${memberinfo.phone }" readonly style="margin-bottom:10px;">
+	                  <input type="text" id="phone" name="phone" class="form-control" disabled value="${memberinfo.phone }" readonly style="margin-bottom:10px;">
 	                </div>
 
 	                <div class="col-md-12">
@@ -160,7 +162,71 @@
               	</div>
             </form>
           </div><!-- End join Form -->
+ <script type="text/javascript">
+ /*
+  * 회원수정
+  */
 
+ function modifyChk() {
+ 	 alert("회원수정 버튼 클릭.");
+   
+    var formData = $("#modifyFrm").serialize();
+    var val = true;
+    
+    var pwd = $("#pwd").val();
+    var pwdChk = $("#pwdChk").val();
+    var email = $("#email").val();
+    
+    var val_phone = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
+    var val_pwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,25}$/;
+    var val_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    
+    
+    if (pwd == '' || pwdChk == '' || email == '') {
+       alert("모든 항목을 빈칸없이 작성해 주시기 바랍니다.");
+       val = false;
+    }  else if (!val_pwd.test(pwd)) {
+       alert("비밀번호는 영문,숫자 포함 4글자 이상이어야 합니다.(특수문자/공백/한글 사용 금지)");
+       val = false;
+    } else if (pwd != pwdChk) {
+       alert("입력하신 비밀번호와 비밀번호 확인이 상이합니다. 다시 확인하여 주시기 바랍니다.");
+       val = false;
+    } else if (!val_email.test(email)) {
+        alert("이메일 양식에 맞춰 작성해 주시기 바랍니다.");
+        val = false;
+    }
+    if (val == false) {
+       return false;
+    } else {
+         if (!confirm("작성한 내용으로 정보슈종 진행됩니다. 계속하시겠습니까? ")){ 
+        	 // 아니오
+        	 history.go( -1 );
+           }else { // 예
+           //form.submit();
+           // 회원정보 수정 업데이트: ajax
+             $.ajax({
+                 type: 'post',
+                 async: false ,
+                 url : 'modifyDo.do',
+                 data: formData,
+                 success : function(data) {
+                     if (data == "success") {
+                         alert("회원정보 수정이 완료되었습니다.");
+                         location.href = "/index"; //메인화면
+                     }
+                 },
+                 error: function (request, status, error) {
+                         alert("회원정보 수정이 실패하였습니다.");
+                         console.log("code: " + request.status)
+                         console.log("message: " + request.responseText)
+                         console.log("error: " + error);
+                     }
+             });
+           
+          }
+    }
+ }
+ </script>
         </div>
 
       </div>
