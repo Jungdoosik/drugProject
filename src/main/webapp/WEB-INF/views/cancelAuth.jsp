@@ -5,29 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
-<style>
-.btn-1 {
-    background: var(--color-primary);
-    border: 0;
-    padding: 10px 30px;
-    color: #fff;
-    transition: 0.4s;
-    border-radius: 4px;
-}
-
-.btn-2 {
-    background: #660099;
-    border: 0;
-    padding: 10px 30px;
-    color: #fff;
-    transition: 0.4s;
-    border-radius: 4px;
-}
-</style>
-<script>
-
-</script>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -78,6 +55,39 @@ String subScribe = (String) session.getAttribute("subscribe");
             height: 100%;
             background: #0e1d34;
         }
+        .btn-1 {
+		    background: var(--color-primary);
+		    border: 0;
+		    padding: 10px 30px;
+		    color: #fff;
+		    transition: 0.4s;
+		    border-radius: 4px;
+		}
+
+		.btn-2 {
+		    background: #660099;
+		    border: 0;
+		    padding: 10px 30px;
+		    color: #fff;
+		    transition: 0.4s;
+		    border-radius: 4px;
+		}
+		.btn-3 {
+		    background: #495057;
+		    border: 0;
+		    padding: 10px 30px;
+		    color: #fff;
+		    transition: 0.4s;
+		    border-radius: 4px;
+		}
+		.btn-4 {
+		    background: #ced4da;
+		    border: 0;
+		    color: #495057;
+		    transition: 0.4s;
+		    margin-bottom: 10px;
+		    width: 100px;
+		}
     </style>
     <script>
 
@@ -129,7 +139,7 @@ String subScribe = (String) session.getAttribute("subscribe");
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
                   <input type="text" id="phone" name="phone" class="form-control" maxlength="11" style="margin-bottom:10px;" readonly value=<%=id%>>
-                  <button type="button" style="margin-bottom:10px;" onclick="requestAuth('cancel')">인증요청</button>
+                  <button type="button" class="btn-4" style="margin-bottom:10px;" onclick="requestAuth('cancel')">인증요청</button>
                   </div>
                 </div>
 
@@ -138,14 +148,14 @@ String subScribe = (String) session.getAttribute("subscribe");
                 <h3>인증번호</h3>
                 <div style="display:flex;">
                   <input type="text" class="form-control" id="authNum" name="authNum" placeholder="인증번호 입력" style="margin-bottom:10px;" required>
-                  <button type="button" style="margin-bottom:10px;" onclick="confirmAuth()">인증확인</button>
+                  <button type="button" class="btn-4" style="margin-bottom:10px;" onclick="confirmAuth()">인증확인</button>
                 </div>
                 </div>
 
 
                 <div style="text-align: -webkit-center">
                   <button type="button" class="btn-2" onclick="authOK()">본인인증</button>
-                  <button type="button" class="btn-2" onclick="authCancel()">취소</button>
+                  <button type="button" class="btn-3" onclick="authCancel()">취소</button>
             </div>
 
               </div>

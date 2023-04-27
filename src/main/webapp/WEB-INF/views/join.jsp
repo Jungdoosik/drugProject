@@ -74,6 +74,22 @@
             height: 100%;
             background: #0e1d34;
         }
+        .btn-3 {
+		    background: #495057;
+		    border: 0;
+		    padding: 10px 30px;
+		    color: #fff;
+		    transition: 0.4s;
+		    border-radius: 4px;
+		}
+        .btn-4 {
+		    background: #ced4da;
+		    border: 0;
+		    color: #495057;
+		    transition: 0.4s;
+		    margin-bottom: 10px;
+		    width: 100px;
+		}
     </style>
     <script>
 
@@ -128,7 +144,7 @@
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
                   <input type="text" id="phone" name="phone" class="form-control" maxlength="11" placeholder="'-' 제외하고 번호만 입력" style="margin-bottom:10px;">
-                  <button type="button" style="margin-bottom:10px;" onclick="dupCkh()">중복체크</button>
+                  <button type="button" class="btn-4" onclick="dupCkh()">중복체크</button>
                   <!-- <button type="button" style="margin-bottom:10px;" onclick="requestAuth()">인증요청</button> -->
                   </div>
                 </div>
@@ -160,7 +176,7 @@
 
                 <div style="text-align: -webkit-center">
                   <button type="button" class="btn-2" onclick="joinChk()">회원가입</button>
-                  <button type="button" class="btn-2" onclick="joinCancelChk()">취소</button>
+                  <button type="button" class="btn-3" onclick="joinCancelChk()">취소</button>
             </div>
 
               </div>
