@@ -119,8 +119,8 @@ function itemDataSearch() {
 	<section>
 		<jsp:include page="common/header.jsp" />
 	</section>
+	<input type="hidden" value="${phone }" id="idChk">
     <main id="main">
-
 	<!-- ======= Get a Quote Section ======= -->
     <!-- <section id="get-a-quote" class="get-a-quote" style="background-color: #0e1d34; padding-top:70px;"> -->
 		<div class="container" data-aos="fade-up" style="background-color: #ffffff;">

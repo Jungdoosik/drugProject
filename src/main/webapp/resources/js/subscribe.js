@@ -1,6 +1,6 @@
 $(document).ready(function(){
 });
-	
+
 if( $("check-link").is(":checked") == true ){
 	var checkVal = $(this).val();
 	log.info(checkVal);
@@ -17,6 +17,13 @@ function checkLink(element) {
 }
 
 function iamport(){
+
+	if ($("#idChk").val() == null || $("#idChk").val() =='' ) {
+		alert("로그인 후 이용가능합니다.");
+		location.href='login';
+		return false;
+	}
+
 	//valid
 	const query				= 'input[name="check-link"]:checked';
 	const selectedEls		= document.querySelectorAll(query);
@@ -30,7 +37,7 @@ function iamport(){
 	if (result == undefined || result == "") {
 	return alert("결제하실 상품을 선택해주세요.");
 	}
-		
+
 	var itemPrice = result;
 	var itemTitle = "";
 	if(result == 9900) {
@@ -40,11 +47,11 @@ function iamport(){
 		itemTitle		= "7일 100원 결제 체험 서비스";
 		//rqstPeriod		= 7;
 	}
-	
+
 	d = new Date();
 	var customer_uid = "cuid_" + d.getTime();
 	var merchant_uid = "order" + d.getTime();
-	
+
 	IMP.init('imp28027601');
 	IMP.request_pay({
 		pg : 'danal_tpay.9810030929',
@@ -59,7 +66,7 @@ function iamport(){
 			pass(rsp);
 		} else {
 			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
+			msg += rsp.error_msg;
 			alert(msg);
 		}
 	});
@@ -93,14 +100,14 @@ function pass(rsp) {
 
 // intro - iamport()
 function iamport1(){
-	
+
 	var itemPrice = 100;
 	var itemTitle = "MedicineSearch 이벤트인증";
-	
+
 	d = new Date();
 	var customer_uid = "cuid_" + d.getTime();
 	var merchant_uid = "order" + d.getTime();
-	
+
 	IMP.init('imp28027601');
 	IMP.request_pay({
 		pg : 'danal_tpay.9810030929',
@@ -123,4 +130,4 @@ function iamport1(){
 			basicModal(msg);
 		}
 	});
-} 
+}
