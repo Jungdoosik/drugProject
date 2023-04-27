@@ -168,7 +168,7 @@
   */
 
  function modifyChk() {
- 	 alert("회원수정 버튼 클릭.");
+ 	// alert("회원수정 버튼 클릭.");
    
     var formData = $("#modifyFrm").serialize();
     var val = true;
