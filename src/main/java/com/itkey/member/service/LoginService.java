@@ -2,8 +2,6 @@ package com.itkey.member.service;
 
 import java.util.Map;
 
-import com.itkey.controller.DrugShapeVo;
-
 
 public interface LoginService {
 
@@ -20,6 +18,5 @@ public interface LoginService {
 	public int insertCredit(Map<String, Object> params) throws Exception;
 	
 	public int updateSub(Map<String, Object> paramse) throws Exception;
-	public int dataGogo(DrugShapeVo dVo)throws Exception;
 	
 }

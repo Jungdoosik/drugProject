@@ -15,7 +15,7 @@
 		<typeAlias alias="EnquireVo" type="com.itkey.enquire.EnquireVo"/>
 		<typeAlias alias="PageCriteria" type="com.itkey.pageutil.PageCriteria"/>
 		<typeAlias alias="CalendarVO" type="com.itkey.vo.CalendarVO"/>
-		<typeAlias alias="DrugShapeVo" type="com.itkey.controller.DrugShapeVo"/>
+        <typeAlias alias="DrugShapeVo" type="com.itkey.madi.search.service.DrugShapeVo"/>
 	</typeAliases>
 	<!-- src/main/resouces/mapper/mysql/**/ 하위 xml 매퍼 설정 (현재 하위 모든 매퍼파일 read하도록 되어있으므로 추가 설정 필요 무) -->
 	<!-- <mappers></mappers> -->
