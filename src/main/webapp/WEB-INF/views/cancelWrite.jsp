@@ -64,9 +64,9 @@
 	display: flex;
 	width: 120px;
 	font-size: 22px;
-	margin: 20px auto;	
+	margin: 20px auto;
 	z-index: 999;
-} 
+}
 /* 버튼 테두리 padding 처리  */
 .btnclss{
  padding: 5%;
@@ -89,7 +89,7 @@
 	                        <form  method="post" class="php-email-form" id="frmCancel" >
 	                            <div class="col-lg-12">
 	                                <h2>서비스 해지 문의</h2>
-	                                <input type="hidden" name="writer" value="${phone}" /> 
+	                                <input type="hidden" name="writer" value="${phone}" />
 	                                <input type="hidden" id="serviceCode" value="MS">
 	                                <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
 	                                <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4>
@@ -102,17 +102,17 @@
                                     <span class="input-group-text">내용</span>
                                     <textarea class="form-control" name="question" id="canContent" rows="6"  placeholder="※ 내용을 입력하세요.&#13;&#10;&#13;&#10;수정 / 삭제 불가하오니 신중히 문의하시기 바랍니다." required></textarea>
                                 </div>
-                                
-                               	<div class="col-md-12">
+
+<!--                                	<div class="col-md-12">
                                     <span class="input-group-text">답변</span>
                                     <textarea class="form-control" name="answer" id="canAnswer" rows="6"></textarea>
-                                </div>
-                                
+                                </div> -->
+
                                 <div class="col-md-12 text-center">
                                 	<div class="loading">Loading</div>
                                 	<div class="error-message"></div>
                                 	<div class="sent-message">정상적으로 게시되었습니다.</div>
-                                	<div class="btnclss"> 
+                                	<div class="btnclss">
                                  		<button type="button"  class="btn" onclick="doCanBtn()" >문의하기</button>
                                  		<button type="button" class="btn"  onclick="golist()" >취소</button>
                                 	</div>
@@ -132,7 +132,7 @@ function doCanBtn(){
     var question = $("#canContent").val();      //내용
     var service_code = $('#serviceCode').val();         //서비스코드
     var formData = $("#frmCancel").serialize();
-    
+
     if(title == ""){
         alert("제목을 입력해 주세요.");
         return false;
@@ -150,7 +150,7 @@ function doCanBtn(){
         success : function(data) {
             if (data == "success") {
                 alert("해지 문의글 등록이 완료되었습니다.");
-                location.href = "/question"; //문의 리스트 url 
+                location.href = "/question"; //문의 리스트 url
             }
         },
         error: function (request, status, error) {
@@ -160,7 +160,7 @@ function doCanBtn(){
                 console.log("error: " + error);
             }
     });
-        
+
 };
 /* 취소 bnt 문의리스트 돌아가기  */
 function golist(){
@@ -168,11 +168,11 @@ function golist(){
 };
 </script>
 <div>
-	<a href="#" class="scroll-top d-flex align-items-center justify-content-center"> 
-          <i class="bi bi-arrow-up-short"> </i> 
+	<a href="#" class="scroll-top d-flex align-items-center justify-content-center">
+          <i class="bi bi-arrow-up-short"> </i>
           </a>
 </div>
-         
+
 </div>
     <div id="preloader"> </div>
     <!-- Vendor JS Files -->

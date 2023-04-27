@@ -64,7 +64,7 @@
 <%
 // 세션값 가져오기
 String id = (String) session.getAttribute("phone");
-String subScribe = (String) session.getAttribute("subScribe");
+String subScribe = (String) session.getAttribute("subscribe");
 %>
     <style>
         html,
@@ -81,13 +81,13 @@ String subScribe = (String) session.getAttribute("subScribe");
     </style>
     <script>
 
-    
+
         function itemDataSearch() {
             document.frm.action = '/searchDrug';
             document.frm.submit()
 
         }
-        
+
         function joinCancelChk() {
         	if (!confirm("작성한 내용이 모두 삭제됩니다. 계속하시겠습니까? ")){ // 아니오
 			    //history.go( -1 );
@@ -102,7 +102,10 @@ String subScribe = (String) session.getAttribute("subScribe");
 <body>
 
     <div class="index_container">
+
+    <section>
     <jsp:include page="common/header.jsp" />
+    </section>
     <main id="main">
 
     <!-- ======= join Section ======= -->
@@ -121,7 +124,7 @@ String subScribe = (String) session.getAttribute("subScribe");
 	            <input type="hidden" id="authChk" name="authChk">
 	            <input type="hidden" id="joinPath" name="joinPath" value="${params.joinPath }">
 				<div>
-                
+
                 <div class="col-md-12">
                 <h3>휴대전화번호</h3>
                 <div style="display:flex;">
@@ -129,8 +132,8 @@ String subScribe = (String) session.getAttribute("subScribe");
                   <button type="button" style="margin-bottom:10px;" onclick="requestAuth('cancel')">인증요청</button>
                   </div>
                 </div>
-                
-                
+
+
                 <div class="col-md-12 " >
                 <h3>인증번호</h3>
                 <div style="display:flex;">
@@ -139,7 +142,7 @@ String subScribe = (String) session.getAttribute("subScribe");
                 </div>
                 </div>
 
-                
+
                 <div style="text-align: -webkit-center">
                   <button type="button" class="btn-2" onclick="authOK()">본인인증</button>
                   <button type="button" class="btn-2" onclick="authCancel()">취소</button>
