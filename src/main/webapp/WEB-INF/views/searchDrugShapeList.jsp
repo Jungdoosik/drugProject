@@ -142,7 +142,14 @@ th:first-child, td:first-child {
       document.detailData.markCodeBack.value = $('input[name="markCodeBack' +itemSeq+ '"]').val()
       document.detailData.itemEngName.value = $('input[name="itemEngName' +itemSeq+ '"]').val()
       document.detailData.edlCode.value = $('input[name="edlCode' +itemSeq+ '"]').val()
-       
+      
+      console.log(document.detailData.nowPage.value)
+      console.log(document.detailData.cntPerPage.value)
+      console.log(document.detailData.selectShape.value)
+      console.log(document.detailData.selectColor.value)
+      console.log(document.detailData.selectDrugForm.value)
+      console.log(document.detailData.selectLine.value)
+      
       //window.open('about:blank', 'winName', 'menubar=no, toolbar=no, location=no, scrollbars=yes, resizable=yes, top=, left=, width=800, height=850')
       document.detailData.action = '/drugShapeDetail'
 	  //document.detailData.target='winName';
@@ -157,11 +164,13 @@ th:first-child, td:first-child {
 	   var params = {}
 	   params['cntPerPage'] = cntPerPage
 	   params['nowPage'] = p
-	   params['selectShape'] = '${selectShape}'
-	   params['selectColor'] = '${selectColor}'
-	   params['selectDrugForm'] = '${selectDrugForm}'
-	   params['selectLine'] = '${selectLine}'
-	   console.log(params)
+	   params['selectShape'] = '${params.selectShape}'
+	   params['selectColor'] = '${params.selectColor}'
+	   params['selectDrugForm'] = '${params.selectDrugForm}'
+	   params['selectLine'] = '${params.selectLine}'
+	   document.detailData.nowPage.value=p
+	   document.detailData.cntPerPage.value=cntPerPage
+	   
 	   $.ajax({
 		   url: "/searchDrugShapeListP",
 			type: "POST",
@@ -285,6 +294,13 @@ th:first-child, td:first-child {
 	<input type="hidden" name="markCodeBack" value="">
 	<input type="hidden" name="itemEngName" value="">
 	<input type="hidden" name="edlCode" value="">
+	
+	<input type="hidden" name="cntPerPage" value="10">
+	<input type="hidden" name="nowPage" value="1">
+	<input type="hidden" name="selectShape" value="${params.selectShape}">
+	<input type="hidden" name="selectColor" value="${params.selectColor}">
+	<input type="hidden" name="selectDrugForm" value="${params.selectDrugForm}">
+	<input type="hidden" name="selectLine" value="${params.selectLine}">
    </form>
 	
    <div class="index_container">

@@ -119,7 +119,7 @@
 				</otherwise>
 			</choose>
 		</if>
-		order by ITEM_SEQ ASC
+		order by ITEM_NAME, ITEM_SEQ ASC
 		LIMIT #{cntPerPage} offset #{start}
 	</select>
 	

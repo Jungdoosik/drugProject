@@ -104,6 +104,18 @@
 	      
 	   
 	}
+	
+	function searchDrugShapeList(){
+		  document.backForm.nowPage.value = '${params.nowPage}'
+	      document.backForm.cntPerPage.value = '${params.cntPerPage}'
+	      document.backForm.selectShape.value = '${params.selectShape}'
+	      document.backForm.selectColor.value = '${params.selectColor}'
+	      document.backForm.selectDrugForm.value = '${params.selectDrugForm}'
+	      document.backForm.selectLine.value = '${params.selectLine}'
+	      document.backForm.action = '/searchDrugShapeList'
+	      document.backForm.submit()
+		
+	}
 </script>
 <style>
 body, html {
@@ -140,6 +152,14 @@ body, html {
 </style>
 </head>
 <body>
+	<form id="backForm" name="backForm" method="post">
+		<input type="hidden" name="cntPerPage" value="">
+		<input type="hidden" name="nowPage" value="">
+		<input type="hidden" name="selectShape" value="">
+		<input type="hidden" name="selectColor" value="">
+		<input type="hidden" name="selectDrugForm" value="">
+		<input type="hidden" name="selectLine" value="">
+	</form>
 	
 	<form id="detailData" name="detailData" method="post">
       <input type="hidden" name="itemName" value="">
@@ -225,7 +245,7 @@ body, html {
 
 		<div class="btn_area" style="text-align: center; margin-top: 10px;">
 			<button type="button" class="btn_normal btn_base btn_point3 s-bb"
-				title="닫기" onclick="javascript:closeDrugInfoPopup()">
+				title="닫기" onclick="searchDrugShapeList();">
 				<span>닫기</span>
 			</button>
 		</div>
