@@ -59,7 +59,7 @@
     		var idChk = $("#idChk").val();
     		var subscribeChk = $("#subscribeChk").val();
 
-        	if (idChk == null) {
+        	if (idChk == null || idChk == '') {
         		alert("로그인 후 이용가능합니다.");
         		return false;
         	} else if (subscribeChk == null || subscribeChk != 'Y') {
@@ -75,7 +75,7 @@
         	var idChk = $("#idChk").val();
         	var subscribeChk = $("#subscribeChk").val();
 
-        	if (idChk == null) {
+        	if (idChk == null || idChk == '') {
         		alert("로그인 후 이용가능합니다.");
         		return false;
         	} else if (subscribeChk == null || subscribeChk != 'Y') {

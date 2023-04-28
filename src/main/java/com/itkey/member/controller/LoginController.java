@@ -32,31 +32,31 @@ import com.itkey.phone.service.PhoneService;
  */
 @Controller
 public class LoginController {
-	
+
 	@Autowired
     private LoginService loginService;
 	@Autowired
 	private PhoneService phoneService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
+
     @RequestMapping("/login")
     public String login() {
     	return "login";
     }
-    
+
     @RequestMapping(value = "/loginDo", method = RequestMethod.POST)
     public ModelAndView  loginDo(HttpSession session, HttpServletResponse response, HttpServletRequest request, ModelMap model) throws Exception{
     	ModelAndView mv = new ModelAndView();
     	MemberVo mVO = new MemberVo();
-    	
+
     	String boardWriter = request.getParameter("phone");
 		String boardWriterPw = request.getParameter("pwd");
-		
+
 		mVO.setPhone(boardWriter);
 		mVO.setPwd(boardWriterPw);
 
@@ -78,22 +78,24 @@ public class LoginController {
 				// 입력한 비밀번호와 salt 값을 더하여 암호화한 후 비교
 				int selectMem = loginService.loginChk(mVO);
 				int selectDelMem = loginService.loginChk_del(mVO);
-				
+
 				if(selectMem == 1 && selectDelMem == 0) {
 					mVO = loginService.loginDo(boardWriter);
+					if (mVO.getSubscribe().equals("Y")) {
+						session.setAttribute("subScribe", mVO.getSubscribe());
+					}
 					session.setAttribute("phone", mVO.getPhone());
 					session.setAttribute("cuid", mVO.getCuid());
 					session.setAttribute("email", mVO.getEmail());
 					session.setAttribute("joinDate", mVO.getJoinDate());
 					session.setAttribute("joinPath", mVO.getJoinPath());
-					session.setAttribute("subScribe", mVO.getSubscribe());
 					session.setAttribute("payYn", mVO.getPayYn());
 					session.setAttribute("subDate", mVO.getSubDate());
 					session.setAttribute("endSubDate", mVO.getEndSubDate());
-					session.setAttribute("delYn", mVO.getDelYn());    
-					session.setAttribute("auth", mVO.getAuth());    
+					session.setAttribute("delYn", mVO.getDelYn());
+					session.setAttribute("auth", mVO.getAuth());
 					session.setAttribute("serviceCode", mVO.getServiceCode());
-					
+
 					mv.addObject("memberinfo",mVO);
 					mv.setViewName("redirect:index");
 				}else if(selectMem != 1 && selectDelMem == 0){
@@ -126,15 +128,15 @@ public class LoginController {
 			}
 		}
 		return mv;
-    	
+
     }
-    
+
     @RequestMapping("/join")
     public String join(@RequestParam Map<String,Object> params, ModelMap model) {
     	model.addAttribute("params", params);
     	return "join";
     }
-    
+
 	@ResponseBody
 	@PostMapping(value = "/joinChk.do")
 	public String joinChk(MemberVo mDTO, HttpServletRequest request) throws Exception {
@@ -152,7 +154,7 @@ public class LoginController {
 			return "0";
 		}
 	}
-	
+
 	// 인증요청
 	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
 	@ResponseBody
@@ -160,13 +162,13 @@ public class LoginController {
 		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
 
 		//phoneService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
-		
+
 		logger.info("인증번호 : " + Integer.toString(randomNumber));
-		
+
 		return Integer.toString(randomNumber);
 	}
-	
-	
+
+
 	@RequestMapping("/joinDo")
     public ModelAndView joinDo(@RequestParam Map<String, Object> params, HttpServletResponse response) throws Exception {
     	ModelAndView mv = new ModelAndView();
@@ -177,8 +179,8 @@ public class LoginController {
     	if(params.get("joinPath").equals("2")){
     		loginService.insertCredit(params);
     	}
-    	
-    	
+
+
     	if(joinOk == 1){
     		response.setContentType("text/html; charset=UTF-8");
 			PrintWriter result = response.getWriter();
@@ -189,21 +191,21 @@ public class LoginController {
 			result.flush();
 			mv.setViewName("login");
 		}
-    	
+
     	return mv;
     }
-	
-	// 개인정보수정 페이지 
-    @RequestMapping("/modify") 
+
+	// 개인정보수정 페이지
+    @RequestMapping("/modify")
     public String modify(Model model ,HttpSession session) throws Exception {
     	String phone = (String) session.getAttribute("phone");
     	MemberVo mVO = new MemberVo();
     	mVO = loginService.loginDo(phone);
-    	
+
     	model.addAttribute("memberinfo",mVO);
        return "modify";
     }
-    
+
     //개인정보 수정 등록
     @ResponseBody
     @RequestMapping("/modifyDo.do")
@@ -217,11 +219,11 @@ public class LoginController {
 		logger.info(phone);
 
 		mVO.setPhone(phone);
-    	
+
     	logger.info("* updateModifyDo [CONTROLLER] input �뼳 (Service) : ");
 		int result = loginService.updateModifyDo(mVO);
 		logger.info("* updateModifyDo [CONTROLLER] out �뼳 (Service) : " + result);
-		
+
 
 		if (result == 1) {
 			return "success";
@@ -229,8 +231,8 @@ public class LoginController {
 			return "FAIL";
 		}
     }
-    
-    
+
+
     @RequestMapping(value = "/logout") // 로그아웃 클릭하면
 	public String logout(HttpSession session) {
 
@@ -238,18 +240,18 @@ public class LoginController {
 
 		return "redirect:index";
 	}
-    
+
   //검색페이지
     @RequestMapping("/searchDrugName")
     public String searchDrugName() throws Exception{
     	return "searchDrugName";
     }
-    
+
     //ah양검색페이지
     @RequestMapping("/searchDrugShape")
     public String searchDrugShape() throws Exception{
     	return "searchDrugShape";
     }
-    
+
 }
 
