@@ -157,10 +157,10 @@ th:first-child, td:first-child {
 	   var params = {}
 	   params['cntPerPage'] = cntPerPage
 	   params['nowPage'] = p
-	   params['selectShape'] = '${selectShape}'
-	   params['selectColor'] = '${selectColor}'
-	   params['selectDrugForm'] = '${selectDrugForm}'
-	   params['selectLine'] = '${selectLine}'
+	   params['selectShape'] = '${params.selectShape}'
+	   params['selectColor'] = '${params.selectColor}'
+	   params['selectDrugForm'] = '${params.selectDrugForm}'
+	   params['selectLine'] = '${params.selectLine}'
 	   console.log(params)
 	   $.ajax({
 		   url: "/searchDrugShapeListP",

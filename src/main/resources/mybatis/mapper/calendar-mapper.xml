@@ -3,20 +3,52 @@
 <mapper namespace="enquire">
 
 <resultMap type="com.itkey.dao.CalendarDAO" id="CalendarDAO"></resultMap>
-	<insert id="enroll" parameterType="CalendarVO">
-		insert into calendar_tbl values (
-			#{calYear},
-			#{calMonth},
-			#{calDay},
-			#{calTime},
-			#{calMemo}
-		)
-		
-	</insert>
+   <insert id="enroll" parameterType="CalendarVO">
+      
+      INSERT INTO team01.calendar_tbl(
+      cal_year
+      , cal_month
+      , cal_day
+      , cal_time
+      , cal_memo
+      )VALUES(
+      #{calYear}
+      , #{calMonth}
+      , #{calDay}
+      , #{calTime}
+      , #{calMemo} 
+      )
+   </insert>
 
-	<select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
-		select * from calendar_tbl
-		where cal_year = #{calYear}
-		and cal_month = #{calMonth}
-	</select>
+   <select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
+      select * from calendar_tbl
+      where cal_year = #{calYear}
+      and cal_month = #{calMonth}
+   </select>
+
+   <select id="getDate" parameterType="CalendarVO" resultType="CalendarVO">
+      select * from calendar_tbl
+      where cal_year = #{calYear}
+      and cal_day = #{calDay}
+   </select>
+   
+   <select id="getMemo" parameterType="CalendarVO" resultType="CalendarVO">
+      select * from calendar_tbl
+      where cal_year = #{calYear}
+      and cal_month = #{calMonth}
+      and cal_day = #{calDay}
+   </select>
+   
+    <delete id="deleteMemo" parameterType="CalendarVO">
+      delete from calendar_tbl
+      where cal_no = #{calNo} 
+    </delete>
+    
+    <update id="modifyMemo" parameterType="CalendarVO">
+      update calendar_tbl 
+      set 
+         cal_memo = #{calMemo},
+         cal_time = #{calTime}
+      where cal_no = #{calNo} 
+    </update>
 </mapper>
