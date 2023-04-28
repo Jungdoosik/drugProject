@@ -120,8 +120,10 @@ function itemDataSearch() {
 	String id = (String) session.getAttribute("phone"); // Object 타입이므로 다운캐스팅
 	%>
 	<div class="index_container">
-	<jsp:include page="common/header.jsp" />
-        
+	<section>
+		<jsp:include page="common/header.jsp" />
+	</section>
+
     <main id="main">
 
 	<!-- ======= Get a Quote Section ======= -->
@@ -130,15 +132,15 @@ function itemDataSearch() {
 
 			<img src="resources/img/features-1.jpg" style="margin:10px auto 20px auto; display:block;" class="img-fluid">
 			<h1> <%= id %> 님 서비스 가입을 진심으로 환영합니다.</h1>
-        
+
 	</div>
     </section><!-- End Get a Quote Section -->
   	</main><!-- End #main -->
 
 
 		<a href="#" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"> </i> </a>
-        
-        
+
+
 		<jsp:include page="common/footer.jsp" />
 	</div>
     <div id="preloader"> </div>
@@ -156,7 +158,7 @@ function itemDataSearch() {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	<!-- 빌링키 사용을 위한 셋팅 -->	
+	<!-- 빌링키 사용을 위한 셋팅 -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </body>
 
