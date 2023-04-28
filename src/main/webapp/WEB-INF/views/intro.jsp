@@ -15,6 +15,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <style>
+
 .all {
 	text-align: center;
 	width: 100%;
@@ -48,6 +49,7 @@
 .termsTitle {
 	text-decoration-line: none;
 	color: black;
+	font-size:25px;
 }
 
 .titlePont {
@@ -153,17 +155,22 @@ function openReg(cuid, muid, price, title){
 					</h1>
 
 					<div class="korea mb-4">
-                        <img src="resources/img/free-icon-drug-4667352.png">	
+                        <img style="padding:5%;" src="resources/img/free-icon-drug-4667352.png">	
        				</div>
 
 					<div class="terms">
-						<label for="agree_all" style="font-size: 20px;"> <input
-							type="checkbox" name="agree_all" id="agree_all"> <span
-							class="agree_all_click" style="font-size: 20px; color: red">전체
-								동의</span>
-						</label> <br> <label> <input type="checkbox" id="agree1"
-							name="agree" value="1"> <span><a
-								class="termsTitle" href="#ex1" rel="modal:open">이용약관 동의</a><strong>(필수)</strong></span>
+						<label for="agree_all" style="font-size: 20px;"> 
+							<input type="checkbox" name="agree_all" id="agree_all"> 
+							<span class="agree_all_click" style="font-size: 25px; color: red">
+							     전체 동의
+							</span>
+						</label> 
+						<br> 
+						<label> 
+						<input type="checkbox" id="agree1"name="agree" value="1"> 
+						<span>
+							<a class="termsTitle" href="#ex1" rel="modal:open">이용약관 동의<strong>(필수)</strong></a>
+						</span>
 							<div id="ex1" class="modal">
 								<p>
 									<strong> 이용약관 동의 </strong> <br> <br> <span>제1조(목적)<br>
@@ -209,10 +216,14 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree2"
-							name="agree" value="2"> <span><a
-								class="termsTitle" href="#ex2" rel="modal:open">개인정보 수집, 이용
-									동의</a><strong>(필수)</strong></span>
+						</label> <br>
+						 <label> 
+						 <input type="checkbox" id="agree2" name="agree" value="2"> 
+						 <span>
+							 <a class="termsTitle" href="#ex2" rel="modal:open">
+							        개인정보 수집, 이용동의<strong>(필수)</strong>
+							 </a>
+						  </span>
 							<div id="ex2" class="modal">
 								<p>
 									<br> <span> <strong>개인정보처리방침</strong> <br> <br>
@@ -243,10 +254,14 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree3"
-							name="agree" value="3"> <span class="termsAlert"
-							name="#agree3"><a class="termsTitle" href="#ex3"
-								rel="modal:open">개인정보 이용 동의 <strong>(필수)</strong></a></span>
+						</label> <br> 
+						<label> 
+						  <input type="checkbox" id="agree3" name="agree" value="3"> 
+						  <span class="termsAlert" name="#agree3">
+						        <a class="termsTitle" href="#ex3" rel="modal:open">
+						                       개인정보 이용 동의 <strong>(필수)</strong>
+						          </a>
+						   </span>
 							<div id="ex3" class="modal">
 								<p>
 									<span> <strong>개인정보 제공</strong> <br> <br> 회사는
@@ -267,9 +282,13 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree4"
-							name="agree" value="5"> <span><a
-								class="termsTitle" href="#ex4" rel="modal:open">서비스 안내사항 </a><strong>(필수)</strong></span>
+						</label> <br> 
+						<label> 
+						     <input type="checkbox" id="agree4" name="agree" value="5"> 
+						        <span>
+						            <a class="termsTitle" href="#ex4" rel="modal:open">
+						                                   서비스 안내사항 <strong>(필수)</strong></a>
+						        </span>
 							<div id="ex4" class="modal">
 								<p>
 									<span> <strong>MedicineSearch 서비스란</strong> <br> <br>
@@ -287,11 +306,14 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree5"
-							name="agree" value="4"> <span class="termsAlert"
-							name="#agree5"> <a class="termsTitle" href="#ex5"
-								rel="modal:open">이벤트,혜택정보 수신동의<strong class="select_disable">(선택)</strong>
-							</a></span>
+						</label> <br> 
+						<label> 
+						     <input type="checkbox" id="agree5" name="agree" value="4"> 
+						       <span class="termsAlert"  name="#agree5"> 
+						          <a class="termsTitle" href="#ex5" rel="modal:open">
+						                             이벤트,혜택정보 수신동의<strong class="select_disable">(선택)</strong>
+							      </a>
+							     </span>
 							<div id="ex5" class="modal">
 								<p>
 									<span> <strong>이벤트 응모를 위한 개인정보 수집 이용 동의서</strong> <br>

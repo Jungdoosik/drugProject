@@ -199,7 +199,7 @@ public class LoginController {
     	String phone = (String) session.getAttribute("phone");
     	MemberVo mVO = new MemberVo();
     	mVO = loginService.loginDo(phone);
-    	
+    	logger.info(mVO.toString());
     	model.addAttribute("memberinfo",mVO);
        return "modify";
     }

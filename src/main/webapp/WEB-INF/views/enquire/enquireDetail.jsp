@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch - 문의하기  </title>
+    <title>MedicineSearch - 문의하기 상세  </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -103,7 +103,7 @@
                                                     </div> --%> 
                                         <div class="col-md-12">
                                                 <span class="input-group-text">제목</span>
-                                                <input  type="text" name="title" id="askTitle" style="background-color: #fff;" class="form-control" disabled value="${eVo.title}"placeholder="※ 무엇을 문의하시겠습니까?" required>
+                                                <input  type="text" name="title" id="askTitle" style="background-color: #fff;" class="form-control" disabled value="${eVo.title}" placeholder="※ 무엇을 문의하시겠습니까?" required>
                                         </div>
                                         <div class="col-md-12">
                                             <span class="input-group-text">내용</span>
