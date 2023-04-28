@@ -311,7 +311,7 @@ h2 {
 }
 .bi{
    margin:5px;
-   background-color:#eee
+   /* background-color:#eee */
 }
 #modalContent{
    z-index:999999;
