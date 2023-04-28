@@ -41,6 +41,8 @@ public class DrugSearchController {
 							@RequestParam(value="nowPage", required=false, defaultValue="1")String nowPage, 
 							@RequestParam(value="cntPerPage", required=false, defaultValue="10")String cntPerPage, 
 							ModelMap model) throws Exception {
+		
+		System.out.println(params);
 		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService04/getDrugPrdtPrmsnInq04"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D"); /*Service Key*/
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -71,7 +73,6 @@ public class DrugSearchController {
 	        bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 	        String result = "";
 	        result = bf.readLine();
-	        
 	        
 	        JSONParser jsonParser = new JSONParser();
 	        JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
@@ -363,9 +364,15 @@ public class DrugSearchController {
 							ModelMap model) throws Exception {
 		int end = Integer.parseInt(nowPage ) * Integer.parseInt(cntPerPage);
 		int start = (end - Integer.parseInt(cntPerPage) + 1);
+		System.out.println("=========================");
+		System.out.println("=========================");
 		System.out.println(params);
 		System.out.println(end);
 		System.out.println(start);
+		System.out.println(nowPage);
+		System.out.println(cntPerPage);
+		System.out.println("=========================");
+		System.out.println("=========================");
 		
 		params.put("start", start);
 		params.put("end", end);
@@ -407,9 +414,15 @@ public class DrugSearchController {
 		
 		int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
 		int start = (end - Integer.parseInt(cntPerPage) + 1);
+		System.out.println("=========================");
+		System.out.println("=========================");
 		System.out.println(params);
 		System.out.println(end);
 		System.out.println(start);
+		System.out.println(nowPage);
+		System.out.println(cntPerPage);
+		System.out.println("=========================");
+		System.out.println("=========================");
 		
 		params.put("start", start);
 		params.put("end", end);
