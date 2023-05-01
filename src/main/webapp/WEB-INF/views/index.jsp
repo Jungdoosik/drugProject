@@ -53,13 +53,25 @@
         }
     </style>
     <script>
-
+		 window.onload = function() {
+    		let subscribeChk = $("#subscribeChk").val();
+    		
+    		window.localStorage.setItem("loginYn", subscribeChk);			
+		 }
+		
         function searchDrugName(){
 
     		var idChk = $("#idChk").val();
     		var subscribeChk = $("#subscribeChk").val();
+<<<<<<< Updated upstream
 
         	if (idChk == null || idChk == '') {
+=======
+    		
+    		window.localStorage.setItem("loginYn", subscribeChk);
+    		
+        	if (idChk == null) {
+>>>>>>> Stashed changes
         		alert("로그인 후 이용가능합니다.");
         		return false;
         	} else if (subscribeChk == null || subscribeChk != 'Y') {

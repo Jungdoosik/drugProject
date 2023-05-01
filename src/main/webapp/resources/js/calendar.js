@@ -1,6 +1,6 @@
    const drawSelect = () => {
       let drawHtml = '';
-      drawHtml += `<select class="form-select" id="time2" aria-label="Default select example">`;
+      drawHtml += `<select class="form-select time2" aria-label="Default select example">`;
       drawHtml += 
          `<option value="00:00">00:00</option>
          <option value="00:30">00:30</option>
@@ -124,6 +124,10 @@ const makeCalendar = (date) => {
    
    // 이 함수는 HTML 문서가 로드될 때 실행됨.
    window.onload = function() {
+      if(window.localStorage.getItem("loginYn") != "Y"){
+    	  alert("로그인 후 이용 가능합니다.");
+    	  location.href = "/login";
+      }
       
       // 이전달 이동
       document.querySelector(`.prevDay`).onclick = () => {
@@ -201,7 +205,7 @@ const makeCalendar = (date) => {
          for(let i=0; i<memos.length; i++){
             dynamicHtml += `<div id="drawDiv">`;
             dynamicHtml += drawSelect();
-            dynamicHtml += `<input type="text" id="memo" value="${memos[i].calMemo}">`;
+            dynamicHtml += `<input type="text" class="memo" value="${memos[i].calMemo}">`;
             dynamicHtml += `<i id="modifyIcon" onclick="modify(${memos[i].calNo}, ${i})" class="bi bi-pencil"></i>`;
             dynamicHtml += `<i id="deleteIcon" onclick="delMemo(${memos[i].calNo}, ${i})" class="bi bi-x-square"></i>`;
             dynamicHtml += `</div>`;
@@ -213,11 +217,13 @@ const makeCalendar = (date) => {
          document.querySelector("#modalWrap_modify").style.display = 'block';
          
       }
-      let time2 = document.querySelector("#time2");
+      //time2 라는 아이디가 한개라서 제일 첫번째 요소만 변경하는 오류가 있음
+      
+      let time2 = document.getElementsByClassName("form-select time2");      
       for(let i=0; i<memos.length; i++){
-         for(let j = 0; j<time2.length; j++){
-            if(time2.options[j].value == memos[i].calTime.substr(0,5)){
-               time2.options[j].selected = true;
+         for(let j = 0; j<time2[i].length; j++){
+            if(time2[i].options[j].value == memos[i].calTime.substr(0,5)){
+               time2[i].options[j].selected = true;
             }
          }
       }
@@ -270,8 +276,8 @@ const makeCalendar = (date) => {
             "calNo": ''
       }
       
-      modifyObj.calMemo = document.querySelector("#memo").value;
-      modifyObj.calTime = document.querySelector("#time2").value;
+      modifyObj.calMemo = document.getElementsByClassName("memo")[idx].value;
+      modifyObj.calTime = document.getElementsByClassName("form-select time2")[idx].value;
       modifyObj.calNo = calNo;
       
       $.ajax({
