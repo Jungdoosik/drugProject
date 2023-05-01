@@ -282,7 +282,7 @@ const makeCalendar = (date) => {
             location.reload();
          }
       });      
-   }
+   } 
 
    const addMore = () => {
       closeModal();

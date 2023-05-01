@@ -354,7 +354,7 @@ h2 {
    .dateBoard div{
       max-width:46.14px;
    }
-}
+} 
 @media(min-width:425px){
    .dateBoard div{
       max-width:102.28px;
