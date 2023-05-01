@@ -218,11 +218,10 @@ h2 {
 .dateBoard div {
    color: #222;
    font-weight: bold;
-   height:8rem;
+   min-height: 6rem;
    border-radius: 5px;
    border: 1px solid #eee;
    background: #eee;
-   overflow: scroll;
 }
 
 .noColor {
@@ -331,11 +330,11 @@ h2 {
 #deleteIcon{
    background-color: #red
 }
-.memo{
+#memo{
    margin-left:10px;
    display: inline-block;
 }
-.time2{
+#time2{
    display: inline-block;
    width: 22%;
    margin-top:10px;
@@ -343,34 +342,28 @@ h2 {
 #drawDiv{
    width: 100%;
 }
-/* .overflow-ellipsis{ */
-/*       width:71%; */
-/*       padding:0 5px; */
-/*       overflow:hidden; */
-/*       text-overflow:ellipsis; */
-/*       white-space:nowrap; */
-/*       max-width:22px; */
-/* } */
+.overflow-ellipsis{
+      width:71%;
+      padding:0 5px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width:22px;
+}
 @media(min-width:375px){
    .dateBoard div{
       max-width:46.14px;
-      height:8rem;
-      overflow:scroll;
    }
 }
 @media(min-width:425px){
    .dateBoard div{
       max-width:102.28px;
-      height:8rem;
-      overflow:scroll;
    }
 
 }
 @media(min-width:768px){
    .dateBoard div{
       max-width:138.86px;
-      height:8rem;
-      overflow:scroll;
    }
    .overflow-ellipsis{
       width:71%;
@@ -384,15 +377,11 @@ h2 {
 @media(min-width:1024px){
    .dateBoard div{
       max-width:198.86px;
-      height:8rem;
-      overflow:scroll;
    }
 }
 @media(min-width:1440px){
    .dateBoard div{
       max-width:358.86px;
-      height:8rem;
-      overflow:scroll;
    }
 }
 </style>
