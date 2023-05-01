@@ -239,7 +239,7 @@ body, html {
 					<c:if test="${not empty list.itemImage }">
 						<div class="explan_right">
 							<!-- <img th:src="@{/resources/images/contents/sample.jpg}" th:alt="|${item.itemName} 낱알이미지|" /> -->
-							<img width="220" height="130" src=${list.itemImage } alt=${list.itemName }/>
+							<img style="width: 100%; heigth:100%;" src=${list.itemImage } alt=${list.itemName }/>
 						</div>
 					</c:if>
 					<%-- <c:if test="${empty list.itemImage }">
@@ -357,7 +357,7 @@ body, html {
 		<!-- //drug_container -->
 
 		<div class="btn_area" style="text-align: center; margin-top: 10px;">
-			<button type="button" class="btn_normal btn_base btn_point3 s-bb"
+			<button type="button" class="btn btn-primary"
 				title="닫기" onclick="history.back();">
 				<span>닫기</span>
 			</button>

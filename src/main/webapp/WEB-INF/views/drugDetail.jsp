@@ -177,6 +177,19 @@ h3{
    margin-bottom:10px;
 }
 
+table{
+	table-layout: fixed;
+    word-wrap: break-word;
+}
+
+table th {
+	word-wrap: inherit;
+}
+
+.thth{
+	padding:0;
+}
+
 </style>
 </head>
 <body>
@@ -206,11 +219,11 @@ h3{
       <div class="drug_header drug_header_2" id="gnb">
          <div class="inner">
             <div class="main_title_wrap">
-               <h3>상세정보</h3>
+               <h3>재품상세정보</h3>
             </div>
             <div class="title">
                <h4 class="popupConTitle">
-                  <strong>제품명 : ${fn:substringBefore(list.itemName, '(수출')}</strong> <br>
+                  <strong>제품명 : ${list.itemName }<%-- ${fn:substringBefore(list.itemName, '(수출')} --%></strong> <br>
                </h4>
             </div>
          </div>
@@ -230,15 +243,15 @@ h3{
 						<summary></summary>
 							<p>
 									<div class="info_box" id="_ee_doc1" style="line-height: 30px;">
-										<span class="content-text"><strong>제품명</strong> : ${fn:substringBefore(list.itemName, '(수출')}</span> 
+										<span class="content-text"><strong>제품명</strong> : ${list.itemName }<%-- ${fn:substringBefore(list.itemName, '(수출')} --%></span> 
 										<span class="content-text"><strong>성상</strong> : ${body1.items[0].CHART }</span>
 										<span class="content-text"><strong>업체명</strong> : ${body1.items[0].ENTP_NAME }</span>
 										<span class="content-text"><strong>위탁제조업체</strong> :</span>
 										<span class="content-text"><strong>전문/일반</strong> : ${body1.items[0].ETC_OTC_CODE }</span>
 										<span class="content-text"><strong>허가일</strong> : ${fn:substring(body1.items[0].ITEM_PERMIT_DATE,0,4) } - ${fn:substring(body1.items[0].ITEM_PERMIT_DATE,4,6) } - ${fn:substring(body1.items[0].ITEM_PERMIT_DATE,6,8) }</span>
 										<span class="content-text"><strong>품목기준코드</strong> : ${body1.items[0].ITEM_SEQ }</span>
-<%-- 										<span class="content-text"><strong>표준코드</strong> : ${body1.items[0].BAR_CODE }</span> --%>
-										<span class="content-text"><strong>표준코드</strong> : ${Arrays.toString(fn:split(list.BAR_CODE, ','))}</span>
+										<span class="content-text"><strong>표준코드</strong> : ${body1.items[0].BAR_CODE }</span>
+										<%-- <span class="content-text"><strong>표준코드</strong> : ${Arrays.toString(fn:split(list.BAR_CODE, ','))}</span> --%>
 								</div>
 							</p>
 					</details>
@@ -313,14 +326,14 @@ h3{
                                 <col style="width:20%;"> <!--비교-->
                             </colgroup>
                             <thead>
-                            <tr>
-                                <th>순번</th>
-                                <th>성분명</th>
-                                <th>분량</th>
-                                <th>단위</th>
-                                <th>규격</th>
-                                <th>성분정보</th>
-                                <th>비교</th>
+                            <tr style="text-align: center;">
+                                <th class="thth" style="padding:0px;">순번</th>
+                                <th class="thth" style="padding:0px;">성분명</th>
+                                <th class="thth" style="padding:0px;">분량</th>
+                                <th class="thth" style="padding:0px;">단위</th>
+                                <th class="thth" style="padding:0px;">규격</th>
+                                <th class="thth" style="padding:0px;">성분정보</th>
+                                <th class="thth" style="padding:0px;">비교</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -336,7 +349,7 @@ h3{
                             <c:set var="material7" value="${fn:split(materialNam[6] ,' ')}" />
 	                            <tr>
 	                                <td style="text-align: center">${g.count }</td>
-	                                <td style="text-align: left">${material2[2] }</td>
+	                                <td style="text-align: center">${material2[2] }</td>
 	                                <td style="text-align: center">${material3[2] }</td>
 	                                <td style="text-align: center">${material4[2] }</td>
 	                                <td style="text-align: center">${material5[2] }</td>
@@ -384,7 +397,7 @@ h3{
 						</div>
 			
 					<!-- / 문항 / -->
-					<div class="explan_img" id="scroll_98">
+					<!-- <div class="explan_img" id="scroll_98">
 						<div class="explan_left">
 						<details>
 						<summary><strong>주의사항</strong></summary>
@@ -481,7 +494,7 @@ h3{
 				<div>
 				</div>
 				
-					</div>
+					</div> -->
             
             	<!-- / 문항 / -->
             	
@@ -493,7 +506,7 @@ h3{
 
       <div class="btn_area" style="text-align: center; margin-top: 10px;">
          <button type="button" class="btn btn-primary"
-            title="닫기" onclick="javascript:closeDrugInfoPopup()">
+            title="닫기" onclick="history.back()">
             <span>닫기</span>
          </button>
       </div>

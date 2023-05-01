@@ -210,7 +210,7 @@ public class DrugSearchController {
         JSONObject jsonObject1 = (JSONObject)jsonParser1.parse(result1);
         
         JSONObject body1 = (JSONObject)jsonObject1.get("body");
-        System.out.println(body1);
+        System.out.println(body1.get("items"));
         model.addAttribute("body1", body1);
         bf1.close();
         conn1.disconnect();

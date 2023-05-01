@@ -94,27 +94,26 @@
 			});
 		});
 	}
-	
-	function drugDetail(itemSeq, itemName){
-		  document.detailData.itemName.value = itemName	      
-		  document.detailData.itemSeq.value = itemSeq
-	      
-	      document.detailData.action = '/drugDetail'
-	      document.detailData.submit()
-	      
-	   
+
+	function drugDetail(itemSeq, itemName) {
+		document.detailData.itemName.value = itemName
+		document.detailData.itemSeq.value = itemSeq
+
+		document.detailData.action = '/drugDetail'
+		document.detailData.submit()
+
 	}
-	
-	function searchDrugShapeList(){
-		  document.backForm.nowPage.value = '${params.nowPage}'
-	      document.backForm.cntPerPage.value = '${params.cntPerPage}'
-	      document.backForm.selectShape.value = '${params.selectShape}'
-	      document.backForm.selectColor.value = '${params.selectColor}'
-	      document.backForm.selectDrugForm.value = '${params.selectDrugForm}'
-	      document.backForm.selectLine.value = '${params.selectLine}'
-	      document.backForm.action = '/searchDrugShapeList'
-	      document.backForm.submit()
-		
+
+	function searchDrugShapeList() {
+		document.backForm.nowPage.value = '${params.nowPage}'
+		document.backForm.cntPerPage.value = '${params.cntPerPage}'
+		document.backForm.selectShape.value = '${params.selectShape}'
+		document.backForm.selectColor.value = '${params.selectColor}'
+		document.backForm.selectDrugForm.value = '${params.selectDrugForm}'
+		document.backForm.selectLine.value = '${params.selectLine}'
+		document.backForm.action = '/searchDrugShapeList'
+		document.backForm.submit()
+
 	}
 </script>
 <style>
@@ -144,34 +143,42 @@ body, html {
 #url-qrcode {
 	height: 100%;
 }
-.content-text{
-	display:block;
-	margin-bottom:10px;
+
+.content-text {
+	display: block;
+	margin-bottom: 10px;
 }
 
+.markImg {
+	width: 10%;
+}
+
+li {
+	display: inline;
+}
 </style>
 </head>
 <body>
 	<form id="backForm" name="backForm" method="post">
-		<input type="hidden" name="cntPerPage" value="">
-		<input type="hidden" name="nowPage" value="">
-		<input type="hidden" name="selectShape" value="">
-		<input type="hidden" name="selectColor" value="">
-		<input type="hidden" name="selectDrugForm" value="">
-		<input type="hidden" name="selectLine" value="">
+		<input type="hidden" name="cntPerPage" value=""> <input
+			type="hidden" name="nowPage" value=""> <input type="hidden"
+			name="selectShape" value=""> <input type="hidden"
+			name="selectColor" value=""> <input type="hidden"
+			name="selectDrugForm" value=""> <input type="hidden"
+			name="selectLine" value="">
 	</form>
-	
+
 	<form id="detailData" name="detailData" method="post">
-      <input type="hidden" name="itemName" value="">
-      <input type="hidden" name="itemSeq" value="">
-   </form>
+		<input type="hidden" name="itemName" value=""> <input
+			type="hidden" name="itemSeq" value="">
+	</form>
 	<!-- drug_wrap -->
 	<div class="drug_wrap">
 		<!-- drugHeader -->
 		<div class="drug_header drug_header_2" id="gnb">
 			<div class="inner">
 				<div class="main_title_wrap">
-					<h2>상세정보</h2>
+					<h2>모양상세정보</h2>
 				</div>
 				<div class="title" style="width: 100%;">
 					<h4 class="popupConTitle">
@@ -183,72 +190,72 @@ body, html {
 		<!-- //drugHeader -->
 		<div class="drug_container" id="content" style="padding-top: 0px;">
 			<!-- content -->
-			<section class="drug_content"> <!-- ==========================================================  컨텐츠 시작  -->
+			<section class="drug_content" style="padding: 65px 20px 20px 20px;"> <!-- ==========================================================  컨텐츠 시작  -->
 			<div class="drug_info_mid">
-				<div class="explan_right">
-					<img style="width:100%; height:100%;" src="${params.itemImage }" alt="${params.itemName }"/>
-				</div>
-				<!--div class="info_sec notPkInfo scroll_00 pt35" id="scroll_98"-->
-				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_02">
-					<div class="sec_top fr-on div_fr _preview_ee">
-						<h2 class="cont_title2 fl">기본정보</h2>
-					</div>
-					<div class="info_box" id="_ee_doc1" style="line-height: 30px;">
-						<span class="content-text"><strong>제품명</strong> : ${params.itemName }</span> 
-						<span class="content-text"><strong>업체명</strong> : ${params.entpName }</span>
-						<span class="content-text"><strong>성상</strong> : ${params.chart }</span>
-						<span class="content-text"><strong>모양</strong> : ${params.drugShape }</span>
-						<span class="content-text"><strong>색상</strong> : ${params.colorClass1 }</span>
-						<span class="content-text"><strong>분할선</strong> : 앞 : ${params.lineFront }, 뒤 : ${params.lineBack }</span>
-						<span class="content-text"><strong>전문/일반</strong> : ${params.etcOtcName }</span>
-						<span class="content-text"><strong>허가일</strong> : ${fn:substring(params.itemPermitDate,0,4) } - ${fn:substring(params.itemPermitDate,4,6) } - ${fn:substring(params.itemPermitDate,6,8) }</span>
-						<span class="content-text"><strong>품목기준코드</strong> : ${params.itemSeq }</span>
-						<span class="content-text"><strong>장축크기</strong> : ${params.lengLong }mm</span>
-						<span class="content-text"><strong>단축크기</strong> : ${params.lengShort }mm</span>
-						<span class="content-text"><strong>두께</strong> : ${params.thick }mm</span>
-					</div>
-				</div>
-				<div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
-					<div class="sec_top fr-on div_fr _preview_ee">
-						<h3 class="cont_title2 fl">약 사용법</h3>
-					</div>
-					<div class="info_box" id="_ee_doc2">
-	                  <button type="button" class="btn btn-primary" onclick="drugDetail('${params.itemSeq}', '${params.itemName }')" >제품정보</button>
-	               </div>
-				</div>
-				<div class="explan_img" id="scroll_98">
-					<!--이미지 있음 -->
-					<div class="explan_left">
-						<!--<p class="subj"></p>-->
-						<p class="note">&quot;MedicineSearch&quot;는 일반소비자 눈높이에 맞춘 이해하기
-							쉬운 의약품 정보 제공을 위해 마련된 의약품개요정보입니다. 의약품에 관한 모든 내용을 담고 있지 않으며 자세한 사항은
-							식약처 의약품안전나라의 &quot;의약품상세정보&quot;를 참고하시기 바랍니다. 본 정보는 법적 효력을 가지는 것이
-							아닙니다.</p>
-					</div>
-				</div>
-				<!-- / 문항2 / -->
-				
-				<!-- ==========================================================  이미지 샘플 End -->
-				<!-- / 문항1 / -->
-				<!-- / 문항2 / -->
-				<!-- / 문항2 / -->
-				<!-- / 문항3 / -->
-				<!-- / 문항4 / -->
-				<!-- / 문항5 / -->
-				<!-- / 문항6 / -->
-				<!-- / 문항7 / -->
-			</div>
-			</section>
-			<!-- //content -->
-		</div>
-		<!-- //drug_container -->
 
-		<div class="btn_area" style="text-align: center; margin-top: 10px;">
-			<button type="button" class="btn_normal btn_base btn_point3 s-bb"
-				title="닫기" onclick="searchDrugShapeList();">
-				<span>닫기</span>
-			</button>
+				<!--이미지 있음 -->
+				<div class="explan_right">
+					<img style="width: 100%; height: 100%;" src="${params.itemImage }"
+						alt="${params.itemName }" />
+				</div>
+				<!-- <div class="explan_left">
+					<p class="subj"></p>
+					<p class="note">&quot;MedicineSearch&quot;는 일반소비자 눈높이에 맞춘 이해하기
+						쉬운 의약품 정보 제공을 위해 마련된 의약품개요정보입니다. 의약품에 관한 모든 내용을 담고 있지 않으며 자세한 사항은
+						식약처 의약품안전나라의 &quot;의약품상세정보&quot;를 참고하시기 바랍니다. 본 정보는 법적 효력을 가지는 것이
+						아닙니다.</p>
+				</div> -->
+			</div>
+			<!--div class="info_sec notPkInfo scroll_00 pt35" id="scroll_98"-->
+			<div class="info_sec _preview notPkInfo scroll_03" id="scroll_02">
+				<div class="sec_top fr-on div_fr _preview_ee">
+					<h2 class="cont_title2 fl">기본정보</h2>
+				</div>
+				<div class="info_box" id="_ee_doc1" style="line-height: 30px;">
+					<span class="content-text"><strong>제품명</strong> :
+						${params.itemName }</span> <span class="content-text"><strong>업체명</strong>
+						: ${params.entpName }</span> <span class="content-text"><strong>성상</strong>
+						: ${params.chart }</span> <span class="content-text"><strong>모양</strong>
+						: ${params.drugShape }</span> <span class="content-text"><strong>색상</strong>
+						: ${params.colorClass1 }</span> <span class="content-text"><strong>분할선</strong>
+						: 앞 : ${params.lineFront }, 뒤 : ${params.lineBack }</span> <span
+						class="content-text"><strong>전문/일반</strong> :
+						${params.etcOtcName }</span> <span class="content-text"><strong>허가일</strong>
+						: ${fn:substring(params.itemPermitDate,0,4) } -
+						${fn:substring(params.itemPermitDate,4,6) } -
+						${fn:substring(params.itemPermitDate,6,8) }</span> <span
+						class="content-text"><strong>품목기준코드</strong> :
+						${params.itemSeq }</span> <span class="content-text"><strong>장축크기</strong>
+						: ${params.lengLong }mm</span> <span class="content-text"><strong>단축크기</strong>
+						: ${params.lengShort }mm</span> <span class="content-text"><strong>두께</strong>
+						: ${params.thick }mm</span>
+				</div>
+				<div class="info_box" id="_ee_doc2" style="padding-top: 10px;">
+					<button type="button" class="btn btn-primary"
+						onclick="drugDetail('${params.itemSeq}', '${params.itemName }')">제품정보</button>
+				</div>
+			</div>
+			<!-- <div class="info_sec _preview notPkInfo scroll_03" id="scroll_03">
+				<div class="sec_top fr-on div_fr _preview_ee">
+					<h3 class="cont_title2 fl"></h3>
+				</div>
+				
+			</div> -->
+
+			<!-- / 문항2 / --> <!-- ==========================================================  이미지 샘플 End -->
+			<!-- / 문항1 / --> <!-- / 문항2 / --> <!-- / 문항2 / --> <!-- / 문항3 / --> <!-- / 문항4 / -->
+			<!-- / 문항5 / --> <!-- / 문항6 / --> <!-- / 문항7 / --> </section>
 		</div>
+
+		<!-- //content -->
+	</div>
+	<!-- //drug_container -->
+
+	<div class="btn_area" style="text-align: center; margin-top: 10px; padding-bottom: 10px;">
+		<button type="button" class="btn btn-primary" title="닫기"
+			onclick="searchDrugShapeList();">
+			<span>닫기</span>
+		</button>
 	</div>
 </body>
 </html>

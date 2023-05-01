@@ -199,22 +199,22 @@ th:first-child, td:first-child {
 				pageBody =  '<ul class="pagination" style="justify-content: center; padding-top: 20px;">'
 				if(paging.startPage != 1){
 					pageBody += '<li class="page-item">'
-					pageBody += ' <a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + (paging.startPage-1) + '\', \'' + paging.cntPerPage + '\')" >&lt;</a>'<!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
+					pageBody += ' <a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum(\'' + (paging.startPage-1) + '\', \'' + paging.cntPerPage + '\')" >&lt;</a>'<!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
 					pageBody += ' </li>'
 				}
 				for(var i = paging.startPage; i <= paging.endPage; i++){
 					if(i == paging.nowPage){
-						pageBody += '<li class="page-item  active"><a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a></li>'
+						pageBody += '<li class="page-item  active"><a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a></li>'
 					}
 					if(i != paging.nowPage){
 						pageBody += '<li class="page-item" aria-current="page">'
-						pageBody += '<a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a>'
+						pageBody += '<a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum(\'' + i + '\' , \'' + paging.cntPerPage + '\')" >'+i+'</a>'
 						pageBody += '</li>'
 					}
 				}
 				if(paging.endPage != paging.lastPage){
 					pageBody += '<li class="page-item">'
-					pageBody += '<a class="page-link" style="cursor: pointer;" onclick="clickPageNum(\'' + (paging.endPage+1) + '\' , \'' + paging.cntPerPage + '\')" >&gt;</a>' <!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
+					pageBody += '<a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum(\'' + (paging.endPage+1) + '\' , \'' + paging.cntPerPage + '\')" >&gt;</a>' <!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
 					pageBody += '</li>'
 				}
 				pageBody += '</ul>'
@@ -315,6 +315,11 @@ th:first-child, td:first-child {
                    <input type="hidden" name="itemEngName${list.ITEM_SEQ }" value="${list.ITEM_ENG_NAME }">
                    <input type="hidden" name="entpEngName${list.ITEM_SEQ }" value="${list.ENTP_ENG_NAME }">
              </c:forEach>
+             <c:if test="${empty list.items }">
+             	<tr style="text-align:center;">
+             		<td colspan="2" >검색결과가 없습니다.</td>
+             	</tr>
+             </c:if>
              </tbody>
             </table>
        	</div>
@@ -323,24 +328,24 @@ th:first-child, td:first-child {
 		  <ul class="pagination" style="justify-content: center; padding-top: 20px;">
 		  <c:if test="${paging.startPage != 1 }">
 		    <li class="page-item disabled">
-		      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${paging.startPage-1 }', '${paging.cntPerPage }')" tabindex="-1" aria-disabled="true">&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
+		      <a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum('${paging.startPage-1 }', '${paging.cntPerPage }')" tabindex="-1" aria-disabled="true">&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  -->
 		    </li>
 		    </c:if>
 		    <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 				<c:choose>
 					<c:when test="${p == paging.nowPage }">
-				    	<li class="page-item  active"><a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a></li>
+				    	<li class="page-item  active"><a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a></li>
 				    </c:when>
 				    <c:when test="${p != paging.nowPage }">
 					    <li class="page-item" aria-current="page">
-					      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a>
+					      <a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum('${p }', '${paging.cntPerPage }')" >${p }</a>
 					    </li>
 				    </c:when>
 			    </c:choose>
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
 			    <li class="page-item">
-			      <a class="page-link" style="cursor: pointer;" onclick="clickPageNum('${paging.endPage+1 }', '${paging.cntPerPage }')" >&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
+			      <a class="page-link" style="cursor: pointer; padding: 5px 5px" onclick="clickPageNum('${paging.endPage+1 }', '${paging.cntPerPage }')" >&gt;</a><!-- href="/searchDrugList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" -->
 			    </li>
 		    </c:if>
 		  </ul>
