@@ -53,12 +53,19 @@
         }
     </style>
     <script>
-
+		 window.onload = function() {
+    		let subscribeChk = $("#subscribeChk").val();
+    		
+    		window.localStorage.setItem("loginYn", subscribeChk);			
+		 }
+		
         function searchDrugName(){
 
     		var idChk = $("#idChk").val();
     		var subscribeChk = $("#subscribeChk").val();
-
+    		
+    		window.localStorage.setItem("loginYn", subscribeChk);
+    		
         	if (idChk == null) {
         		alert("로그인 후 이용가능합니다.");
         		return false;
