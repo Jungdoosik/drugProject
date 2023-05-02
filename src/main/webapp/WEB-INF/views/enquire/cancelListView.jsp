@@ -151,9 +151,7 @@ function cancalBnt() {
    			document.cancelDetailForm.submit()
    		}
    		
-   		function delMemberE(){
-   			console.log('탈퇴문의한다')
-   		}
+   		
    </script>
 
 
@@ -261,7 +259,7 @@ function cancalBnt() {
 							</c:otherwise>
 						</c:choose>	
 		             </div> <!-- 페이징 end -->
-		         </div><!-- End enquireListView -->
+		         </div><!-- End cancelListView -->
 
 
 		       
