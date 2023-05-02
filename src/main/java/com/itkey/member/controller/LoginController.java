@@ -81,9 +81,6 @@ public class LoginController {
 
 				if(selectMem == 1 && selectDelMem == 0) {
 					mVO = loginService.loginDo(boardWriter);
-					if (mVO.getSubscribe().equals("Y")) {
-						session.setAttribute("subScribe", mVO.getSubscribe());
-					}
 					session.setAttribute("phone", mVO.getPhone());
 					session.setAttribute("cuid", mVO.getCuid());
 					session.setAttribute("email", mVO.getEmail());
@@ -98,6 +95,13 @@ public class LoginController {
 
 					mv.addObject("memberinfo",mVO);
 					mv.setViewName("redirect:index");
+
+					System.out.println("mVO.getSubscribe()"+mVO.getSubscribe());
+					if (mVO.getSubscribe() == null || mVO.getSubscribe().equals("N") ) {
+						session.setAttribute("subScribe", null);
+					} else {
+						session.setAttribute("subScribe",mVO.getSubscribe());
+					}
 				}else if(selectMem != 1 && selectDelMem == 0){
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter result = response.getWriter();

@@ -38,47 +38,29 @@ import org.springframework.ui.Model;
 
 @Controller
 public class ServiceController {
-	
+
 	@Autowired
     private LoginService loginService;
 	@Autowired
 	private PhoneService phoneService;
 	@Autowired
 	private EnquireService enquireService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
-	
+
 	// 서비스 해지
 	@RequestMapping("/cancel")
 	public ModelAndView cancel(HttpServletResponse response, HttpSession session) throws Exception{
 		logger.info("서비스 해지 /cancel");
-		
+
 		ModelAndView mv = new ModelAndView();
     	MemberVo mVO = new MemberVo();
     	String phone = (String) session.getAttribute("phone");
 		mVO = loginService.loginDo(phone);
-		
-		// 서비스 가입 여부
-		String subScribe = mVO.getSubscribe(); 
-		
-		// 날짜 차이를 담을 변수 생성
-		long calDateDays = 0;
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		// 회원정보(가입 후 7일 이내 체크)
-		String current = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())); // 오늘 날짜
-		
+
+		String subScribe = mVO.getSubscribe(); // 서비스 가입 여부
 		String getJoinDate = mVO.getJoinDate(); // 가입날짜
-		
-		Date currentDate = format.parse(current);
-	    Date lastDate = format.parse(getJoinDate);
-	    
-	    long calDate = (currentDate.getTime() - lastDate.getTime())/1000; 
-	    calDateDays = calDate / ( 24*60*60); 
-	    calDateDays = Math.abs(calDateDays);
-	    
-		System.out.println("날짜차이 : "+calDateDays);
-		
+
 		if(subScribe == null || !subScribe.equals("Y") || subScribe == "" || getJoinDate == null) { // 서비스 미가입 시
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter result = response.getWriter();
@@ -92,6 +74,25 @@ public class ServiceController {
 			result.flush();
 			mv.setViewName("index");
 		}else {
+			// 날짜 차이를 담을 변수 생성
+			long calDateDays = 0;
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat format0 = new SimpleDateFormat("yyyy년MM월dd일HH시");
+
+			// 회원정보(가입 후 7일 이내 체크)
+			String current = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())); // 오늘 날짜
+
+			String getSubDate = mVO.getSubDate();
+
+			Date currentDate = format.parse(current);
+		    Date lastDate = format0.parse(getSubDate);
+
+		    long calDate = (currentDate.getTime() - lastDate.getTime())/1000;
+		    calDateDays = calDate / ( 24*60*60);
+		    calDateDays = Math.abs(calDateDays);
+
+			System.out.println("날짜차이 : "+calDateDays);
+
 			if (calDateDays<7) { // 가입 후 7일 이내
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter result = response.getWriter();
@@ -120,14 +121,14 @@ public class ServiceController {
     	// 핸드폰 본인인증 후 해지문의 글쓰기로 이동
     	return "cancelAuth";
     }
-	
+
     // 해지문의 글쓰기
-    @RequestMapping("/cancelWrite") 
+    @RequestMapping("/cancelWrite")
     public String cancelWrite() throws Exception{
-    	
+
     	return "cancelWrite";
     }
-    
+
 	// 해지문의 글 등록
  	@ResponseBody
  	@PostMapping(value = "/cancelWriteOk")
@@ -149,28 +150,28 @@ public class ServiceController {
  			return "FAIL";
  		}
  	}
- 	
-    @RequestMapping("/servicesJoin") 
+
+    @RequestMapping("/servicesJoin")
     public String servicesJoin(HttpSession session) throws Exception{
     	MemberVo mVO = new MemberVo();
     	String phone = (String) session.getAttribute("phone");
 		if (phone != null) {
 			mVO = loginService.loginDo(phone);
-			
-			String subScribe = mVO.getSubscribe(); 
+
+			String subScribe = mVO.getSubscribe();
 			session.setAttribute("subScribe", subScribe);
 		}
-		
-		
+
+
     	return "servicesJoin";
     }
-    
+
     @ResponseBody
     @RequestMapping(value = "/paymentOk", method = RequestMethod.POST)
     public String paymentOk(@RequestParam Map<String, Object> params, HttpServletResponse response, HttpSession session) throws Exception {
     	ModelAndView mv = new ModelAndView();
     	String phone = (String) session.getAttribute("phone");
-    	
+
     	params.put("phone", phone);
     	int result = loginService.insertCredit(params);
     	logger.debug("결제정보 DB 저장/insertCredit : " + result);
@@ -185,7 +186,7 @@ public class ServiceController {
     	}
     	return String.valueOf(result);
     }
-    
+
     @RequestMapping(value = "/servicesJoinOk", method = RequestMethod.GET)
     public String servicesJoinOk() throws Exception{
     	return "servicesJoinOk";
