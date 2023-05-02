@@ -185,7 +185,8 @@ function cancalBnt() {
 					<div class="col-md-12"><!-- 테이블 + bnt 시작  -->
 						<div class="btnclss" >
 							<button type="button" class="btn" onclick="cancalBnt();">서비스 해지 문의</button>
-							
+						</div>
+						
 						<input type="hidden" name="page" value="1">
 		                <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
 						<input type="hidden" id="keyword" name="keyword">
