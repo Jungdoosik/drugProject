@@ -48,6 +48,7 @@
 .termsTitle {
 	text-decoration-line: none;
 	color: black;
+	font-size: 25px;
 }
 
 .titlePont {
@@ -139,12 +140,13 @@ function openReg(cuid, muid, price, title){
 		<input type="hidden" name="title" value="">
 		<input type="hidden" name="joinPath" value="2">
 	</form>
-	<div class="container my-fade-in">
+	<div class="container my-fade-in"> 
 		<!-- 아임포트 모4듈 -->
 		<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
 			type="text/javascript"></script>
 		<div class="all">
 			<div class="row">
+			
 				<div class="align-self-center text-center" style="margin-top: 50px;">
 					<h1 class="title">
 						<span class="titlePont">"MedicineSearch"</span>에서 <span
@@ -153,20 +155,31 @@ function openReg(cuid, muid, price, title){
 					</h1>
 
 					<div class="korea mb-4">
-                        <img src="resources/img/free-icon-drug-4667352.png">	
-       				</div>
+                        <img style="padding:10%;" src="resources/img/free-icon-drug-4667352.png">	
+       				</div><!-- 이미지end -->
 
 					<div class="terms">
-						<label for="agree_all" style="font-size: 20px;"> <input
-							type="checkbox" name="agree_all" id="agree_all"> <span
-							class="agree_all_click" style="font-size: 20px; color: red">전체
-								동의</span>
-						</label> <br> <label> <input type="checkbox" id="agree1"
-							name="agree" value="1"> <span><a
-								class="termsTitle" href="#ex1" rel="modal:open">이용약관 동의</a><strong>(필수)</strong></span>
+						<label for="agree_all" style="font-size: 20px;"> 
+							<input  type="checkbox" name="agree_all" id="agree_all"> 
+								<span class="agree_all_click" style="font-size: 25px; color: red">
+								   전체 동의
+								 </span>
+						</label> 
+						<br> 
+						<label> 
+							<input type="checkbox" id="agree1" name="agree" value="1"> 
+								<span>
+									<a class="termsTitle" href="#ex1" rel="modal:open">
+									    이용약관 동의<strong>(필수)</strong>
+									 </a>
+								 </span>
 							<div id="ex1" class="modal">
 								<p>
-									<strong> 이용약관 동의 </strong> <br> <br> <span>제1조(목적)<br>
+									<strong> 이용약관 동의 </strong>
+									 <br> 
+									 <br> 
+									 <span>제1조(목적)
+									 <br>
 										이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷
 										관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을
 										목적으로 합니다.<br> ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는
@@ -208,14 +221,22 @@ function openReg(cuid, muid, price, title){
 									</span>
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
-							</div>
-						</label> <br> <label> <input type="checkbox" id="agree2"
-							name="agree" value="2"> <span><a
-								class="termsTitle" href="#ex2" rel="modal:open">개인정보 수집, 이용
-									동의</a><strong>(필수)</strong></span>
+							</div><!-- 모달 끝 -->
+						</label> 
+						<br> 
+						<label> 
+							<input type="checkbox" id="agree2" name="agree" value="2"> 
+								<span>
+									  <a class="termsTitle" href="#ex2" rel="modal:open">
+									     개인정보 수집, 이용 동의<strong>(필수)</strong>
+									  </a>
+								  </span>
 							<div id="ex2" class="modal">
 								<p>
-									<br> <span> <strong>개인정보처리방침</strong> <br> <br>
+									<br> 
+									<span> 
+									<strong>개인정보처리방침</strong> 
+									<br> <br>
 										1. 총칙<br> <br> 본 업체 사이트는 회원의 개인정보보호를 소중하게 생각하고, 회원의
 										개인정보를 보호하기 위하여 항상 최선을 다해 노력하고 있습니다.<br> 1) 회사는 「정보통신망
 										이용촉진 및 정보보호 등에 관한 법률」을 비롯한 모든 개인정보보호 관련 법률규정을 준수하고 있으며, 관련 법령에
@@ -243,14 +264,21 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree3"
-							name="agree" value="3"> <span class="termsAlert"
-							name="#agree3"><a class="termsTitle" href="#ex3"
-								rel="modal:open">개인정보 이용 동의 <strong>(필수)</strong></a></span>
+						</label> 
+						<br> 
+						<label> 
+							<input type="checkbox" id="agree3" name="agree" value="3"> 
+								<span class="termsAlert" name="#agree3">
+									<a class="termsTitle" href="#ex3" rel="modal:open">
+									   개인정보 이용 동의 <strong>(필수)</strong>
+									</a>
+								</span>
 							<div id="ex3" class="modal">
 								<p>
-									<span> <strong>개인정보 제공</strong> <br> <br> 회사는
-										이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.<br>
+									<span> 
+									<strong>개인정보 제공</strong> 
+									<br> <br> 
+									        회사는이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.<br>
 										- 이용자들이 사전에 동의한 경우<br> - 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진
 										절차와 방법에 따라 수사기관의 요구가 있는 경우<br> <br> 수집한 개인정보의 위탁<br>
 										회사는 서비스 제공 및 향상을 위하여 아래와 같이 개인정보를 위탁하고 있으며, 관계 법령에 따라 위탁계약시
@@ -267,12 +295,20 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree4"
-							name="agree" value="5"> <span><a
-								class="termsTitle" href="#ex4" rel="modal:open">서비스 안내사항 </a><strong>(필수)</strong></span>
+						</label> 
+						<br> 
+						<label> 
+							<input type="checkbox" id="agree4" name="agree" value="5"> 
+								<span>
+									  <a class="termsTitle" href="#ex4" rel="modal:open">
+									       서비스 안내사항<strong>(필수)</strong> 
+									  </a>
+								</span>
 							<div id="ex4" class="modal">
 								<p>
-									<span> <strong>MedicineSearch 서비스란</strong> <br> <br>
+									<span> 
+									<strong>MedicineSearch 서비스란</strong> 
+									<br> <br>
 										<div>
 											<span> 본 서비스는 MedicineSearch 에서 운영합니다. <br>고객센터
 												info@example.com 대표번호 : 02-1234-5678 <br> 7일(168시간)
@@ -287,11 +323,15 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-						</label> <br> <label> <input type="checkbox" id="agree5"
-							name="agree" value="4"> <span class="termsAlert"
-							name="#agree5"> <a class="termsTitle" href="#ex5"
-								rel="modal:open">이벤트,혜택정보 수신동의<strong class="select_disable">(선택)</strong>
-							</a></span>
+						</label> 
+						<br> 
+						<label> 
+							<input type="checkbox" id="agree5" name="agree" value="4"> 
+									<span class="termsAlert" name="#agree5"> 
+										<a class="termsTitle" href="#ex5" rel="modal:open">
+										   이벤트,혜택정보 수신동의<strong class="select_disable">(선택)</strong>
+										</a>
+									</span>
 							<div id="ex5" class="modal">
 								<p>
 									<span> <strong>이벤트 응모를 위한 개인정보 수집 이용 동의서</strong> <br>
@@ -308,16 +348,16 @@ function openReg(cuid, muid, price, title){
 								</p>
 								<a href="#" rel="modal:close">닫기</a>
 							</div>
-
+                        </label>
 							<div class="intro-btn">
 								<button class="event_btn1" id="goBtn">가입하고 보상받기</button>
 							</div>
 					</div>
 				</div>
-			</div>
-			<!-- 가운데  -->
-		</div>
-	</div>
+			</div> <!-- row  end -->
+			
+		</div><!-- all end -->
+	</div><!--container my-fade-in  end -->
 	
 </body>
 </html>

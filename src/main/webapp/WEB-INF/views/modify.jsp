@@ -142,7 +142,7 @@
 
 	                <div class="col-md-12">
 	                <h3>비밀번호</h3>
-	                  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호 입력" style="margin-bottom:10px;">
+	                  <input type="password" id="pwd" name="pwd" class="form-control"  value="${memberinfo.pwd }" placeholder="비밀번호 입력" style="margin-bottom:10px;">
 	                </div>
 
 	                <div class="col-md-12">
@@ -152,7 +152,7 @@
 
 					<div class="col-md-12">
 	                <h3>이메일 주소</h3>
-	                  <input type="email" id="email" name="email" class="form-control" placeholder="이메일 입력" style="margin-bottom:10px;">
+	                  <input type="email" id="email" name="email" class="form-control" value="${memberinfo.email }"  placeholder="이메일 입력" style="margin-bottom:10px;">
 	                </div>
 
 	                <div style="text-align: -webkit-center">
