@@ -25,7 +25,7 @@ public class EnquireDAO {
 	private SqlSessionTemplate sqlSession;
 	private static final String ASK = "enquire";
 
-	// ■ 문의 등록
+	// ■ 문의 등록-sunae 
 	public int insertAsk(EnquireVo eVO) throws Exception {
 		log.info("* [DAO] Input  ◀ (Service) : " + eVO.toString());
 		int result = sqlSession.insert("enquire.insertAsk", eVO);
@@ -33,7 +33,7 @@ public class EnquireDAO {
 		return result;
 	}
 
-	// ■ 상담 내역
+	// ■ 상담목록 내역 -sunae 
 	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("다오다오다오* [DAO] Input  ◀ (Service) : "+ criteria.toString());
 		log.info("select_list() 호출");
@@ -43,7 +43,7 @@ public class EnquireDAO {
 		return result;
 	}
 
-	// ■ 상담 내역 갯수
+	// ■ 상담 목록 내역 갯수-sunae 
 	int listCountEnquire(PageCriteria criteria) throws Exception {
 		log.info("Count* [DAO] Input  ◀ (Service) : "+ criteria.toString());
 		int result = sqlSession.selectOne("enquire.listCountEnquire", criteria);
@@ -51,6 +51,26 @@ public class EnquireDAO {
 		return result;
 	}
 
+	
+	// ■ 해지 목록 내역 -sunae 
+	List<EnquireVo> cancelList(PageCriteria criteria) throws Exception {
+		log.info("해지 목록 내역* [DAO] Input  ◀ (Service) : "+ criteria.toString());
+		log.info("select_list() 호출");
+		log.info("start = " + criteria.getStart() + ", end = " + criteria.getEnd());
+		List<EnquireVo> result = sqlSession.selectList("enquire.cancelList",criteria);
+		log.info("해지 목록 내역* [DAO] Output ◀ (Mybatis) : " + result.toString());
+		return result;
+	}
+
+	// ■ 해지 목록 내역 갯수-sunae 
+	int cancelListCount(PageCriteria criteria) throws Exception {
+		log.info("해지 목록Count* [DAO] Input  ◀ (Service) : "+ criteria.toString());
+		int result = sqlSession.selectOne("enquire.cancelListCount", criteria);
+		log.info("해지 목록Count* [DAO] Output ◀ (Mybatis) : " + result);
+		return result;
+	}
+	
+	
 	// ■ 서비스 해지문의 등록
 	void registerEnqireCS(EnquireVo param) throws Exception {
 		log.info("* [DAO] Input  ◀ (Service) : " + param.toString());
@@ -133,6 +153,15 @@ public class EnquireDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("enquire.enquireDetail", params);
 	}
+	
+	//해지 문의 상세 
+		public EnquireVo cancelDetail(Map<String, Object> params) {
+			log.info("* 해지 문의 상세 [DAO] Input  ◀ (Service) : " + params.toString());
+			EnquireVo result = sqlSession.selectOne("enquire.cancelDetail", params);
+			log.info("*해지 문의 상세   [DAO] Output ◀ (Mybatis) : " + result);
+			return result;
+		}
+	
 
 	// 서비스 해지 문의 글쓰기
 	public int insertCancel(EnquireVo eVO) {

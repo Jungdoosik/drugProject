@@ -29,6 +29,49 @@
 			delyn = 'N' and writer = #{keyword}
 
 	</select>
+	
+	
+	<!-- 해지 문의 리스트 고객-->
+	<select id="cancelList" resultType="EnquireVo" parameterType="PageCriteria" >
+		SELECT
+		*
+		FROM
+			cancel_enquire
+	 WHERE
+			delyn = 'N' and writer = #{keyword}
+			
+		ORDER BY
+			seq DESC
+		limit #{start}, #{end}
+	</select>
+
+	<!-- 해지 문의 갯수 -->
+	<select id="cancelListCount" resultType="int" >
+		SELECT
+			count(1)
+		FROM
+			cancel_enquire
+		WHERE
+			delyn = 'N' and writer = #{keyword}
+
+	</select>
+	
+		<!--해지 문의상세 확인 -->
+	<select id="cancelDetail" parameterType="HashMap" resultType="com.itkey.enquire.EnquireVo">
+		SELECT
+			  seq
+			, title
+			, writer
+			, question
+			, answer
+			, q_date
+			, a_date
+			, delyn
+			, service_code
+		FROM cancel_enquire
+		WHERE SEQ = #{seq}
+	</select>
+	
 	<!-- 문의 등록 -->
 
 	<insert id="insertAsk" parameterType="EnquireVo">
@@ -44,7 +87,6 @@
 			(#{title}, #{writer}, #{question}, now(),'N', #{service_code})
 
 	</insert>
-
 
 
 	<!-- 문의 리스트 관리자 -->

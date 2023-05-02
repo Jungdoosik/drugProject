@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MedicineSearch - 문의상세  </title>
+    <title>MedicineSearch - 서비스 해지 상세 </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -91,16 +91,11 @@
                         <div class="col-lg-7">
                                 <form  method="post" class="php-email-form" id="frmAsk" >
                                     <div class="col-lg-12">
-                                        <h2 class="askTop">문의내역</h2>
+                                        <h2 class="askTop">서비스해지 문의내역</h2>
                                         <input type="hidden" name="phone" value="${phone}" /> 
                                         <input type="hidden" id="serviceCode" value="MS">
-                   <!--                      <h4>고객센터는 평일 오전 9시부터 저녁 6시까지 운영됩니다.
-                                        <br>문의 남겨주시면 최대한 빠르게 답변드리겠습니다.<h4> -->
+                 
                                     </div>
-                                                    <%-- <div class="col-md-12 ">
-                                                    <span class="input-group-text">작성자</span>
-                                                    <input class="form-control" type="text" name="writer"  id="writer" required>${phone}
-                                                    </div> --%> 
                                         <div class="col-md-12">
                                                 <span class="input-group-text">제목</span>
                                                 <input  type="text" name="title" id="askTitle" style="background-color: #fff;" class="form-control" disabled value="${eVo.title}"placeholder="※ 무엇을 문의하시겠습니까?" required>

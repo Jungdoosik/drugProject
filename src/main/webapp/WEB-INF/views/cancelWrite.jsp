@@ -150,7 +150,7 @@ function doCanBtn(){
         success : function(data) {
             if (data == "success") {
                 alert("해지 문의글 등록이 완료되었습니다.");
-                location.href = "/question"; //문의 리스트 url
+                location.href = "/cancelList"; // 해지 문의 리스트 화면 
             }
         },
         error: function (request, status, error) {

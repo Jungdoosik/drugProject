@@ -30,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itkey.member.service.CalendarService;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.common.Criteria;
+import com.itkey.vo.CalendarVO;
 
 
 
@@ -43,6 +45,9 @@ public class EnquireController {
 	
 	@Autowired
 	private EnquireService eService;
+	
+	 @Autowired
+     CalendarService cSvc;
 
 	// ■ 상담 내역  리스트(개인) - sunea
 	@GetMapping("/question")
@@ -79,7 +84,57 @@ public class EnquireController {
 		return "/enquire/enquireListView";
 	}
 
+	
+	// ■ 해지 문의 목록 - -sunae
+	@GetMapping("/cancelList")
+	public String cancelList( Model model
+			,HttpSession session
+			, Integer page
+			, Integer numsPerPage
+	    ) throws Exception {
+		log.info("cancelList  목록 ");
+		//세션값 불러오기
+		String phone = (String) session.getAttribute("phone");
+		log.info(phone);
+	
+		PageCriteria criteria = new PageCriteria();
+		//log.info("======1111===============");
+		criteria.setKeyword(phone);// 회원id criteria 객체 set
 		
+		if (page != null) {
+			//페이지 
+			criteria.setPage(page);
+		}
+		if (numsPerPage != null) {
+			//페이지번호
+			criteria.setNumsPerPage(numsPerPage);
+		}
+	
+		List<EnquireVo> cList = eService.cancelList(criteria); //유저1 해지 문의 리스트
+		model.addAttribute("List", cList);
+	
+		PageMaker pageMaker = new PageMaker(); // 페이지메이커 
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(eService.cancelListCount(criteria)); //총갯수 
+		
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("phone", phone);
+		return "/enquire/cancelListView";
+	}
+	
+	//해지 서비스 상세 -sunae
+		@RequestMapping("/cancelDetail")
+		public String cancelDetail(@RequestParam Map<String, Object> params
+				, ModelMap model
+				) throws Exception{
+			log.info("cancelDetail   서비스 해지 상세  ");
+			System.out.println(params);
+			EnquireVo cVo = eService.cancelDetail(params);
+			
+			model.addAttribute("eVo", cVo);
+			return "/enquire/cancelDetail";
+		}
 	
 	// ■ 고객 문의하기 : 글쓰기 insert -sunea
 	@GetMapping(value = "/enquireWriteView")
@@ -304,5 +359,7 @@ public class EnquireController {
 		
 		return "/enquire/enquireDetail";
 	}
+	
+	
 
 }
