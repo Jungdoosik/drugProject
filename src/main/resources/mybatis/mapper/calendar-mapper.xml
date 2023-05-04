@@ -5,50 +5,58 @@
 <resultMap type="com.itkey.dao.CalendarDAO" id="CalendarDAO"></resultMap>
    <insert id="enroll" parameterType="CalendarVO">
       
-      INSERT INTO team01.calendar_tbl(
-      cal_year
+      INSERT INTO calendar_tbl(
+      	phone
+      , cal_year
       , cal_month
       , cal_day
       , cal_time
       , cal_memo
+      , time_builder
       )VALUES(
-      #{calYear}
+      #{phone}
+      , #{calYear}
       , #{calMonth}
       , #{calDay}
       , #{calTime}
       , #{calMemo} 
+      , #{timeBuilder}
       )
    </insert>
 
    <select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
-      select * from calendar_tbl
-      where cal_year = #{calYear}
-      and cal_month = #{calMonth}
+      SELECT * from calendar_tbl
+      WHERE cal_year = #{calYear}
+      AND cal_month = #{calMonth}
+      AND phone = #{phone}
    </select>
 
-   <select id="getDate" parameterType="CalendarVO" resultType="CalendarVO">
-      select * from calendar_tbl
-      where cal_year = #{calYear}
-      and cal_day = #{calDay}
-   </select>
+<!--    <select id="getDate" parameterType="CalendarVO" resultType="CalendarVO"> -->
+<!--       SELECT * from calendar_tbl -->
+<!--       WHERE cal_year = #{calYear} -->
+<!--       AND cal_day = #{calDay} -->
+<!--       AND phone = #{phone} -->
+<!--    </select> -->
    
    <select id="getMemo" parameterType="CalendarVO" resultType="CalendarVO">
-      select * from calendar_tbl
-      where cal_year = #{calYear}
-      and cal_month = #{calMonth}
-      and cal_day = #{calDay}
+      SELECT * FROM calendar_tbl
+      WHERE cal_year = #{calYear}
+      AND cal_month = #{calMonth}
+      AND cal_day = #{calDay}
+      AND phone = #{phone}
    </select>
    
     <delete id="deleteMemo" parameterType="CalendarVO">
-      delete from calendar_tbl
-      where cal_no = #{calNo} 
+      DELETE FROM calendar_tbl
+      WHERE cal_no = #{calNo} 
     </delete>
     
     <update id="modifyMemo" parameterType="CalendarVO">
-      update calendar_tbl 
-      set 
+      UPDATE calendar_tbl 
+      SET 
          cal_memo = #{calMemo},
          cal_time = #{calTime}
-      where cal_no = #{calNo} 
+      WHERE cal_no = #{calNo} 
     </update>
+    
 </mapper>

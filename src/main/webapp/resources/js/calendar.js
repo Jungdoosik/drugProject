@@ -153,7 +153,8 @@ const makeCalendar = (date) => {
          calMonth: '',
          calDay: '',
          calTime: '',
-         calMemo: ''
+         calMemo: '',
+         timeBuilder: ''
    }; 
    
    
@@ -189,14 +190,6 @@ const makeCalendar = (date) => {
       fullDate.calYear = year;
       fullDate.calMonth = month;
       fullDate.calDay = day;
-      
-      if(month < 10){
-         month = "0" + month;
-      }
-      
-      if(day< 10){
-         day = "0" + day;
-      }
       
       if(isFlag == 1){
          
@@ -240,11 +233,34 @@ const makeCalendar = (date) => {
       //빈값이면 등록 빈값이 아니면 등록X
       let cal_time = document.querySelector("#time1").value;
       let prefixTime = cal_time.slice(0,1)
-
+      
       let mediMemo = document.querySelector(".mediMemo").value;
       
       fullDate.calMemo = mediMemo;
       fullDate.calTime = cal_time;
+
+      //timestamp 처리
+      let builderTemp = '';
+      builderTemp += fullDate.calYear;
+      builderTemp += "-";
+      
+      if(fullDate.calMonth < 10){
+    	  builderTemp += "0";
+      }
+      builderTemp += fullDate.calMonth;
+      builderTemp += "-";
+      
+      if(fullDate.calDay< 10){
+    	  builderTemp += "0";
+      }
+      builderTemp += fullDate.calDay;
+      builderTemp += " ";
+      
+      fullDate.timeBuilder = builderTemp;
+      fullDate.timeBuilder += fullDate.calTime + ":00";
+      console.log("fullDate.timeBuilder: ",fullDate.timeBuilder);
+      let test = new Date(fullDate.timeBuilder);
+      console.log("test: ",test.getTime());
       
       //통신 시작
       let flag=confirm('스케줄을 등록하시겠습니까?');
@@ -258,6 +274,7 @@ const makeCalendar = (date) => {
             }
          });
       }
+      fullDate.timeBuilder = "";
    }
    
    

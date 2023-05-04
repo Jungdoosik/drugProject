@@ -52,50 +52,45 @@
             background: #0e1d34;
         }
     </style>
-    <script>
-		 window.onload = function() {
-    		let subscribeChk = $("#subscribeChk").val();
-    		
-    		window.localStorage.setItem("loginYn", subscribeChk);			
-		 }
-		
+ <script>
+       window.onload = function() {
+          let subscribeChk = $("#subscribeChk").val();
+          
+          window.localStorage.setItem("loginYn", subscribeChk);         
+       }
+      
         function searchDrugName(){
 
-    		var idChk = $("#idChk").val();
-    		var subscribeChk = $("#subscribeChk").val();
-<<<<<<< Updated upstream
+           var idChk = $("#idChk").val();
+           var subscribeChk = $("#subscribeChk").val();
 
-        	if (idChk == null || idChk == '') {
-=======
-    		
-    		window.localStorage.setItem("loginYn", subscribeChk);
-    		
-        	if (idChk == null) {
->>>>>>> Stashed changes
-        		alert("로그인 후 이용가능합니다.");
-        		return false;
-        	} else if (subscribeChk == null || subscribeChk != 'Y') {
-        		alert("서비스 가입 후 이용가능합니다.");
-        		return false;
-        	} else {
-	        	location.href = "/searchDrugName"
-        	}
+           if (idChk == null || idChk == '') {
+              alert("로그인 후 이용가능합니다.");
+              return false;
+           } else if (subscribeChk == null || subscribeChk != 'Y') {
+              alert("서비스 가입 후 이용가능합니다.");
+              return false;
+           } else {
+
+              location.href = "/searchDrugName"
+           }
+        
         }
 
         function searchDrugShape(){
 
-        	var idChk = $("#idChk").val();
-        	var subscribeChk = $("#subscribeChk").val();
+           var idChk = $("#idChk").val();
+           var subscribeChk = $("#subscribeChk").val();
 
-        	if (idChk == null || idChk == '') {
-        		alert("로그인 후 이용가능합니다.");
-        		return false;
-        	} else if (subscribeChk == null || subscribeChk != 'Y') {
-        		alert("서비스 가입 후 이용가능합니다.");
-        		return false;
-        	} else {
-        		location.href = "/searchDrugShape"
-        	}
+           if (idChk == null || idChk == '') {
+              alert("로그인 후 이용가능합니다.");
+              return false;
+           } else if (subscribeChk == null || subscribeChk != 'Y') {
+              alert("서비스 가입 후 이용가능합니다.");
+              return false;
+           } else {
+              location.href = "/searchDrugShape"
+           }
         }
     </script>
 

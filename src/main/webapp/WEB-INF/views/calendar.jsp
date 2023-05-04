@@ -154,14 +154,14 @@
      <div id="modalContent">
        <div id="modalBody">
          <span id="closeBtn" onclick="closeModal()">&times;</span>
-         <div class="info">*변경 혹은 삭제된 일정은 복구할 수 없습니다.</div></br>
+         <div id="info">*변경 혹은 삭제된 일정은 복구할 수 없습니다.</div></br>
             *예약시간선택</br>
            <div id="modify_select_area">
          </div>
          <div id="modify_area">
          </div>
             <div>
-         </br><button type="button" class="btn btn-primary enroll" onclick="addMore()">추가등록</button>
+         </br><button type="vjtp" class="btn btn-primary enroll" onclick="addMore()">추가등록</button>
          </div>
        </div>
      </div>
@@ -283,19 +283,21 @@ h2 {
 
 /* 모달 팝업창 */
 #modalBody {
-   width: 500px;
-   padding: 30px 30px;
+   width: 80%;
+   padding: 5% 5%;
    margin: 0 auto;
    border: 1px solid #777;
    border-radius: 10px;
    background-color: #fff;
 }
-#modalBody info {
-   color: #red;
+#info {
+   color: #dc3545;
+   font-weight: bold;
 }
 /* 닫기 버튼 */
 #closeBtn {
    float:right;
+   margin-top: -3%;
    font-weight: bold;
    color: #777;
    font-size:25px;
@@ -394,5 +396,8 @@ h2 {
       height:8rem;
       overflow:scroll;
    }
+}
+i {
+	cursor:pointer
 }
 </style>
