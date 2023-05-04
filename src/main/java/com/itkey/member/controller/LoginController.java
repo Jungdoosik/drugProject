@@ -245,17 +245,6 @@ public class LoginController {
 		return "redirect:index";
 	}
 
-  //검색페이지
-    @RequestMapping("/searchDrugName")
-    public String searchDrugName() throws Exception{
-    	return "searchDrugName";
-    }
-
-    //ah양검색페이지
-    @RequestMapping("/searchDrugShape")
-    public String searchDrugShape() throws Exception{
-    	return "searchDrugShape";
-    }
-
+  
 }
 

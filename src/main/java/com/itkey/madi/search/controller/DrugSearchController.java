@@ -33,7 +33,18 @@ public class DrugSearchController {
 	@Autowired
     private DrugSearchService drugSearchService;
 	
-	
+	//검색페이지
+    @RequestMapping("/searchDrugName")
+    public String searchDrugName() throws Exception{
+    	return "searchDrugName";
+    }
+
+    //모양검색페이지
+    @RequestMapping("/searchDrugShape")
+    public String searchDrugShape() throws Exception{
+    	return "searchDrugShape";
+    }
+
 	//이름검색시 List
 	@RequestMapping("/searchDrugNameList")
 	public String searchDrugList(@RequestParam Map<String,Object> params, 
