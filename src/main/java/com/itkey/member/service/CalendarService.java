@@ -7,6 +7,7 @@ import com.itkey.vo.CalendarVO;
 public interface CalendarService {
    public int enroll(CalendarVO cVo);
    
+   public List<CalendarVO> getAllCalendar()throws Exception;
    public List<CalendarVO> getCalendar(CalendarVO cVo)throws Exception;
 
    public List<CalendarVO> getDate(CalendarVO cVo)throws Exception;

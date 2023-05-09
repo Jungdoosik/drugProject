@@ -24,6 +24,10 @@
       )
    </insert>
 
+   <select id="getAllCalendar"  resultType="CalendarVO">
+      SELECT * from calendar_tbl
+   </select>
+   
    <select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
       SELECT * from calendar_tbl
       WHERE cal_year = #{calYear}

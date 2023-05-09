@@ -2,6 +2,7 @@ package com.itkey.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itkey.controller.*;
-
+import com.itkey.member.service.CalendarService;
+import com.itkey.phone.service.PhoneService;
+import com.itkey.vo.CalendarVO;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +36,12 @@ import com.itkey.controller.*;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+
+	@Autowired
+	private PhoneService phoneService;
+	@Autowired
+	private CalendarService cSvc;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -82,10 +91,7 @@ public class HomeController {
     public String detail() {
     	return "detail";
     }*/
-    @RequestMapping("/test")
-    public String test() {
-    	return "test";
-    }
+
     
 }
 

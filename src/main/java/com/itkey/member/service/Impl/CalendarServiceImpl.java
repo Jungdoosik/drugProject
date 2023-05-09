@@ -47,4 +47,11 @@ public class CalendarServiceImpl implements CalendarService{
       return cDao.modifyMemo(cVo);
    }
 
+	@Override
+	public List<CalendarVO> getAllCalendar() throws Exception {
+		List<CalendarVO> list = cDao.getAllCalendar();
+	      return list;
+	}
+
+   
 }
