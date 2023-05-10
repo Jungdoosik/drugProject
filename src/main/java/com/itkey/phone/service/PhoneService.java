@@ -14,8 +14,8 @@ public class PhoneService {
 
 	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
 
-		String api_key = "NCSIKLTT6KLEZM0N";
-	    String api_secret = "4JELFNMLVNXW7ZSPOG4Y4ZKH85M1KRJL";
+		String api_key = "NCSN8GMGJFHW3H5E";
+	    String api_secret = "QH2ODBWNNGTNRZWQNA1QDU5NHTH665UW";
 		Message coolsms = new Message(api_key, api_secret);
 
 		HashMap<String, String> params = new HashMap<String, String>();
@@ -38,13 +38,13 @@ public class PhoneService {
 	
 	public int smsSchedule(String userPhoneNumber,String calTime,String calMemo) {
 
-	      String api_key = "NCSIKLTT6KLEZM0N";
-	       String api_secret = "4JELFNMLVNXW7ZSPOG4Y4ZKH85M1KRJL";
+	      String api_key = "NCSN8GMGJFHW3H5E";
+	       String api_secret = "QH2ODBWNNGTNRZWQNA1QDU5NHTH665UW";
 	      Message coolsms = new Message(api_key, api_secret);
 
 	      HashMap<String, String> params = new HashMap<String, String>();
 	      params.put("to", userPhoneNumber);
-	      params.put("from", "01058156014");//수정해야됨(윤경님 번호임)
+	      params.put("from", "01064864033");//수정해야됨(윤경님 번호임)
 	      params.put("type", "SMS");
 	      params.put("text", "[MedicineSearch] 약 드실 시간입니다."+calTime+calMemo);
 	      params.put("app_version", "test app 1.2"); // application name and version

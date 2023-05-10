@@ -203,15 +203,20 @@ const makeCalendar = (date) => {
       console.log('=================')
       console.log(time2)
       for(let i=0; i<memos.length; i++){
-         for(let j = 0; j<time1[i].length; j++){
-            if(time1[i].options[j].value === memos[i].calTime.substr(0,2)){
-            	console.log(typeof time1[i].options[j].value)
-            	console.log('=================')
-            	console.log(typeof memos[i].calTime.substr(0,2))
-               time1[i].options[j].selected = true;
-            }
-         }
-      }
+          for(let j = 0; j<time1[i].length; j++){
+             if(time1[i].options[j].value === memos[i].calTime.substr(0,2)){
+                time1[i].options[j].selected = true;
+             }
+          }
+       }
+      
+      for(let i=0; i<memos.length; i++){
+          for(let j = 0; j<time2[i].length; j++){
+             if(time2[i].options[j].value === memos[i].calTime.substr(3,5)){
+                time2[i].options[j].selected = true;
+             }
+          }
+       }
       
       if(isFlag == 0){
          //등록폼모달
