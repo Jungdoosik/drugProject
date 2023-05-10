@@ -1,6 +1,9 @@
 package com.itkey.controller;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itkey.member.service.CalendarService;
 import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
+import com.itkey.phone.service.PhoneService;
 import com.itkey.vo.CalendarVO;
 
 @Controller
@@ -32,6 +37,9 @@ public class ScheduleController {
       
       @Autowired
       private LoginService loginService;
+      
+      @Autowired
+  	  private PhoneService phoneService;
       
        @RequestMapping("/calendar")
        public ModelAndView calendar(HttpServletResponse response, HttpSession session) throws Exception {
@@ -114,5 +122,63 @@ public class ScheduleController {
        }
        
        //공휴일API
+       
+       @Scheduled(cron = "0 0/1 * * * *")
+   		public void checkTest() throws Exception{
+   		// [현재 날짜 및 시간 데이터 얻어오기]
+   		Long nowDate = System.currentTimeMillis();
+   		
+   		// [SQL 타임 스탬프 사용해 현재 및 날짜 데이터 변환 실시]
+   		Timestamp timeStamp = new Timestamp(nowDate);
+   		
+   		// [결과 출력 실시]
+   		String strStamp = String.valueOf(timeStamp.getTime());
+   		System.out.println("strStamp :" + strStamp );
+   		
+   		List<CalendarVO> list = cSvc.getAllCalendar();
+   		System.out.println(list.size());
+   		
+   		test();
+   	}	
+   	
+       @RequestMapping("/test")
+       public void test() throws Exception {
+          List<CalendarVO> list = cSvc.getAllCalendar();
+          int result = 0;
+          int smsYn = 0;
+          Date currentTime = new Date ();
+           SimpleDateFormat SimpleDateFormat  = new SimpleDateFormat ( "yyyy-MM-dd HH:mm");
+           SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+           Date d1 = null;
+           Date d2 = f.parse(SimpleDateFormat.format(currentTime));
+          for (int i=0;i<list.size();i++) {
+             if (list.get(i).timeBuilder != null) {
+
+                 d1 = f.parse(list.get(i).timeBuilder);
+
+                 if(d1.compareTo(d2) == 0) {
+                     System.out.println("시간 같긔");
+                     String userPhoneNumber = list.get(i).phone;
+                     String calTime = list.get(i).calTime;
+                     String calMemo = list.get(i).calMemo;
+                     String calNo = list.get(i).calNo;
+                     result = phoneService.smsSchedule(userPhoneNumber,calTime,calMemo);
+                     
+                     if(result == 1){
+                  	   System.out.println("ok");
+                  	 smsYn = cSvc.updateSmsCnt(calNo);
+                     }else if(result == 0){
+                  	   System.out.println("no");
+                  	   
+                     }
+                 }
+             }
+          }
+          
+          
+
+          //return "test";
+       }
        
 }
