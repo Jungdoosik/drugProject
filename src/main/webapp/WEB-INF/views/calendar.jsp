@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .btn-1 {
     background: var(--color-primary);
@@ -66,6 +67,15 @@
   }
 }
 </style>
+
+<script>
+	$(function (){
+		console.log($('input[name="year"]').val())
+		console.log($('input[name="month"]').val())
+		
+		
+	})
+</script>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -103,12 +113,14 @@
 </head>
 
 <body>
+<input type="hidden" name="year" value="">
+<input type="hidden" name="month" value="">
     <div class="index_container">
     <jsp:include page="common/header.jsp" />
       <div class='rap'>
          <div class="header">
          <div class="btn prevDay"></div>
-            <h2 class='dateTitle'></h2>
+            <h2 class='dateTitle' id="dateTitle"></h2>
             <div class="btn nextDay"></div>
          </div>
          <div class="grid dateHead">

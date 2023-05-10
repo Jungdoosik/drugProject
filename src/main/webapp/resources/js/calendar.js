@@ -30,67 +30,184 @@
 	  }
 
 const makeCalendar = (date) => {
-     const currentYear = new Date(date).getFullYear();
-     const currentMonth = new Date(date).getMonth() + 1;
-     let resultObj = [];
-     let obj = {};
-     let checkDay = [0];
-     let checkMemo = [0];
-     let checkTime = [0];
-     let checkCalNo = [0];
-     //조회
-     $.ajax({
-        url : "/getCalendar",
-        type : "get",
-        async: false,
-        data : {calYear: currentYear, calMonth:currentMonth}, //파라미터는 year, month를 객체로 던져주면 나옴.
-        success : function(json){
-           for(let i = 0; i < json.length; i++){
-              obj = {
-                 calNo: json[i].calNo,
-                 calDay: json[i].calDay,
-                 calMemo: json[i].calMemo,
-                 calTime: json[i].calTime
-              }
-              checkCalNo.push(json[i].calNo);
-              checkMemo.push(json[i].calMemo);
-              checkTime.push(json[i].calTime);
-              checkDay.push(parseInt(json[i].calDay));
-           }
-        }
-     });
+	
+    let holiy = []
+    
+    var year = (date.getFullYear()).toString()
+    var month = ''
+    var lastDate = new Date(year, (date.getMonth() + 1), 0);
+   	 if((date.getMonth() + 1).toString() < 10){
+   		 month = '0' + (date.getMonth() + 1).toString()
+   	 }else{
+   		 month = (date.getMonth() + 1).toString()
+   	 }
+   	var lastDay1 = lastDate.getDate().toString()
+    var xhr = new XMLHttpRequest();
+	var url = 'http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo'; /*URL*/
+	var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'wGR4f0Ag6dwaYjwXL5SgUnGgAEM2A24RAQeFZZBxvTfoWyadY%2B4h6x6LOkro%2FjqYv%2BwMfTiSW9vIrwGwrfjlKw%3D%3D'; /*Service Key*/
+	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent(lastDay1); /**/
+	queryParams += '&' + encodeURIComponent('solYear') + '=' + encodeURIComponent(year); /**/
+	queryParams += '&' + encodeURIComponent('solMonth') + '=' + encodeURIComponent(month); /**/
+	queryParams += '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json'); /**/
+	xhr.open('GET', url + queryParams);
+	xhr.onreadystatechange = function () {
+	    if (this.readyState == 4) {
+	       /* console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);*/
+	       let obj = JSON.parse(this.responseText)
+	       holiy = obj.response.body
+	    }
+	    let arr = Object.entries(holiy)
+	    const currentYear = new Date(date).getFullYear();
+	     const currentMonth = new Date(date).getMonth() + 1;
+	     $('input[name="year"]').val(currentYear)
+		 $('input[name="month"]').val(currentMonth)
+	     let resultObj = [];
+	     let obj = {};
+	     let checkDay = [0];
+	     let checkMemo = [0];
+	     let checkTime = [0];
+	     let checkCalNo = [0];
+	     //조회
+	     $.ajax({
+	        url : "/getCalendar",
+	        type : "get",
+	        async: false,
+	        data : {calYear: currentYear, calMonth:currentMonth}, //파라미터는 year, month를 객체로 던져주면 나옴.
+	        success : function(json){
+	           for(let i = 0; i < json.length; i++){
+	              obj = {
+	                 calNo: json[i].calNo,
+	                 calDay: json[i].calDay,
+	                 calMemo: json[i].calMemo,
+	                 calTime: json[i].calTime
+	              }
+	              checkCalNo.push(json[i].calNo);
+	              checkMemo.push(json[i].calMemo);
+	              checkTime.push(json[i].calTime);
+	              checkDay.push(parseInt(json[i].calDay));
+	           }
+	        }
+	     });
+	     
+	     const firstDay = new Date(date.setDate(1)).getDay();
+	     const lastDay = new Date(currentYear, currentMonth, 0).getDate();
+	   
+	     const limitDay = firstDay + lastDay;
+	     const nextDay = Math.ceil(limitDay / 7) * 7;
+	   
+	     let htmlDummy = '';
+	     for (let i = 0; i < firstDay; i++) {
+	       htmlDummy += `<div class="noColor"></div>`;
+	     }
+	     
+	     console.log("==================")
+	     console.log("==================")
+	     console.log(getDayOfWeek('2023-06-07'))
+	     console.log("==================")
+	     console.log("==================")
+	     if(holiy.totalCount > 1){
+			 var holiday = ''
+			 var isHoliday = ''
+			 for(let d = 0; d < Object.keys(holiy.items.item).length; d++){
+				 if(holiday.length == 0){
+					 holiday = holiy.items.item[d].locdate.toString().substr(6)
+					 isHoliday = holiy.items.item[d].isHoliday
+				 }else{
+					 holiday += ',' + holiy.items.item[d].locdate.toString().substr(6)
+					 isHoliday += ',' + holiy.items.item[d].isHoliday
+				 }
+    			 
+    		 }
+			 var cutHoliday = holiday.split(',')
+			 var cutIsHoliday = isHoliday.split(',')
+			 var count = 0
+    		 for (let i = 1; i <= lastDay; i++) {
+    			var num = i
+	    		if(num < 10){
+	    			num = '0' + i
+	    		}
+    			
+				if(cutIsHoliday[count] == 'Y' && cutHoliday[count] == num){
+					htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:red;">${i}`;
+					count++
+				}else if(getDayOfWeek(year + '-' + month + '-' + num) == '일'){
+					htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:red;">${i}`;
+				}else if(getDayOfWeek(year + '-' + month + '-' + num) == '토'){
+					htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:blue">${i}`;
+				}else{
+					htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}`;
+				}
+    			 for(let j = 1; j < checkDay.length; j ++){
+			          if(i == checkDay[j]){
+			             let idx = checkDay.indexOf(j)
+			             htmlDummy += `<p class="overflow-ellipsis" style="color:black">${checkTime[j]} - ${checkMemo[j]}</p>`;
+			          }
+			       }
+		       htmlDummy += `</div>`;
+		     }
+	     }else if(holiy.totalCount == 1){
+	    	 var holiday = holiy.items.item.locdate.toString().substr(6)
+			 var isHoliday = holiy.items.item.isHoliday
+	    	 for (let i = 1; i <= lastDay; i++) {
+	    		 var num = i
+		    		if(num < 10){
+		    			num = '0' + i
+		    		}
+	    		 if(isHoliday == 'Y' && holiday == num){
+						htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:red;">${i}`;
+					}else if(getDayOfWeek(year + '-' + month + '-' + num) == '일'){
+						htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:red;">${i}`;
+					}else if(getDayOfWeek(year + '-' + month + '-' + num) == '토'){
+						htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:blue">${i}`;
+					}else{
+						htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}`;
+					}
+		       
+		       for(let j = 1; j < checkDay.length; j ++){
+		          if(i == checkDay[j]){
+		             let idx = checkDay.indexOf(j)
+		             htmlDummy += `<p class="overflow-ellipsis" style="color:black">${checkTime[j]} - ${checkMemo[j]}</p>`;
+		          }
+		       }
+		       
+		       htmlDummy += `</div>`;
+		     }
+	     }else if(holiy.totalCount == 0){
+	    	 console.log("0")
+	    	 for (let i = 1; i <= lastDay; i++) {    
+	    		 
+	    		    if(getDayOfWeek(year + '-' + month + '-' + num) == '일'){
+						htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:red;">${i}`;
+					}else if(getDayOfWeek(year + '-' + month + '-' + num) == '토'){
+						htmlDummy += `<div class="test" onClick="testFunc(${i})" style="color:blue">${i}`;
+					}else{
+						htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}`;
+					}
+		       
+		       for(let j = 1; j < checkDay.length; j ++){
+		          if(i == checkDay[j]){
+		             let idx = checkDay.indexOf(j)
+		             htmlDummy += `<p class="overflow-ellipsis" style="color:black">${checkTime[j]} - ${checkMemo[j]}</p>`;
+		          }
+		       }
+		       
+		       htmlDummy += `</div>`;
+		     }
+	     }
+	     
+	   
+	     for (let i = limitDay; i < nextDay; i++) {
+	       htmlDummy += `<div class="noColor"></div>`;
+	     }
+	     
+	     
+	     document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
+	     document.querySelector(`.dateTitle`).innerText = `${currentYear}년 ${currentMonth}월`;
+	};
+	xhr.send('');
+	
      
-     const firstDay = new Date(date.setDate(1)).getDay();
-     const lastDay = new Date(currentYear, currentMonth, 0).getDate();
-   
-     const limitDay = firstDay + lastDay;
-     const nextDay = Math.ceil(limitDay / 7) * 7;
-   
-     let htmlDummy = '';
-     for (let i = 0; i < firstDay; i++) {
-       htmlDummy += `<div class="noColor"></div>`;
-     }
-   
-     for (let i = 1; i <= lastDay; i++) {    
-       htmlDummy += `<div class="test" onClick="testFunc(${i})">${i}`;
-       
-       for(let j = 1; j < checkDay.length; j ++){
-          if(i == checkDay[j]){
-             let idx = checkDay.indexOf(j)
-             htmlDummy += `<p class="overflow-ellipsis">${checkTime[j]} - ${checkMemo[j]}</p>`;
-          }
-       }
-       
-       htmlDummy += `</div>`;
-     }
-   
-     for (let i = limitDay; i < nextDay; i++) {
-       htmlDummy += `<div class="noColor"></div>`;
-     }
-     
-     
-     document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
-     document.querySelector(`.dateTitle`).innerText = `${currentYear}년 ${currentMonth}월`;
      
    }
    
@@ -112,6 +229,7 @@ const makeCalendar = (date) => {
       // 다음달 이동
       document.querySelector(`.nextDay`).onclick = () => {
          makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+         
       }
 
    }
@@ -199,9 +317,6 @@ const makeCalendar = (date) => {
       
       let time1 = document.getElementsByClassName("form-select1");      
       let time2 = document.getElementsByClassName("form-select2");  
-      console.log(time1)
-      console.log('=================')
-      console.log(time2)
       for(let i=0; i<memos.length; i++){
           for(let j = 0; j<time1[i].length; j++){
              if(time1[i].options[j].value === memos[i].calTime.substr(0,2)){
@@ -328,4 +443,14 @@ const makeCalendar = (date) => {
          });      
       }
    }
+   var aa = '2023-05-10'
+   function getDayOfWeek(aa){ //ex) getDayOfWeek('2022-06-13')
+
+	    const week = ['일', '월', '화', '수', '목', '금', '토'];
+
+	    const dayOfWeek = week[new Date(aa).getDay()];
+
+	    return dayOfWeek;
+
+	}
    
