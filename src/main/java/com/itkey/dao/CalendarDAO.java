@@ -44,4 +44,8 @@ public class CalendarDAO {
 	public int modifyMemo(CalendarVO cVo) {
 		return sqlSession.update("modifyMemo", cVo);
 	}
+
+	public int updateSmsCnt(String calNo) {
+		return sqlSession.update("updateSmsCnt", calNo);
+	}
 }

@@ -53,5 +53,11 @@ public class CalendarServiceImpl implements CalendarService{
 	      return list;
 	}
 
+	@Override
+	public int updateSmsCnt(String calNo) throws Exception {
+		return cDao.updateSmsCnt(calNo);
+		
+	}
+
    
 }

@@ -23,6 +23,48 @@
     transition: 0.4s;
     border-radius: 4px;
 }
+
+.form-select1 {
+  display: block;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+  .form-select2 {
+  display: block;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+}
 </style>
 <head>
     <meta charset="utf-8">
@@ -57,7 +99,6 @@
    
    <!--    타임픽커 -->
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-   <script src="resources/js/plugin/datepicker/bootstrap-datepicker.js"></script>
 
 </head>
 
@@ -92,54 +133,18 @@
        <div id="modalBody">
          <span id="closeBtn">&times;</span>
          <div id="info">*예약시간에 맞춰 문자 알림이 전송됩니다.</div></br>
-         <div>
-         시간예약:
-         <select class="form-select" id="time1" aria-label="Default select example">
-             <option value="00:00">00:00</option>
-             <option value="00:30">00:30</option>
-             <option value="01:00">01:00</option>
-             <option value="02:00">02:00</option>
-             <option value="02:30">02:30</option>
-             <option value="03:00">03:00</option>
-             <option value="04:00">04:00</option>
-             <option value="05:00">05:00</option>
-             <option value="05:30">05:30</option>
-             <option value="06:00">06:00</option>
-             <option value="06:30">06:30</option>
-             <option value="07:00">07:00</option>
-             <option value="07:30">07:30</option>
-             <option value="08:00">08:00</option>
-             <option value="08:30">08:30</option>
-             <option value="09:00">09:00</option>
-             <option value="09:30">09:30</option>
-             <option value="10:00">10:00</option>
-             <option value="10:30">10:30</option>
-             <option value="11:00">11:00</option>
-             <option value="11:30">11:30</option>
-             <option value="12:00">12:00</option>
-             <option value="12:30">12:30</option>
-             <option value="13:00">13:00</option>
-             <option value="13:30">13:30</option>
-             <option value="14:00">14:00</option>
-             <option value="14:30">14:30</option>
-             <option value="15:00">15:00</option>
-             <option value="15:30">15:30</option>
-             <option value="16:00">16:00</option>
-             <option value="16:30">16:30</option>
-             <option value="17:00">17:00</option>
-             <option value="17:30">17:30</option>
-             <option value="18:00">18:00</option>
-             <option value="18:30">18:30</option>
-             <option value="19:00">19:00</option>
-             <option value="19:30">19:30</option>
-             <option value="20:00">20:00</option>
-             <option value="20:30">20:30</option>
-             <option value="21:00">21:00</option>
-             <option value="21:30">21:30</option>
-             <option value="22:00">22:00</option>
-             <option value="23:30">23:30</option>
-             <option value="24:00">24:00</option>
-         </select>
+         <div>시간예약</div>
+         <div id="selectTime" style="display:flex;">
+	         <select class="form-select1" id="time1" aria-label="Default select example">
+		         <c:forEach var="hour" begin="0" end="23">
+		         	<option value="<c:if test="${hour < 10}">0</c:if>${hour }"><c:if test="${hour < 10}">0</c:if>${hour }</option>
+		         </c:forEach>
+	         </select>
+	         <select class="form-select2" id="time2" aria-label="Default select example">
+		         <c:forEach var="min" begin="0" end="59">
+		         	<option value="<c:if test="${min < 10}">0</c:if>${min }"><c:if test="${min < 10}">0</c:if>${min }</option>
+		         </c:forEach>
+	         </select>
          </div>
             <div>
          메모:<input type="text" class="form-control mediMemo" style="width:200px;">
@@ -355,7 +360,7 @@ h2 {
 /* } */
 @media(min-width:375px){
    .dateBoard div{
-      max-width:46.14px;
+      max-width:100%;
       height:8rem;
       overflow:scroll;
    }

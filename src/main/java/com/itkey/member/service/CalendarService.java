@@ -17,5 +17,7 @@ public interface CalendarService {
    public int deleteMemo(CalendarVO cVo)throws Exception;
    
    public int modifyMemo(CalendarVO cVo)throws Exception;
+
+   public int updateSmsCnt(String calNo) throws Exception;	
    
 }

@@ -25,7 +25,7 @@
    </insert>
 
    <select id="getAllCalendar"  resultType="CalendarVO">
-      SELECT * from calendar_tbl
+      SELECT * FROM calendar_tbl WHERE SMS = 'N'
    </select>
    
    <select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
@@ -60,6 +60,13 @@
       SET 
          cal_memo = #{calMemo},
          cal_time = #{calTime}
+      WHERE cal_no = #{calNo} 
+    </update>
+    
+    <update id="updateSmsCnt" parameterType="string">
+    	UPDATE calendar_tbl 
+      SET 
+         sms = 'Y'
       WHERE cal_no = #{calNo} 
     </update>
     

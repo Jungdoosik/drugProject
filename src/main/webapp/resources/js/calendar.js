@@ -1,57 +1,33 @@
-   const drawSelect = () => {
-      let drawHtml = '';
-      drawHtml += `<select class="form-select time2" aria-label="Default select example">`;
-      drawHtml += 
-         `<option value="00:00">00:00</option>
-         <option value="00:30">00:30</option>
-         <option value="01:00">01:00</option>
-         <option value="02:00">02:00</option>
-         <option value="02:30">02:30</option>
-         <option value="03:00">03:00</option>
-         <option value="04:00">04:00</option>
-         <option value="05:00">05:00</option>
-         <option value="05:30">05:30</option>
-         <option value="06:00">06:00</option>
-         <option value="06:30">06:30</option>
-         <option value="07:00">07:00</option>
-         <option value="07:30">07:30</option>
-         <option value="08:00">08:00</option>
-         <option value="08:30">08:30</option>
-         <option value="09:00">09:00</option>
-         <option value="09:30">09:30</option>
-         <option value="10:00">10:00</option>
-         <option value="10:30">10:30</option>
-         <option value="11:00">11:00</option>
-         <option value="11:30">11:30</option>
-         <option value="12:00">12:00</option>
-         <option value="12:30">12:30</option>
-         <option value="13:00">13:00</option>
-         <option value="13:30">13:30</option>
-         <option value="14:00">14:00</option>
-         <option value="14:30">14:30</option>
-         <option value="15:00">15:00</option>
-         <option value="15:30">15:30</option>
-         <option value="16:00">16:00</option>
-         <option value="16:30">16:30</option>
-         <option value="17:00">17:00</option>
-         <option value="17:30">17:30</option>
-         <option value="18:00">18:00</option>
-         <option value="18:30">18:30</option>
-         <option value="19:00">19:00</option>
-         <option value="19:30">19:30</option>
-         <option value="20:00">20:00</option>
-         <option value="20:30">20:30</option>
-         <option value="21:00">21:00</option>
-         <option value="21:30">21:30</option>
-         <option value="22:00">22:00</option>
-         <option value="23:30">23:30</option>
-         <option value="24:00">24:00</option>
-         `;
-      drawHtml += `</select>`;
+   const drawSelectH = () => {
+      let drawHtmlH = '';
+      drawHtmlH += '<select class="form-select1" id="time1" aria-label="Default select example">';
+      for(let i = 0; i < 24; i++){
+    	  if(i < 10){
+			  i = '0' + i
+		  }
+    	  drawHtmlH += '<option value="'+i+'">'+i+'</option>'
+      }
+      drawHtmlH += '</select>';
       
-      return drawHtml;
+      
+      return drawHtmlH;
 //      document.querySelector(`#modify_select_area`).innerHTML = drawHtml;
    }
+   
+   const drawSelectM = () => {
+	      let drawHtmlM = '';
+	      drawHtmlM += '<select class="form-select2" id="time2" aria-label="Default select example">';
+	      for(let i = 0; i <= 59; i++){
+	    	  if(i < 10){
+				  i = '0' + i
+			  }
+	    	  drawHtmlM += '<option value="'+i+'">'+i+'</option>'
+	      }
+	      drawHtmlM += '</select>';
+	      
+	      return drawHtmlM;
+//	      document.querySelector(`#modify_select_area`).innerHTML = drawHtml;
+	  }
 
 const makeCalendar = (date) => {
      const currentYear = new Date(date).getFullYear();
@@ -196,9 +172,12 @@ const makeCalendar = (date) => {
          let dynamicHtml = '';
          
          for(let i=0; i<memos.length; i++){
-            dynamicHtml += `<div id="drawDiv">`;
-            dynamicHtml += drawSelect();
-            dynamicHtml += `<input type="text" class="memo" value="${memos[i].calMemo}">`;
+        	 /*$('#selectTime').children*/
+        	$('#selectTime').children().remove()
+            dynamicHtml += `<div id="drawDiv" style="display:flex;">`;
+            dynamicHtml += drawSelectH();
+            dynamicHtml += drawSelectM();
+            dynamicHtml += `<input type="text" class="memo" value="${memos[i].calMemo}" style="width: 100%;">`;
             dynamicHtml += `<i id="modifyIcon" onclick="modify(${memos[i].calNo}, ${i})" class="bi bi-pencil"></i>`;
             dynamicHtml += `<i id="deleteIcon" onclick="delMemo(${memos[i].calNo}, ${i})" class="bi bi-x-square"></i>`;
             dynamicHtml += `</div>`;
@@ -209,14 +188,27 @@ const makeCalendar = (date) => {
          //수정삭제폼모달
          document.querySelector("#modalWrap_modify").style.display = 'block';
          
+      }else if(isFlag == 0){
+    	  let dynamicHtml = '';
+    	  $('#selectTime').children().remove()
+          dynamicHtml += drawSelectH();
+          dynamicHtml += drawSelectM();
+          $('#selectTime').append(dynamicHtml)
       }
       //time2 라는 아이디가 한개라서 제일 첫번째 요소만 변경하는 오류가 있음
       
-      let time2 = document.getElementsByClassName("form-select time2");      
+      let time1 = document.getElementsByClassName("form-select1");      
+      let time2 = document.getElementsByClassName("form-select2");  
+      console.log(time1)
+      console.log('=================')
+      console.log(time2)
       for(let i=0; i<memos.length; i++){
-         for(let j = 0; j<time2[i].length; j++){
-            if(time2[i].options[j].value == memos[i].calTime.substr(0,5)){
-               time2[i].options[j].selected = true;
+         for(let j = 0; j<time1[i].length; j++){
+            if(time1[i].options[j].value === memos[i].calTime.substr(0,2)){
+            	console.log(typeof time1[i].options[j].value)
+            	console.log('=================')
+            	console.log(typeof memos[i].calTime.substr(0,2))
+               time1[i].options[j].selected = true;
             }
          }
       }
@@ -231,7 +223,9 @@ const makeCalendar = (date) => {
    
    function enroll() {
       //빈값이면 등록 빈값이 아니면 등록X
-      let cal_time = document.querySelector("#time1").value;
+      let cal_time1 = document.querySelector("#time1").value;
+      let cal_time2 = document.querySelector("#time2").value;
+      let cal_time = cal_time1 + ':' + cal_time2
       let prefixTime = cal_time.slice(0,1)
       
       let mediMemo = document.querySelector(".mediMemo").value;
@@ -310,6 +304,11 @@ const makeCalendar = (date) => {
    const addMore = () => {
       closeModal();
       document.getElementById('modalWrap').style.display = 'block';
+      let dynamicHtml = '';
+	  $('#selectTime').children().remove()
+      dynamicHtml += drawSelectH();
+      dynamicHtml += drawSelectM();
+      $('#selectTime').append(dynamicHtml)
    }
    
    const delMemo = (calNo, idx) => {
