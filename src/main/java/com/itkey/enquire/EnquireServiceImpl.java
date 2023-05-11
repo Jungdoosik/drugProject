@@ -14,7 +14,6 @@ import com.itkey.pageutil.PageCriteria;
 import com.itkey.service.common.Criteria;
 
 
-
 @Service("EnquireService")
 public class EnquireServiceImpl implements EnquireService{
 	private Logger log = Logger.getLogger(EnquireController.class);
@@ -60,8 +59,6 @@ public class EnquireServiceImpl implements EnquireService{
 		return result;
 	}
 	
-	
-	
 	@Override
 	public int insertAsk(EnquireVo eVO) throws Exception {
 		log.info("문의 등록 * [SERVICE] Input  ◀ (Controller) : " + eVO.toString());
@@ -85,7 +82,6 @@ public class EnquireServiceImpl implements EnquireService{
 	public EnquireVo detailEnquire(int seq) throws Exception {
 		return eDAO.detailEnquire(seq);
 	}
-
 	@Override
 	public Map<String, Object> listAdminEnquire(Criteria cri) throws Exception {
 		Map<String, Object> result = new HashMap<>();
@@ -100,37 +96,17 @@ public class EnquireServiceImpl implements EnquireService{
 	
 		return returnMap;
 	}
-	
-	@Override
-	public Map<String, Object> listAdminEnqCS(Criteria cri) throws Exception{
-		Map<String, Object> result = new HashMap<>();
-		Map<String, Object> returnMap = new HashMap<>();
 
-		
-		int untreatedEnqCsCnt = eDAO.untreatedEnqCsCnt(cri);
-		List<EnquireVo> list = eDAO.listAdminECS(cri);
-		
-		returnMap.put("List", list);
-		returnMap.put("cnt", untreatedEnqCsCnt);
-	
-		return returnMap;
-	}
 	
 	@Override
 	public void enquireAnswer(EnquireVo eDTO) {
 		eDAO.enquireAnswer(eDTO);
 	}
-	
-	@Override
-	public void enquireAnswerCS(EnquireVo eDTO) {
-		eDAO.enquireAnswerCS(eDTO);
-	}
-	
+
 	@Override
 	public void enquireDelete(int seq) {
 		eDAO.enquireDelete(seq);
 	}
-
 	@Override
 	public EnquireVo enquireDetail(Map<String, Object> params) throws Exception {
 		
@@ -153,11 +129,7 @@ public class EnquireServiceImpl implements EnquireService{
 		log.info("해지 등록 * [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
-	
-	/*@Override
-	public List<CreditDTO> historyCredit(String id) throws Exception {
-		return eDAO.historyCredit(id);
-	}*/
+
 	
 	
 	

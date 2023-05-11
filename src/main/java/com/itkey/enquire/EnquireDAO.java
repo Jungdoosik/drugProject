@@ -32,7 +32,6 @@ public class EnquireDAO {
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
-
 	// ■ 상담목록 내역 -sunae 
 	List<EnquireVo> listEnquire(PageCriteria criteria) throws Exception {
 		log.info("다오다오다오* [DAO] Input  ◀ (Service) : "+ criteria.toString());
@@ -42,7 +41,6 @@ public class EnquireDAO {
 		log.info("다오다오다오* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}
-
 	// ■ 상담 목록 내역 갯수-sunae 
 	int listCountEnquire(PageCriteria criteria) throws Exception {
 		log.info("Count* [DAO] Input  ◀ (Service) : "+ criteria.toString());
@@ -51,7 +49,6 @@ public class EnquireDAO {
 		return result;
 	}
 
-	
 	// ■ 해지 목록 내역 -sunae 
 	List<EnquireVo> cancelList(PageCriteria criteria) throws Exception {
 		log.info("해지 목록 내역* [DAO] Input  ◀ (Service) : "+ criteria.toString());
@@ -162,7 +159,6 @@ public class EnquireDAO {
 			return result;
 		}
 	
-
 	// 서비스 해지 문의 글쓰기
 	public int insertCancel(EnquireVo eVO) {
 		log.info("* [DAO] Input  ◀ (Service) : " + eVO.toString());
@@ -171,7 +167,4 @@ public class EnquireDAO {
 		return result;
 	}
 
-	/*
-	 * // ■ 결제내역 가져오기 List<CreditDTO> historyCredit(String id) throws Exception;
-	 */
 }

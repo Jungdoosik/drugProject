@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-/*
- *  시큐리 -  pom.xml  의존성 주입 
- * import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;*/
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,126 +29,215 @@ import com.itkey.member.service.CalendarService;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.common.Criteria;
-import com.itkey.vo.CalendarVO;
 
 
-
-
+/**
+ * 
+ * @FileName : EnquireController.java
+ * 
+ * 
+ * @Date : 2023. 5. 11.
+ * 
+ * @작성자 : 황선애
+ * 
+ * @변경이력 :
+ * 
+ * @프로그램 설명 : 문의하기외 컨트롤러
+ * 
+ */
 @Controller
 public class EnquireController {
 	private Logger log = Logger.getLogger(EnquireController.class);
-	
+
 	@Autowired
 	private EnquireService eService;
-	
-	 @Autowired
-     CalendarService cSvc;
 
-	// ■ 상담 내역  리스트(개인) - sunea
+	@Autowired
+	CalendarService cSvc;
+
+	/**
+	 * 
+	 * @Method Name : enquireList
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 : 1:1문의하기 내역 리스트(개인)
+	 * 
+	 * @param model
+	 * @param session
+	 * @param page
+	 * @param numsPerPage
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
 	@GetMapping("/question")
-	public String enquireList( Model model,HttpSession session, Integer page, Integer numsPerPage
-	    ) throws Exception {
+	public String enquireList(Model model, HttpSession session, Integer page, Integer numsPerPage) throws Exception {
 		log.info("question 상담내역");
-		//세션값 불러오기
+		// 세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
 		log.info(phone);
-	
+
 		PageCriteria criteria = new PageCriteria();
-		//log.info("======1111===============");
+		// log.info("======1111===============");
 		criteria.setKeyword(phone);// 회원id criteria 객체 set
-		
+
 		if (page != null) {
-			//페이지 
+			// 페이지
 			criteria.setPage(page);
 		}
 		if (numsPerPage != null) {
-			//페이지번호
+			// 페이지번호
 			criteria.setNumsPerPage(numsPerPage);
 		}
-		//log.info(criteria);
-	
-		List<EnquireVo> eList = eService.listEnquire(criteria); //유저1 문의리스트 
+
+		List<EnquireVo> eList = eService.listEnquire(criteria); // 유저1 문의리스트
 		model.addAttribute("List", eList);
-		
-		PageMaker pageMaker = new PageMaker(); // 페이지메이커 
+
+		PageMaker pageMaker = new PageMaker(); // 페이지메이커
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(eService.listCountEnquire(criteria)); //총갯수 
+		pageMaker.setTotalCount(eService.listCountEnquire(criteria)); // 총갯수
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("phone", phone);
 		return "/enquire/enquireListView";
 	}
 
-	
-	// ■ 해지 문의 목록 - -sunae
+	/**
+	 * 
+	 * @Method Name : cancelList
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 : 해지 문의 목록
+	 * 
+	 * @param model
+	 * @param session
+	 * @param page
+	 * @param numsPerPage
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
 	@GetMapping("/cancelList")
-	public String cancelList( Model model
-			,HttpSession session
-			, Integer page
-			, Integer numsPerPage
-	    ) throws Exception {
+	public String cancelList(Model model, HttpSession session, Integer page, Integer numsPerPage) throws Exception {
 		log.info("cancelList  목록 ");
-		//세션값 불러오기
+		// 세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
 		log.info(phone);
-	
+
 		PageCriteria criteria = new PageCriteria();
-		//log.info("======1111===============");
+		// log.info("======1111===============");
 		criteria.setKeyword(phone);// 회원id criteria 객체 set
-		
+
 		if (page != null) {
-			//페이지 
+			// 페이지
 			criteria.setPage(page);
 		}
 		if (numsPerPage != null) {
-			//페이지번호
+			// 페이지번호
 			criteria.setNumsPerPage(numsPerPage);
 		}
-	
-		List<EnquireVo> cList = eService.cancelList(criteria); //유저1 해지 문의 리스트
+		List<EnquireVo> cList = eService.cancelList(criteria); // 유저1 해지 문의 리스트
 		model.addAttribute("List", cList);
-	
-		PageMaker pageMaker = new PageMaker(); // 페이지메이커 
+
+		PageMaker pageMaker = new PageMaker(); // 페이지메이커
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(eService.cancelListCount(criteria)); //총갯수 
-		
+		pageMaker.setTotalCount(eService.cancelListCount(criteria)); // 총갯수
+
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("phone", phone);
 		return "/enquire/cancelListView";
 	}
-	
-	//해지 서비스 상세 -sunae
-		@RequestMapping("/cancelDetail")
-		public String cancelDetail(@RequestParam Map<String, Object> params
-				, ModelMap model
-				) throws Exception{
-			log.info("cancelDetail   서비스 해지 상세  ");
-			System.out.println(params);
-			EnquireVo cVo = eService.cancelDetail(params);
-			
-			model.addAttribute("eVo", cVo);
-			return "/enquire/cancelDetail";
-		}
-	
-	// ■ 고객 문의하기 : 글쓰기 insert -sunea
+
+	/**
+	 * 
+	 * @Method Name : cancelDetail
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :해지문의 상세
+	 * 
+	 * @param params
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
+	@RequestMapping("/cancelDetail")
+	public String cancelDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception {
+		log.info("cancelDetail   서비스 해지 상세  ");
+		System.out.println(params);
+		EnquireVo cVo = eService.cancelDetail(params);
+
+		model.addAttribute("eVo", cVo);
+		return "/enquire/cancelDetail";
+	}
+
+	/**
+	 * 
+	 * @Method Name : enquireWriteView
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 : 고객 문의하기 페이지 이동
+	 * 
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
 	@GetMapping(value = "/enquireWriteView")
-	public String writeEnquire(Model model,HttpSession session, HttpServletRequest request
-			) throws Exception {
+	public String enquireWriteView(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		log.info("문의등록  페이지");
 		return "/enquire/enquireWrite";
-	  }
-	
-	// ■ 고객문의 등록 - sunea
+	}
+
+	/**
+	 * 
+	 * @Method Name : enquireWriteInsert
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :1:1 고객문의 등록
+	 * 
+	 * @param eVO
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
 	@ResponseBody
 	@PostMapping(value = "/doAsk.do")
-	public String insertAsk(EnquireVo eVO, HttpSession session
-			) throws Exception {
+	public String enquireWriteInsert(EnquireVo eVO, HttpSession session) throws Exception {
 		log.info("문의 등록  ajax data : " + eVO);
-		//세션값 불러오기
+		// 세션값 불러오기
 		String phone = (String) session.getAttribute("phone");
-	     log.info(phone);
-	     String serviceCode="MS";
+		log.info(phone);
+		String serviceCode = "MS";
 		eVO.setWriter(phone);
 		eVO.setService_code(serviceCode);
 
@@ -168,64 +252,34 @@ public class EnquireController {
 		}
 	}
 
-	
-	// ■ 서비스 해지 문의 화면 (개인)
-	@GetMapping(value = "/eCS")
-	public String enquireCS(Model model) throws Exception {
-		log.info("서비스 해지 문의등록");
-
-		/*
-		 * Authentication authentication =
-		 * SecurityContextHolder.getContext().getAuthentication(); String member_id =
-		 * ""; if (authentication != null) { member_id = authentication.getName();
-		 * log.info(member_id); } String isMyCS = eService.getCSCount(member_id) == 0 ?
-		 * "APPLY" : "APPLYING";
-		 */
-		String isMyCS = ""; // 임의값 지정
-
-		model.addAttribute("apply", isMyCS);
-		return "/enquire/enquireCS";
-	}
-
-	// ■ 상담 내역 (관리자) -sunea
-	/* @PreAuthorize("hasRole('ADMIN')") */
+	/**
+	 * 
+	 * @Method Name : adminList
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :문의하기 관리자 목록 (관리자)
+	 * 
+	 * @param model
+	 * @param cri
+	 * @return
+	 * @throws Exception
+	 * 
+	 */
 	@GetMapping("/enquireAdmin")
-	public String adminList(Model model
-			, @ModelAttribute("cri") Criteria cri
-			) throws Exception {
+	public String adminList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 
 		log.info("관리자 상담내역");
 		Map<String, Object> map = eService.listAdminEnquire(cri);
-		
+
 		model.addAttribute("List", map.get("List"));
 		model.addAttribute("untreatedCnt", map.get("cnt"));
 		model.addAttribute("ServiceCode", cri.getServiceCode());
 		return "/enquire/enquireAdminView";
-	}
-
-	// ■ 문의 챗봇
-	@GetMapping(value = "/chatBot")
-	public String enquireChatBot(Model model) throws Exception {
-		log.info("문의챗봇");
-		return "/enquire/enqChatBot";
-
-	}
-
-	// ■ 해지문의 내역 (관리자)
-	/* @PreAuthorize("hasRole('ADMIN')") */
-	@GetMapping("/adminECS")
-	public String adminECS(@RequestParam Map<String, Object> param, Model model, @ModelAttribute("cri") Criteria cri)
-			throws Exception {
-
-		Map<String, Object> map = eService.listAdminEnqCS(cri);
-
-		model.addAttribute("List", map.get("List"));
-		model.addAttribute("untreatedEnqCsCnt", map.get("cnt"));
-		model.addAttribute("param", param);
-
-		model.addAttribute("ServiceCode", cri.getServiceCode());
-
-		return "/enquire/enquireAdminCS";
 	}
 
 	// ■ 고객 서비스 해지 문의 등록
@@ -245,7 +299,22 @@ public class EnquireController {
 		return entity;
 	}
 
-	// ■ 상담 상세 -sunea
+	/**
+	 * 
+	 * @Method Name : detailEnqire
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :문의 상담 상세 (관리자)
+	 * 
+	 * @param seq
+	 * @return
+	 * 
+	 */
 	@ResponseBody
 	@GetMapping(value = "/detail/{seq}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -261,16 +330,30 @@ public class EnquireController {
 		return entity;
 	}
 
-	// ■ 문의답변 등록 -sunea
+	/**
+	 * 
+	 * @Method Name : enquireAnswer
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :문의 답변 등록(관리자)
+	 * 
+	 * @param eDTO
+	 * @param seq
+	 * @return
+	 * 
+	 */
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/answer/{seq}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> enquireAnswer(@RequestBody EnquireVo eDTO, @PathVariable("seq") int seq) {
 
 		log.info("답변 등록");
-
 		ResponseEntity<String> entity = null;
-
 		try {
 			eDTO.setSeq(seq);
 			log.info("eDTO : " + eDTO);
@@ -284,82 +367,65 @@ public class EnquireController {
 		return entity;
 	}
 
-	// ■ 서비스 해지 문의 답변 등록
-	@RequestMapping(method = { RequestMethod.PUT,
-			RequestMethod.PATCH }, value = "/answerCS/{seq}", consumes = "application/json", produces = {
-					MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> enquireAnswerCS(@RequestBody EnquireVo eDTO, @PathVariable("seq") int seq) {
-
-		log.info("답변 등록");
-
-		ResponseEntity<String> entity = null;
-
-		try {
-			eDTO.setSeq(seq);
-			log.info("eDTO : " + eDTO);
-			eService.enquireAnswerCS(eDTO);
-
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-
-		} catch (Exception e) {
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	// ■ 문의답변 삭제 
+	/**
+	 * 
+	 * @Method Name : enquireDelete
+	 * 
+	 * @작성일 : 2023. 5. 11.
+	 * 
+	 * @작성자 : 황선애
+	 * 
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 :문의 답변 삭제(관리자)
+	 * 
+	 * @param seq
+	 * @return
+	 * 
+	 */
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/delete/{seq}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> enquireDelete(@PathVariable("seq") int seq) {
 
 		log.info("문의글 삭제");
-
 		ResponseEntity<String> entity = null;
-
 		try {
 			eService.enquireDelete(seq);
-
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-
 		} catch (Exception e) {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
 
-	/*
-	 * // ■ 결제내역 팝업 - 삭제 됨
+	/**
 	 * 
-	 * @GetMapping("/paylist/{id}") public String payList(@PathVariable("id") String
-	 * id, Model model) throws Exception{
+	 * @Method Name : enquireDetail
 	 * 
-	 * log.info("id : " + id); List<CreditDTO> list = eService.historyCredit(id);
-	 * log.info("가져온 리스트 + " + list);
+	 * @작성일 : 2023. 5. 11.
 	 * 
-	 * model.addAttribute("List", list); model.addAttribute("id", id);
+	 * @작성자 : 정두식
 	 * 
-	 * return "/enquire/enquirePopView"; }
+	 * @변경이력 :
+	 * 
+	 * @Method 설명 : 1:1 문의 상세
+	 * 
+	 * @param params
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * 
 	 */
-
-	@GetMapping("/faq")
-	public String faq() throws Exception {
-		log.info("자주 묻는 질문 페이지로");
-		return "/enquire/faqList";
-	}
-	
-	//
 	@RequestMapping("/enquireDetail")
-	public String enquireDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception{
-		
+	public String enquireDetail(@RequestParam Map<String, Object> params, ModelMap model) throws Exception {
+
 		System.out.println(params);
 		EnquireVo eVo = eService.enquireDetail(params);
-		
+
 		model.addAttribute("eVo", eVo);
-		
+
 		return "/enquire/enquireDetail";
 	}
-	
-	
 
 }
