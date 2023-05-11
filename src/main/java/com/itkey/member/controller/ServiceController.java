@@ -36,6 +36,13 @@ import com.itkey.phone.service.PhoneService;
 import com.itkey.util.SHA256Util;
 import org.springframework.ui.Model;
 
+/**
+  * @FileName : ServiceController.java
+  * @Date : 2023. 5. 11.
+  * @작성자 : 이해리
+  * @변경이력 :
+  * @프로그램 설명 : 서비스 관련 컨트롤러(가입/해지)
+  */
 @Controller
 public class ServiceController {
 
@@ -48,7 +55,17 @@ public class ServiceController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
 
-	// 서비스 해지
+	/**
+	  * @Method Name : cancel
+	  * @작성일 : 2023. 5. 11.
+	  * @작성자 : 이해리
+	  * @변경이력 :
+	  * @Method 설명 : 서비스 해지 신청 메소드
+	  * @param response
+	  * @param session
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping("/cancel")
 	public ModelAndView cancel(HttpServletResponse response, HttpSession session) throws Exception{
 		logger.info("서비스 해지 /cancel");
@@ -116,33 +133,59 @@ public class ServiceController {
 		}
 		return mv;
 	}
+
+    /**
+      * @Method Name : cancelAuth
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 서비스 해지 문의를 위한 핸드폰 본인 인증 페이지
+      * @return
+      * @throws Exception
+      */
     @RequestMapping("/cancelAuth")
     public String cancelAuth() throws Exception{
-    	// 핸드폰 본인인증 후 해지문의 글쓰기로 이동
     	return "cancelAuth";
     }
 
-    // 해지문의 글쓰기
+    /**
+      * @Method Name : cancelWrite
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : (핸드폰 본인 인증 완료 시)해지 문의 글쓰기 페이지로 이동
+      * @return
+      * @throws Exception
+      */
     @RequestMapping("/cancelWrite")
     public String cancelWrite() throws Exception{
 
     	return "cancelWrite";
     }
 
-	// 해지문의 글 등록
+ 	/**
+ 	  * @Method Name : cancelWriteOk
+ 	  * @작성일 : 2023. 5. 11.
+ 	  * @작성자 : 이해리
+ 	  * @변경이력 :
+ 	  * @Method 설명 : 해지문의 글 등록
+ 	  * @param eVO
+ 	  * @param session
+ 	  * @return
+ 	  * @throws Exception
+ 	  */
  	@ResponseBody
  	@PostMapping(value = "/cancelWriteOk")
  	public String cancelWriteOk(EnquireVo eVO, HttpSession session) throws Exception {
  		logger.info("문의 등록  ajax data : " + eVO);
 
- 		//세션값 불러오기
  		String phone = (String) session.getAttribute("phone");
  	    logger.info(phone);
  		eVO.setWriter(phone);
 
- 		logger.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
+ 		logger.info("* cancelWriteOk [CONTROLLER] input ◀ (Service) : ");
  		int result = enquireService.insertCancel(eVO);
- 		logger.info("* insertAsk [CONTROLLER] out �뼳 (Service) : " + result);
+ 		logger.info("* cancelWriteOk [CONTROLLER] out ◀ (Service) : " + result);
 
  		if (result == 1) {
  			return "success";
@@ -151,6 +194,16 @@ public class ServiceController {
  		}
  	}
 
+    /**
+      * @Method Name : servicesJoin
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 서비스 가입 페이지(servicesJoin)에서 결제 완료 시 세션 subScribe 값 입력
+      * @param session
+      * @return
+      * @throws Exception
+      */
     @RequestMapping("/servicesJoin")
     public String servicesJoin(HttpSession session) throws Exception{
     	MemberVo mVO = new MemberVo();
@@ -161,11 +214,21 @@ public class ServiceController {
 			String subScribe = mVO.getSubscribe();
 			session.setAttribute("subScribe", subScribe);
 		}
-
-
     	return "servicesJoin";
     }
 
+    /**
+      * @Method Name : paymentOk
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 서비스 가입 페이지(servicesJoin)에서 결제 완료 시 결제 데이터 DB(credit)에 저장
+      * @param params
+      * @param response
+      * @param session
+      * @return
+      * @throws Exception
+      */
     @ResponseBody
     @RequestMapping(value = "/paymentOk", method = RequestMethod.POST)
     public String paymentOk(@RequestParam Map<String, Object> params, HttpServletResponse response, HttpSession session) throws Exception {
