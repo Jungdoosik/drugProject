@@ -27,6 +27,13 @@ import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
 import com.itkey.vo.CalendarVO;
 
+/**
+  * @FileName : ScheduleController.java
+  * @Date : 2023. 5. 11. 
+  * @작성자 : 김윤경
+  * @변경이력 :
+  * @프로그램 설명 : 캘린더 일정 등록 컨트롤러
+  */
 @Controller
 public class ScheduleController {
       
@@ -41,7 +48,18 @@ public class ScheduleController {
       @Autowired
   	  private PhoneService phoneService;
       
-       @RequestMapping("/calendar")
+       /**
+      * @Method Name : calendar
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 서비스가입 후 이용가능
+      * @param response
+      * @param session
+      * @return
+      * @throws Exception
+      */
+    @RequestMapping("/calendar")
        public ModelAndView calendar(HttpServletResponse response, HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
@@ -67,7 +85,18 @@ public class ScheduleController {
             return mv;
        }
        
-       @ResponseBody
+       /**
+      * @Method Name : enrollCal
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 일정 등록
+      * @param cVo
+      * @param session
+      * @return
+      * @throws Exception
+      */
+    @ResponseBody
        @RequestMapping(value = "/enrollCalendar")
        public int enrollCal(CalendarVO cVo, HttpSession session) throws Exception{
           logger.debug("enrollCalendar is Running...");
@@ -87,7 +116,18 @@ public class ScheduleController {
 //          return map;
        }
        
-       @GetMapping(value = "/getCalendar")
+       /**
+      * @Method Name : getCalendar
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 등록된 일정 LIST 가져오기
+      * @param cVo
+      * @param session
+      * @return
+      * @throws Exception
+      */
+    @GetMapping(value = "/getCalendar")
        public @ResponseBody List<CalendarVO> getCalendar(CalendarVO cVo, HttpSession session) throws Exception{
     	  String phone = (String) session.getAttribute("phone");
     	  cVo.setPhone(phone);
@@ -99,7 +139,18 @@ public class ScheduleController {
           return list;
        }
        
-       @GetMapping(value = "/getMemo")
+       /**
+      * @Method Name : getMemo
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 등록된 메모 가져오기
+      * @param cVo
+      * @param session
+      * @return
+      * @throws Exception
+      */
+    @GetMapping(value = "/getMemo")
        public @ResponseBody List<CalendarVO> getMemo(CalendarVO cVo, HttpSession session) throws Exception{
     	  String phone = (String) session.getAttribute("phone");
     	  cVo.setPhone(phone);
@@ -108,21 +159,40 @@ public class ScheduleController {
           return list;
        }
        
-       @PostMapping(value = "/deleteMemo")
+       /**
+      * @Method Name : deleteMemo
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 등록된 메모 삭제하기 
+      * @param cVo
+      * @return
+      * @throws Exception
+      */
+    @PostMapping(value = "/deleteMemo")
        public @ResponseBody int deleteMemo(CalendarVO cVo) throws Exception{
           logger.debug(cVo.getCalNo());
           int result = cSvc.deleteMemo(cVo);
           return result;
        }
        
-       @PostMapping(value = "/modifyMemo")
+       /**
+      * @Method Name : modifyMemo
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 등록된 메모 수정하기 
+      * @param cVo
+      * @return
+      * @throws Exception
+      */
+    @PostMapping(value = "/modifyMemo")
        public @ResponseBody int modifyMemo(CalendarVO cVo) throws Exception{
           int result = cSvc.modifyMemo(cVo);
           return result;
        }
        
        //공휴일API
-       
        @Scheduled(cron = "0 0/1 * * * *")
    		public void checkTest() throws Exception{
    		// [현재 날짜 및 시간 데이터 얻어오기]
@@ -141,7 +211,15 @@ public class ScheduleController {
    		test();
    	}	
    	
-       @RequestMapping("/test")
+       /**
+      * @Method Name : test
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 김윤경
+      * @변경이력 : 
+      * @Method 설명 : 문자 보내기(사이트참조:https://coolsms.co.kr/) > API연결 
+      * @throws Exception
+      */
+    @RequestMapping("/test")
        public void test() throws Exception {
           List<CalendarVO> list = cSvc.getAllCalendar();
           int result = 0;
@@ -175,8 +253,6 @@ public class ScheduleController {
                  }
              }
           }
-          
-          
 
           //return "test";
        }
