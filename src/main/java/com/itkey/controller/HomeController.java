@@ -34,64 +34,40 @@ import com.itkey.vo.CalendarVO;
  */
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 
-	@Autowired
-	private PhoneService phoneService;
-	@Autowired
-	private CalendarService cSvc;
-	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
+
 		model.addAttribute("serverTime", formattedDate );
-		
+
 		return "event";
 	}
-	
-    
+
     @RequestMapping("/index")
     public String index() {
     	return "index";
     }
-    
+
     @RequestMapping("/contact")
     public String contact() {
     	return "contact";
     }
-    
-    /*@RequestMapping("/join")
-    public String join() {
-    	return "join";
-    }*/
-    
+
     @RequestMapping("/services")
     public String services() {
     	return "services";
     }
-    
-    
-    
-    
-    /*
-     * 상세 정보
-     */
-    /*@RequestMapping("/detail")
-    public String detail() {
-    	return "detail";
-    }*/
 
-    
 }
 
