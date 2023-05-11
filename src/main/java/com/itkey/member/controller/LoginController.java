@@ -26,10 +26,13 @@ import com.itkey.member.service.LoginService;
 import com.itkey.member.service.MemberVo;
 import com.itkey.phone.service.PhoneService;
 
-
 /**
- * Handles requests for the application home page.
- */
+  * @FileName : LoginController.java
+  * @Date : 2023. 5. 11.
+  * @작성자 : 이해리
+  * @변경이력 :
+  * @프로그램 설명 : 회원정보, 로그인 관련 컨트롤러
+  */
 @Controller
 public class LoginController {
 
@@ -40,15 +43,24 @@ public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-
     @RequestMapping("/login")
     public String login() {
     	return "login";
     }
 
+    /**
+      * @Method Name : loginDo
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 로그인 기능
+      * @param session
+      * @param response
+      * @param request
+      * @param model
+      * @return
+      * @throws Exception
+      */
     @RequestMapping(value = "/loginDo", method = RequestMethod.POST)
     public ModelAndView  loginDo(HttpSession session, HttpServletResponse response, HttpServletRequest request, ModelMap model) throws Exception{
     	ModelAndView mv = new ModelAndView();
@@ -65,7 +77,7 @@ public class LoginController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter result = response.getWriter();
 			result.println("<script>alert('아이디 또는 비밀번호를 모두 입력해주세요.')");
-			result.println("history.back()");    // 이전 페이지로 사용자를 보냄
+			result.println("history.back()");
 			result.println("</script>");
 			result.flush();
 			mv.setViewName("login");
@@ -73,13 +85,10 @@ public class LoginController {
 		}else {
 			int idCheck = loginService.idChk(boardWriter);
 			if (idCheck == 1) { // 아이디가 있는 경우
-				// DB SALT 값 조회
-				//String checkSalt = loginService.getSalt(boardWriter);
-				// 입력한 비밀번호와 salt 값을 더하여 암호화한 후 비교
 				int selectMem = loginService.loginChk(mVO);
 				int selectDelMem = loginService.loginChk_del(mVO);
 
-				if(selectMem == 1 && selectDelMem == 0) {
+				if(selectMem == 1 && selectDelMem == 0) { // 아이디와 비밀번호 일치
 					mVO = loginService.loginDo(boardWriter);
 					session.setAttribute("phone", mVO.getPhone());
 					session.setAttribute("cuid", mVO.getCuid());
@@ -102,24 +111,24 @@ public class LoginController {
 					} else {
 						session.setAttribute("subScribe",mVO.getSubscribe());
 					}
-				}else if(selectMem != 1 && selectDelMem == 0){
+				}else if(selectMem != 1 && selectDelMem == 0){ // 비밀번호 불일치
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter result = response.getWriter();
 					result.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해 주십시오.')");
-					result.println("history.back()");    // 이전 페이지로 사용자를 보냄
+					result.println("history.back()");
 					result.println("</script>");
 					result.flush();
 					mv.setViewName("login");
-				}else if(selectMem == 1 && selectDelMem == 1){
+				}else if(selectMem == 1 && selectDelMem == 1){ // 탈퇴회원
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter result = response.getWriter();
 					result.println("<script>alert('탈퇴한 아이디입니다.(사용불가)')");
-					result.println("history.back()");    // 이전 페이지로 사용자를 보냄
+					result.println("history.back()");
 					result.println("</script>");
 					result.flush();
 					mv.setViewName("login");
 				}
-			}if(idCheck == 0 ) { // 아이디가 없는 경우
+			}if(idCheck == 0 ) { // 아이디가 없는 경우 회원가입페이지로 이동
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter result = response.getWriter();
 				result.println(""
@@ -141,6 +150,17 @@ public class LoginController {
     	return "join";
     }
 
+	/**
+	  * @Method Name : joinChk
+	  * @작성일 : 2023. 5. 11.
+	  * @작성자 : 이해리
+	  * @변경이력 :
+	  * @Method 설명 : 회원가입 페이지에서 탈퇴여부 확인하는 메소드
+	  * @param mDTO
+	  * @param request
+	  * @return
+	  * @throws Exception
+	  */
 	@ResponseBody
 	@PostMapping(value = "/joinChk.do")
 	public String joinChk(MemberVo mDTO, HttpServletRequest request) throws Exception {
@@ -159,7 +179,15 @@ public class LoginController {
 		}
 	}
 
-	// 인증요청
+	/**
+	  * @Method Name : sendSMS
+	  * @작성일 : 2023. 5. 11.
+	  * @작성자 : 이해리
+	  * @변경이력 :
+	  * @Method 설명 : 회원가입 시 핸드폰 본인인증
+	  * @param userPhoneNumber
+	  * @return
+	  */
 	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
@@ -173,17 +201,25 @@ public class LoginController {
 	}
 
 
+	/**
+	  * @Method Name : joinDo
+	  * @작성일 : 2023. 5. 11.
+	  * @작성자 : 이해리
+	  * @변경이력 :
+	  * @Method 설명 : 회원가입/이벤트 배너타고 들어와서 100원 결제 후 가입하는 경우 credit 테이블에 (정기결제를 위한) 결제내역 저장
+	  * @param params
+	  * @param response
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping("/joinDo")
     public ModelAndView joinDo(@RequestParam Map<String, Object> params, HttpServletResponse response) throws Exception {
     	ModelAndView mv = new ModelAndView();
     	System.out.println(params);
-    	//member.setSalt(SHA256Util.generateSalt());
-    	//member.setPwd(SHA256Util.getEncrypt(member.getPwd(), member.getSalt()));
     	int joinOk = loginService.insertMem(params);
     	if(params.get("joinPath").equals("2")){
     		loginService.insertCredit(params);
     	}
-
 
     	if(joinOk == 1){
     		response.setContentType("text/html; charset=UTF-8");
@@ -199,7 +235,17 @@ public class LoginController {
     	return mv;
     }
 
-	// 개인정보수정 페이지
+    /**
+      * @Method Name : modify
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 회원정보수정 페이지로 이동
+      * @param model
+      * @param session
+      * @return
+      * @throws Exception
+      */
     @RequestMapping("/modify")
     public String modify(Model model ,HttpSession session) throws Exception {
     	String phone = (String) session.getAttribute("phone");
@@ -210,7 +256,18 @@ public class LoginController {
        return "modify";
     }
 
-    //개인정보 수정 등록
+    /**
+      * @Method Name : updateModifyDo
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 회원정보 수정 등록
+      * @param model
+      * @param mVO
+      * @param session
+      * @return
+      * @throws Exception
+      */
     @ResponseBody
     @RequestMapping("/modifyDo.do")
     public String updateModifyDo (Model model
@@ -224,9 +281,9 @@ public class LoginController {
 
 		mVO.setPhone(phone);
 
-    	logger.info("* updateModifyDo [CONTROLLER] input �뼳 (Service) : ");
+    	logger.info("* updateModifyDo [CONTROLLER] input ◀ (Service) : ");
 		int result = loginService.updateModifyDo(mVO);
-		logger.info("* updateModifyDo [CONTROLLER] out �뼳 (Service) : " + result);
+		logger.info("* updateModifyDo [CONTROLLER] out ◀ (Service) : " + result);
 
 
 		if (result == 1) {
@@ -236,15 +293,23 @@ public class LoginController {
 		}
     }
 
-
-    @RequestMapping(value = "/logout") // 로그아웃 클릭하면
+    /**
+      * @Method Name : logout
+      * @작성일 : 2023. 5. 11.
+      * @작성자 : 이해리
+      * @변경이력 :
+      * @Method 설명 : 로그아웃-세션 삭제
+      * @param session
+      * @return
+      */
+    @RequestMapping(value = "/logout")
 	public String logout(HttpSession session) {
 
-		session.invalidate(); //  세션 삭제
+		session.invalidate();
 
 		return "redirect:index";
 	}
 
-  
+
 }
 
