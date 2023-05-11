@@ -3,37 +3,40 @@
 <mapper namespace="enquire">
 
 <resultMap type="com.itkey.dao.CalendarDAO" id="CalendarDAO"></resultMap>
-   <insert id="enroll" parameterType="CalendarVO">
-      
-      INSERT INTO calendar_tbl(
-      	phone
-      , cal_year
-      , cal_month
-      , cal_day
-      , cal_time
-      , cal_memo
-      , time_builder
-      )VALUES(
-      #{phone}
-      , #{calYear}
-      , #{calMonth}
-      , #{calDay}
-      , #{calTime}
-      , #{calMemo} 
-      , #{timeBuilder}
-      )
-   </insert>
-
-   <select id="getAllCalendar"  resultType="CalendarVO">
-      SELECT * FROM calendar_tbl WHERE SMS = 'N'
-   </select>
+	
+	<!-- 일정 등록 -->
+	<insert id="enroll" parameterType="CalendarVO">
+		INSERT INTO calendar_tbl(
+			phone
+		, cal_year
+		, cal_month
+		, cal_day
+		, cal_time
+		, cal_memo
+		, time_builder
+		)VALUES(
+		#{phone}
+		, #{calYear}
+		, #{calMonth}
+		, #{calDay}
+		, #{calTime}
+		, #{calMemo} 
+		, #{timeBuilder}
+		)
+	</insert>
+	
+	<!-- 일정 -->
+	<select id="getAllCalendar"  resultType="CalendarVO">
+		SELECT * FROM calendar_tbl WHERE SMS = 'N'
+	</select>
    
-   <select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
-      SELECT * from calendar_tbl
-      WHERE cal_year = #{calYear}
-      AND cal_month = #{calMonth}
-      AND phone = #{phone}
-   </select>
+	<!-- 회원마다 등록된 일정 -->
+	<select id="getCalendar" parameterType="CalendarVO" resultType="CalendarVO">
+		SELECT * from calendar_tbl
+		WHERE cal_year = #{calYear}
+		AND cal_month = #{calMonth}
+		AND phone = #{phone}
+	</select>
 
 <!--    <select id="getDate" parameterType="CalendarVO" resultType="CalendarVO"> -->
 <!--       SELECT * from calendar_tbl -->
@@ -42,32 +45,36 @@
 <!--       AND phone = #{phone} -->
 <!--    </select> -->
    
-   <select id="getMemo" parameterType="CalendarVO" resultType="CalendarVO">
-      SELECT * FROM calendar_tbl
-      WHERE cal_year = #{calYear}
-      AND cal_month = #{calMonth}
-      AND cal_day = #{calDay}
-      AND phone = #{phone}
-   </select>
+	<!-- 등록한 메모 -->
+	<select id="getMemo" parameterType="CalendarVO" resultType="CalendarVO">
+		SELECT * FROM calendar_tbl
+		WHERE cal_year = #{calYear}
+		AND cal_month = #{calMonth}
+		AND cal_day = #{calDay}
+		AND phone = #{phone}
+	</select>
    
+	<!-- 메모삭제 -->
     <delete id="deleteMemo" parameterType="CalendarVO">
-      DELETE FROM calendar_tbl
-      WHERE cal_no = #{calNo} 
-    </delete>
+		DELETE FROM calendar_tbl
+		WHERE cal_no = #{calNo} 
+	</delete>
     
+    <!-- 메모수정 -->
     <update id="modifyMemo" parameterType="CalendarVO">
-      UPDATE calendar_tbl 
-      SET 
-         cal_memo = #{calMemo},
-         cal_time = #{calTime}
-      WHERE cal_no = #{calNo} 
+		UPDATE calendar_tbl 
+		SET 
+		   cal_memo = #{calMemo},
+		   cal_time = #{calTime}
+		WHERE cal_no = #{calNo} 
     </update>
     
+    <!-- 가입여부 -->
     <update id="updateSmsCnt" parameterType="string">
     	UPDATE calendar_tbl 
-      SET 
-         sms = 'Y'
-      WHERE cal_no = #{calNo} 
+      	SET 
+			sms = 'Y'
+		WHERE cal_no = #{calNo} 
     </update>
     
 </mapper>
